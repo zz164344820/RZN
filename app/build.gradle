@@ -1,0 +1,84 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+    defaultConfig {
+        applicationId "com.rzn.njt"
+        minSdkVersion 17
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [ moduleName : project.getName() ]
+            }
+        }
+    }
+
+    signingConfigs {
+        release {
+            storeFile file('../app/keystore.jks')
+            keyAlias 'rzn'
+            keyPassword 'rznnjt'
+            storePassword 'rznnjt'
+        }
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            signingConfig signingConfigs.release
+        }
+        release {
+
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+}
+
+
+
+
+allprojects {
+    repositories {
+        jcenter()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+    }
+
+    repositories{
+        flatDir{
+            dirs 'libs'
+        }
+    }
+}
+
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:multidex:1.0.1'
+    /*阿里的viewpager框架*/
+    compile('com.alibaba.android:ultraviewpager:1.0.4@aar') {
+        transitive = true
+    }
+    /*特色的加载动画*/
+    annotationProcessor 'com.alibaba:arouter-compiler:1.1.4'
+    if (!isModule.toBoolean()) {
+        compile project(':module_main')
+        compile project(':module_driver')
+        compile project(':module_farmer')
+    }else{
+        compile project(':commonbaselib')
+    }
+}

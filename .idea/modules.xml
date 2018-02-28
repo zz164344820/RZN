@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/RZN.iml" filepath="$PROJECT_DIR$/RZN.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/commonbaselib/commonbaselib.iml" filepath="$PROJECT_DIR$/commonbaselib/commonbaselib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/expertlib/expertlib.iml" filepath="$PROJECT_DIR$/expertlib/expertlib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loadmorelibrary/loadmorelibrary.iml" filepath="$PROJECT_DIR$/loadmorelibrary/loadmorelibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/module_driver/module_driver.iml" filepath="$PROJECT_DIR$/module_driver/module_driver.iml" />
+      <module fileurl="file://$PROJECT_DIR$/module_farmer/module_farmer.iml" filepath="$PROJECT_DIR$/module_farmer/module_farmer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/module_main/module_main.iml" filepath="$PROJECT_DIR$/module_main/module_main.iml" />
+    </modules>
+  </component>
+</project>
