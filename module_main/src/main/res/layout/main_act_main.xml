@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+    <com.zhy.autolayout.AutoFrameLayout
+        android:id="@+id/fl_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#DDDDDD"
+        />
+
+    <com.rzn.commonbaselib.views.AutoRadioGroup
+        android:id="@+id/rg_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="98px"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        >
+
+
+        <RadioButton
+            android:id="@+id/rb_homepage"
+            android:drawableTop="@drawable/select_main_bottom_home"
+            android:text="首页"
+            style="@style/main_bottom_select" />
+
+
+        <RadioButton
+            android:id="@+id/rb_shop"
+            style="@style/main_bottom_select"
+            android:drawableTop="@drawable/select_main_bottom_shop"
+            android:text="商城" />
+
+        <RadioButton
+            android:id="@+id/rb_nongjitong"
+            style="@style/main_bottom_select"
+            android:drawableTop="@drawable/select_main_bottom_nongjitong"
+            android:text="农机通" />
+
+        <RadioButton
+            android:id="@+id/rb_mine"
+            style="@style/main_bottom_select"
+            android:drawableTop="@drawable/select_main_bottom_mine"
+            android:text="我的" />
+
+    </com.rzn.commonbaselib.views.AutoRadioGroup>
+    
+
+
+</com.zhy.autolayout.AutoLinearLayout>

@@ -1,6 +1,7 @@
 package com.rzn.module_main.ui.login;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.WindowManager;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.module_main.R;
 import com.rzn.module_main.R2;
+import com.rzn.module_main.ui.main.MainActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,6 +49,7 @@ public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPres
 
     @OnClick(R2.id.bt_affirm)
     public void onViewClicked() {
+        startActivity(new Intent(this, MainActivity.class));
 
     }
 }

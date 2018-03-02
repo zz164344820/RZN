@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.rzn.commonbaselib.applictaion.BaseApplication;
 import com.rzn.njt.BuildConfig;
 import com.zyhealth.expertlib.Constants;
 import com.zyhealth.expertlib.LibApplication;
@@ -13,7 +14,7 @@ import com.zyhealth.expertlib.net.OkHttpLoader;
  * Created by zz on 2018/1/12.
  */
 
-public class RZNApplication extends LibApplication {
+public class RZNApplication extends BaseApplication {
 
     @Override
     public void onCreate() {
