@@ -19,6 +19,7 @@ public class RZNApplication extends BaseApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+
         Constants.SERVER = "production";//develop,QA，production,develop_yu
         OkHttpLoader.changServer();
         initArouter();
