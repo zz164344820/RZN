@@ -8,7 +8,6 @@
 
 <include  layout="@layout/topbar"/>
 
-
     <com.rzn.commonbaselib.views.AutoRadioGroup
         android:id="@+id/rgGroup"
         android:layout_width="match_parent"
@@ -17,9 +16,7 @@
         android:layout_marginLeft="109px"
         android:layout_marginTop="17px"
         android:layout_marginBottom="17px"
-        android:padding="1dp"
         android:orientation="horizontal"
-        android:background="@drawable/main_frame_maincolor"
         >
 
         <RadioButton
@@ -28,8 +25,9 @@
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:button="@android:color/transparent"
-             android:background="@drawable/main_tabselect"
+             android:background="@drawable/main_selector_left"
             android:text="我是农户"
+            android:textSize="36px"
             android:textColor="@drawable/main_tab_text_select"
             android:gravity="center"
             android:checked="true"
@@ -41,8 +39,9 @@
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:button="@android:color/transparent"
-            android:background="@drawable/main_tabselect"
+            android:background="@drawable/main_selector_right"
             android:gravity="center"
+            android:textSize="36px"
             android:textColor="@drawable/main_tab_text_select"
             android:text="我是机手"
             />
@@ -52,7 +51,8 @@
     <com.zhy.autolayout.AutoFrameLayout
         android:id="@+id/rl_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        />
 
     </com.zhy.autolayout.AutoLinearLayout>
 
