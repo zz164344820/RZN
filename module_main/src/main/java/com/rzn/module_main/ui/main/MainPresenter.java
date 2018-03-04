@@ -1,6 +1,8 @@
 package com.rzn.module_main.ui.main;
 
+import android.support.annotation.IdRes;
 import android.support.v4.view.ViewPager;
+import android.widget.RadioGroup;
 
 import com.rzn.commonbaselib.mvp.BasePresenterImpl;
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
@@ -30,7 +32,18 @@ public class MainPresenter extends BasePresenterImpl<MainContract.View> implemen
     public void initViewPager(ViewPager viewPager) {
         viewPager.setCurrentItem(0);
         viewPager.addOnPageChangeListener(new MyOnPageChangeListener());
-       // viewPager.setAdapter();
+        viewPager.setAdapter(new MainViewpagerAdapter(mContext.getSupportFragmentManager(),fragments));
+        viewPager.setOffscreenPageLimit(3);
+    }
+
+    @Override
+    public void initRadioGroup(RadioGroup rg) {
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+
+            }
+        });
     }
 
 

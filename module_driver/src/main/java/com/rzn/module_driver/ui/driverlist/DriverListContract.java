@@ -1,7 +1,4 @@
-package com.rzn.module_main.ui.main;
-
-import android.support.v4.view.ViewPager;
-import android.widget.RadioGroup;
+package com.rzn.module_driver.ui.driverlist;
 
 import com.rzn.commonbaselib.mvp.BasePresenter;
 import com.rzn.commonbaselib.mvp.BaseView;
@@ -11,14 +8,12 @@ import com.rzn.commonbaselib.mvp.BaseView;
  *  邮箱 784787081@qq.com
  */
 
-public class MainContract {
+public class DriverListContract {
     interface View extends BaseView {
         
     }
 
     interface  Presenter extends BasePresenter<View> {
-       void initViewPager(ViewPager  viewPager);
-       void initRadioGroup(RadioGroup rg);
-
+        
     }
 }

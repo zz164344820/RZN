@@ -2,6 +2,7 @@ package com.rzn.commonbaselib.mvp;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.v7.app.AppCompatActivity;
 
 import com.google.gson.Gson;
 import com.zyhealth.expertlib.bean.ReqBean;
@@ -21,7 +22,7 @@ import java.util.Set;
  * */
 
 public  class BasePresenterImpl<V extends BaseView> implements BasePresenter<V>{
-   public Activity mContext;
+   public AppCompatActivity mContext;
    public   Gson  gson;
     protected Set<ReqBean> set = new HashSet<>();//使用set的好处的可以去除重复请求同一个网络
 

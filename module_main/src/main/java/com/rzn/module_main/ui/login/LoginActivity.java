@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.module_main.R;
 import com.rzn.module_main.R2;
+import com.rzn.module_main.ui.jobscreening.JobScreeningActivity;
 import com.rzn.module_main.ui.main.MainActivity;
 
 import butterknife.BindView;
@@ -49,7 +50,7 @@ public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPres
 
     @OnClick(R2.id.bt_affirm)
     public void onViewClicked() {
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(this, JobScreeningActivity.class));
 
     }
 }

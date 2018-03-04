@@ -195,7 +195,7 @@ public class MVPBaseActivity<V extends BaseView, T extends BasePresenterImpl<V>>
 
 
     @Override
-    public Activity get_Context() {
+    public AppCompatActivity get_Context() {
         return this;
     }
 

@@ -7,6 +7,7 @@
 
 
     <color name="main_color">#70C63F</color>
+    <color name="bg_color">#F1F4F5</color>
     <color name="text_333">#333333</color>
     <color name="text_888">#888888</color>
 
