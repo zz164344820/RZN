@@ -47,9 +47,12 @@
             android:text="我是机手"
             />
 
-
     </com.rzn.commonbaselib.views.AutoRadioGroup>
 
+    <com.zhy.autolayout.AutoFrameLayout
+        android:id="@+id/rl_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
     </com.zhy.autolayout.AutoLinearLayout>
 

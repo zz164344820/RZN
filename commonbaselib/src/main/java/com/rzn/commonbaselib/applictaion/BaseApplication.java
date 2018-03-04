@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class BaseApplication extends LibApplication {
 
-    public static final String ROOT_PACKAGE = "com.guiying.module";
+    public static final String ROOT_PACKAGE = "com.rzn";
 
     private static BaseApplication sInstance;
 

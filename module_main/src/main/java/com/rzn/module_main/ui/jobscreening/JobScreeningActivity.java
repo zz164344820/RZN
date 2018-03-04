@@ -8,12 +8,17 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import com.rzn.commonbaselib.applictaion.ClassUtils;
+import com.rzn.commonbaselib.applictaion.IViewDelegate;
 import com.rzn.commonbaselib.applictaion.ViewManager;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
 import com.rzn.commonbaselib.views.AutoRadioGroup;
 import com.rzn.module_main.R;
 import com.rzn.module_main.R2;
+import com.zhy.autolayout.AutoFrameLayout;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,6 +34,7 @@ public class JobScreeningActivity extends MVPBaseActivity<JobScreeningContract.V
     RadioButton rbRarmer;
     @BindView(R2.id.rgGroup)
     AutoRadioGroup rgGroup;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,8 +52,10 @@ public class JobScreeningActivity extends MVPBaseActivity<JobScreeningContract.V
     }
 
     private void initFragment() {
-        MVPBaseFragment driverFargment= ViewManager.getInstance().getFragment(0);
+        MVPBaseFragment driverFargment = ViewManager.getInstance().getFragment(0);
+        getSupportFragmentManager().beginTransaction().add(R.id.rl_content,driverFargment).commit();
     }
+
 
     @OnClick({R2.id.tv_title, R2.id.iv_right})
     public void onViewClicked(View view) {
@@ -55,7 +63,7 @@ public class JobScreeningActivity extends MVPBaseActivity<JobScreeningContract.V
             case R2.id.tv_title:
                 break;
             case R2.id.iv_right:
-        break;
-    }
+                break;
+        }
     }
 }
