@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.module_main.R;
 import com.rzn.module_main.R2;
@@ -44,13 +45,18 @@ public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPres
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.main_act_login);
         ButterKnife.bind(this);
-        // ARouter.getInstance().build("/farmer/test").navigation();
+      //  ARouter.getInstance().build("/farmer/test").navigation();
     }
 
 
     @OnClick(R2.id.bt_affirm)
     public void onViewClicked() {
         startActivity(new Intent(this, JobScreeningActivity.class));
+        mPresenter.bbb();
+    }
+
+    @Override
+    public void aaa() {
 
     }
 }

@@ -8,5 +8,10 @@ import com.rzn.commonbaselib.mvp.BasePresenterImpl;
  */
 
 public class LoginPresenter extends BasePresenterImpl<LoginContract.View> implements LoginContract.Presenter{
-    
+
+    @Override
+    public void bbb() {
+    }
+
+
 }

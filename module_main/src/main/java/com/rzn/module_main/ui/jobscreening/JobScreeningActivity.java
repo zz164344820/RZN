@@ -7,19 +7,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
-
-import com.rzn.commonbaselib.applictaion.ClassUtils;
-import com.rzn.commonbaselib.applictaion.IViewDelegate;
 import com.rzn.commonbaselib.applictaion.ViewManager;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
 import com.rzn.commonbaselib.views.AutoRadioGroup;
 import com.rzn.module_main.R;
 import com.rzn.module_main.R2;
-import com.zhy.autolayout.AutoFrameLayout;
-
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;

@@ -1,6 +1,5 @@
 package com.rzn.commonbaselib.applictaion;
 
-import android.app.Application;
 
 import com.zyhealth.expertlib.LibApplication;
 
