@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#F1F4F5"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="61.6dp"
+        android:layout_marginTop="10dp"
+        android:background="#ffffff"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        >
+
+        <ImageView
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginLeft="10dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="孙锦程"
+            android:textColor="#333333"
+            android:textSize="18dp"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="21dp"
+                android:layout_height="21dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="25.5dp"
+                />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_marginTop="10dp"
+        android:background="#ffffff"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="水稻-联合整地 ："
+            android:textColor="#333333"
+            android:textSize="16dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1500元"
+            android:textColor="#FF5050"
+            android:textSize="18dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="（55元/亩）"
+            android:textColor="#888888"
+            android:textSize="16dp"
+            />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#dddddd"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="13.5dp"
+            android:text="10亩/零星分散/5块"
+            android:textColor="#333333"
+            android:textSize="16dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            >
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginLeft="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="作业地点："
+                android:textColor="#333333"
+                android:textSize="18dp"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32.5dp"
+            android:layout_marginRight="32.5dp"
+            android:layout_marginTop="10dp"
+            android:text="任丘市青塔乡老王村龙头地三区第四块至 第八块"
+            android:textColor="#333333"
+            android:textSize="16dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            >
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginLeft="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="补充说明："
+                android:textColor="#333333"
+                android:textSize="18dp"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32.5dp"
+            android:layout_marginRight="32.5dp"
+            android:layout_marginTop="10dp"
+            android:text="最好能下午来，上午不在家。"
+            android:textColor="#333333"
+            android:textSize="16dp"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp"/>
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="341.5dp"
+        android:layout_height="41.5dp"
+        android:layout_gravity="center_horizontal"
+        android:background="#FB9300"
+        android:gravity="center"
+        android:text="确认接单"
+        android:textColor="#FFFFFF"
+        android:textSize="18dp"
+        />
+</LinearLayout>
