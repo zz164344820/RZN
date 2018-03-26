@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.rzn.njt">
+<manifest package="com.rzn.njt"
+          xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".application.RZNApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name=".application.RZNApplication"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        tools:replace="android:name, android:allowBackup ,android:label ,android:supportsRtl"
-        android:theme="@style/AppTheme2" >
-
-
+        android:theme="@style/AppTheme2"
+        tools:replace="android:name, android:allowBackup ,android:label ,android:supportsRtl">
+        <!--全面屏手机适配-->
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.5"/>
     </application>
 
 </manifest>
