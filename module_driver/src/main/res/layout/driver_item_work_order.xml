@@ -148,17 +148,6 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_toLeftOf="@id/tv_true_money"
-                android:text="实付款："
-                android:textColor="#333333"
-                android:textSize="16dp"
-                />
-
             <TextView
                 android:id="@+id/tv_true_money"
                 android:layout_width="wrap_content"
@@ -170,6 +159,17 @@
                 android:textColor="#FF5050"
                 android:textSize="18dp"
                 />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_toLeftOf="@id/tv_true_money"
+                android:text="实付款："
+                android:textColor="#333333"
+                android:textSize="16dp"
+                />
+
+
         </RelativeLayout>
     </LinearLayout>
 
