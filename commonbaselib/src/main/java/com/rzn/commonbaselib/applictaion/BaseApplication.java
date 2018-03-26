@@ -5,6 +5,8 @@ import com.zyhealth.expertlib.LibApplication;
 
 import java.util.List;
 
+import cn.jpush.android.api.JPushInterface;
+
 /**
  * 要想使用BaseApplication，必须在组件中实现自己的Application，并且继承BaseApplication；
  * 组件中实现的Application必须在debug包中的AndroidManifest.xml中注册，否则无法使用；
@@ -37,6 +39,8 @@ public class BaseApplication extends LibApplication {
             delegate.onCreate();
         }
     }
+
+
 
     @Override
     public void onTerminate() {

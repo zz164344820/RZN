@@ -1,21 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.rzn.njt"
-          xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.rzn.njt">
+
 
     <application
-        android:name=".application.RZNApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:name=".application.RZNApplication"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme2"
-        tools:replace="android:name, android:allowBackup ,android:label ,android:supportsRtl">
-        <!--全面屏手机适配-->
-        <meta-data
-            android:name="android.max_aspect"
-            android:value="2.5"/>
+        tools:replace="android:name, android:allowBackup ,android:label ,android:supportsRtl"
+        android:theme="@style/AppTheme2" >
+
+
+        <service android:name="cn.jpush.android.service.PushService"
+            android:process=":multiprocess"
+            tools:node="replace" >
+        </service>
+
+        <receiver
+            android:name=".receiver.MyReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTRATION" />
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" />
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" />
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" />
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_CLICK_ACTION" />
+                <action android:name="cn.jpush.android.intent.CONNECTION" />
+                <category android:name="com.rzn.njt" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>
