@@ -3,7 +3,7 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="44dp"
-    android:background="@color/lightcyan"
+    android:background="@color/main_color"
     android:gravity="center_vertical"
     >
 
@@ -13,7 +13,7 @@
        android:layout_height="match_parent"
        android:paddingLeft="20px"
        android:paddingRight="20px"
-       android:drawableLeft="@drawable/back"
+       android:drawableLeft="@drawable/top_goback"
        android:drawablePadding="8px"
        />
 
@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
-        android:textSize="36px"
+        android:textSize="40px"
         android:layout_centerInParent="true"
         />
 

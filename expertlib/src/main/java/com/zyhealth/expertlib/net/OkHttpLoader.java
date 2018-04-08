@@ -35,12 +35,6 @@ public class OkHttpLoader {
             BASEURL = "http://192.168.31.243/farmHand/";
         } else if ("develop".equals(Constants.SERVER)) {
             BASEURL = "http://192.168.30.49/zyDoctorApp/";
-        } else if ("develop_yu".equals(Constants.SERVER)) {
-            BASEURL = "http://192.168.31.39/zyDoctorApp/";
-        } else if ("QA".equals(Constants.SERVER)) {
-            BASEURL = "http://zydoctor.yunzhenshi.net:8090/zyDoctorApp/";
-        } else {
-            BASEURL = "http://" + Constants.SERVER;//开发者自己手动输入
         }
     }
 

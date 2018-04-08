@@ -17,5 +17,6 @@ public class TestActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         MLog.e("+++++++++++");
+
     }
 }

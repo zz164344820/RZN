@@ -1,10 +1,11 @@
 package com.rzn.commonbaselib.applictaion;
 
-import android.app.Application;
 
 import com.zyhealth.expertlib.LibApplication;
 
 import java.util.List;
+
+import cn.jpush.android.api.JPushInterface;
 
 /**
  * 要想使用BaseApplication，必须在组件中实现自己的Application，并且继承BaseApplication；
@@ -18,7 +19,7 @@ import java.util.List;
  */
 public class BaseApplication extends LibApplication {
 
-    public static final String ROOT_PACKAGE = "com.guiying.module";
+    public static final String ROOT_PACKAGE = "com.rzn";
 
     private static BaseApplication sInstance;
 
@@ -38,6 +39,8 @@ public class BaseApplication extends LibApplication {
             delegate.onCreate();
         }
     }
+
+
 
     @Override
     public void onTerminate() {

@@ -56,5 +56,4 @@ dependencies {
     compile project(':commonbaselib')
     compile project(':loadmorelibrary')
     annotationProcessor 'com.alibaba:arouter-compiler:1.1.4'
-
 }

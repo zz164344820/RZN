@@ -1,6 +1,7 @@
 package com.rzn.commonbaselib.mvp;
 
 import android.app.Activity;
+import android.support.v7.app.AppCompatActivity;
 
 import com.zyhealth.expertlib.bean.ResponseBean;
 
@@ -11,7 +12,7 @@ import com.zyhealth.expertlib.bean.ResponseBean;
  */
 
 public interface BaseView {
-     Activity get_Context();
+     AppCompatActivity get_Context();
 
      void  initView();
 

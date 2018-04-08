@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color"
+    >
+
+<include  layout="@layout/topbar"/>
+
+    <com.rzn.commonbaselib.views.AutoRadioGroup
+        android:id="@+id/rgGroup"
+        android:layout_width="match_parent"
+        android:layout_height="83px"
+        android:layout_marginRight="109px"
+        android:layout_marginLeft="109px"
+        android:layout_marginTop="17px"
+        android:layout_marginBottom="17px"
+        android:orientation="horizontal"
+        >
+
+        <RadioButton
+            android:id="@+id/rb_rarmer"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:button="@android:color/transparent"
+             android:background="@drawable/main_selector_left"
+            android:text="我是农户"
+            android:textSize="36px"
+            android:textColor="@drawable/main_tab_text_select"
+            android:gravity="center"
+            android:checked="true"
+            />
+
+        <RadioButton
+            android:id="@+id/rb_driver"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:button="@android:color/transparent"
+            android:background="@drawable/main_selector_right"
+            android:gravity="center"
+            android:textSize="36px"
+            android:textColor="@drawable/main_tab_text_select"
+            android:text="我是机手"
+            />
+
+    </com.rzn.commonbaselib.views.AutoRadioGroup>
+
+    <com.zhy.autolayout.AutoFrameLayout
+        android:id="@+id/rl_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+
+

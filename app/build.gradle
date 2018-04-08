@@ -12,6 +12,14 @@ android {
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        ndk { abiFilters    'armeabi', 'armeabi-v7a', 'arm64-v8a' }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME : applicationId,
+                JPUSH_APPKEY : "e170181ed3462c07309c6b87", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+        ]
+
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [ moduleName : project.getName() ]

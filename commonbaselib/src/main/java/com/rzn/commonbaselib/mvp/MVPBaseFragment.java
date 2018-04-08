@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.rzn.commonbaselib.views.CustomProgressDialog;
@@ -21,7 +22,7 @@ import java.lang.reflect.ParameterizedType;
 public  class MVPBaseFragment<V extends BaseView,T extends BasePresenterImpl<V>> extends Fragment implements BaseView{
 
     public    T mPresenter;
-    public    Activity mContext;
+    public AppCompatActivity mContext;
     public CustomProgressDialog dialog;
 
 
@@ -39,7 +40,7 @@ public  class MVPBaseFragment<V extends BaseView,T extends BasePresenterImpl<V>>
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mContext = (Activity)context;
+        mContext = (AppCompatActivity) context;
     }
 
 
@@ -54,7 +55,7 @@ public  class MVPBaseFragment<V extends BaseView,T extends BasePresenterImpl<V>>
 
 
     @Override
-    public Activity get_Context() {
+    public AppCompatActivity get_Context() {
         return mContext;
     }
 

@@ -1,14 +1,19 @@
 package com.rzn.njt.application;
 
+import android.app.Notification;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.rzn.commonbaselib.applictaion.BaseApplication;
 import com.rzn.njt.BuildConfig;
+import com.rzn.njt.R;
 import com.zyhealth.expertlib.Constants;
 import com.zyhealth.expertlib.LibApplication;
 import com.zyhealth.expertlib.net.OkHttpLoader;
+
+import cn.jpush.android.api.BasicPushNotificationBuilder;
+import cn.jpush.android.api.JPushInterface;
 
 /**
  * Created by zz on 2018/1/12.
@@ -19,9 +24,16 @@ public class RZNApplication extends BaseApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+
         Constants.SERVER = "production";//develop,QA，production,develop_yu
         OkHttpLoader.changServer();
         initArouter();
+        initJPush();
+    }
+
+    private void initJPush() {
+        JPushInterface.init(this);
+        JPushInterface.setDebugMode(false);
     }
 
     private void initArouter() {

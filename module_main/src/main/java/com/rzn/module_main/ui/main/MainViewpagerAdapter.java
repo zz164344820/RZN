@@ -23,7 +23,7 @@ public class MainViewpagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        MVPBaseFragment  fragment = fragment=list.get(position);
+        MVPBaseFragment  fragment =list.get(position);
         return fragment;
     }
 
