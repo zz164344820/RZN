@@ -28,7 +28,6 @@ public interface BaseView {
      /*服务器拒绝调用*/
      void onHttpRequestFailure(ResponseBean response, int requestId) ;
 
-     void netGetDownline();
 
 
 }

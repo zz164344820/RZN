@@ -61,12 +61,9 @@ public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPres
 
     @OnClick(R2.id.bt_affirm)
     public void onViewClicked() {
-        startActivity(new Intent(this, JobScreeningActivity.class));
-        mPresenter.bbb();
-    }
-
-    @Override
-    public void aaa() {
+        mPresenter.login("18810050361", "1234");
 
     }
+
+
 }

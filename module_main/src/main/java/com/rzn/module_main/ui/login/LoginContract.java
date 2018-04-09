@@ -11,11 +11,11 @@ import com.rzn.commonbaselib.mvp.BaseView;
 public class LoginContract {
 
     interface View extends BaseView {
-        void  aaa();
+
         
     }
 
     interface  Presenter extends BasePresenter<View> {
-        void  bbb();
+        void login(String phone ,String code);
     }
 }

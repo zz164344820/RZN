@@ -28,13 +28,13 @@ import okhttp3.MediaType;
  */
 public class OkHttpLoader {
     public static Gson gson = new Gson();
-    public static String BASEURL = "http://192.168.31.243/farmHand/";//服务器的入口
+    public static String BASEURL = "http://doctors.iok.la/";//服务器的入口
 
     public static void changServer() {
         if ("production".equals(Constants.SERVER)) {
-            BASEURL = "http://192.168.31.243/farmHand/";
+            BASEURL = "http://doctors.iok.la/";
         } else if ("develop".equals(Constants.SERVER)) {
-            BASEURL = "http://192.168.30.49/zyDoctorApp/";
+            BASEURL = "http://doctors.iok.la/";
         }
     }
 
@@ -80,33 +80,24 @@ public class OkHttpLoader {
      * @param requestListener 本项目请求以表单形式提交
      */
     public static void postformJson(Context context, final String api, final Map<String, String> obj, int id, final HttpRequestListener requestListener) {
-        Map<String, String> headers = new HashMap<>();
+
+       /* Map<String, String> headers = new HashMap<>();
         headers.put("SDKVersion", DeviceUtils.getSDKVersion() + "");
         headers.put("phone_model", DeviceUtils.getModel());
         headers.put("app_version", AppUtils.getAppVersionName());
         headers.put("network_type", NetworkUtils.getNetworkType().name());
         headers.put("User-Agent", "android_userAgent");
         headers.put("mobilId", PhoneUtils.getIMEI());
-
-        String token ;
-        if (api.equals("Doctor/doctorCodeLogin")) {
-            token = "";
-        } else {
-            if(TextUtils.isEmpty(Constants.TOKEN)){
-                Constants.TOKEN =SPUtils.getInstance().getString("token");
-            }
-            token = "?token=" + Constants.TOKEN;
-        }
+*/
 
         OkHttpUtils.post()//
-                .url(BASEURL + api + token)
+                .url(BASEURL + api )
                 .params(obj)//
-                .headers(headers)
                 .build()//
                 .execute(new GenericsCallback<ResponseBean>(new JsonGenericsSerializator()) {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-                        MLog.e("http", "请求的地址：" + BASEURL + api + "?token=" + Constants.TOKEN);
+                        MLog.e("http", "请求的地址：" + BASEURL + api );
                         MLog.e("http", "上传的参数：" + gson.toJson(obj));
                         MLog.e("http", "错误信息：" + e.getMessage());
                         requestListener.onFailure(e.getMessage());
@@ -114,7 +105,7 @@ public class OkHttpLoader {
 
                     @Override
                     public void onResponse(ResponseBean response, int id) {
-                        MLog.e("http", "请求的地址：" + BASEURL + api + "?token=" + Constants.TOKEN);
+                        MLog.e("http", "请求的地址：" + BASEURL + api );
                         MLog.e("http", "上传的参数：" + gson.toJson(obj));
                         MLog.e("http", "返回参数：" + gson.toJson(response));
                         requestListener.onSuccess(response);

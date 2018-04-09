@@ -79,9 +79,6 @@ public  class BasePresenterImpl<V extends BaseView> implements BasePresenter<V>{
                                     } else{
                                         mView.onHttpRequestFailure(response,id);
                                         httpRequestFailure(response,id);
-                                        if(response.getCode() == 2100){
-                                            mView.netGetDownline();
-                                        }
                                     }
                                 }
                             }

@@ -1,6 +1,5 @@
 package com.rzn.commonbaselib.mvp;
 
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -38,7 +37,7 @@ public class MVPBaseActivity<V extends BaseView, T extends BasePresenterImpl<V>>
         super.onCreate(savedInstanceState);
         mPresenter = getInstance(this, 1);
         mPresenter.attachView((V) this);
-        // mPresenter.onCreate();
+        mPresenter.onCreate();
         MLog.e("当前页面名称：---" + getClass().getSimpleName());
     }
 
@@ -112,16 +111,11 @@ public class MVPBaseActivity<V extends BaseView, T extends BasePresenterImpl<V>>
 
     @Override
     public void onHttpRequestFailure(ResponseBean response, int requestId) {
-        if(response.getCode()!=2100){
+
             ToastUtils.showShortSafe(response.getMessage());
-        }
+
     }
 
-    @Override
-    public void netGetDownline() {
-        isDiffLogin=true;
-        SPUtils.getInstance().remove("token");
-    }
 
 
 
@@ -230,15 +224,5 @@ public class MVPBaseActivity<V extends BaseView, T extends BasePresenterImpl<V>>
     }
 
 
-    public boolean isExistLoginActivity() {
-        boolean isExist = false;
-        for (int i = 0, size = LibApplication.mActivityStack.size(); i < size; i++) {
-            if (null != LibApplication.mActivityStack.get(i)) {
-                if (LibApplication.mActivityStack.get(i).getClass().getSimpleName().equals("LoginActivity")) {
-                    isExist = true;
-                }
-            }
-        }
-        return isExist;
-    }
+
 }
