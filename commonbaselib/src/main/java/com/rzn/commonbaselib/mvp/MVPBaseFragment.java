@@ -1,6 +1,5 @@
 package com.rzn.commonbaselib.mvp;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -107,11 +106,6 @@ public  class MVPBaseFragment<V extends BaseView,T extends BasePresenterImpl<V>>
 
     }
 
-    @Override
-    public void netGetDownline() {
-        MVPBaseActivity  activity = (MVPBaseActivity) get_Context();
-        activity.netGetDownline();
-    }
 
 
 

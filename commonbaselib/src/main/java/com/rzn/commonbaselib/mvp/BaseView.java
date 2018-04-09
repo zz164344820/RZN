@@ -1,6 +1,5 @@
 package com.rzn.commonbaselib.mvp;
 
-import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 
 import com.zyhealth.expertlib.bean.ResponseBean;
