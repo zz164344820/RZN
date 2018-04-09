@@ -12,7 +12,9 @@ public class LoginContract {
 
     interface View extends BaseView {
 
-        
+        void loginSuccess();
+
+        void loginFailed(String error);
     }
 
     interface  Presenter extends BasePresenter<View> {

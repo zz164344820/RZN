@@ -4,26 +4,17 @@ package com.rzn.module_main.ui.login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
+import android.text.TextUtils;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alibaba.android.arouter.launcher.ARouter;
-import com.amap.api.location.AMapLocation;
-import com.amap.api.location.AMapLocationClient;
-import com.amap.api.location.AMapLocationClientOption;
-import com.amap.api.location.AMapLocationListener;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.module_main.R;
 import com.rzn.module_main.R2;
 import com.rzn.module_main.ui.jobscreening.JobScreeningActivity;
-import com.rzn.module_main.ui.main.MainActivity;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -55,15 +46,38 @@ public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPres
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.main_act_login);
         ButterKnife.bind(this);
-        JPushInterface.setAlias(this,111, "123456");
+        JPushInterface.setAlias(this, 111, "123456");
     }
 
 
     @OnClick(R2.id.bt_affirm)
     public void onViewClicked() {
-        mPresenter.login("18810050361", "1234");
-
+        startActivity(new Intent(this, JobScreeningActivity.class));
+        if (!TextUtils.isEmpty(edPhoneNum.getText().toString()) && !TextUtils.isEmpty(edAuthCode.getText().toString())) {
+            if (btAffirm.isClickable()) {
+                mPresenter.login(edPhoneNum.getText().toString(), edAuthCode.getText().toString());
+            } else {
+                Toast.makeText(this, "请同意协议后在进录", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
+    /**
+     * 登录成功回调
+     */
+    @Override
+    public void loginSuccess() {
+        startActivity(new Intent(this, JobScreeningActivity.class));
+        finish();
+    }
 
+    /**
+     * 登录失败回调
+     *
+     * @param error
+     */
+    @Override
+    public void loginFailed(String error) {
+
+    }
 }
