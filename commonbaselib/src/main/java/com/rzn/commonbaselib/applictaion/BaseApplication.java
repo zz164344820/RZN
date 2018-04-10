@@ -3,6 +3,7 @@ package com.rzn.commonbaselib.applictaion;
 
 import com.zyhealth.expertlib.LibApplication;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.jpush.android.api.JPushInterface;
@@ -29,17 +30,25 @@ public class BaseApplication extends LibApplication {
     public static BaseApplication getIns() {
         return sInstance;
     }
+    List<String> pathList = new ArrayList<>();
 
     @Override
     public void onCreate() {
         super.onCreate();
         sInstance = this;
-        mAppDelegateList = ClassUtils.getObjectsWithInterface(this, ApplicationDelegate.class, ROOT_PACKAGE);
+        addPath();
+
+        mAppDelegateList = ClassUtils.getObjectsWithInterface(this, ApplicationDelegate.class, pathList);
         for (ApplicationDelegate delegate : mAppDelegateList) {
             delegate.onCreate();
         }
     }
 
+    private void addPath() {
+        pathList.add("com.rzn.module_driver.applictaion");
+        pathList.add("com.rzn.module_farmer.applictaion");
+        pathList.add("com.rzn.module_main.applictaion");
+    }
 
 
     @Override
