@@ -17,7 +17,7 @@ import java.util.List;
 public class DriverListAdapter extends BaseQuickAdapter<String,BaseViewHolder> {
 
     public DriverListAdapter(@LayoutRes int layoutResId, @Nullable List<String> data) {
-        super(R.layout.driver_item_driverlist, data);
+        super(layoutResId, data);
     }
 
     @Override

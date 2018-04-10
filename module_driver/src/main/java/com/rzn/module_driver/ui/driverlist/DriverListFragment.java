@@ -1,6 +1,7 @@
 package com.rzn.module_driver.ui.driverlist;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,11 +9,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.rzn.module_driver.R2;
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
 import com.rzn.module_driver.R;
 import com.zhy.autolayout.AutoLinearLayout;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,7 +39,12 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
     AutoLinearLayout llJobScreeningRegion;
     @BindView(R2.id.rc_driverList)
     RecyclerView rcDriverList;
+
+
+
+
     Unbinder unbinder;
+    private TextView tvStartGet;
 
     public static DriverListFragment newInstance() {
         return new DriverListFragment();
@@ -45,14 +56,35 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
         rootView = inflater.inflate(R.layout.driver_fragment_driverlist, container, false);
         unbinder = ButterKnife.bind(this, rootView);
         mPresenter.onCreate();
+        //开始抢单按钮
+        tvStartGet = (TextView) rootView.findViewById(R.id.tv_start_get);
+        initLinistener();
         return rootView;
+    }
+
+    private void initLinistener() {
+        tvStartGet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent());
+            }
+        });
     }
 
     @Override
     public void initView() {
         super.initView();
         rcDriverList.setLayoutManager(new LinearLayoutManager(getActivity()));
-       // rcDriverList.setAdapter();
+        List<String> list = new ArrayList<>();
+        list.add("");
+        list.add("");
+        list.add("");
+        list.add("");
+
+        DriverListAdapter driverListAdapter = new DriverListAdapter(R.layout.driver_item_driverlists, list);
+        rcDriverList.setAdapter(driverListAdapter);
+
+        // rcDriverList.setAdapter();
     }
 
     @Override
@@ -69,5 +101,18 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
             case R2.id.ll_jobScreeningRegion:
                 break;
         }
+    }
+
+
+
+    //请求抢单列表成功
+    @Override
+    public void getListSuccess() {
+
+    }
+    //请求抢单列表失败
+    @Override
+    public void getListFailed() {
+
     }
 }
