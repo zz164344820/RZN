@@ -35,6 +35,7 @@ public class JobScreeningActivity extends MVPBaseActivity<JobScreeningContract.V
         setContentView(R.layout.main_act_jobscreening);
         ButterKnife.bind(this);
         mPresenter.onCreate();
+
     }
 
     @Override

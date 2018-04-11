@@ -20,6 +20,7 @@ public class LoginPresenter extends BasePresenterImpl<LoginContract.View> implem
 
     @Override
     public void login(String phone, String code) {
+        mView.showLoading(false,"");
         Map<String, String> map = new HashMap<>();
         map.put("code", code);
         map.put("phone", phone);

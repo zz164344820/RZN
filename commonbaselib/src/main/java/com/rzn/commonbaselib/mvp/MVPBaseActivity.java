@@ -37,7 +37,6 @@ public class MVPBaseActivity<V extends BaseView, T extends BasePresenterImpl<V>>
         super.onCreate(savedInstanceState);
         mPresenter = getInstance(this, 1);
         mPresenter.attachView((V) this);
-        mPresenter.onCreate();
         MLog.e("当前页面名称：---" + getClass().getSimpleName());
     }
 
