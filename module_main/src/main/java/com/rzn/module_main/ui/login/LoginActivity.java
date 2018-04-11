@@ -56,6 +56,7 @@ public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPres
         if (!TextUtils.isEmpty(edPhoneNum.getText().toString()) && !TextUtils.isEmpty(edAuthCode.getText().toString())) {
             if (btAffirm.isClickable()) {
                 mPresenter.login(edPhoneNum.getText().toString(), edAuthCode.getText().toString());
+                Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "请同意协议后在进录", Toast.LENGTH_SHORT).show();
             }
