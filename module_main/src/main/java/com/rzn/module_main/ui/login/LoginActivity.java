@@ -47,6 +47,7 @@ public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPres
         setContentView(R.layout.main_act_login);
         ButterKnife.bind(this);
         JPushInterface.setAlias(this, 111, "123456");
+
     }
 
 
@@ -58,7 +59,7 @@ public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPres
                 mPresenter.login(edPhoneNum.getText().toString(), edAuthCode.getText().toString());
                 Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "请同意协议后在进录", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "请同意协议后在录", Toast.LENGTH_SHORT).show();
             }
         }
     }
