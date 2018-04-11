@@ -5,8 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/bg_color"
     >
-
-<include  layout="@layout/topbar"/>
+    <include  layout="@layout/topbar"/>
 
     <com.rzn.commonbaselib.views.AutoRadioGroup
         android:id="@+id/rgGroup"
@@ -25,7 +24,7 @@
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:button="@android:color/transparent"
-             android:background="@drawable/main_selector_left"
+            android:background="@drawable/main_selector_left"
             android:text="我是农户"
             android:textSize="36px"
             android:textColor="@drawable/main_tab_text_select"
@@ -47,15 +46,48 @@
             />
 
     </com.rzn.commonbaselib.views.AutoRadioGroup>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:background="#ffffff"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:id="@+id/tv_all"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="全部"
+            android:textColor="#333333"
+            android:textSize="18dp"
+            />
+        <TextView
+            android:id="@+id/tv_work"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="待作业"
+            android:textColor="#333333"
+            android:textSize="18dp"
+            />
+        <TextView
+            android:id="@+id/tv_finish"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="已完成"
+            android:textColor="#333333"
+            android:textSize="18dp"
+            />
 
+    </LinearLayout>
 
     <com.zhy.autolayout.AutoFrameLayout
         android:id="@+id/rl_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
-
-    </com.zhy.autolayout.AutoLinearLayout>
-
-
-
+</com.zhy.autolayout.AutoLinearLayout>

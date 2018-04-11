@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.rzn.module_driver.R2;
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
 import com.rzn.module_driver.R;
+import com.rzn.module_driver.ui.jobOrder.myjoborder.MyjobOrderActivity;
 import com.zhy.autolayout.AutoLinearLayout;
 
 import java.util.ArrayList;
@@ -41,8 +42,6 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
     RecyclerView rcDriverList;
 
 
-
-
     Unbinder unbinder;
     private TextView tvStartGet;
 
@@ -66,7 +65,7 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
         tvStartGet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent());
+                startActivity(new Intent(mContext, MyjobOrderActivity.class));
             }
         });
     }
@@ -104,12 +103,12 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
     }
 
 
-
     //请求抢单列表成功
     @Override
     public void getListSuccess() {
 
     }
+
     //请求抢单列表失败
     @Override
     public void getListFailed() {
