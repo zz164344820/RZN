@@ -10,13 +10,16 @@ public class LoginResponseBean {
     private String createTime;
     private String loginTime;
     private String phone;
+    private String farmerId;
+    private String farmerName;
     private int role;
     private int status;
     private String updateTime;
     private String userId;
 
+
     public String getCreateTime() {
-        return createTime;
+        return createTime == null ? "" : createTime;
     }
 
     public void setCreateTime(String createTime) {
@@ -24,7 +27,7 @@ public class LoginResponseBean {
     }
 
     public String getLoginTime() {
-        return loginTime;
+        return loginTime == null ? "" : loginTime;
     }
 
     public void setLoginTime(String loginTime) {
@@ -32,11 +35,27 @@ public class LoginResponseBean {
     }
 
     public String getPhone() {
-        return phone;
+        return phone == null ? "" : phone;
     }
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getFarmerId() {
+        return farmerId == null ? "" : farmerId;
+    }
+
+    public void setFarmerId(String farmerId) {
+        this.farmerId = farmerId;
+    }
+
+    public String getFarmerName() {
+        return farmerName == null ? "" : farmerName;
+    }
+
+    public void setFarmerName(String farmerName) {
+        this.farmerName = farmerName;
     }
 
     public int getRole() {
@@ -56,7 +75,7 @@ public class LoginResponseBean {
     }
 
     public String getUpdateTime() {
-        return updateTime;
+        return updateTime == null ? "" : updateTime;
     }
 
     public void setUpdateTime(String updateTime) {
@@ -64,24 +83,10 @@ public class LoginResponseBean {
     }
 
     public String getUserId() {
-        return userId;
+        return userId == null ? "" : userId;
     }
 
     public void setUserId(String userId) {
         this.userId = userId;
     }
-
-    @Override
-    public String toString() {
-        return "LoginResponseBean{" +
-                "createTime='" + createTime + '\'' +
-                ", loginTime='" + loginTime + '\'' +
-                ", phone='" + phone + '\'' +
-                ", role=" + role +
-                ", status=" + status +
-                ", updateTime='" + updateTime + '\'' +
-                ", userId='" + userId + '\'' +
-                '}';
-    }
-
 }
