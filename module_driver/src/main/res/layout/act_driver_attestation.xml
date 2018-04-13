@@ -4,6 +4,7 @@
               android:layout_height="match_parent"
               android:background="#F0F3F4"
               android:orientation="vertical">
+    <include  layout="@layout/topbar"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -63,6 +64,7 @@
                         />
 
                     <EditText
+                        android:id="@+id/et_name"
                         android:layout_width="266dp"
                         android:layout_height="36.5dp"
                         android:background="@drawable/shape_input_bg"
@@ -141,6 +143,7 @@
                         />
 
                     <EditText
+                        android:id="@+id/et_ident"
                         android:layout_width="266dp"
                         android:layout_height="36.5dp"
                         android:background="@drawable/shape_input_bg"
@@ -166,6 +169,7 @@
                         />
 
                     <EditText
+                        android:id="@+id/et_date"
                         android:layout_width="266dp"
                         android:layout_height="36.5dp"
                         android:background="@drawable/shape_input_bg"
@@ -191,6 +195,7 @@
                         />
 
                     <EditText
+                        android:id="@+id/et_phone"
                         android:layout_width="266dp"
                         android:layout_height="36.5dp"
                         android:background="@drawable/shape_input_bg"
@@ -249,6 +254,7 @@
                         />
 
                     <EditText
+                        android:id="@+id/et_work_tab"
                         android:layout_width="266dp"
                         android:layout_height="36.5dp"
                         android:background="@drawable/shape_input_bg"
@@ -343,6 +349,7 @@
                         />
 
                     <EditText
+                        android:id="@+id/et_car_tab"
                         android:layout_width="266dp"
                         android:layout_height="36.5dp"
                         android:background="@drawable/shape_input_bg"
@@ -368,6 +375,7 @@
                         />
 
                     <EditText
+                        android:id="@+id/et_car_number"
                         android:layout_width="266dp"
                         android:layout_height="36.5dp"
                         android:background="@drawable/shape_input_bg"
@@ -393,6 +401,7 @@
                         />
 
                     <EditText
+                        android:id="@+id/et_from_home"
                         android:layout_width="266dp"
                         android:layout_height="36.5dp"
                         android:background="@drawable/shape_input_bg"
@@ -442,6 +451,7 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/tv_commit"
                 android:layout_width="341.5dp"
                 android:layout_height="41.5dp"
                 android:layout_gravity="center_horizontal"

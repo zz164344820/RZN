@@ -7,6 +7,8 @@
 
 
         <activity android:name=".ui.jobOrder.myjoborder.MyjobOrderActivity"/>
+        <activity android:name=".ui.driver_identification.Driver_identificationActivity"/>
+        <activity android:name=".ui.jobdetails.JobdetailsActivity"/>
 
     </application>
 

@@ -15,7 +15,9 @@ import android.widget.Toast;
 import com.rzn.module_driver.R2;
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
 import com.rzn.module_driver.R;
+import com.rzn.module_driver.ui.driver_identification.Driver_identificationActivity;
 import com.rzn.module_driver.ui.jobOrder.myjoborder.MyjobOrderActivity;
+import com.rzn.module_driver.ui.jobdetails.JobdetailsActivity;
 import com.zhy.autolayout.AutoLinearLayout;
 
 import java.util.ArrayList;
@@ -65,7 +67,7 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
         tvStartGet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(mContext, MyjobOrderActivity.class));
+                startActivity(new Intent(mContext, Driver_identificationActivity.class));
             }
         });
     }
