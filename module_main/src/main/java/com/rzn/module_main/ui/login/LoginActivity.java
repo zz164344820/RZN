@@ -15,6 +15,7 @@ import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.module_main.R;
 import com.rzn.module_main.R2;
 import com.rzn.module_main.ui.jobscreening.JobScreeningActivity;
+import com.rzn.module_main.ui.main.MainActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -46,6 +47,7 @@ public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPres
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.main_act_login);
         ButterKnife.bind(this);
+        mPresenter.onCreate();
         JPushInterface.setAlias(this, 111, "123456");
 
     }
@@ -53,11 +55,9 @@ public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPres
 
     @OnClick(R2.id.bt_affirm)
     public void onViewClicked() {
-        startActivity(new Intent(this, JobScreeningActivity.class));
         if (!TextUtils.isEmpty(edPhoneNum.getText().toString()) && !TextUtils.isEmpty(edAuthCode.getText().toString())) {
             if (btAffirm.isClickable()) {
                 mPresenter.login(edPhoneNum.getText().toString(), edAuthCode.getText().toString());
-                Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "请同意协议后在录", Toast.LENGTH_SHORT).show();
             }
@@ -69,17 +69,9 @@ public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPres
      */
     @Override
     public void loginSuccess() {
-        startActivity(new Intent(this, JobScreeningActivity.class));
+        startActivity(new Intent(this, MainActivity.class));
         finish();
     }
 
-    /**
-     * 登录失败回调
-     *
-     * @param error
-     */
-    @Override
-    public void loginFailed(String error) {
 
-    }
 }

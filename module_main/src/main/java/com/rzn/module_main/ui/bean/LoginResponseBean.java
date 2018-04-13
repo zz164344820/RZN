@@ -6,14 +6,7 @@ package com.rzn.module_main.ui.bean;
  */
 
 public class LoginResponseBean {
-    //
-    //    "createTime": "2018-03-17 17:23:00",
-    //            "loginTime": "2018-03-17 17:15:35",
-    //            "phone": "18080808080",
-    //            "role": 1,
-    //            "status": 1,
-    //            "updateTime": "2018-03-19 09:38:00",
-    //            "userId": "123321"
+
     private String createTime;
     private String loginTime;
     private String phone;
