@@ -6,6 +6,7 @@ import android.widget.RadioGroup;
 
 import com.rzn.commonbaselib.mvp.BasePresenterImpl;
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
+import com.rzn.module_main.ui.main.home.HomeFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,11 +21,12 @@ public class MainPresenter extends BasePresenterImpl<MainContract.View> implemen
 
     @Override
     public void onCreate() {
-        super.onCreate();
         initFragment();
+        super.onCreate();
     }
 
     private void initFragment() {
+        fragments.add(new HomeFragment());
     }
 
 

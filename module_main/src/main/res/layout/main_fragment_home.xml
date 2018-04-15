@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color"
+    >
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="96px"
+        android:background="@color/main_color"
+        android:gravity="center_vertical"
+        android:paddingRight="30px"
+        android:paddingLeft="30px"
+        >
+        <TextView
+            android:id="@+id/tv_main_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="老王村"
+            android:textColor="@color/white"
+            android:textSize="36px"
+            android:maxWidth="140px"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:drawableRight="@drawable/main_xiala"
+            android:drawablePadding="8px"
+            />
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="60px"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="30px"
+            android:background="@drawable/main_white_30"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="搜索"
+                android:textSize="28px"
+                android:textColor="@color/text_888"
+                android:drawableLeft="@drawable/main_search"
+                android:drawablePadding="14px"
+                android:paddingLeft="30px"
+                />
+
+
+        </com.zhy.autolayout.AutoLinearLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/main_xiaoxi"
+            android:layout_marginLeft="25px"
+            />
+
+    </com.zhy.autolayout.AutoLinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="300px">
+
+
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="180px"
+                android:paddingLeft="30px"
+                android:paddingRight="30px"
+                android:gravity="center_vertical"
+                >
+
+                <TextView
+                    android:id="@+id/tv_main_nongjitong"
+                    android:text="农机通"
+                    android:drawableTop="@drawable/main_nongjitong"
+                    style="@style/main_moduleTextStyle" />
+                <TextView
+                    android:id="@+id/tv_main_weixiuzhan"
+                    android:text="维修站"
+                    android:drawableTop="@drawable/main_weixiuzhan"
+                    style="@style/main_moduleTextStyle" />
+                <TextView
+                    android:id="@+id/tv_main_wenzhuanjia"
+                    android:text="问专家"
+                    android:drawableTop="@drawable/main_wenzhuanjia"
+                    style="@style/main_moduleTextStyle" />
+                <TextView
+                    android:id="@+id/tv_main_mainnonghuo"
+                    android:text="卖农货"
+                    android:drawableTop="@drawable/mian_mainonghuo"
+                    style="@style/main_moduleTextStyle" />
+            </com.zhy.autolayout.AutoLinearLayout>
+
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70px"
+                android:layout_marginTop="20px"
+                android:paddingRight="20px"
+                android:paddingLeft="20px"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="20px"
+                >
+
+                <TextView
+                    android:id="@+id/tv_main_mesage"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="技手张大千接手了您的邀请"
+                    android:drawableLeft="@drawable/main_guangbo"
+                    android:drawablePadding="19px"
+                    android:textSize="28px"
+                    android:textColor="#333333"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="28px"
+                    android:textColor="#888888"
+                    android:text="立即查看"
+                    android:drawableRight="@drawable/right_enter"
+                    android:drawablePadding="10px"
+                    />
+
+            </com.zhy.autolayout.AutoLinearLayout>
+
+
+
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70px"
+                android:layout_marginTop="20px"
+                android:paddingRight="20px"
+                android:paddingLeft="20px"
+                android:gravity="center_vertical"
+                >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="农业资讯"
+                    android:drawableLeft="@drawable/main_zixun"
+                    android:drawablePadding="19px"
+                    android:textSize="36px"
+                    android:textColor="#333333"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="28px"
+                    android:textColor="#888888"
+                    android:text="立即查看"
+                    android:drawableRight="@drawable/right_enter"
+                    android:drawablePadding="10px"
+                    />
+
+            </com.zhy.autolayout.AutoLinearLayout>
+
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="280px"
+                android:paddingLeft="20px"
+                android:paddingRight="20px"
+                android:gravity="center_vertical"
+                android:layout_marginTop="2px"
+                >
+
+                <ImageView
+                    android:layout_width="250px"
+                    android:layout_height="220px"
+                    android:background="@color/darkgrey"
+                    />
+
+                <com.zhy.autolayout.AutoLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20px"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="大力实施乡村振兴战略..."
+                        android:textColor="@color/text_333"
+                        android:textSize="36px" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20px"
+                        android:maxLines="3"
+                        android:text="1月15日，河北省农村工作会议在石家庄举行。会议强要坚持以习近平新时..."
+                        android:textColor="@color/text_333"
+                        android:textSize="32px" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20px"
+                        android:text="2018-01-18  12" />
+
+                </com.zhy.autolayout.AutoLinearLayout>
+
+            </com.zhy.autolayout.AutoLinearLayout>
+
+
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70px"
+                android:layout_marginTop="20px"
+                android:paddingRight="20px"
+                android:paddingLeft="20px"
+                android:gravity="center_vertical"
+                >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="热门文章"
+                    android:drawableLeft="@drawable/main_wenzhang"
+                    android:drawablePadding="19px"
+                    android:textSize="36px"
+                    android:textColor="#333333"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="28px"
+                    android:textColor="#888888"
+                    android:text="立即查看"
+                    android:drawableRight="@drawable/right_enter"
+                    android:drawablePadding="10px"
+                    />
+
+            </com.zhy.autolayout.AutoLinearLayout>
+
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="280px"
+                android:paddingLeft="20px"
+                android:paddingRight="20px"
+                android:gravity="center_vertical"
+                android:layout_marginTop="2px"
+                >
+
+                <ImageView
+                    android:layout_width="250px"
+                    android:layout_height="220px"
+                    android:background="@color/darkgrey"
+                    />
+
+                <com.zhy.autolayout.AutoLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20px"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="大力实施乡村振兴战略..."
+                        android:textColor="@color/text_333"
+                        android:textSize="36px" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20px"
+                        android:maxLines="3"
+                        android:text="1月15日，河北省农村工作会议在石家庄举行。会议强要坚持以习近平新时..."
+                        android:textColor="@color/text_333"
+                        android:textSize="32px" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20px"
+                        android:text="2018-01-18  12" />
+
+                </com.zhy.autolayout.AutoLinearLayout>
+
+            </com.zhy.autolayout.AutoLinearLayout>
+
+        </com.zhy.autolayout.AutoLinearLayout>
+    </ScrollView>
+    
+
+
+</com.zhy.autolayout.AutoLinearLayout>

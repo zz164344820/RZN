@@ -74,10 +74,6 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
         });
     }
 
-    @Override
-    public void initView() {
-        super.initView();
-    }
 
 
     @Override
