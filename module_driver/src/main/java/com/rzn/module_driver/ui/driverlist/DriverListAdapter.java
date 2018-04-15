@@ -22,7 +22,7 @@ public class DriverListAdapter extends BaseQuickAdapter<String,BaseViewHolder> {
 
     @Override
     protected void convert(BaseViewHolder helper, String item) {
-
+        helper.addOnClickListener(R.id.tv_get_post);
 
     }
 }

@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blankj.utilcode.util.ToastUtils;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.rzn.module_driver.R2;
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
 import com.rzn.module_driver.R;
@@ -75,18 +77,8 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
     @Override
     public void initView() {
         super.initView();
-        rcDriverList.setLayoutManager(new LinearLayoutManager(getActivity()));
-        List<String> list = new ArrayList<>();
-        list.add("");
-        list.add("");
-        list.add("");
-        list.add("");
-
-        DriverListAdapter driverListAdapter = new DriverListAdapter(R.layout.driver_item_driverlists, list);
-        rcDriverList.setAdapter(driverListAdapter);
-
-        // rcDriverList.setAdapter();
     }
+
 
     @Override
     public void onDestroyView() {
@@ -115,5 +107,13 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
     @Override
     public void getListFailed() {
 
+    }
+
+    @Override
+    public DriverListAdapter setAdapter(List<String> list) {
+        rcDriverList.setLayoutManager(new LinearLayoutManager(getActivity()));
+        DriverListAdapter driverListAdapter = new DriverListAdapter(R.layout.driver_item_driverlists, list);
+        rcDriverList.setAdapter(driverListAdapter);
+        return driverListAdapter;
     }
 }
