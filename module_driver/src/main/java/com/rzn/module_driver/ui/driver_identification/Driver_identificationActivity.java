@@ -61,6 +61,10 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
 
                     //请求接口提交订单,跳转下一页
 
+                }else{
+                    //跳转用到的
+
+
                 }
             }
         });
