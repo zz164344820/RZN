@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.rzn.module_driver.R2;
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
 import com.rzn.module_driver.R;
@@ -48,6 +49,7 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
 
     Unbinder unbinder;
     private TextView tvStartGet;
+    private DriverListAdapter driverListAdapter;
 
     public static DriverListFragment newInstance() {
         return new DriverListFragment();
@@ -69,11 +71,18 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
         tvStartGet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(mContext, MyjobOrderActivity.class));
+                //判断是否认证机手
+                if (false) {
+                    //已认证机手
+                    startActivity(new Intent(mContext, MyjobOrderActivity.class));
+                } else {
+                    //未认证机手
+                    startActivity(new Intent(mContext, Driver_identificationActivity.class));
+                }
+
             }
         });
     }
-
 
 
     @Override

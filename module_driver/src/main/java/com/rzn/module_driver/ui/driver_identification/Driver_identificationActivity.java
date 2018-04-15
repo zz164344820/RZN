@@ -1,6 +1,7 @@
 package com.rzn.module_driver.ui.driver_identification;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.module_driver.R;
+import com.rzn.module_driver.ui.drivermaksure.DriverMakeSureActivity;
 
 
 /**
@@ -59,7 +61,10 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
                         ) {
 
 
-                    //请求接口提交订单,跳转下一页
+
+                } else {
+                    //跳转用到的
+                    startActivity(new Intent(Driver_identificationActivity.this, DriverMakeSureActivity.class));
 
                 }
             }
@@ -70,6 +75,7 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
      * 初始化布局
      */
     private void initViews() {
+        setTitle("手机认证");
         //姓名
         etName = (EditText) findViewById(R.id.et_name);
         //身份证号码

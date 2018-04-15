@@ -1,6 +1,7 @@
 package com.rzn.module_driver.ui.jobdetails;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.module_driver.R;
+import com.rzn.module_driver.ui.driver_identification.Driver_identificationActivity;
+import com.rzn.module_driver.ui.jobOrder.myjoborder.MyjobOrderActivity;
 
 
 /**
@@ -46,6 +49,8 @@ public class JobdetailsActivity extends MVPBaseActivity<JobdetailsContract.View,
             @Override
             public void onClick(View view) {
                 //请求网络抢单按钮
+                //跳转我的作业列表
+                startActivity(new Intent(JobdetailsActivity.this, MyjobOrderActivity.class));
             }
         });
     }
@@ -54,6 +59,7 @@ public class JobdetailsActivity extends MVPBaseActivity<JobdetailsContract.View,
      * 初始化布局
      */
     private void initViews() {
+        setTitle("作业详情");
         ivPhoto = (ImageView) findViewById(R.id.iv_photo);
         tvName = (TextView) findViewById(R.id.tv_name);
         tvMoney = (TextView) findViewById(R.id.tv_money);

@@ -1,6 +1,7 @@
 package com.rzn.module_driver.ui.jobOrder.allorder;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,8 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
 import com.rzn.module_driver.R;
+import com.rzn.module_driver.ui.joborderdetial.JobOrderDetialActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +51,12 @@ public class AllOrderFragment extends MVPBaseFragment<AllOrderContract.View, All
 
         AllOrderAdapter allOrderAdapter = new AllOrderAdapter(R.layout.driver_item_work_order, list);
         rcWorkList.setAdapter(allOrderAdapter);
+        allOrderAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                startActivity(new Intent(mContext, JobOrderDetialActivity.class));
+            }
+        });
 
 
     }

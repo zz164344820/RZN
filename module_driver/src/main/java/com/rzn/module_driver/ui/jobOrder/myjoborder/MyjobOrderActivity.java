@@ -55,15 +55,15 @@ public class MyjobOrderActivity extends MVPBaseActivity<MyjobOrderContract.View,
     }
 
 
-
-
     private void initViews() {
+        setTitle("我的作业订单");
         rlContent = (AutoFrameLayout) findViewById(R.id.rl_content);
         tvAll = (TextView) findViewById(R.id.tv_all);
         tvWork = (TextView) findViewById(R.id.tv_work);
         tvFinish = (TextView) findViewById(R.id.tv_finish);
 
     }
+
     private void initListener() {
 
         tvAll.setOnClickListener(new View.OnClickListener() {
@@ -86,6 +86,7 @@ public class MyjobOrderActivity extends MVPBaseActivity<MyjobOrderContract.View,
         });
 
     }
+
     private void initFragment() {
 
 //        MVPBaseFragment fragment=    com.rzn.commonbaselib.applictaion.ViewManager.getInstance().getFragment(0);
@@ -101,7 +102,7 @@ public class MyjobOrderActivity extends MVPBaseActivity<MyjobOrderContract.View,
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         if (currentFragment != fragment) {
-            if (currentFragment!=null){
+            if (currentFragment != null) {
                 transaction.hide(fragment);
             }
             if (fragment.isAdded()) {

@@ -4,6 +4,7 @@
               android:layout_height="match_parent"
               android:background="#f1f4f5"
               android:orientation="vertical">
+    <include  layout="@layout/topbar"/>
 
     <ScrollView
         android:layout_width="match_parent"
