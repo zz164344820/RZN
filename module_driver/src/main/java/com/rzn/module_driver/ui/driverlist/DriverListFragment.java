@@ -67,7 +67,7 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
         tvStartGet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(mContext, Driver_identificationActivity.class));
+                startActivity(new Intent(mContext, MyjobOrderActivity.class));
             }
         });
     }

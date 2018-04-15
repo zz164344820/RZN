@@ -101,14 +101,15 @@ public class MyjobOrderActivity extends MVPBaseActivity<MyjobOrderContract.View,
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         if (currentFragment != fragment) {
-            transaction.hide(fragment);
+            if (currentFragment!=null){
+                transaction.hide(fragment);
+            }
+            if (fragment.isAdded()) {
+                transaction.show(fragment).commit();
+            } else {
+                transaction.add(R.id.rl_content, fragment).commit();
+            }
+            currentFragment = fragment;
         }
-        if (fragment.isAdded()) {
-            transaction.show(fragment).commit();
-        } else {
-            transaction.add(R.id.rl_content, fragment).commit();
-        }
-        currentFragment = fragment;
-
     }
 }

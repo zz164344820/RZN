@@ -24,7 +24,9 @@ public class AllOrderFragment extends MVPBaseFragment<AllOrderContract.View, All
 
 
     private View rootView;
-    private RecyclerView rcWorkList;
+
+
+
 
     @Nullable
     @Override
@@ -36,7 +38,7 @@ public class AllOrderFragment extends MVPBaseFragment<AllOrderContract.View, All
     }
 
     private void initViews() {
-        rcWorkList = (RecyclerView) rootView.findViewById(R.id.rc_work_List);
+        RecyclerView rcWorkList = (RecyclerView) rootView.findViewById(R.id.rc_work_List);
         rcWorkList.setLayoutManager(new LinearLayoutManager(getActivity()));
         List<String> list = new ArrayList<>();
         list.add("");
