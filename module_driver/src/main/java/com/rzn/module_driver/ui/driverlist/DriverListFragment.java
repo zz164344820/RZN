@@ -10,20 +10,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.blankj.utilcode.util.ToastUtils;
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.rzn.module_driver.R2;
+import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
+import com.aspsine.swipetoloadlayout.OnRefreshListener;
+import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
+import com.lonch.zyhealth.loadmorelibrary.LoadMoreUtils;
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
 import com.rzn.module_driver.R;
+import com.rzn.module_driver.R2;
 import com.rzn.module_driver.ui.driver_identification.Driver_identificationActivity;
 import com.rzn.module_driver.ui.jobOrder.myjoborder.MyjobOrderActivity;
-import com.rzn.module_driver.ui.jobdetails.JobdetailsActivity;
 import com.zhy.autolayout.AutoLinearLayout;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -36,20 +34,20 @@ import butterknife.Unbinder;
  * 邮箱 784787081@qq.com
  */
 
-public class DriverListFragment extends MVPBaseFragment<DriverListContract.View, DriverListPresenter> implements DriverListContract.View {
+public class DriverListFragment extends MVPBaseFragment<DriverListContract.View, DriverListPresenter> implements DriverListContract.View, OnLoadMoreListener, OnRefreshListener {
 
     View rootView;
     @BindView(R2.id.ll_jobScreeningType)
     AutoLinearLayout llJobScreeningType;
     @BindView(R2.id.ll_jobScreeningRegion)
     AutoLinearLayout llJobScreeningRegion;
-    @BindView(R2.id.rc_driverList)
-    RecyclerView rcDriverList;
-
-
-    Unbinder unbinder;
+    @BindView(R2.id.swipe_target)
+    RecyclerView swipeTarget;
+    @BindView(R2.id.swipeToLoadLayout)
+    SwipeToLoadLayout swipeToLoadLayout;
     private TextView tvStartGet;
     private DriverListAdapter driverListAdapter;
+    Unbinder unbinder;
 
     public static DriverListFragment newInstance() {
         return new DriverListFragment();
@@ -68,6 +66,8 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
     }
 
     private void initLinistener() {
+        swipeToLoadLayout.setOnLoadMoreListener(this);
+        swipeToLoadLayout.setOnRefreshListener(this);
         tvStartGet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,16 +91,6 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
         unbinder.unbind();
     }
 
-    @OnClick({R2.id.ll_jobScreeningType, R2.id.ll_jobScreeningRegion})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R2.id.ll_jobScreeningType:
-                break;
-            case R2.id.ll_jobScreeningRegion:
-                break;
-        }
-    }
-
 
     //请求抢单列表成功
     @Override
@@ -116,9 +106,38 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
 
     @Override
     public DriverListAdapter setAdapter(List<String> list) {
-        rcDriverList.setLayoutManager(new LinearLayoutManager(getActivity()));
+        swipeTarget.setLayoutManager(new LinearLayoutManager(getActivity()));
         DriverListAdapter driverListAdapter = new DriverListAdapter(R.layout.driver_item_driverlists, list);
-        rcDriverList.setAdapter(driverListAdapter);
+        swipeTarget.setAdapter(driverListAdapter);
         return driverListAdapter;
+    }
+
+    @Override
+    public void recycleViewRestore() {
+        LoadMoreUtils.recycleViewRestore(swipeToLoadLayout);
+    }
+
+    @Override
+    public void onLoadMore() {
+        recycleViewRestore();
+    }
+
+    @Override
+    public void onRefresh() {
+        recycleViewRestore();
+
+    }
+
+
+    @OnClick({R2.id.ll_jobScreeningType, R2.id.ll_jobScreeningRegion, R2.id.ll_obScreeningcapacity})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R2.id.ll_jobScreeningType:
+                break;
+            case R2.id.ll_jobScreeningRegion:
+                break;
+            case R2.id.ll_obScreeningcapacity:
+                break;
+        }
     }
 }

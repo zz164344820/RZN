@@ -20,6 +20,8 @@ public class DriverListContract {
 
         DriverListAdapter setAdapter(List<String> list);
 
+        void  recycleViewRestore();
+
     }
 
     interface Presenter extends BasePresenter<View> {

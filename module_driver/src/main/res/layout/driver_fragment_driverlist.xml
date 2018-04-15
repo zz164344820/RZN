@@ -65,8 +65,9 @@
             android:layout_marginBottom="11px"
             android:layout_marginTop="11px"
             android:background="#dddddd" />
+
         <com.zhy.autolayout.AutoLinearLayout
-            android:id="@+id/ll_"
+            android:id="@+id/ll_obScreeningcapacity"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -90,11 +91,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rc_driverList"
+        <include
+            layout="@layout/fragment_twitter_recycler_padding"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbars="none" />
+            />
 
         <RelativeLayout
             android:layout_alignParentBottom="true"
