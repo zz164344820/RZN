@@ -1,4 +1,4 @@
-package com.rzn.module_driver.ui.drivermaksure;
+package com.rzn.module_driver.ui.driverordermessage;
 
 
 import android.os.Bundle;
@@ -13,17 +13,17 @@ import com.rzn.module_driver.R;
  *  邮箱 784787081@qq.com
  */
 
-public class DriverMakeSureActivity extends MVPBaseActivity<DriverMakeSureContract.View, DriverMakeSurePresenter> implements DriverMakeSureContract.View {
+public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessageContract.View, DriverOrderMessagePresenter> implements DriverOrderMessageContract.View {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_make_sure);
+        setContentView(R.layout.act_driver_orders_message);
         initViews();
         mPresenter.onCreate();
+        showLoading(false,"");
     }
 
     private void initViews() {
-        setTitle("审核中");
-
+        setTitle("完善接单信息");
     }
 }

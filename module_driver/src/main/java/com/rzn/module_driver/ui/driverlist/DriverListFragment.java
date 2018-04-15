@@ -72,7 +72,7 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
             @Override
             public void onClick(View view) {
                 //判断是否认证机手
-                if (true) {
+                if (false) {
                     //已认证机手
                     startActivity(new Intent(mContext, MyjobOrderActivity.class));
                 } else {
@@ -87,16 +87,6 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
     @Override
     public void initView() {
         super.initView();
-        rcDriverList.setLayoutManager(new LinearLayoutManager(getActivity()));
-        List<String> list = new ArrayList<>();
-        list.add("");
-        list.add("");
-        list.add("");
-        list.add("");
-
-        DriverListAdapter driverListAdapter = new DriverListAdapter(R.layout.driver_item_driverlists, list);
-        rcDriverList.setAdapter(driverListAdapter);
-        // rcDriverList.setAdapter();
     }
 
     @Override

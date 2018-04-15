@@ -1,10 +1,12 @@
 package com.rzn.module_driver.ui.driverlist;
 
+import android.content.Intent;
 import android.view.View;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.rzn.commonbaselib.mvp.BasePresenterImpl;
+import com.rzn.module_driver.ui.jobdetails.JobdetailsActivity;
 import com.zyhealth.expertlib.bean.ResponseBean;
 
 import java.util.HashMap;
@@ -40,6 +42,8 @@ public class DriverListPresenter extends BasePresenterImpl<DriverListContract.Vi
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 ToastUtils.showShortSafe("条目");
+                //跳转作业详情界面
+                mContext.startActivity(new Intent(mContext, JobdetailsActivity.class));
             }
         });
 

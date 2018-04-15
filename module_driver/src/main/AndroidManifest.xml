@@ -10,6 +10,8 @@
         <activity android:name=".ui.driver_identification.Driver_identificationActivity"/>
         <activity android:name=".ui.jobdetails.JobdetailsActivity"/>
         <activity android:name=".ui.drivermaksure.DriverMakeSureActivity"/>
+        <activity android:name=".ui.joborderdetial.JobOrderDetialActivity"/>
+        <activity android:name=".ui.driverordermessage.DriverOrderMessageActivity"/>
 
     </application>
 
