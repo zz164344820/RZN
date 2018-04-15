@@ -125,7 +125,6 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
     @Override
     public void onRefresh() {
         recycleViewRestore();
-
     }
 
 

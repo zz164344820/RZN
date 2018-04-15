@@ -97,24 +97,19 @@
             android:layout_height="match_parent"
             />
 
-        <RelativeLayout
-            android:layout_alignParentBottom="true"
-            android:layout_width="match_parent"
-            android:background="#f1f4f5"
-            android:layout_height="60dp">
-
             <TextView
                 android:id="@+id/tv_start_get"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="40dp"
                 android:layout_margin="10dp"
                 android:text="开始接单"
                 android:gravity="center"
                 android:background="#fb9300"
                 android:textColor="#ffffff"
                 android:textSize="18dp"
+                android:layout_alignParentBottom="true"
                 />
-        </RelativeLayout>
+
     </RelativeLayout>
 
 </com.zhy.autolayout.AutoLinearLayout>

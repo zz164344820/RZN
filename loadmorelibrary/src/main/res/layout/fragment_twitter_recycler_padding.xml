@@ -17,7 +17,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:overScrollMode="never"/>
+        android:overScrollMode="never"
+        android:paddingBottom="80dp"
+        />
 
     <include
         android:id="@+id/swipe_load_more_footer"
