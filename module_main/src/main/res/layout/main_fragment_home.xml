@@ -82,6 +82,7 @@
                 android:paddingLeft="30px"
                 android:paddingRight="30px"
                 android:gravity="center_vertical"
+                android:background="@color/white"
                 >
 
                 <TextView
@@ -115,6 +116,7 @@
                 android:paddingLeft="20px"
                 android:gravity="center_vertical"
                 android:layout_marginBottom="20px"
+                android:background="@color/white"
                 >
 
                 <TextView
@@ -151,6 +153,7 @@
                 android:paddingRight="20px"
                 android:paddingLeft="20px"
                 android:gravity="center_vertical"
+                android:background="@color/white"
                 >
 
                 <TextView
@@ -184,6 +187,7 @@
                 android:paddingRight="20px"
                 android:gravity="center_vertical"
                 android:layout_marginTop="2px"
+                android:background="@color/white"
                 >
 
                 <ImageView
@@ -233,6 +237,7 @@
                 android:paddingRight="20px"
                 android:paddingLeft="20px"
                 android:gravity="center_vertical"
+                android:background="@color/white"
                 >
 
                 <TextView
@@ -266,6 +271,7 @@
                 android:paddingRight="20px"
                 android:gravity="center_vertical"
                 android:layout_marginTop="2px"
+                android:background="@color/white"
                 >
 
                 <ImageView
