@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blankj.utilcode.util.ToastUtils;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.rzn.module_driver.R2;
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
@@ -80,8 +82,6 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
 
             }
         });
-
-
     }
 
     @Override
@@ -126,5 +126,13 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
     @Override
     public void getListFailed() {
 
+    }
+
+    @Override
+    public DriverListAdapter setAdapter(List<String> list) {
+        rcDriverList.setLayoutManager(new LinearLayoutManager(getActivity()));
+        DriverListAdapter driverListAdapter = new DriverListAdapter(R.layout.driver_item_driverlists, list);
+        rcDriverList.setAdapter(driverListAdapter);
+        return driverListAdapter;
     }
 }
