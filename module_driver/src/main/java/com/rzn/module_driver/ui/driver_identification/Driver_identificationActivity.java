@@ -9,7 +9,9 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.module_driver.R;
 import com.rzn.module_driver.ui.drivermaksure.DriverMakeSureActivity;
@@ -38,6 +40,7 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_driver_attestation);
+        mPresenter.onCreate();
         initViews();
         initListener();
     }
@@ -60,7 +63,10 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
                         !TextUtils.isEmpty(etFromHome.getText())
                         ) {
 
-
+                    //提交机手认证信息接口
+                    mPresenter.pushDriverMessage("userid", "handlerId", etName.getText() + "", "", "", "",
+                            "", "", "", "", "", "", "", "", "", "",
+                            "", "");
 
                 } else {
                     //跳转用到的
@@ -94,6 +100,21 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
         etFromHome = (EditText) findViewById(R.id.et_from_home);
         //提交申请按钮
         tvCommit = (TextView) findViewById(R.id.tv_commit);
+
+    }
+
+
+    //提交信息成功
+    @Override
+    public void pushDriverMessageSuccess() {
+        //机手信息提交成功跳转下一界面
+
+    }
+
+    //提交信息失败
+    @Override
+    public void pushDriverMessageFaile() {
+        Toast.makeText(this, "信息提交失败", Toast.LENGTH_SHORT).show();
 
     }
 }
