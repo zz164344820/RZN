@@ -37,6 +37,7 @@ public class MainActivity extends MVPBaseActivity<MainContract.View, MainPresent
         setContentView(R.layout.main_act_main);
         ButterKnife.bind(this);
         mPresenter.onCreate();
+
     }
 
 
