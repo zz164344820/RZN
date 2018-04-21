@@ -3,7 +3,6 @@ package com.rzn.module_farmer.test;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.zyhealth.expertlib.utils.MLog;
 

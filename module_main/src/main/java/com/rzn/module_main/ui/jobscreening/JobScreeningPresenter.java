@@ -15,22 +15,5 @@ public class JobScreeningPresenter extends BasePresenterImpl<JobScreeningContrac
 
     }
 
-    @Override
-    public void initRadioGroup(RadioGroup radioGroup) {
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
-                switch (i){
-                    case 0:
-                        //显示农户作业
-                        break;
-                    case 1:
-                        //显示机手作业
-                        break;
-                    default:
-                        break;
-                }
-            }
-        });
-    }
+
 }

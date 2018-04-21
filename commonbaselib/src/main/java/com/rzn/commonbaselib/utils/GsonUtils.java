@@ -26,16 +26,16 @@ public class GsonUtils {
 
     /**
      * @param gson
-     * @param json
+     * @param obj
      * @param <T>
      * @return
      * gson解析集合
      * 根据泛型返回解析制定的类型
      */
-    public static <T> T gsonParseList(Gson gson,String json){
+    public static <T> T gsonParseList(Gson gson,Object obj){
         Type type = new TypeToken<T>(){}.getType();
 
-        return gson.fromJson(json, type);
+        return gson.fromJson(gson.toJson(obj), type);
     }
 
 

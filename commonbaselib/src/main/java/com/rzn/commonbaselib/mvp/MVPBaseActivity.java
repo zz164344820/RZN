@@ -11,15 +11,11 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.rzn.commonbaselib.R;
 import com.rzn.commonbaselib.views.CustomProgressDialog;
-import com.zyhealth.expertlib.LibApplication;
 import com.zyhealth.expertlib.bean.ResponseBean;
 import com.zyhealth.expertlib.utils.MLog;
-
 import java.lang.reflect.ParameterizedType;
 
 

@@ -2,10 +2,12 @@ package com.rzn.module_main.ui.jobscreening;
 
 
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import com.rzn.commonbaselib.applictaion.ViewManager;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
@@ -43,6 +45,7 @@ public class JobScreeningActivity extends MVPBaseActivity<JobScreeningContract.V
         super.initView();
         setTitle("张大千");
         initFragment();
+        initRadioGroup(rgGroup);
     }
 
     private void initFragment() {
@@ -50,6 +53,25 @@ public class JobScreeningActivity extends MVPBaseActivity<JobScreeningContract.V
         getSupportFragmentManager().beginTransaction().add(R.id.rl_content,driverFargment).commit();
     }
 
+
+    public void initRadioGroup(RadioGroup radioGroup) {
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+                switch (i){
+                    case 0:
+
+                        //显示农户作业
+                        break;
+                    case 1:
+                        //显示机手作业
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+    }
 
     @OnClick({R2.id.tv_title, R2.id.iv_right})
     public void onViewClicked(View view) {

@@ -12,6 +12,5 @@ public class JobScreeningContract {
     }
 
     interface  Presenter extends BasePresenter<View> {
-        void initRadioGroup(RadioGroup radioGroup);
     }
 }

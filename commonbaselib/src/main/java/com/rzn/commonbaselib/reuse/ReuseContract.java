@@ -1,7 +1,5 @@
 package com.rzn.commonbaselib.reuse;
 
-import android.content.Context;
-
 import com.rzn.commonbaselib.mvp.BasePresenter;
 import com.rzn.commonbaselib.mvp.BaseView;
 
