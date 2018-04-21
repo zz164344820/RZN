@@ -29,7 +29,7 @@ public class JobScreeningActivity extends MVPBaseActivity<JobScreeningContract.V
     RadioButton rbRarmer;
     @BindView(R2.id.rgGroup)
     AutoRadioGroup rgGroup;
-
+    MVPBaseFragment driverFargment ,farmerFargment;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,8 +49,9 @@ public class JobScreeningActivity extends MVPBaseActivity<JobScreeningContract.V
     }
 
     private void initFragment() {
-        MVPBaseFragment driverFargment = ViewManager.getInstance().getFragment(0);
-        getSupportFragmentManager().beginTransaction().add(R.id.rl_content,driverFargment).commit();
+        farmerFargment = ViewManager.getInstance().getFragment(0);
+        driverFargment = ViewManager.getInstance().getFragment(1);
+        getSupportFragmentManager().beginTransaction().add(R.id.rl_content,farmerFargment).commitAllowingStateLoss();
     }
 
 
@@ -58,16 +59,21 @@ public class JobScreeningActivity extends MVPBaseActivity<JobScreeningContract.V
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
-                switch (i){
-                    case 0:
+                if(i==R.id.rb_rarmer){
+                    //显示农户作业
+                    if(!farmerFargment.isAdded()){
+                        getSupportFragmentManager().beginTransaction().add(R.id.rl_content,farmerFargment).hide(driverFargment).commitAllowingStateLoss();
+                    }else{
+                        getSupportFragmentManager().beginTransaction().show(farmerFargment).hide(driverFargment).commitAllowingStateLoss();
+                    }
+                }else if(i==R.id.rb_driver){
+                    //显示机手作业
+                    if(!driverFargment.isAdded()){
+                        getSupportFragmentManager().beginTransaction().add(R.id.rl_content,driverFargment).hide(farmerFargment).commitAllowingStateLoss();
+                    }else{
+                        getSupportFragmentManager().beginTransaction().show(driverFargment).hide(farmerFargment).commitAllowingStateLoss();
 
-                        //显示农户作业
-                        break;
-                    case 1:
-                        //显示机手作业
-                        break;
-                    default:
-                        break;
+                    }
                 }
             }
         });

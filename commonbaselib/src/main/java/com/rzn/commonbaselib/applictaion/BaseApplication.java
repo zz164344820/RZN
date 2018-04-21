@@ -45,9 +45,9 @@ public class BaseApplication extends LibApplication {
     }
 
     private void addPath() {
-        pathList.add("com.rzn.module_driver.applictaion");
-        pathList.add("com.rzn.module_farmer.applictaion");
         pathList.add("com.rzn.module_main.applictaion");
+        pathList.add("com.rzn.module_farmer.applictaion");
+        pathList.add("com.rzn.module_driver.applictaion");
     }
 
 

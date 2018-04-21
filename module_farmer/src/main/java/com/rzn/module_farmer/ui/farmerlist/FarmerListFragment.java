@@ -18,6 +18,12 @@ import com.rzn.module_farmer.R;
 public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View, FarmerListPresenter> implements FarmerListContract.View {
 
 
+    public static FarmerListFragment newInstance() {
+        return new FarmerListFragment();
+    }
+
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

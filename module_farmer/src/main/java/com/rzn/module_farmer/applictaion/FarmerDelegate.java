@@ -1,17 +1,17 @@
-package com.rzn.module_driver.applictaion;
+package com.rzn.module_farmer.applictaion;
 
 import com.rzn.commonbaselib.applictaion.ApplicationDelegate;
 import com.rzn.commonbaselib.applictaion.ViewManager;
-import com.rzn.module_driver.ui.driverlist.DriverListFragment;
+import com.rzn.module_farmer.ui.farmerlist.FarmerListFragment;
 
 /**
  * Created by zz on 2018/3/4.
  */
 
-public class DriverDelegate implements ApplicationDelegate {
+public class FarmerDelegate implements ApplicationDelegate {
     @Override
     public void onCreate() {
-        ViewManager.getInstance().addFragment(1, DriverListFragment.newInstance());
+        ViewManager.getInstance().addFragment(0, FarmerListFragment.newInstance());
     }
 
     @Override
