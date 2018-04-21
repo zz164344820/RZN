@@ -278,6 +278,55 @@
                         android:textColor="#333333"
                         android:textSize="16dp"
                         />
+
+                    <TextView
+                        android:id="@+id/tv_work_time"
+                        android:layout_width="110dp"
+                        android:layout_height="37dp"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/shape_input_bg"
+                        android:gravity="center_vertical"
+                        android:text="2015-01-24"
+                        android:textColor="#333333"
+                        android:textSize="18dp"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="至"
+                        android:textColor="#333333"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="37dp"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/shape_input_bg"
+                        android:gravity="center"
+                        android:text="今"
+                        android:textColor="#333333"
+                        android:textSize="18dp"
+                         />
+
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="37dp"
+                        android:layout_margin="10dp"
+                        android:background="#dddddd"
+                        android:gravity="center"
+                        android:text="2"
+                        android:textColor="#333333"
+                        android:textSize="18dp"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="年"
+                        android:textColor="#333333"
+                        android:textSize="18dp" />
+
+
                 </LinearLayout>
                 <!--驾照照片-->
                 <LinearLayout
