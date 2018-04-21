@@ -6,15 +6,18 @@ import com.rzn.commonbaselib.mvp.BaseView;
 
 /**
  * MVPPlugin
- *  邮箱 784787081@qq.com
+ * 邮箱 784787081@qq.com
  */
 
 public class JobOrderDetialContract {
     interface View extends BaseView {
-        
+        void getDataSuccess(JobOrderDetialBean jobOrderDetialBean);
+
+        void getDataFaile();
+
     }
 
-    interface  Presenter extends BasePresenter<View> {
-        
+    interface Presenter extends BasePresenter<View> {
+        void getData(String farmerTaskId);
     }
 }

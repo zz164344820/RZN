@@ -39,6 +39,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:id="@+id/tv_cancel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -65,6 +66,7 @@
                 >
 
                 <TextView
+                    android:id="@+id/tv_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="21dp"
@@ -98,6 +100,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tv_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="43dp"
@@ -108,6 +111,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/tv_address_two"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="43dp"
@@ -142,6 +146,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tv_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="43dp"
@@ -175,6 +180,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tv_message"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="43dp"
@@ -214,6 +220,7 @@
                     >
 
                     <TextView
+                        android:id="@+id/tv_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="43dp"
@@ -294,6 +301,7 @@
                         />
 
                     <TextView
+                        android:id="@+id/tv_create_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="2017-12-09  13:45:33 "
@@ -319,6 +327,7 @@
                         />
 
                     <TextView
+                        android:id="@+id/tv_post"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="17091800001（年月日+5位流水号"
@@ -345,6 +354,7 @@
                         />
 
                     <TextView
+                        android:id="@+id/tv_cancel_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="2017-12-09  18:45:09"
