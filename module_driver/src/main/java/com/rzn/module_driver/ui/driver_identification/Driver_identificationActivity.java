@@ -1,13 +1,20 @@
 package com.rzn.module_driver.ui.driver_identification;
 
 
+import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,7 +32,7 @@ import com.rzn.module_driver.ui.drivermaksure.DriverMakeSureActivity;
 
 public class Driver_identificationActivity extends MVPBaseActivity<Driver_identificationContract.View, Driver_identificationPresenter> implements Driver_identificationContract.View {
 
-
+    private static final int IMAGE = 1;
     private EditText etName;
     private EditText etIdent;
     private EditText etData;
@@ -35,6 +42,9 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
     private EditText etCarNumber;
     private EditText etFromHome;
     private TextView tvCommit;
+    private ImageView ivPhotoCars;
+    private ImageView ivPhotoCar;
+    private String fag;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -75,6 +85,31 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
                 }
             }
         });
+
+
+        //上传图片机手驾驶证
+        ivPhotoCars.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fag = "one";
+                //调用相册
+                Intent intent = new Intent(Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, IMAGE);
+            }
+        });
+
+        //上传图片机手驾驶证
+        ivPhotoCar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fag = "two";
+                //调用相册
+                Intent intent = new Intent(Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, IMAGE);
+            }
+        });
     }
 
     /**
@@ -101,8 +136,37 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
         //提交申请按钮
         tvCommit = (TextView) findViewById(R.id.tv_commit);
 
+        //点击上传机手驾照
+        ivPhotoCars = (ImageView) findViewById(R.id.iv_photo_cars);
+        ivPhotoCar = (ImageView) findViewById(R.id.iv_photo_car);
+
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        //获取图片路径
+        if (requestCode == IMAGE && resultCode == Activity.RESULT_OK && data != null) {
+            Uri selectedImage = data.getData();
+            String[] filePathColumns = {MediaStore.Images.Media.DATA};
+            Cursor c = getContentResolver().query(selectedImage, filePathColumns, null, null, null);
+            c.moveToFirst();
+            int columnIndex = c.getColumnIndex(filePathColumns[0]);
+            String imagePath = c.getString(columnIndex);
+            showImage(imagePath);
+            c.close();
+        }
+    }
+
+    private void showImage(String imagePath) {
+        Bitmap bm = BitmapFactory.decodeFile(imagePath);
+        if ("one".equals(fag)) {
+            ivPhotoCars.setImageBitmap(bm);
+        } else if ("two".equals(fag)) {
+            ivPhotoCar.setImageBitmap(bm);
+        }
+
+    }
 
     //提交信息成功
     @Override

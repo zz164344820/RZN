@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#dddddd" />
+            <!--联系人-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="联系人:"
+                    android:textColor="#333333"
+                    android:textSize="18dp" />
+
+                <EditText
+                    android:layout_width="266dp"
+                    android:layout_height="37dp"
+                    android:layout_margin="10dp"
+                    android:background="#dddddd"
+                    android:hint="必填" />
+
+            </LinearLayout>
+            <!--联系电话-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="联系电话:"
+                    android:textColor="#333333"
+                    android:textSize="18dp" />
+
+                <EditText
+                    android:layout_width="266dp"
+                    android:layout_height="37dp"
+                    android:layout_margin="10dp"
+                    android:background="#dddddd"
+                    android:hint="13598456828" />
+
+            </LinearLayout>
+            <!--家庭住址-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="家庭住址:"
+                    android:textColor="#333333"
+                    android:textSize="18dp" />
+
+                <EditText
+                    android:layout_width="266dp"
+                    android:layout_height="37dp"
+                    android:layout_margin="10dp"
+                    android:background="#dddddd"
+                    android:hint="必填" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#dddddd" />
+            <!--作业类型-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="作业类型:"
+                    android:textColor="#333333"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:layout_width="266dp"
+                    android:layout_height="37dp"
+                    android:layout_margin="10dp"
+                    android:background="#dddddd"
+                    android:gravity="center_vertical"
+                    android:hint="必填" />
+
+            </LinearLayout>
+
+            <!--作业面积-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="作业面积:"
+                    android:textColor="#333333"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="37dp"
+                    android:layout_margin="10dp"
+                    android:gravity="center_vertical"
+                    android:hint="集中连片                  零星分散" />
+
+            </LinearLayout>
+
+            <!--作业地点-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="作业地点:"
+                    android:textColor="#333333"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:layout_width="266dp"
+                    android:layout_height="37dp"
+                    android:layout_margin="10dp"
+                    android:background="#dddddd"
+                    android:gravity="center_vertical"
+                    android:hint="必填" />
+
+            </LinearLayout>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="#dddddd"
+                android:hint="请输入详细地址" />
+            <!--作业时间-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="作业时间:"
+                    android:textColor="#333333"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="37dp"
+                    android:layout_margin="10dp"
+                    android:background="#dddddd"
+                    android:gravity="center_vertical"
+                    android:hint="2015-01-24" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="至"
+                    android:textColor="#333333"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="37dp"
+                    android:layout_margin="10dp"
+                    android:background="#dddddd"
+                    android:gravity="center_vertical"
+                    android:hint="必填" />
+
+            </LinearLayout>
+            <!--作业价格-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="作业价格:"
+                    android:textColor="#333333"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:layout_width="266dp"
+                    android:layout_height="37dp"
+                    android:layout_margin="10dp"
+                    android:background="#dddddd"
+                    android:gravity="center_vertical"
+                    android:hint="必填" />
+
+            </LinearLayout>
+            
+            <!--相对机手说什么-->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="#dddddd"
+                android:hint="相对机手说什么" />
+            
+            
+            
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:text="确认发布"
+                android:textColor="#ffffff"
+                android:textSize="18dp"
+                android:gravity="center"
+                android:background="#70c63f"
+                android:layout_margin="10dp"
+                />
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</LinearLayout>
