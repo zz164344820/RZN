@@ -43,10 +43,10 @@ public class LibApplication extends Application {
         super.onCreate();
         instance = this;
         mMainThreadHanler = new Handler();
+        initLog();
         initUtils();
         initZxing();
         initOkhttp();
-        initLog();
         initGalleryFinal();
         registerActivity();
     }

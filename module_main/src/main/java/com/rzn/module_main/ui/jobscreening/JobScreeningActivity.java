@@ -9,12 +9,18 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.rzn.commonbaselib.applictaion.ViewManager;
+import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
+import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.commonbaselib.views.AutoRadioGroup;
 import com.rzn.module_main.R;
 import com.rzn.module_main.R2;
+import com.zyhealth.expertlib.utils.MLog;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -37,7 +43,6 @@ public class JobScreeningActivity extends MVPBaseActivity<JobScreeningContract.V
         setContentView(R.layout.main_act_jobscreening);
         ButterKnife.bind(this);
         mPresenter.onCreate();
-
     }
 
     @Override
@@ -49,8 +54,8 @@ public class JobScreeningActivity extends MVPBaseActivity<JobScreeningContract.V
     }
 
     private void initFragment() {
-        farmerFargment = ViewManager.getInstance().getFragment(0);
-        driverFargment = ViewManager.getInstance().getFragment(1);
+        farmerFargment = (MVPBaseFragment) ARouter.getInstance().build("/farmer/farmerFargment").navigation();
+        driverFargment = (MVPBaseFragment) ARouter.getInstance().build("/driver/driverFargment").navigation();
         getSupportFragmentManager().beginTransaction().add(R.id.rl_content,farmerFargment).commitAllowingStateLoss();
     }
 

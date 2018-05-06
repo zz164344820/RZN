@@ -11,6 +11,7 @@ import com.rzn.njt.R;
 import com.zyhealth.expertlib.Constants;
 import com.zyhealth.expertlib.LibApplication;
 import com.zyhealth.expertlib.net.OkHttpLoader;
+import com.zyhealth.expertlib.utils.MLog;
 
 import cn.jpush.android.api.BasicPushNotificationBuilder;
 import cn.jpush.android.api.JPushInterface;
@@ -19,7 +20,7 @@ import cn.jpush.android.api.JPushInterface;
  * Created by zz on 2018/1/12.
  */
 
-public class RZNApplication extends BaseApplication {
+public class RZNApplication extends LibApplication {
 
     @Override
     public void onCreate() {
@@ -42,7 +43,7 @@ public class RZNApplication extends BaseApplication {
             ARouter.openDebug();
             ARouter.openLog();
         }
-        ARouter.init(this);
+       ARouter.init(this);
     }
 
     @Override
