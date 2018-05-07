@@ -6,6 +6,7 @@ import android.widget.BaseAdapter;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.rzn.module_farmer.R;
 
 import java.util.List;
 
@@ -21,6 +22,6 @@ public class FarmerListAdapter extends BaseQuickAdapter<String, BaseViewHolder> 
 
     @Override
     protected void convert(BaseViewHolder helper, String item) {
-
+        helper.addOnClickListener(R.id.tv_work);
     }
 }

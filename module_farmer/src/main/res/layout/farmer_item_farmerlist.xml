@@ -87,6 +87,7 @@
             android:layout_weight="1" />
 
         <TextView
+            android:id="@+id/tv_work"
             android:layout_width="91dp"
             android:layout_height="31dp"
             android:layout_marginRight="10dp"

@@ -2,6 +2,7 @@ package com.rzn.module_driver.ui.driver_identification;
 
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -12,7 +13,9 @@ import android.os.PersistableBundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.text.format.DateFormat;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,6 +25,8 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.module_driver.R;
 import com.rzn.module_driver.ui.drivermaksure.DriverMakeSureActivity;
+
+import java.util.Calendar;
 
 
 /**
@@ -45,6 +50,10 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
     private ImageView ivPhotoCars;
     private ImageView ivPhotoCar;
     private String fag;
+    private TextView tvWorkTime;
+    private Calendar showDate = Calendar.getInstance();   //初始化时间选择器
+    private TextView tvWorkTimeNow;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,11 +64,49 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
         initListener();
     }
 
+    /**
+     * 系统时间选择器
+     *
+     * @param tab
+     */
+    private void showDateDialog(final int tab) {
+        new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                showDate.set(Calendar.YEAR, year);
+                showDate.set(Calendar.MONTH, monthOfYear);
+                showDate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                if (tab == 1) {
+                    tvWorkTime.setText(DateFormat.format("yyyy-MM-dd", showDate));
+                } else if (tab == 2) {
+                    tvWorkTimeNow.setText(DateFormat.format("yyyy-MM-dd", showDate));
+                }
+            }
+        }, showDate.get(Calendar.YEAR), showDate.get(Calendar.MONTH), showDate.get(Calendar.DAY_OF_MONTH)).show();
+    }
+
 
     /**
      * 初始化监听
      */
     private void initListener() {
+        tvWorkTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //弹出系统时间选择器
+                showDateDialog(1);//tab   1 代表开始时间   2代表结束的时间
+            }
+        });
+
+        tvWorkTimeNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //弹出系统时间选择器
+                showDateDialog(2);
+            }
+        });
+
+
         tvCommit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -135,6 +182,10 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
         etFromHome = (EditText) findViewById(R.id.et_from_home);
         //提交申请按钮
         tvCommit = (TextView) findViewById(R.id.tv_commit);
+        //从业时间
+        tvWorkTime = (TextView) findViewById(R.id.tv_work_time);
+        //从业时间到什么时间
+        tvWorkTimeNow = (TextView) findViewById(R.id.tv_work_time_now);
 
         //点击上传机手驾照
         ivPhotoCars = (ImageView) findViewById(R.id.iv_photo_cars);

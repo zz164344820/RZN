@@ -2,11 +2,13 @@
 
     package="com.rzn.module_farmer">
 
-    <application android:allowBackup="true" android:label="@string/app_name"
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name"
         android:supportsRtl="true">
 
-        <activity android:name=".ui.sendwork.SendWorkActivity"/>
-
+        <activity android:name=".ui.sendwork.SendWorkActivity" />
+        <activity android:name=".ui.farmerdriverdetial.FarmerDriverDetialActivity" />
     </application>
 
 </manifest>

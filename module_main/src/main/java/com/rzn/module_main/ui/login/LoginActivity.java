@@ -56,7 +56,7 @@ public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPres
     @OnClick(R2.id.bt_affirm)
     public void onViewClicked() {
 
-        startActivity(new Intent(this, MainActivity.class));
+//       startActivity(new Intent(this, MainActivity.class));
 
         if (!TextUtils.isEmpty(edPhoneNum.getText().toString()) && !TextUtils.isEmpty(edAuthCode.getText().toString())) {
             if (btAffirm.isClickable()) {

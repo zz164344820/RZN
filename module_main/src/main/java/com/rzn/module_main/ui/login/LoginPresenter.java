@@ -27,10 +27,10 @@ public class LoginPresenter extends BasePresenterImpl<LoginContract.View> implem
 
     @Override
     public void login(String phone, String code) {
-        mView.showLoading(false,"");
+        mView.showLoading(false, "");
         Map<String, String> map = new HashMap<>();
-        map.put("code", "1234");
-        map.put("phone", "18888888888");
+        map.put("code", code);
+        map.put("phone", phone);
         reqData(mContext, "farmHand/user/userRegister", map, 111);
     }
 
@@ -41,9 +41,11 @@ public class LoginPresenter extends BasePresenterImpl<LoginContract.View> implem
         switch (requestId) {
             case 111:
                 //登录成功后接收到的数据
-                LoginResponseBean loginResponseBean= GsonUtils.gsonParseBean(gson,response.getResult(),LoginResponseBean.class);
-                    //将数据进行保存
+                LoginResponseBean loginResponseBean = GsonUtils.gsonParseBean(gson, response.getResult(), LoginResponseBean.class);
+                //将数据进行保存
                 FileSaveUtils.fileSaveObject(loginResponseBean, "loginBean");
+                //将数据取出的方法
+//                FileSaveUtils.readObject("loginBean");
                 //登录成功回调
                 mView.loginSuccess();
 

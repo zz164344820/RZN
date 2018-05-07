@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="#F0F3F4"
-              android:orientation="vertical">
-    <include  layout="@layout/topbar"/>
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F0F3F4"
+    android:orientation="vertical">
+
+    <include layout="@layout/topbar" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -17,16 +18,14 @@
             <!--顶部标题-->
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                >
+                android:layout_height="40dp">
 
                 <ImageView
                     android:id="@+id/iv_icon"
                     android:layout_width="16.5dp"
                     android:layout_height="18dp"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    />
+                    android:layout_marginLeft="10dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -35,8 +34,7 @@
                     android:layout_toRightOf="@id/iv_icon"
                     android:text="基本信息"
                     android:textColor="#333333"
-                    android:textSize="16dp"
-                    />
+                    android:textSize="16dp" />
 
             </RelativeLayout>
             <!--信息填写布局-->
@@ -44,15 +42,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#ffffff"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
                 <!--姓名-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="51.5dp"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    >
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="69dp"
@@ -60,8 +56,7 @@
                         android:layout_marginLeft="10dp"
                         android:text="姓名:"
                         android:textColor="#333333"
-                        android:textSize="16dp"
-                        />
+                        android:textSize="16dp" />
 
                     <EditText
                         android:id="@+id/et_name"
@@ -69,8 +64,7 @@
                         android:layout_height="36.5dp"
                         android:background="@drawable/shape_input_bg"
                         android:hint="必填"
-                        android:textSize="16dp"
-                        />
+                        android:textSize="16dp" />
                 </LinearLayout>
                 <!--性别-->
                 <LinearLayout
@@ -85,53 +79,45 @@
                         android:layout_marginLeft="10dp"
                         android:text="性别:"
                         android:textColor="#333333"
-                        android:textSize="16dp"
-                        />
+                        android:textSize="16dp" />
 
                     <RadioButton
                         android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        />
+                        android:layout_height="16dp" />
 
                     <ImageView
                         android:layout_width="15dp"
-                        android:layout_height="17.5dp"
-                        />
+                        android:layout_height="17.5dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="(男)"
                         android:textColor="#333333"
-                        android:textSize="16dp"
-                        />
+                        android:textSize="16dp" />
 
                     <RadioButton
                         android:layout_width="16dp"
                         android:layout_height="16dp"
-                        android:layout_marginLeft="46.5dp"
-                        />
+                        android:layout_marginLeft="46.5dp" />
 
                     <ImageView
                         android:layout_width="15dp"
-                        android:layout_height="17.5dp"
-                        />
+                        android:layout_height="17.5dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="(女)"
                         android:textColor="#333333"
-                        android:textSize="16dp"
-                        />
+                        android:textSize="16dp" />
                 </LinearLayout>
                 <!--省份证号-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="51.5dp"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    >
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="69dp"
@@ -139,8 +125,7 @@
                         android:layout_marginLeft="10dp"
                         android:text="身份证号:"
                         android:textColor="#333333"
-                        android:textSize="16dp"
-                        />
+                        android:textSize="16dp" />
 
                     <EditText
                         android:id="@+id/et_ident"
@@ -148,16 +133,14 @@
                         android:layout_height="36.5dp"
                         android:background="@drawable/shape_input_bg"
                         android:hint="必填"
-                        android:textSize="16dp"
-                        />
+                        android:textSize="16dp" />
                 </LinearLayout>
                 <!--出生日期-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="51.5dp"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    >
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="69dp"
@@ -165,8 +148,7 @@
                         android:layout_marginLeft="10dp"
                         android:text="出生日期:"
                         android:textColor="#333333"
-                        android:textSize="16dp"
-                        />
+                        android:textSize="16dp" />
 
                     <EditText
                         android:id="@+id/et_date"
@@ -174,16 +156,14 @@
                         android:layout_height="36.5dp"
                         android:background="@drawable/shape_input_bg"
                         android:hint="必填"
-                        android:textSize="16dp"
-                        />
+                        android:textSize="16dp" />
                 </LinearLayout>
                 <!--联系电话-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="51.5dp"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    >
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="69dp"
@@ -191,8 +171,7 @@
                         android:layout_marginLeft="10dp"
                         android:text="联系电话:"
                         android:textColor="#333333"
-                        android:textSize="16dp"
-                        />
+                        android:textSize="16dp" />
 
                     <EditText
                         android:id="@+id/et_phone"
@@ -200,23 +179,20 @@
                         android:layout_height="36.5dp"
                         android:background="@drawable/shape_input_bg"
                         android:hint="必填"
-                        android:textSize="16dp"
-                        />
+                        android:textSize="16dp" />
                 </LinearLayout>
             </LinearLayout>
             <!--职业技能-->
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                >
+                android:layout_height="40dp">
 
                 <ImageView
                     android:id="@+id/iv_icons"
                     android:layout_width="16.5dp"
                     android:layout_height="18dp"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    />
+                    android:layout_marginLeft="10dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -225,8 +201,7 @@
                     android:layout_toRightOf="@id/iv_icons"
                     android:text="职业技能"
                     android:textColor="#333333"
-                    android:textSize="16dp"
-                    />
+                    android:textSize="16dp" />
 
             </RelativeLayout>
             <!--职业技能详细信息-->
@@ -234,15 +209,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#ffffff"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
                 <!--作业类型-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="51.5dp"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    >
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="69dp"
@@ -250,8 +223,7 @@
                         android:layout_marginLeft="10dp"
                         android:text="作业类型:"
                         android:textColor="#333333"
-                        android:textSize="16dp"
-                        />
+                        android:textSize="16dp" />
 
                     <EditText
                         android:id="@+id/et_work_tab"
@@ -259,16 +231,14 @@
                         android:layout_height="36.5dp"
                         android:background="@drawable/shape_input_bg"
                         android:hint="必填"
-                        android:textSize="16dp"
-                        />
+                        android:textSize="16dp" />
                 </LinearLayout>
                 <!--从业时间-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="51.5dp"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    >
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="69dp"
@@ -276,8 +246,7 @@
                         android:layout_marginLeft="10dp"
                         android:text="从业时间:"
                         android:textColor="#333333"
-                        android:textSize="16dp"
-                        />
+                        android:textSize="16dp" />
 
                     <TextView
                         android:id="@+id/tv_work_time"
@@ -288,7 +257,7 @@
                         android:gravity="center_vertical"
                         android:text="2015-01-24"
                         android:textColor="#333333"
-                        android:textSize="18dp"/>
+                        android:textSize="18dp" />
 
 
                     <TextView
@@ -299,6 +268,7 @@
                         android:textSize="18dp" />
 
                     <TextView
+                        android:id="@+id/tv_work_time_now"
                         android:layout_width="50dp"
                         android:layout_height="37dp"
                         android:layout_margin="10dp"
@@ -306,8 +276,7 @@
                         android:gravity="center"
                         android:text="今"
                         android:textColor="#333333"
-                        android:textSize="18dp"
-                         />
+                        android:textSize="18dp" />
 
                     <TextView
                         android:layout_width="40dp"
@@ -317,8 +286,8 @@
                         android:gravity="center"
                         android:text="2"
                         android:textColor="#333333"
-                        android:textSize="18dp"
-                        />
+                        android:textSize="18dp" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -339,31 +308,28 @@
                         android:id="@+id/iv_photo_cars"
                         android:layout_width="166.5dp"
                         android:layout_height="111.5dp"
-                        android:background="#123456"
-                        android:layout_marginLeft="10dp"/>
+                        android:layout_marginLeft="10dp"
+                        android:background="#123456" />
 
                     <ImageView
                         android:id="@+id/iv_photo_car"
                         android:layout_width="166.5dp"
                         android:layout_height="111.5dp"
-                        android:background="#123456"
                         android:layout_marginLeft="10dp"
-                        />
+                        android:background="#123456" />
                 </LinearLayout>
             </LinearLayout>
             <!--农机信息-->
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                >
+                android:layout_height="40dp">
 
                 <ImageView
                     android:id="@+id/iv_iconss"
                     android:layout_width="16.5dp"
                     android:layout_height="18dp"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    />
+                    android:layout_marginLeft="10dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -372,8 +338,7 @@
                     android:layout_toRightOf="@id/iv_iconss"
                     android:text="农机信息"
                     android:textColor="#333333"
-                    android:textSize="16dp"
-                    />
+                    android:textSize="16dp" />
 
             </RelativeLayout>
 
@@ -381,15 +346,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#ffffff"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
                 <!--车型-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="51.5dp"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    >
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="69dp"
@@ -397,8 +360,7 @@
                         android:layout_marginLeft="10dp"
                         android:text="车型:"
                         android:textColor="#333333"
-                        android:textSize="16dp"
-                        />
+                        android:textSize="16dp" />
 
                     <EditText
                         android:id="@+id/et_car_tab"
@@ -406,16 +368,14 @@
                         android:layout_height="36.5dp"
                         android:background="@drawable/shape_input_bg"
                         android:hint="必填"
-                        android:textSize="16dp"
-                        />
+                        android:textSize="16dp" />
                 </LinearLayout>
                 <!--车牌号-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="51.5dp"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    >
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="69dp"
@@ -423,8 +383,7 @@
                         android:layout_marginLeft="10dp"
                         android:text="车牌号:"
                         android:textColor="#333333"
-                        android:textSize="16dp"
-                        />
+                        android:textSize="16dp" />
 
                     <EditText
                         android:id="@+id/et_car_number"
@@ -432,16 +391,14 @@
                         android:layout_height="36.5dp"
                         android:background="@drawable/shape_input_bg"
                         android:hint="必填"
-                        android:textSize="16dp"
-                        />
+                        android:textSize="16dp" />
                 </LinearLayout>
                 <!--所属合作社-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="51.5dp"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    >
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="69dp"
@@ -449,8 +406,7 @@
                         android:layout_marginLeft="10dp"
                         android:text="所属合作社:"
                         android:textColor="#333333"
-                        android:textSize="16dp"
-                        />
+                        android:textSize="16dp" />
 
                     <EditText
                         android:id="@+id/et_from_home"
@@ -458,8 +414,7 @@
                         android:layout_height="36.5dp"
                         android:background="@drawable/shape_input_bg"
                         android:hint="必填"
-                        android:textSize="16dp"
-                        />
+                        android:textSize="16dp" />
                 </LinearLayout>
                 <!--上传的照片-->
                 <LinearLayout
@@ -472,13 +427,12 @@
                         android:id="@+id/imageView"
                         android:layout_width="166.5dp"
                         android:layout_height="111.5dp"
-                        android:layout_marginLeft="10dp"/>
+                        android:layout_marginLeft="10dp" />
 
                     <ImageView
                         android:layout_width="166.5dp"
                         android:layout_height="111.5dp"
-                        android:layout_marginLeft="10dp"
-                        />
+                        android:layout_marginLeft="10dp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -488,16 +442,14 @@
                 android:layout_height="40dp"
                 android:layout_marginTop="10dp"
                 android:background="#ffffff"
-                android:gravity="center"
-                >
+                android:gravity="center">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="添加更多农机"
                     android:textColor="#333333"
-                    android:textSize="18dp"
-                    />
+                    android:textSize="18dp" />
 
 
             </LinearLayout>
@@ -512,8 +464,7 @@
                 android:gravity="center"
                 android:text="提交申请"
                 android:textColor="#ffffff"
-                android:textSize="18dp"
-                />
+                android:textSize="18dp" />
 
         </LinearLayout>
 

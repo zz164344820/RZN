@@ -14,8 +14,10 @@ import android.widget.TextView;
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
 import com.rzn.module_farmer.R;
+import com.rzn.module_farmer.ui.farmerdriverdetial.FarmerDriverDetialActivity;
 import com.rzn.module_farmer.ui.sendwork.SendWorkActivity;
 
 import java.util.ArrayList;
@@ -26,7 +28,7 @@ import java.util.List;
  * 邮箱 784787081@qq.com
  */
 
-public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View, FarmerListPresenter> implements FarmerListContract.View ,OnLoadMoreListener,OnRefreshListener{
+public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View, FarmerListPresenter> implements FarmerListContract.View, OnLoadMoreListener, OnRefreshListener {
 
 
     private View rootView;
@@ -66,15 +68,30 @@ public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View,
         swipeTarget = (RecyclerView) rootView.findViewById(R.id.swipe_target);
         swipeToLoadLayout = (SwipeToLoadLayout) rootView.findViewById(R.id.swipeToLoadLayout);
         swipeTarget.setLayoutManager(new LinearLayoutManager(getActivity()));
-        List<String> list=new ArrayList<>();
+        List<String> list = new ArrayList<>();
         list.add("s");
         list.add("s");
         list.add("s");
         list.add("s");
         list.add("s");
-        FarmerListAdapter farmerListAdapter=new FarmerListAdapter(R.layout.farmer_item_farmerlist,list);
+        FarmerListAdapter farmerListAdapter = new FarmerListAdapter(R.layout.farmer_item_farmerlist, list);
         swipeTarget.setAdapter(farmerListAdapter);
 
+        farmerListAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+
+
+                startActivity(new Intent(mContext, FarmerDriverDetialActivity.class));
+            }
+        });
+
+        farmerListAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+
+            }
+        });
     }
 
     @Override
