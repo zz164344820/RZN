@@ -3,10 +3,10 @@ package com.rzn.module_main.ui.login;
 import android.widget.Toast;
 
 import com.blankj.utilcode.util.EncryptUtils;
+import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.BasePresenterImpl;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.commonbaselib.utils.GsonUtils;
-import com.rzn.module_main.ui.bean.LoginResponseBean;
 import com.zyhealth.expertlib.bean.ResponseBean;
 import com.zyhealth.expertlib.utils.GlideUtils;
 import com.zyhealth.expertlib.utils.MLog;

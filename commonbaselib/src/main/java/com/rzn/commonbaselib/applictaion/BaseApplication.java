@@ -36,12 +36,11 @@ public class BaseApplication extends LibApplication {
     public void onCreate() {
         super.onCreate();
         sInstance = this;
-        addPath();
-
+       /* addPath();
         mAppDelegateList = ClassUtils.getObjectsWithInterface(this, ApplicationDelegate.class, pathList);
         for (ApplicationDelegate delegate : mAppDelegateList) {
             delegate.onCreate();
-        }
+        }*/
     }
 
     private void addPath() {

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
@@ -33,7 +34,7 @@ import butterknife.Unbinder;
  * MVPPlugin
  * 邮箱 784787081@qq.com
  */
-
+@Route(path = "/driver/driverFargment")
 public class DriverListFragment extends MVPBaseFragment<DriverListContract.View, DriverListPresenter> implements DriverListContract.View, OnLoadMoreListener, OnRefreshListener {
 
     View rootView;

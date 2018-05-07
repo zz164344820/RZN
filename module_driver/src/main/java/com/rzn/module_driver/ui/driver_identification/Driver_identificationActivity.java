@@ -22,9 +22,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blankj.utilcode.util.ToastUtils;
+import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
+import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.module_driver.R;
 import com.rzn.module_driver.ui.drivermaksure.DriverMakeSureActivity;
+import com.zyhealth.expertlib.utils.MLog;
 
 import java.util.Calendar;
 
@@ -62,6 +65,7 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
         mPresenter.onCreate();
         initViews();
         initListener();
+
     }
 
     /**

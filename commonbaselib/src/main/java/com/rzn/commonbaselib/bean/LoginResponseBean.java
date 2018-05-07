@@ -1,11 +1,13 @@
-package com.rzn.module_main.ui.bean;
+package com.rzn.commonbaselib.bean;
+
+import java.io.Serializable;
 
 /**
  * Created by Ray.lee on 2018/4/8.
  * Description:  登录成功返回bean实体
  */
 
-public class LoginResponseBean {
+public class LoginResponseBean implements Serializable{
 
     private String createTime;
     private String loginTime;

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
@@ -27,8 +28,8 @@ import java.util.List;
  * MVPPlugin
  * 邮箱 784787081@qq.com
  */
-
-public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View, FarmerListPresenter> implements FarmerListContract.View, OnLoadMoreListener, OnRefreshListener {
+@Route(path = "/farmer/farmerFargment")
+public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View, FarmerListPresenter> implements FarmerListContract.View ,OnLoadMoreListener,OnRefreshListener{
 
 
     private View rootView;

@@ -6,11 +6,14 @@ import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.widget.RadioButton;
 
+import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
+import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.commonbaselib.views.AutoRadioGroup;
 import com.rzn.commonbaselib.views.NosrollViewPager;
 import com.rzn.module_main.R;
 import com.rzn.module_main.R2;
+import com.zyhealth.expertlib.utils.MLog;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,7 +40,6 @@ public class MainActivity extends MVPBaseActivity<MainContract.View, MainPresent
         setContentView(R.layout.main_act_main);
         ButterKnife.bind(this);
         mPresenter.onCreate();
-
     }
 
 

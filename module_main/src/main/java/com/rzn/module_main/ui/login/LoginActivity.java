@@ -11,7 +11,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
+import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.module_main.R;
 import com.rzn.module_main.R2;
 import com.rzn.module_main.ui.jobscreening.JobScreeningActivity;
@@ -57,6 +59,7 @@ public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPres
     public void onViewClicked() {
 
 //       startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(this, MainActivity.class));
 
         if (!TextUtils.isEmpty(edPhoneNum.getText().toString()) && !TextUtils.isEmpty(edAuthCode.getText().toString())) {
             if (btAffirm.isClickable()) {
