@@ -6,15 +6,17 @@ import com.rzn.commonbaselib.mvp.BaseView;
 
 /**
  * MVPPlugin
- *  邮箱 784787081@qq.com
+ * 邮箱 784787081@qq.com
  */
 
 public class DriverOrderMessageContract {
     interface View extends BaseView {
-        
+        void postSuccessed();
+
+        void postFailed();
     }
 
-    interface  Presenter extends BasePresenter<View> {
-        
+    interface Presenter extends BasePresenter<View> {
+        void httpPost();
     }
 }

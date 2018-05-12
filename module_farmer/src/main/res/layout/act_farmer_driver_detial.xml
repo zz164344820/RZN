@@ -199,6 +199,7 @@
                         <ImageView
                             android:layout_width="18dp"
                             android:layout_height="18dp"
+                           android:background="@drawable/icon_address"
                             android:layout_marginLeft="21dp" />
 
 
@@ -241,6 +242,7 @@
                         <ImageView
                             android:layout_width="18dp"
                             android:layout_height="18dp"
+                            android:src="@drawable/icon_oclock"
                             android:layout_marginLeft="21dp" />
 
 
@@ -272,6 +274,7 @@
                         <ImageView
                             android:layout_width="18dp"
                             android:layout_height="18dp"
+                            android:src="@drawable/icon_book"
                             android:layout_marginLeft="21dp" />
 
 

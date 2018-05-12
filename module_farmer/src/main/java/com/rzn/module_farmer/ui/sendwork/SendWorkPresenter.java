@@ -18,6 +18,7 @@ import java.util.Map;
  */
 
 public class SendWorkPresenter extends BasePresenterImpl<SendWorkContract.View> implements SendWorkContract.Presenter {
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -75,7 +76,8 @@ public class SendWorkPresenter extends BasePresenterImpl<SendWorkContract.View> 
             case 222:
 
                 List<WorkTypeBean> list1 = GsonUtils.gsonParseList(gson, response.getResult());
-                List<WorkTypeObjBean> list = list1.get(0).getTypeArray();
+                WorkTypeBean workTypeBean=list1.get(0);
+                List<WorkTypeObjBean> list = workTypeBean.getTypeArray();
 //                List<WorkTypeObjBean> list = GsonUtils.gsonParseList(gson, list1);
 //                WorkTypeObjBean workTypeObjBean = GsonUtils.gsonParseBean(gson, list.get(0), WorkTypeObjBean.class);
 //                WorkTypeBean workTypeBean = GsonUtils.gsonParseBean(gson, response.getResult(),WorkTypeBean.class);

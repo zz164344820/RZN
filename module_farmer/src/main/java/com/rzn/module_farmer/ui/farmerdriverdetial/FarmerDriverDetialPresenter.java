@@ -4,6 +4,7 @@ package com.rzn.module_farmer.ui.farmerdriverdetial;
 import com.rzn.commonbaselib.mvp.BasePresenterImpl;
 import com.rzn.commonbaselib.utils.GsonUtils;
 import com.rzn.module_farmer.bean.AppointmentDriverBean;
+import com.rzn.module_farmer.bean.DriverDetialMessageBean;
 import com.zyhealth.expertlib.bean.ResponseBean;
 
 import java.util.HashMap;
@@ -22,7 +23,7 @@ public class FarmerDriverDetialPresenter extends BasePresenterImpl<FarmerDriverD
 
     }
 
-
+    //预约机手
     @Override
     public void httpAppointmentDriver(String farmerTaskId, String handlerId) {
 
@@ -31,6 +32,14 @@ public class FarmerDriverDetialPresenter extends BasePresenterImpl<FarmerDriverD
         map.put("handlerId", handlerId);
         reqData(mContext, "farmHand/farmerTask/confirmAppoint", map, 111);
 
+    }
+
+    //获取机手信息
+    @Override
+    public void httpDriverMessage(String handlerId) {
+        Map<String, String> map = new HashMap<>();
+        map.put("handlerId", handlerId);
+        reqData(mContext, "farmHand/handler/queryhandlerInfo", null, 222);
     }
 
 
@@ -42,6 +51,10 @@ public class FarmerDriverDetialPresenter extends BasePresenterImpl<FarmerDriverD
             case 111:
                 AppointmentDriverBean appointmentDriverBean = GsonUtils.gsonParseBean(gson, response.getResult(), AppointmentDriverBean.class);
                 mView.appointmentSuccess();
+                break;
+            case 222:
+                DriverDetialMessageBean driverDetialMessageBean = GsonUtils.gsonParseBean(gson, response.getResult(), DriverDetialMessageBean.class);
+                mView.driverMessageSuccess(driverDetialMessageBean);
                 break;
         }
     }

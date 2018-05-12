@@ -2,6 +2,8 @@ package com.rzn.module_farmer.ui.farmerworkdetial;
 
 
 import com.rzn.commonbaselib.mvp.BasePresenterImpl;
+import com.rzn.commonbaselib.utils.GsonUtils;
+import com.rzn.module_farmer.bean.FarmerOrderDetialBean;
 import com.zyhealth.expertlib.bean.ResponseBean;
 
 import java.util.HashMap;
@@ -31,6 +33,8 @@ public class FarmerWorkDetialPresenter extends BasePresenterImpl<FarmerWorkDetia
         super.httpRequestResult(response, requestId);
         switch (requestId) {
             case 111:
+                FarmerOrderDetialBean farmerOrderDetialBean = GsonUtils.gsonParseBean(gson, response.getResult(), FarmerOrderDetialBean.class);
+                mView.onLoadSuccess(farmerOrderDetialBean);
                 break;
         }
     }

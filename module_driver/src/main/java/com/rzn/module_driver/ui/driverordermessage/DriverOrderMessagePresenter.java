@@ -12,6 +12,12 @@ public class DriverOrderMessagePresenter extends BasePresenterImpl<DriverOrderMe
     @Override
     public void onCreate() {
         super.onCreate();
-        reqData(mContext,"Test/index",null,111);
+
+    }
+
+    @Override
+    public void httpPost() {
+
+        reqData(mContext,"farmHand/handler/updateSaveHandlerInfo",null,111);
     }
 }

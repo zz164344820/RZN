@@ -37,11 +37,15 @@
 
                 <EditText
                     android:id="@+id/et_people"
-                    android:layout_width="266dp"
+                    android:layout_width="match_parent"
                     android:layout_height="37dp"
-                    android:layout_margin="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:background="@drawable/shape_input_bg"
-                    android:hint="必填" />
+                    android:hint="必填"
+                    android:textSize="16dp" />
 
             </LinearLayout>
             <!--联系电话-->
@@ -61,11 +65,15 @@
 
                 <EditText
                     android:id="@+id/et_phone"
-                    android:layout_width="266dp"
+                    android:layout_width="match_parent"
                     android:layout_height="37dp"
-                    android:layout_margin="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:background="@drawable/shape_input_bg"
-                    android:hint="13598456828" />
+                    android:hint="13598456828"
+                    android:textSize="16dp" />
 
             </LinearLayout>
             <!--家庭住址-->
@@ -85,11 +93,15 @@
 
                 <EditText
                     android:id="@+id/et_home_address"
-                    android:layout_width="266dp"
+                    android:layout_width="match_parent"
                     android:layout_height="37dp"
-                    android:layout_margin="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:background="@drawable/shape_input_bg"
-                    android:hint="必填" />
+                    android:hint="必填"
+                    android:textSize="16dp" />
 
             </LinearLayout>
 
@@ -114,12 +126,16 @@
 
                 <TextView
                     android:id="@+id/tv_work_tab"
-                    android:layout_width="266dp"
+                    android:layout_width="match_parent"
                     android:layout_height="37dp"
-                    android:layout_margin="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:background="@drawable/shape_input_bg"
                     android:gravity="center_vertical"
-                    android:hint="必填" />
+                    android:hint="必填"
+                    android:textSize="16dp" />
 
             </LinearLayout>
             <!--作业面积-->
@@ -139,12 +155,16 @@
 
                 <EditText
                     android:id="@+id/et_work_areas"
-                    android:layout_width="266dp"
+                    android:layout_width="match_parent"
                     android:layout_height="37dp"
-                    android:layout_margin="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:background="@drawable/shape_input_bg"
                     android:gravity="center_vertical"
-                    android:hint="必填" />
+                    android:hint="必填"
+                    android:textSize="16dp" />
 
             </LinearLayout>
             <!--地块类型-->
@@ -162,12 +182,35 @@
                     android:textColor="#333333"
                     android:textSize="18dp" />
 
+                <CheckBox
+                    android:id="@+id/cb_one"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:background="@null"
+                    android:button="@drawable/button_checked" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="37dp"
                     android:layout_margin="10dp"
                     android:gravity="center_vertical"
-                    android:hint="集中连片                  零星分散" />
+                    android:hint="集中连片" />
+
+                <CheckBox
+                    android:id="@+id/cb_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:background="@null"
+                    android:button="@drawable/button_checked" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="37dp"
+                    android:layout_margin="10dp"
+                    android:gravity="center_vertical"
+                    android:hint="零星分散" />
 
             </LinearLayout>
 
@@ -188,9 +231,12 @@
 
                 <TextView
                     android:id="@+id/tv_work_address"
-                    android:layout_width="266dp"
+                    android:layout_width="match_parent"
                     android:layout_height="37dp"
-                    android:layout_margin="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:background="@drawable/shape_input_bg"
                     android:gravity="center_vertical"
                     android:hint="必填" />
@@ -204,7 +250,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/shape_input_bg"
-                android:hint="请输入详细地址" />
+                android:hint="请输入详细地址"
+                android:textSize="16dp" />
             <!--作业时间-->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -263,12 +310,16 @@
 
                 <TextView
                     android:id="@+id/tv_price"
-                    android:layout_width="266dp"
+                    android:layout_width="match_parent"
                     android:layout_height="37dp"
-                    android:layout_margin="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:background="@drawable/shape_input_bg"
                     android:gravity="center_vertical"
-                    android:hint="必填" />
+                    android:hint="必填"
+                    android:textSize="16dp" />
 
             </LinearLayout>
 
@@ -280,7 +331,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/shape_input_bg"
-                android:hint="想对机手说什么" />
+                android:hint="想对机手说什么"
+                android:textSize="16dp" />
 
 
             <TextView
