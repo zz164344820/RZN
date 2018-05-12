@@ -10,6 +10,7 @@ public class WorkTypeObjBean {
     private String kindId;
     private String typeId;
     private String typeName;
+    private String typeUnitPrice;
 
     @Override
     public String toString() {
@@ -53,5 +54,5 @@ public class WorkTypeObjBean {
         this.typeUnitPrice = typeUnitPrice;
     }
 
-    private String typeUnitPrice;
+
 }

@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.module_farmer.R;
+import com.rzn.module_farmer.bean.DriverDetialMessageBean;
 
 
 /**
@@ -41,8 +42,13 @@ public class FarmerDriverDetialActivity extends MVPBaseActivity<FarmerDriverDeti
         setContentView(R.layout.act_farmer_driver_detial);
         mPresenter.onCreate();
         initViews();
+        initData();
         initListener();
 //        showLoading(false, "");
+    }
+
+    private void initData() {
+        mPresenter.httpDriverMessage("机手id");
     }
 
     private void initListener() {
@@ -50,7 +56,7 @@ public class FarmerDriverDetialActivity extends MVPBaseActivity<FarmerDriverDeti
             @Override
             public void onClick(View view) {
                 //请求预约机手接口   文档7接口对应
-                mPresenter.httpAppointmentDriver("需求作业订单id", "机手id");
+                mPresenter.httpAppointmentDriver("需求作业订单id", "40289f6c6247d1a4016247d400d46660");
             }
         });
     }
@@ -72,6 +78,18 @@ public class FarmerDriverDetialActivity extends MVPBaseActivity<FarmerDriverDeti
         tvTime = (TextView) findViewById(R.id.tv_time);
         tvMessage = (TextView) findViewById(R.id.tv_message);
         tvCommit = (TextView) findViewById(R.id.tv_commit);
+
+    }
+
+    //获取机手信息成功
+    @Override
+    public void driverMessageSuccess(DriverDetialMessageBean driverDetialMessageBean) {
+
+    }
+
+    //获取机手信息失败
+    @Override
+    public void driverMessageFailed() {
 
     }
 

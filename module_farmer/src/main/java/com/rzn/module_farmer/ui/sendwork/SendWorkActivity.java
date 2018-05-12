@@ -8,7 +8,9 @@ import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -51,7 +53,10 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
     private LoginResponseBean loginResponseBean;
     private WorkTypeObjBean woekTypeObjBean;
     private EditText etWorkAreas;
-
+    private CheckBox cbOne;
+    private CheckBox cbTwo;
+    private String farmerTaskId = "";
+    private String flag;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,12 +72,40 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
     private void initListenter() {
 
         tvConfim.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-                mPresenter.httpSendWork("40289e9362bd29870162bd2b809c0002","","aa","135","beijng"
-                        ,"1","1","1","1","1","1","1","2017","2017",
-                        "11","1","1","1","1","1","1","1"
-                );
+
+
+                //获取checkbox被选中的
+                if (cbOne.isChecked()) {
+                    //
+                    flag = "1";
+                } else if (cbTwo.isChecked()) {
+                    //
+                    flag = "2";
+                } else {
+                    //请选择后在提交
+                }
+                if (!TextUtils.isEmpty(etPeople.getText().toString().trim()) &&
+                        !TextUtils.isEmpty(etPhone.getText().toString().trim()) &&
+                        !TextUtils.isEmpty(etHomeAddress.getText().toString().trim()) &&
+                        !TextUtils.isEmpty(tvWorkTab.getText().toString().trim()) &&
+                        !TextUtils.isEmpty(tvWorkAddress.getText().toString().trim()) &&
+                        !TextUtils.isEmpty(etDetialAddress.getText().toString().trim()) &&
+                        !TextUtils.isEmpty(tvStartTime.getText().toString().trim()) &&
+                        !TextUtils.isEmpty(tvToTime.getText().toString().trim()) &&
+                        !TextUtils.isEmpty(tvPrice.getText().toString().trim()) &&
+                        !TextUtils.isEmpty(etDetial.getText().toString().trim())) {
+                    mPresenter.httpSendWork("40289e9362bd29870162bd2b809c0002", farmerTaskId, etPeople.getText().toString().trim(),
+                            etPhone.getText().toString().trim(), etHomeAddress.getText().toString().trim()
+                            , "1", "1", "1", "1", etWorkAreas.getText().toString().trim(), flag, "1", tvStartTime.getText().toString().trim(),
+                            tvToTime.getText().toString().trim(),
+                            etDetialAddress.getText().toString().trim(), etDetial.getText().toString().trim(), "1", "1", "1", "1", "1", "1"
+                    );
+                }
+
+
             }
         });
 
@@ -104,42 +137,17 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
         tvWorkTab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //弹出选择作业类型弹窗
+                SendPopUpWindow sendPopUpWindow = new SendPopUpWindow(SendWorkActivity.this);
+                if (sendPopUpWindow.isShowing()) {
+                    return;
+                }
+                sendPopUpWindow.showAtLocation(tvWorkTab, Gravity.BOTTOM, 0, 0);
                 //请求作业类型（文档24）
-                mPresenter.httpGetWorkType();
+//                mPresenter.httpGetWorkType();
             }
         });
         //发布作业信息监听
-//        tvConfim.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                mPresenter.httpSendWork(loginResponseBean.getUserId(),"","","",""
-//                ,"","","","","","","","","",
-//                        "","","","","","","",""
-//                );
-//
-//
-//
-//
-////                if (!TextUtils.isEmpty(etPeople.getText().toString().trim()) &&
-////                        !TextUtils.isEmpty(etPhone.getText().toString().trim()) &&
-////                        !TextUtils.isEmpty(etHomeAddress.getText().toString().trim()) &&
-////                        !TextUtils.isEmpty(tvWorkTab.getText().toString().trim()) &&
-////                        !TextUtils.isEmpty(tvWorkAddress.getText().toString().trim()) &&
-////                        !TextUtils.isEmpty(etDetialAddress.getText().toString().trim()) &&
-////                        !TextUtils.isEmpty(tvStartTime.getText().toString().trim()) &&
-////                        !TextUtils.isEmpty(tvToTime.getText().toString().trim()) &&
-////                        !TextUtils.isEmpty(tvPrice.getText().toString().trim()) &&
-////                        !TextUtils.isEmpty(etDetial.getText().toString().trim())) {
-//                //请求接口
-////                mPresenter.httpSendWork(loginResponseBean.getUserId(), "", etPeople.getText().toString().trim(),
-////                        etPhone.getText().toString().trim(), etHomeAddress.getText().toString().trim(),
-////                        "kind", "kindtype", "kindTy[eid", "piice", etWorkAreas.getText().toString().trim(), "1", "地块分布的块数",
-////                        tvStartTime.getText().toString().trim(), tvToTime.getText().toString().trim(), etDetialAddress.getText().toString().trim(),
-////                        etDetial.getText().toString().trim(), "省份名称", "省份code", "城市名称", "城市code", "区域名称",
-////                        "区域code");
-////                }
-//            }
-//        });
     }
 
     private void showDateDialog(final int tab) {
@@ -165,6 +173,8 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
         etHomeAddress = (EditText) findViewById(R.id.et_home_address);//家地址
         tvWorkTab = (TextView) findViewById(R.id.tv_work_tab);//作业类型
         etWorkAreas = (EditText) findViewById(R.id.et_work_areas);
+        cbOne = (CheckBox) findViewById(R.id.cb_one);
+        cbTwo = (CheckBox) findViewById(R.id.cb_two);
         tvWorkAddress = (TextView) findViewById(R.id.tv_work_address);//作业地点
         etDetialAddress = (EditText) findViewById(R.id.et_detial_address);//详细地址
         tvStartTime = (TextView) findViewById(R.id.tv_start_time);//作业开始时间
@@ -173,8 +183,9 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
         etDetial = (EditText) findViewById(R.id.et_detial);//想对机手说些什么
         tvConfim = (TextView) findViewById(R.id.tv_confim);//确认发布
 
+
         //登录保存的信息
-        loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+//        loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
     }
 
     /**
@@ -199,6 +210,14 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
      */
     @Override
     public void getWorkTypeSuccess(List<WorkTypeObjBean> list) {
+
+
+        //弹出选择作业类型弹窗
+        SendPopUpWindow sendPopUpWindow = new SendPopUpWindow(this);
+        if (sendPopUpWindow.isShowing()) {
+            return;
+        }
+        sendPopUpWindow.showAtLocation(tvWorkTab, Gravity.BOTTOM, 0, 0);
 
         woekTypeObjBean = list.get(0);
         tvWorkTab.setText(woekTypeObjBean.getTypeName().toString());

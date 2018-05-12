@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
@@ -18,6 +19,7 @@ import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
 import com.rzn.module_farmer.R;
+import com.rzn.module_farmer.bean.FarmerDriverMessageBean;
 import com.rzn.module_farmer.ui.farmerdriverdetial.FarmerDriverDetialActivity;
 import com.rzn.module_farmer.ui.sendwork.SendWorkActivity;
 
@@ -29,13 +31,15 @@ import java.util.List;
  * 邮箱 784787081@qq.com
  */
 @Route(path = "/farmer/farmerFargment")
-public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View, FarmerListPresenter> implements FarmerListContract.View ,OnLoadMoreListener,OnRefreshListener{
+public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View, FarmerListPresenter> implements FarmerListContract.View, OnLoadMoreListener, OnRefreshListener {
 
 
     private View rootView;
     private RecyclerView swipeTarget;
     private SwipeToLoadLayout swipeToLoadLayout;
     private TextView tvStartGet;
+    private List<FarmerDriverMessageBean> list = new ArrayList<>();
+    private FarmerListAdapter farmerListAdapter;
 
     public static FarmerListFragment newInstance() {
         return new FarmerListFragment();
@@ -46,10 +50,18 @@ public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View,
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.farmer_fragment_farmerlist, container, false);
-        initViews();
         mPresenter.onCreate();
+        initViews();
+        initData();
         initLinistener();
         return rootView;
+    }
+
+    /**
+     * 初始化网络数据
+     */
+    private void initData() {//40288ad75c81124b015c8132bfe8000f//40289e9362bd29870162bd2b809c0002
+        mPresenter.httpLoadDriverMessage("40288ad75c81124b015c8132bfe8000f", "1", "340403", "1666");
     }
 
     private void initLinistener() {
@@ -69,13 +81,7 @@ public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View,
         swipeTarget = (RecyclerView) rootView.findViewById(R.id.swipe_target);
         swipeToLoadLayout = (SwipeToLoadLayout) rootView.findViewById(R.id.swipeToLoadLayout);
         swipeTarget.setLayoutManager(new LinearLayoutManager(getActivity()));
-        List<String> list = new ArrayList<>();
-        list.add("s");
-        list.add("s");
-        list.add("s");
-        list.add("s");
-        list.add("s");
-        FarmerListAdapter farmerListAdapter = new FarmerListAdapter(R.layout.farmer_item_farmerlist, list);
+        farmerListAdapter = new FarmerListAdapter(R.layout.farmer_item_farmerlist, list);
         swipeTarget.setAdapter(farmerListAdapter);
 
         farmerListAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
@@ -102,6 +108,24 @@ public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View,
 
     @Override
     public void onRefresh() {
+
+    }
+
+    /**
+     * 加载数据成功
+     */
+    @Override
+    public void loadDriverMessageSuccessed(List<FarmerDriverMessageBean> list1) {
+        list.addAll(list1);
+        farmerListAdapter.notifyDataSetChanged();
+        Toast.makeText(mContext, list.get(0).getCarNo() + "", Toast.LENGTH_LONG).show();
+    }
+
+    /**
+     * 加载数据失败
+     */
+    @Override
+    public void loadDriverMessageFailed() {
 
     }
 }

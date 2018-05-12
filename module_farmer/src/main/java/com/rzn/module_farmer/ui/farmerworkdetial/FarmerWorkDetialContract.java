@@ -3,6 +3,7 @@ package com.rzn.module_farmer.ui.farmerworkdetial;
 
 import com.rzn.commonbaselib.mvp.BasePresenter;
 import com.rzn.commonbaselib.mvp.BaseView;
+import com.rzn.module_farmer.bean.FarmerOrderDetialBean;
 
 /**
  * MVPPlugin
@@ -12,7 +13,7 @@ import com.rzn.commonbaselib.mvp.BaseView;
 public class FarmerWorkDetialContract {
     interface View extends BaseView {
         //获取数据成功
-        void onLoadSuccess();
+        void onLoadSuccess( FarmerOrderDetialBean farmerOrderDetialBean);
 
         //获取数据失败
         void onLoafFailed();

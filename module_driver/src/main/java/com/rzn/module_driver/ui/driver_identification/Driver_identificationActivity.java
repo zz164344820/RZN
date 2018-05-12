@@ -56,6 +56,8 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
     private TextView tvWorkTime;
     private Calendar showDate = Calendar.getInstance();   //初始化时间选择器
     private TextView tvWorkTimeNow;
+    private ImageView ivCarPhotoOne;
+    private ImageView ivCarPhotoTwo;
 
 
     @Override
@@ -161,6 +163,28 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
                 startActivityForResult(intent, IMAGE);
             }
         });
+        //上传农机照片
+        ivCarPhotoOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fag = "three";
+                //调用相册
+                Intent intent = new Intent(Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, IMAGE);
+            }
+        });
+        //上传农机照片
+        ivCarPhotoTwo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fag = "four";
+                //调用相册
+                Intent intent = new Intent(Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, IMAGE);
+            }
+        });
     }
 
     /**
@@ -195,6 +219,10 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
         ivPhotoCars = (ImageView) findViewById(R.id.iv_photo_cars);
         ivPhotoCar = (ImageView) findViewById(R.id.iv_photo_car);
 
+        //点击上传农机驾照
+        ivCarPhotoOne = (ImageView) findViewById(R.id.iv_car_photo_one);
+        ivCarPhotoTwo = (ImageView) findViewById(R.id.iv_car_photo_two);
+
     }
 
     @Override
@@ -219,6 +247,10 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
             ivPhotoCars.setImageBitmap(bm);
         } else if ("two".equals(fag)) {
             ivPhotoCar.setImageBitmap(bm);
+        } else if ("three".equals(fag)) {
+            ivCarPhotoOne.setImageBitmap(bm);
+        } else if ("four".equals(fag)) {
+            ivCarPhotoTwo.setImageBitmap(bm);
         }
 
     }
