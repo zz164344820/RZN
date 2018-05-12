@@ -17,11 +17,8 @@ public class SendWorkContract {
     interface View extends BaseView {
         void sendSuccess(SendWorkBean sendWorkBean);
 
-        void sendFailed();
-
         void getWorkTypeSuccess( List<WorkTypeObjBean> list);
 
-        void getWorkTypeFailed();
     }
 
     interface Presenter extends BasePresenter<View> {

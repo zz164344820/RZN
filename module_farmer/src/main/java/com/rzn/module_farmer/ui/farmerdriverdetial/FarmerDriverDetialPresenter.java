@@ -1,8 +1,10 @@
 package com.rzn.module_farmer.ui.farmerdriverdetial;
 
 
+import com.jaeger.library.StatusBarUtil;
 import com.rzn.commonbaselib.mvp.BasePresenterImpl;
 import com.rzn.commonbaselib.utils.GsonUtils;
+import com.rzn.module_farmer.R;
 import com.rzn.module_farmer.bean.AppointmentDriverBean;
 import com.rzn.module_farmer.bean.DriverDetialMessageBean;
 import com.zyhealth.expertlib.bean.ResponseBean;
@@ -20,7 +22,7 @@ public class FarmerDriverDetialPresenter extends BasePresenterImpl<FarmerDriverD
     @Override
     public void onCreate() {
         super.onCreate();
-
+        StatusBarUtil.setTransparent(mContext);
     }
 
     //预约机手

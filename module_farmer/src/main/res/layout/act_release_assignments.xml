@@ -43,6 +43,7 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
+                    android:paddingLeft="4dp"
                     android:background="@drawable/shape_input_bg"
                     android:hint="必填"
                     android:textSize="16dp" />
@@ -73,6 +74,7 @@
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/shape_input_bg"
                     android:hint="13598456828"
+                    android:paddingLeft="4dp"
                     android:textSize="16dp" />
 
             </LinearLayout>
@@ -101,6 +103,7 @@
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/shape_input_bg"
                     android:hint="必填"
+                    android:paddingLeft="4dp"
                     android:textSize="16dp" />
 
             </LinearLayout>
@@ -135,6 +138,7 @@
                     android:background="@drawable/shape_input_bg"
                     android:gravity="center_vertical"
                     android:hint="必填"
+                    android:paddingLeft="4dp"
                     android:textSize="16dp" />
 
             </LinearLayout>
@@ -164,6 +168,7 @@
                     android:background="@drawable/shape_input_bg"
                     android:gravity="center_vertical"
                     android:hint="必填"
+                    android:paddingLeft="4dp"
                     android:textSize="16dp" />
 
             </LinearLayout>
@@ -239,6 +244,7 @@
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/shape_input_bg"
                     android:gravity="center_vertical"
+                    android:paddingLeft="4dp"
                     android:hint="必填" />
 
             </LinearLayout>
@@ -251,6 +257,7 @@
                 android:layout_marginRight="10dp"
                 android:background="@drawable/shape_input_bg"
                 android:hint="请输入详细地址"
+                android:paddingLeft="4dp"
                 android:textSize="16dp" />
             <!--作业时间-->
             <LinearLayout
@@ -274,6 +281,7 @@
                     android:layout_margin="10dp"
                     android:background="@drawable/shape_input_bg"
                     android:gravity="center_vertical"
+                    android:paddingLeft="4dp"
                     android:hint="2015-01-24" />
 
                 <TextView
@@ -290,6 +298,7 @@
                     android:layout_margin="10dp"
                     android:background="@drawable/shape_input_bg"
                     android:gravity="center_vertical"
+                    android:paddingLeft="4dp"
                     android:hint="必填" />
 
             </LinearLayout>
@@ -332,6 +341,7 @@
                 android:layout_marginRight="10dp"
                 android:background="@drawable/shape_input_bg"
                 android:hint="想对机手说什么"
+                android:paddingLeft="4dp"
                 android:textSize="16dp" />
 
 

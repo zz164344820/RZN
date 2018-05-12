@@ -12,6 +12,6 @@ public class SendWorkSuccessPresenter extends BasePresenterImpl<SendWorkSuccessC
     @Override
     public void onCreate() {
         super.onCreate();
-        reqData(mContext,"Test/index",null,111);
+    //   reqData(mContext,"Test/index",null,111);
     }
 }
