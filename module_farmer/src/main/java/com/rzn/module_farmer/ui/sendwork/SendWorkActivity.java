@@ -228,11 +228,4 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
         Toast.makeText(this, "chenggong", Toast.LENGTH_LONG).show();
     }
 
-    /**
-     * 获取作业类型失败
-     */
-    @Override
-    public void getWorkTypeFailed() {
-
-    }
 }

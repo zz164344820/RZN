@@ -97,7 +97,7 @@ public class FarmerDriverDetialActivity extends MVPBaseActivity<FarmerDriverDeti
     @Override
     public void appointmentSuccess() {
         //跳转到确认预约界面
-        startActivity( new Intent(this ,));
+       // startActivity( new Intent(this ,));
     }
 
     @Override
