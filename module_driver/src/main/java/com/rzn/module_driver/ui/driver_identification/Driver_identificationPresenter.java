@@ -1,10 +1,15 @@
 package com.rzn.module_driver.ui.driver_identification;
 
 import com.rzn.commonbaselib.mvp.BasePresenterImpl;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 import com.zyhealth.expertlib.bean.ResponseBean;
+import com.zyhealth.expertlib.net.OkHttpLoader;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import okhttp3.Call;
 
 /**
  * MVPPlugin
@@ -43,15 +48,35 @@ public class Driver_identificationPresenter extends BasePresenterImpl<Driver_ide
         map.put("years", years);
         map.put("carType", carType);
         map.put("carNo", carNo);
-        map.put("carPic1", carPic1);
-        map.put("carPic2", carPic2);
-        map.put("machinePic1", machinePic1);
-        map.put("machinePic2", machinePic2);
+       // map.put("carPic1", carPic1);
+      //  map.put("carPic2", carPic2);
+       // map.put("machinePic1", machinePic1);
+       // map.put("machinePic2", machinePic2);
         map.put("belongs", belongs);
         //http://1724l9l212.iask.in/farmHand/handler/updateSaveHandler
         //9：机手审核认证修改保存(机手)
 
-        reqData(mContext, "farmHand/handler/updateSaveHandler", map, 111);//
+
+        /*OkHttpUtils.post()//
+                .addFile("carPic1", "messenger_01.png", file)//
+                .addFile("carPic2", "test1.txt", file2)//
+                .addFile("machinePic1", "test1.txt", file2)//
+                .addFile("machinePic2", "test1.txt", file2)//
+                .url(OkHttpLoader.BASEURL+"farmHand/handler/updateSaveHandler")
+                .params(map)//
+                .build()//
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+
+                    }
+                });*/
+       reqData(mContext, "farmHand/handler/updateSaveHandler", map, 111);//
 
 
     }

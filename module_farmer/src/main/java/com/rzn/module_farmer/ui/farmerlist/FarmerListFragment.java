@@ -81,7 +81,7 @@ public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View,
         swipeTarget = (RecyclerView) rootView.findViewById(R.id.swipe_target);
         swipeToLoadLayout = (SwipeToLoadLayout) rootView.findViewById(R.id.swipeToLoadLayout);
         swipeTarget.setLayoutManager(new LinearLayoutManager(getActivity()));
-        farmerListAdapter = new FarmerListAdapter(R.layout.farmer_item_farmerlist, list);
+        farmerListAdapter = new FarmerListAdapter(list);
         swipeTarget.setAdapter(farmerListAdapter);
 
         farmerListAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {

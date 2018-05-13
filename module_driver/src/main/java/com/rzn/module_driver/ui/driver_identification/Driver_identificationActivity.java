@@ -29,6 +29,7 @@ import com.rzn.module_driver.R;
 import com.rzn.module_driver.ui.drivermaksure.DriverMakeSureActivity;
 import com.zyhealth.expertlib.utils.MLog;
 
+import java.io.File;
 import java.util.Calendar;
 
 
@@ -236,6 +237,10 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
             c.moveToFirst();
             int columnIndex = c.getColumnIndex(filePathColumns[0]);
             String imagePath = c.getString(columnIndex);
+            File file = new File(imagePath);
+            String  FileName =  file.getName();
+
+            MLog.e(imagePath + "-----"+FileName);
             showImage(imagePath);
             c.close();
         }

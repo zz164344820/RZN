@@ -42,7 +42,7 @@ public  class BasePresenterImpl<V extends BaseView> implements BasePresenter<V>{
     public void onCreate() {
         gson=  new Gson();
         this.mContext=mView.get_Context();
-  //      StatusBarUtil.setColorNoTranslucent(mContext,mContext.getResources().getColor(R.color.essential_colour));
+      //  StatusBarUtil.setColorNoTranslucent(mContext,mContext.getResources().getColor(R.color.essential_colour));
         mView.initView();
     }
 

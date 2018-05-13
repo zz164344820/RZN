@@ -1,6 +1,7 @@
 package com.rzn.module_farmer.ui.farmerdriverdetial;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -96,6 +97,7 @@ public class FarmerDriverDetialActivity extends MVPBaseActivity<FarmerDriverDeti
     @Override
     public void appointmentSuccess() {
         //跳转到确认预约界面
+       // startActivity( new Intent(this ,));
     }
 
     @Override

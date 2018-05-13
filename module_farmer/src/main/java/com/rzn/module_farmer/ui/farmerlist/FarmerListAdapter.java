@@ -17,8 +17,8 @@ import java.util.List;
 
 public class FarmerListAdapter extends BaseQuickAdapter<FarmerDriverMessageBean, BaseViewHolder> {
 
-    public FarmerListAdapter(int layoutResId, @Nullable  List<FarmerDriverMessageBean>  data) {
-        super(layoutResId, data);
+    public FarmerListAdapter( @Nullable  List<FarmerDriverMessageBean>  data) {
+        super(R.layout.farmer_item_farmerlist, data);
     }
 
     @Override

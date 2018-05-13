@@ -2,11 +2,9 @@ package com.rzn.module_farmer.ui.sendwork;
 
 
 import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.view.Gravity;
 import android.view.View;
@@ -14,16 +12,15 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.blankj.utilcode.util.ToastUtils;
+import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.module_farmer.R;
-import com.rzn.module_farmer.bean.LoginResponseBean;
 import com.rzn.module_farmer.bean.SendWorkBean;
 import com.rzn.module_farmer.bean.WorkTypeObjBean;
+import com.rzn.module_farmer.ui.sendworksuccess.SendWorkSuccessActivity;
 
 import java.util.Calendar;
 import java.util.List;
@@ -56,7 +53,7 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
     private CheckBox cbOne;
     private CheckBox cbTwo;
     private String farmerTaskId = "";
-    private String flag;
+    private String flag="1";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -87,7 +84,16 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
                 } else {
                     //请选择后在提交
                 }
-                if (!TextUtils.isEmpty(etPeople.getText().toString().trim()) &&
+
+
+               LoginResponseBean  loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+                mPresenter.httpSendWork(loginResponseBean.getUserId(), farmerTaskId, "1",
+                        "1", "1"
+                        , "1", "1", "1", "1", "1", flag, "1", "1",
+                        "1",
+                       "1", "1", "1", "1", "1", "1", "1", "1"
+                );
+                /*if (!TextUtils.isEmpty(etPeople.getText().toString().trim()) &&
                         !TextUtils.isEmpty(etPhone.getText().toString().trim()) &&
                         !TextUtils.isEmpty(etHomeAddress.getText().toString().trim()) &&
                         !TextUtils.isEmpty(tvWorkTab.getText().toString().trim()) &&
@@ -103,7 +109,7 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
                             tvToTime.getText().toString().trim(),
                             etDetialAddress.getText().toString().trim(), etDetial.getText().toString().trim(), "1", "1", "1", "1", "1", "1"
                     );
-                }
+                }*/
 
 
             }
@@ -194,16 +200,14 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
     @Override
     public void sendSuccess(SendWorkBean sendWorkBean) {
         //发布订单成功
+        startActivity(new Intent( this, SendWorkSuccessActivity.class));
+        finish();
         Toast.makeText(this, "send", Toast.LENGTH_LONG).show();
     }
 
-    /**
-     * 发布作业失败
-     */
-    @Override
-    public void sendFailed() {
 
-    }
+
+
 
     /**
      * 获取作业类型成功
@@ -224,11 +228,4 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
         Toast.makeText(this, "chenggong", Toast.LENGTH_LONG).show();
     }
 
-    /**
-     * 获取作业类型失败
-     */
-    @Override
-    public void getWorkTypeFailed() {
-
-    }
 }
