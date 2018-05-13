@@ -87,9 +87,9 @@ public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View,
         farmerListAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-
-
-                startActivity(new Intent(mContext, FarmerDriverDetialActivity.class));
+                Intent intent  = new Intent(getContext(),FarmerDriverDetialActivity.class);
+                intent.putExtra("driverId",list.get(position).getHandlerId());
+                startActivity(intent);
             }
         });
 
