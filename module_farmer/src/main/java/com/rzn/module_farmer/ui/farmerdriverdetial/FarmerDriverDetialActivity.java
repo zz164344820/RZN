@@ -57,7 +57,8 @@ public class FarmerDriverDetialActivity extends MVPBaseActivity<FarmerDriverDeti
             @Override
             public void onClick(View view) {
                 //请求预约机手接口   文档7接口对应
-                mPresenter.httpAppointmentDriver("需求作业订单id", "40289f6c6247d1a4016247d400d46660");
+                mPresenter.getFarmerOreder();
+               // mPresenter.httpAppointmentDriver("需求作业订单id", "40289f6c6247d1a4016247d400d46660");
             }
         });
     }

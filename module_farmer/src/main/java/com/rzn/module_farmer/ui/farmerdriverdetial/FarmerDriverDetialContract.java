@@ -34,5 +34,8 @@ public class FarmerDriverDetialContract {
         //获取机手信息成功
         void httpDriverMessage(String handlerId);
 
+        /*获取农民发布订单list*/
+        void  getFarmerOreder();
+
     }
 }
