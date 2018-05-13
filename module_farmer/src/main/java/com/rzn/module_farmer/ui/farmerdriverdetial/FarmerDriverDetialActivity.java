@@ -49,7 +49,8 @@ public class FarmerDriverDetialActivity extends MVPBaseActivity<FarmerDriverDeti
     }
 
     private void initData() {
-        mPresenter.httpDriverMessage("机手id");
+        String  driverId =  getIntent().getStringExtra("driverId");
+        mPresenter.httpDriverMessage(driverId);
     }
 
     private void initListener() {

@@ -41,7 +41,7 @@ public class FarmerDriverDetialPresenter extends BasePresenterImpl<FarmerDriverD
     public void httpDriverMessage(String handlerId) {
         Map<String, String> map = new HashMap<>();
         map.put("handlerId", handlerId);
-        reqData(mContext, "farmHand/handler/queryhandlerInfo", null, 222);
+        reqData(mContext, "farmHand/handler/queryhandlerInfo", map, 222);
     }
 
 
