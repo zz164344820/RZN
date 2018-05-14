@@ -9,28 +9,35 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.blankj.utilcode.util.ToastUtils;
 import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
+import com.rzn.commonbaselib.utils.SelectStatePopWindow;
 import com.rzn.module_driver.R;
 import com.rzn.module_driver.ui.drivermaksure.DriverMakeSureActivity;
 import com.zyhealth.expertlib.utils.MLog;
 
 import java.io.File;
 import java.util.Calendar;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import cn.finalteam.galleryfinal.GalleryFinal;
+import cn.finalteam.galleryfinal.model.PhotoInfo;
 
 
 /**
@@ -42,11 +49,13 @@ import java.util.Calendar;
 public class Driver_identificationActivity extends MVPBaseActivity<Driver_identificationContract.View, Driver_identificationPresenter> implements Driver_identificationContract.View {
 
     private static final int IMAGE = 1;
+
+    private LinearLayout llRootView;
     private EditText etName;
     private EditText etIdent;
     private EditText etData;
     private EditText etPhone;
-    private EditText etWorkTab;
+    private TextView etWorkTab;
     private EditText etCarTab;
     private EditText etCarNumber;
     private EditText etFromHome;
@@ -65,6 +74,7 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_driver_attestation);
+        ButterKnife.bind(this);
         mPresenter.onCreate();
         initViews();
         initListener();
@@ -127,8 +137,9 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
                         !TextUtils.isEmpty(etFromHome.getText())
                         ) {
 
+                 LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
                     //提交机手认证信息接口
-                    mPresenter.pushDriverMessage("userid", "handlerId", etName.getText() + "", "", "", "",
+                    mPresenter.pushDriverMessage(loginResponseBean.getUserId(), "", etName.getText() + "", "1", "", "",
                             "", "", "", "", "", "", "", "", "", "",
                             "", "");
 
@@ -140,16 +151,13 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
             }
         });
 
-
+        final SelectStatePopWindow[] window = new SelectStatePopWindow[1];
         //上传图片机手驾驶证
         ivPhotoCars.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 fag = "one";
-                //调用相册
-                Intent intent = new Intent(Intent.ACTION_PICK,
-                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(intent, IMAGE);
+                showSelectPic(window);
             }
         });
 
@@ -158,10 +166,7 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
             @Override
             public void onClick(View view) {
                 fag = "two";
-                //调用相册
-                Intent intent = new Intent(Intent.ACTION_PICK,
-                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(intent, IMAGE);
+                showSelectPic(window);
             }
         });
         //上传农机照片
@@ -169,10 +174,7 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
             @Override
             public void onClick(View view) {
                 fag = "three";
-                //调用相册
-                Intent intent = new Intent(Intent.ACTION_PICK,
-                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(intent, IMAGE);
+                showSelectPic(window);
             }
         });
         //上传农机照片
@@ -180,12 +182,35 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
             @Override
             public void onClick(View view) {
                 fag = "four";
-                //调用相册
-                Intent intent = new Intent(Intent.ACTION_PICK,
-                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(intent, IMAGE);
+                showSelectPic(window);
             }
         });
+
+        etWorkTab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPresenter.getJobTypes();
+            }
+        });
+    }
+
+    private void showSelectPic(final SelectStatePopWindow[] window) {
+        window[0] = new SelectStatePopWindow(Driver_identificationActivity.this, R.layout.pop_bottom, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (v.getId() == R.id.camera) {
+                    GalleryFinal.openCamera(REQUEST_CODE_CAMERA, mOnHanlderResultCallback);
+                    window[0].dismiss();
+                } else if (v.getId() == R.id.tv_photo) {
+                    int size = 1;
+                    GalleryFinal.openGalleryMuti(REQUEST_CODE_GALLERY, size, mOnHanlderResultCallback);
+                    window[0].dismiss();
+                }
+
+            }
+        });
+
+        window[0].showAtLocation(llRootView, Gravity.BOTTOM, 10, 10);
     }
 
     /**
@@ -202,7 +227,7 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
         //联系电话
         etPhone = (EditText) findViewById(R.id.et_phone);
         //作业类型
-        etWorkTab = (EditText) findViewById(R.id.et_work_tab);
+        etWorkTab = (TextView) findViewById(R.id.et_work_tab);
         //车辆类型
         etCarTab = (EditText) findViewById(R.id.et_car_tab);
         //车牌号
@@ -223,6 +248,7 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
         //点击上传农机驾照
         ivCarPhotoOne = (ImageView) findViewById(R.id.iv_car_photo_one);
         ivCarPhotoTwo = (ImageView) findViewById(R.id.iv_car_photo_two);
+        llRootView = (LinearLayout) findViewById(R.id.ll_rootView);
 
     }
 
@@ -238,9 +264,9 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
             int columnIndex = c.getColumnIndex(filePathColumns[0]);
             String imagePath = c.getString(columnIndex);
             File file = new File(imagePath);
-            String  FileName =  file.getName();
+            String FileName = file.getName();
 
-            MLog.e(imagePath + "-----"+FileName);
+            MLog.e(imagePath + "-----" + FileName);
             showImage(imagePath);
             c.close();
         }
@@ -273,4 +299,28 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
         Toast.makeText(this, "信息提交失败", Toast.LENGTH_SHORT).show();
 
     }
+
+    @Override
+    public void showPopWindow_SelectJobTypes(List<JobTypes> listJobTypes) {
+        //弹出选择框
+    }
+
+
+    private final int REQUEST_CODE_CAMERA = 1000;
+    private final int REQUEST_CODE_GALLERY = 1001;
+
+    private GalleryFinal.OnHanlderResultCallback mOnHanlderResultCallback = new GalleryFinal.OnHanlderResultCallback() {
+        @Override
+        public void onHanlderSuccess(int reqeustCode, List<PhotoInfo> resultList) {
+            if (resultList != null) {
+                showImage(resultList.get(0).getPhotoPath());
+
+            }
+        }
+
+        @Override
+        public void onHanlderFailure(int requestCode, String errorMsg) {
+            Toast.makeText(Driver_identificationActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
+        }
+    };
 }

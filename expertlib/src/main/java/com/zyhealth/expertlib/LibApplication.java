@@ -64,7 +64,7 @@ public class LibApplication extends Application {
         // 配置功能
         FunctionConfig functionConfig = new FunctionConfig.Builder()
                 .setMutiSelectMaxSize(1)
-                .setEnableCamera(false)
+                .setEnableCamera(true)
                 .setEnableEdit(true)
                 .setEnableCrop(true)
                 .setEnableRotate(true)

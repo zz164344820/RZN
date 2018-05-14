@@ -1,15 +1,20 @@
 package com.rzn.module_driver.ui.driver_identification;
 
 import com.rzn.commonbaselib.mvp.BasePresenterImpl;
+import com.rzn.commonbaselib.utils.GsonUtils;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zyhealth.expertlib.bean.ResponseBean;
 import com.zyhealth.expertlib.net.OkHttpLoader;
+import com.zyhealth.expertlib.utils.MLog;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import okhttp3.Call;
+
+import static com.rzn.commonbaselib.utils.GsonUtils.gsonParseList;
 
 /**
  * MVPPlugin
@@ -23,6 +28,13 @@ public class Driver_identificationPresenter extends BasePresenterImpl<Driver_ide
         super.onCreate();
     }
 
+
+    @Override
+    public void getJobTypes() {
+        mView.showLoading(false,"");
+        reqData(mContext, "farmHand/farmerTask/queryKind", null, 124);
+
+    }
 
     @Override
     public void pushDriverMessage(String userId, String handlerId, String name,
@@ -87,6 +99,11 @@ public class Driver_identificationPresenter extends BasePresenterImpl<Driver_ide
         switch (requestId){
             case 111:
                 mView.pushDriverMessageSuccess();
+                break;
+            case  124:
+               List<JobTypes>  list =  GsonUtils.gsonParseList(gson,response.getResult());
+                MLog.e(list.size());
+
                 break;
         }
 

@@ -57,14 +57,14 @@ public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPres
 
     @OnClick(R2.id.bt_affirm)
     public void onViewClicked() {
-
-        if (!TextUtils.isEmpty(edPhoneNum.getText().toString()) && !TextUtils.isEmpty(edAuthCode.getText().toString())) {
+        mPresenter.login("18888888888", "1234");
+        /*if (!TextUtils.isEmpty(edPhoneNum.getText().toString()) && !TextUtils.isEmpty(edAuthCode.getText().toString())) {
             if (btAffirm.isClickable()) {
                 mPresenter.login(edPhoneNum.getText().toString(), edAuthCode.getText().toString());
             } else {
                 Toast.makeText(this, "请同意协议后在录", Toast.LENGTH_SHORT).show();
             }
-        }
+        }*/
     }
 
     /**
