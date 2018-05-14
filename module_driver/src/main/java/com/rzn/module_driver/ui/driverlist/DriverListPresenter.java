@@ -37,10 +37,11 @@ public class DriverListPresenter extends BasePresenterImpl<DriverListContract.Vi
     }
 
     private void getDriverList() {
-        mView.showLoading(false,"");
+
         Map<String,String> map = new HashMap<>();
         LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
        if(!TextUtils.isEmpty(loginResponseBean.getHandlerId())){
+           mView.showLoading(false,"");
            map.put("handlerId",loginResponseBean.getHandlerId());
            reqData(mContext,"farmHand/handler/recommendFarmerTask",map,122);
       }
