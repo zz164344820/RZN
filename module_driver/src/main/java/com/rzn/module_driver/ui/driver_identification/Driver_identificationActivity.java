@@ -139,10 +139,9 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
 
                  LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
                     //提交机手认证信息接口
-                    mPresenter.pushDriverMessage(loginResponseBean.getUserId(), "", etName.getText() + "", "1", "", "",
-                            "", "", "", "", "", "", "", "", "", "",
+                    mPresenter.pushDriverMessage(loginResponseBean.getUserId(), "", etName.getText().toString(), "1", etData.getText().toString(), "",
+                            etPhone.getText().toString(), etCarTab.getText().toString(), "", "", "", "", "", "", "", "",
                             "", "");
-
                 } else {
                     //跳转用到的
                     startActivity(new Intent(Driver_identificationActivity.this, DriverMakeSureActivity.class));
