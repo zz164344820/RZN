@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-   buildToolsVersion "25.0.2"
+    buildToolsVersion '25.0.2'
     defaultConfig {
         applicationId "com.rzn.njt"
         minSdkVersion 17
@@ -86,7 +86,7 @@ dependencies {
         compile project(':module_main')
         compile project(':module_driver')
         compile project(':module_farmer')
-    }else{
+    } else {
         compile project(':commonbaselib')
     }
 }
