@@ -19,6 +19,7 @@ public class DriverDetialMessageBean {
     private String createTime;//": "2018-03-21 17:11:38", //机手的创建时间
     private String createTimeInfo;//": "2018-03-28 11:27:43", //机手详情创建的时间
     private String endDate;//": "2018-03-20", //从业结束时间
+    private String endDateInfo1;//": "2018-03-20", //从业结束时间
     private String handlerId;//": "40289f6c6247d1a4016247d400d40001", //机手
     private String handlerInfoId;//": "40289fab626a9fa101626aa12b0b0001", //机手详情id
     private String icon;//": "http://localhost:80/farmHand/handler/downloadFile?fileName=default.jpg", //图片回显地址
@@ -29,7 +30,7 @@ public class DriverDetialMessageBean {
     private String remark;//": "看见了看", //补充说明
     private String sex;//": "1", //性别0女1男
     private String startDate;//": "2018-03-10", //从业开始时间
-    private String startDateInfo;//": "2018-10-21",
+    private String startDateInfo1;//": "2018-10-21",
     private String status;//": "3", // '状态0禁用1审核中2审核拒绝3审核通过'
     private String updateTime;//": "2018-03-28 12:10:07",
     private String updateTimeInfo;//": "2018-03-28 11:47:07",
@@ -191,11 +192,11 @@ public class DriverDetialMessageBean {
     }
 
     public String getStartDateInfo() {
-        return startDateInfo;
+        return startDateInfo1;
     }
 
     public void setStartDateInfo(String startDateInfo) {
-        this.startDateInfo = startDateInfo;
+        this.startDateInfo1 = startDateInfo;
     }
 
     public String getStatus() {

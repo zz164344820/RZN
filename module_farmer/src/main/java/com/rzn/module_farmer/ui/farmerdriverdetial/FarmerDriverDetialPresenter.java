@@ -55,7 +55,7 @@ public class FarmerDriverDetialPresenter extends BasePresenterImpl<FarmerDriverD
         Map<String ,String >  map = new HashMap<>();
         LoginResponseBean  bean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
         map.put("userId",bean.getUserId());
-        reqData(mContext, "farmerTask/existTask",map,123);
+        reqData(mContext, "farmHand/farmerTask/existTask",map,123);
     }
 
 

@@ -18,7 +18,15 @@ public class LoginResponseBean implements Serializable{
     private int status;
     private String updateTime;
     private String userId;
+    private String handlerId;
 
+    public String getHandlerId() {
+        return handlerId;
+    }
+
+    public void setHandlerId(String handlerId) {
+        this.handlerId = handlerId;
+    }
 
     public String getCreateTime() {
         return createTime == null ? "" : createTime;

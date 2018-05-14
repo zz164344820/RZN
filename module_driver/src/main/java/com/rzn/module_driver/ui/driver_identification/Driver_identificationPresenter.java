@@ -86,7 +86,6 @@ public class Driver_identificationPresenter extends BasePresenterImpl<Driver_ide
         super.httpRequestResult(response, requestId);
         switch (requestId){
             case 111:
-
                 mView.pushDriverMessageSuccess();
                 break;
         }

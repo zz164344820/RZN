@@ -1,11 +1,14 @@
 package com.rzn.module_driver.ui.driverlist;
 
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.BasePresenterImpl;
+import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.module_driver.ui.jobdetails.JobdetailsActivity;
 import com.zyhealth.expertlib.bean.ResponseBean;
 
@@ -29,7 +32,18 @@ public class DriverListPresenter extends BasePresenterImpl<DriverListContract.Vi
         super.onCreate();
         /*在presenter中写apdater是因为数据源在这里*/
         setAdapter();
+        getDriverList();
 
+    }
+
+    private void getDriverList() {
+        mView.showLoading(false,"");
+        Map<String,String> map = new HashMap<>();
+        LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+       if(!TextUtils.isEmpty(loginResponseBean.getHandlerId())){
+           map.put("handlerId",loginResponseBean.getHandlerId());
+           reqData(mContext,"farmHand/handler/recommendFarmerTask",map,122);
+      }
     }
 
     private void setAdapter() {
