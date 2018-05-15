@@ -15,6 +15,7 @@ import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -27,6 +28,7 @@ import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.commonbaselib.utils.SelectStatePopWindow;
 import com.rzn.module_driver.R;
+import com.rzn.module_driver.ui.bean.WorkTypeBean;
 import com.rzn.module_driver.ui.drivermaksure.DriverMakeSureActivity;
 import com.zyhealth.expertlib.utils.MLog;
 
@@ -68,7 +70,14 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
     private TextView tvWorkTimeNow;
     private ImageView ivCarPhotoOne;
     private ImageView ivCarPhotoTwo;
-
+    private String kind;
+    private String kindType;
+    private String kindTypeId;
+    private String unitPrice;
+    private CheckBox cbBoy;
+    private CheckBox cbGril;
+    private String flag;
+    private WorkTypeBean workTypeBean;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -107,6 +116,7 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
      * 初始化监听
      */
     private void initListener() {
+
         tvWorkTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -125,8 +135,18 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
 
 
         tvCommit.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
+
+                if (cbBoy.isChecked()) {
+                    flag = "1";
+
+                } else if (cbGril.isChecked()) {
+
+                    flag = "2";
+                }
+
                 if (!TextUtils.isEmpty(etName.getText()) &&
                         !TextUtils.isEmpty(etIdent.getText()) &&
                         !TextUtils.isEmpty(etData.getText()) &&
@@ -137,11 +157,12 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
                         !TextUtils.isEmpty(etFromHome.getText())
                         ) {
 
-                 LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+                    LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
                     //提交机手认证信息接口
-                    mPresenter.pushDriverMessage(loginResponseBean.getUserId(), "", etName.getText() + "", "1", "", "",
-                            "", "", "", "", "", "", "", "", "", "",
-                            "", "");
+                    mPresenter.pushDriverMessage(loginResponseBean.getUserId(), "", etName.getText() + "", flag, etData.getText().toString().trim(),
+                            etIdent.getText().toString().trim(), etPhone.getText().toString().trim(), "", "", "", "2", etCarTab.getText().toString().trim(),
+                            etCarNumber.getText().toString().trim(), "", "", "",
+                            "", workTypeBean.toString());
 
                 } else {
                     //跳转用到的
@@ -249,7 +270,9 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
         ivCarPhotoOne = (ImageView) findViewById(R.id.iv_car_photo_one);
         ivCarPhotoTwo = (ImageView) findViewById(R.id.iv_car_photo_two);
         llRootView = (LinearLayout) findViewById(R.id.ll_rootView);
-
+        //男女
+        cbBoy = (CheckBox) findViewById(R.id.cb_boy);
+        cbGril = (CheckBox) findViewById(R.id.cb_gril);
     }
 
     @Override
@@ -301,8 +324,28 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
     }
 
     @Override
-    public void showPopWindow_SelectJobTypes(List<JobTypes> listJobTypes) {
+    public void showPopWindow_SelectJobTypes(final List<WorkTypeBean> list) {
         //弹出选择框
+        //弹出选择作业类型弹窗
+        SendPopUpWindow sendPopUpWindow = new SendPopUpWindow(this, list);
+        sendPopUpWindow.setOnListener(new SendPopUpWindow.OnClickListener() {
+            @Override
+            public void onClick(int position, int typePosition) {
+                //获取作业类型
+                workTypeBean = list.get(position);
+                kind = list.get(position).getKindId();
+                kindType = list.get(position).getTypeArray().get(typePosition).getTypeId();
+                kindTypeId = list.get(position).getTypeArray().get(typePosition).getKindId();
+                unitPrice = list.get(position).getTypeArray().get(typePosition).getTypeUnitPrice();
+                etWorkTab.setText(list.get(position).getKindName() + "    " + list.get(position).getTypeArray().get(typePosition).getTypeName());
+            }
+        });
+        if (sendPopUpWindow.isShowing()) {
+            return;
+        }
+        sendPopUpWindow.showAtLocation(etWorkTab, Gravity.BOTTOM, 0, 0);
+
+
     }
 
 

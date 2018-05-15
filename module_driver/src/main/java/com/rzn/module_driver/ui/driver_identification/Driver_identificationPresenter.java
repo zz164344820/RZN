@@ -1,13 +1,16 @@
 package com.rzn.module_driver.ui.driver_identification;
 
+import com.google.gson.reflect.TypeToken;
 import com.rzn.commonbaselib.mvp.BasePresenterImpl;
 import com.rzn.commonbaselib.utils.GsonUtils;
+import com.rzn.module_driver.ui.bean.WorkTypeBean;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zyhealth.expertlib.bean.ResponseBean;
 import com.zyhealth.expertlib.net.OkHttpLoader;
 import com.zyhealth.expertlib.utils.MLog;
 
+import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +34,7 @@ public class Driver_identificationPresenter extends BasePresenterImpl<Driver_ide
 
     @Override
     public void getJobTypes() {
-        mView.showLoading(false,"");
+        mView.showLoading(false, "");
         reqData(mContext, "farmHand/farmerTask/queryKind", null, 124);
 
     }
@@ -60,10 +63,10 @@ public class Driver_identificationPresenter extends BasePresenterImpl<Driver_ide
         map.put("years", years);
         map.put("carType", carType);
         map.put("carNo", carNo);
-       // map.put("carPic1", carPic1);
-      //  map.put("carPic2", carPic2);
-       // map.put("machinePic1", machinePic1);
-       // map.put("machinePic2", machinePic2);
+        // map.put("carPic1", carPic1);
+        //  map.put("carPic2", carPic2);
+        // map.put("machinePic1", machinePic1);
+        // map.put("machinePic2", machinePic2);
         map.put("belongs", belongs);
         //http://1724l9l212.iask.in/farmHand/handler/updateSaveHandler
         //9：机手审核认证修改保存(机手)
@@ -88,7 +91,7 @@ public class Driver_identificationPresenter extends BasePresenterImpl<Driver_ide
 
                     }
                 });*/
-       reqData(mContext, "farmHand/handler/updateSaveHandler", map, 111);//
+        reqData(mContext, "farmHand/handler/updateSaveHandler", map, 111);//
 
 
     }
@@ -96,14 +99,16 @@ public class Driver_identificationPresenter extends BasePresenterImpl<Driver_ide
     @Override
     public void httpRequestResult(ResponseBean response, int requestId) {
         super.httpRequestResult(response, requestId);
-        switch (requestId){
+        switch (requestId) {
             case 111:
                 mView.pushDriverMessageSuccess();
                 break;
-            case  124:
-               List<JobTypes>  list =  GsonUtils.gsonParseList(gson,response.getResult());
+            case 124:
+//                List<WorkTypeBean> list = GsonUtils.gsonParseList(gson, response.getResult());  todo  你这个工具方法不好用，在类型转换得时候会丢失范型
+                Type type = new TypeToken<List<WorkTypeBean>>(){}.getType();
+                List<WorkTypeBean> list= gson.fromJson(gson.toJson(response.getResult()), type);
                 MLog.e(list.size());
-
+                mView.showPopWindow_SelectJobTypes(list);
                 break;
         }
 

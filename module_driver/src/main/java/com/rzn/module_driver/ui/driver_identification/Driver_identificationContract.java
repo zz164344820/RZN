@@ -2,6 +2,7 @@ package com.rzn.module_driver.ui.driver_identification;
 
 import com.rzn.commonbaselib.mvp.BasePresenter;
 import com.rzn.commonbaselib.mvp.BaseView;
+import com.rzn.module_driver.ui.bean.WorkTypeBean;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class Driver_identificationContract {
 
         void pushDriverMessageFaile();
 
-        void  showPopWindow_SelectJobTypes(List<JobTypes> listJobTypes);
+        void  showPopWindow_SelectJobTypes(List<WorkTypeBean> list);
 
     }
 

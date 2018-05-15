@@ -4,6 +4,7 @@ package com.rzn.module_farmer.ui.sendwork;
 import com.rzn.commonbaselib.mvp.BasePresenter;
 import com.rzn.commonbaselib.mvp.BaseView;
 import com.rzn.module_farmer.bean.SendWorkBean;
+import com.rzn.module_farmer.bean.WorkTypeBean;
 import com.rzn.module_farmer.bean.WorkTypeObjBean;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class SendWorkContract {
     interface View extends BaseView {
         void sendSuccess(SendWorkBean sendWorkBean);
 
-        void getWorkTypeSuccess( List<WorkTypeObjBean> list);
+        void getWorkTypeSuccess(List<WorkTypeBean> list);
 
     }
 

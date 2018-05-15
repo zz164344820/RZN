@@ -1,19 +1,19 @@
-package com.rzn.module_farmer.ui.sendwork;
+package com.rzn.module_driver.ui.driver_identification;
 
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.rzn.module_farmer.R;
-import com.rzn.module_farmer.bean.WorkTypeBean;
-import com.rzn.module_farmer.bean.WorkTypeObjBean;
+import com.rzn.module_driver.R;
+import com.rzn.module_driver.ui.bean.WorkTypeBean;
+import com.rzn.module_driver.ui.bean.WorkTypeObjBean;
+
 
 import java.util.ArrayList;
 import java.util.List;

@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.view.Gravity;
 import android.view.View;
@@ -14,11 +15,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.module_farmer.R;
 import com.rzn.module_farmer.bean.SendWorkBean;
+import com.rzn.module_farmer.bean.WorkTypeBean;
 import com.rzn.module_farmer.bean.WorkTypeObjBean;
 import com.rzn.module_farmer.ui.sendworksuccess.SendWorkSuccessActivity;
 
@@ -39,11 +42,11 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
     private EditText etPhone;
     private EditText etHomeAddress;
     private TextView tvWorkTab;
-    private TextView tvWorkAddress;
+    private EditText tvWorkAddress;
     private EditText etDetialAddress;
     private TextView tvStartTime;
     private TextView tvToTime;
-    private TextView tvPrice;
+    private EditText tvPrice;
     private EditText etDetial;
     private TextView tvConfim;
     private Calendar showDate = Calendar.getInstance();
@@ -53,7 +56,11 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
     private CheckBox cbOne;
     private CheckBox cbTwo;
     private String farmerTaskId = "";
-    private String flag="1";
+    private String flag = "1";
+    private String kind;
+    private String kindType;
+    private String kindTypeId;
+    private String unitPrice;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -86,14 +93,14 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
                 }
 
 
-               LoginResponseBean  loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
-                mPresenter.httpSendWork(loginResponseBean.getUserId(), farmerTaskId, "1",
-                        "1", "1"
-                        , "1", "1", "1", "1", "1", flag, "1", "1",
-                        "1",
-                       "1", "1", "1", "1", "1", "1", "1", "1"
-                );
-                /*if (!TextUtils.isEmpty(etPeople.getText().toString().trim()) &&
+                LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+//                mPresenter.httpSendWork(loginResponseBean.getUserId(), farmerTaskId, "1",
+//                        "1", "1"
+//                        , "1", "1", "1", "1", "1", flag, "1", "1",
+//                        "1",
+//                        "1", "1", "1", "1", "1", "1", "1", "1"
+//                );
+                if (!TextUtils.isEmpty(etPeople.getText().toString().trim()) &&
                         !TextUtils.isEmpty(etPhone.getText().toString().trim()) &&
                         !TextUtils.isEmpty(etHomeAddress.getText().toString().trim()) &&
                         !TextUtils.isEmpty(tvWorkTab.getText().toString().trim()) &&
@@ -103,13 +110,15 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
                         !TextUtils.isEmpty(tvToTime.getText().toString().trim()) &&
                         !TextUtils.isEmpty(tvPrice.getText().toString().trim()) &&
                         !TextUtils.isEmpty(etDetial.getText().toString().trim())) {
-                    mPresenter.httpSendWork("40289e9362bd29870162bd2b809c0002", farmerTaskId, etPeople.getText().toString().trim(),
+                    mPresenter.httpSendWork(loginResponseBean.getUserId(), farmerTaskId, etPeople.getText().toString().trim(),
                             etPhone.getText().toString().trim(), etHomeAddress.getText().toString().trim()
-                            , "1", "1", "1", "1", etWorkAreas.getText().toString().trim(), flag, "1", tvStartTime.getText().toString().trim(),
+                            , kind, kindType, kindTypeId, unitPrice, etWorkAreas.getText().toString().trim(), flag, "1", tvStartTime.getText().toString().trim(),
                             tvToTime.getText().toString().trim(),
                             etDetialAddress.getText().toString().trim(), etDetial.getText().toString().trim(), "1", "1", "1", "1", "1", "1"
                     );
-                }*/
+                } else {
+//                    Toast.makeText(this, "send", Toast.LENGTH_LONG).show();
+                }
 
 
             }
@@ -143,14 +152,8 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
         tvWorkTab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //弹出选择作业类型弹窗
-                SendPopUpWindow sendPopUpWindow = new SendPopUpWindow(SendWorkActivity.this);
-                if (sendPopUpWindow.isShowing()) {
-                    return;
-                }
-                sendPopUpWindow.showAtLocation(tvWorkTab, Gravity.BOTTOM, 0, 0);
                 //请求作业类型（文档24）
-//                mPresenter.httpGetWorkType();
+                mPresenter.httpGetWorkType();
             }
         });
         //发布作业信息监听
@@ -181,11 +184,11 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
         etWorkAreas = (EditText) findViewById(R.id.et_work_areas);
         cbOne = (CheckBox) findViewById(R.id.cb_one);
         cbTwo = (CheckBox) findViewById(R.id.cb_two);
-        tvWorkAddress = (TextView) findViewById(R.id.tv_work_address);//作业地点
+        tvWorkAddress = (EditText) findViewById(R.id.tv_work_address);//作业地点
         etDetialAddress = (EditText) findViewById(R.id.et_detial_address);//详细地址
         tvStartTime = (TextView) findViewById(R.id.tv_start_time);//作业开始时间
         tvToTime = (TextView) findViewById(R.id.tv_to_time);//作业结束时间
-        tvPrice = (TextView) findViewById(R.id.tv_price);//作业价格
+        tvPrice = (EditText) findViewById(R.id.tv_price);//作业价格
         etDetial = (EditText) findViewById(R.id.et_detial);//想对机手说些什么
         tvConfim = (TextView) findViewById(R.id.tv_confim);//确认发布
 
@@ -200,32 +203,35 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
     @Override
     public void sendSuccess(SendWorkBean sendWorkBean) {
         //发布订单成功
-        startActivity(new Intent( this, SendWorkSuccessActivity.class));
+        startActivity(new Intent(this, SendWorkSuccessActivity.class));
         finish();
-        Toast.makeText(this, "send", Toast.LENGTH_LONG).show();
+//        Toast.makeText(this, "send", Toast.LENGTH_LONG).show();
     }
-
-
-
 
 
     /**
      * 获取作业类型成功
      */
     @Override
-    public void getWorkTypeSuccess(List<WorkTypeObjBean> list) {
-
+    public void getWorkTypeSuccess(final List<WorkTypeBean> list) {
 
         //弹出选择作业类型弹窗
-        SendPopUpWindow sendPopUpWindow = new SendPopUpWindow(this);
+        SendPopUpWindow sendPopUpWindow = new SendPopUpWindow(this, list);
+        sendPopUpWindow.setOnListener(new SendPopUpWindow.OnClickListener() {
+            @Override
+            public void onClick(int position, int typePosition) {
+                //获取作业类型
+                kind = list.get(position).getKindId();
+                kindType = list.get(position).getTypeArray().get(typePosition).getTypeId();
+                kindTypeId = list.get(position).getTypeArray().get(typePosition).getKindId();
+                unitPrice = list.get(position).getTypeArray().get(typePosition).getTypeUnitPrice();
+                tvWorkTab.setText(list.get(position).getKindName() + "    " + list.get(position).getTypeArray().get(typePosition).getTypeName());
+            }
+        });
         if (sendPopUpWindow.isShowing()) {
             return;
         }
         sendPopUpWindow.showAtLocation(tvWorkTab, Gravity.BOTTOM, 0, 0);
-
-        woekTypeObjBean = list.get(0);
-        tvWorkTab.setText(woekTypeObjBean.getTypeName().toString());
-        Toast.makeText(this, "chenggong", Toast.LENGTH_LONG).show();
     }
 
 }

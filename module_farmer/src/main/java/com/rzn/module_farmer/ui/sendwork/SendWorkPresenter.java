@@ -1,13 +1,16 @@
 package com.rzn.module_farmer.ui.sendwork;
 
 
+import com.google.gson.reflect.TypeToken;
 import com.rzn.commonbaselib.mvp.BasePresenterImpl;
 import com.rzn.commonbaselib.utils.GsonUtils;
+import com.rzn.module_farmer.bean.FarmerDriverMessageBean;
 import com.rzn.module_farmer.bean.SendWorkBean;
 import com.rzn.module_farmer.bean.WorkTypeBean;
 import com.rzn.module_farmer.bean.WorkTypeObjBean;
 import com.zyhealth.expertlib.bean.ResponseBean;
 
+import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -75,12 +78,17 @@ public class SendWorkPresenter extends BasePresenterImpl<SendWorkContract.View> 
                 break;
             case 222:
 
-                List<WorkTypeBean> list1 = GsonUtils.gsonParseList(gson, response.getResult());
-                WorkTypeBean workTypeBean=list1.get(0);
-                List<WorkTypeObjBean> list = workTypeBean.getTypeArray();
+//                List<WorkTypeBean> list1 = GsonUtils.gsonParseList(gson, response.getResult());
+//                WorkTypeBean workTypeBean=list1.get(0);
+//                List<WorkTypeObjBean> list = workTypeBean.getTypeArray();
 //                List<WorkTypeObjBean> list = GsonUtils.gsonParseList(gson, list1);
 //                WorkTypeObjBean workTypeObjBean = GsonUtils.gsonParseBean(gson, list.get(0), WorkTypeObjBean.class);
 //                WorkTypeBean workTypeBean = GsonUtils.gsonParseBean(gson, response.getResult(),WorkTypeBean.class);
+
+
+
+                Type type = new TypeToken<List<WorkTypeBean>>(){}.getType();
+                List<WorkTypeBean> list= gson.fromJson(gson.toJson(response.getResult()), type);
                 mView.getWorkTypeSuccess(list);
                 break;
         }

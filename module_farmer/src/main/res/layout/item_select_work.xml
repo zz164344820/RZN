@@ -10,6 +10,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="35dp"
@@ -19,6 +20,7 @@
             android:textSize="18dp" />
 
         <TextView
+            android:id="@+id/tv_size"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="35dp"
@@ -41,6 +43,7 @@
                 android:textSize="16dp" />
 
             <TextView
+                android:id="@+id/tv_work_adress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="邯郸市白塔塔乡老陈村塔乡老陈村…"
@@ -62,6 +65,7 @@
                 android:textSize="16dp" />
 
             <TextView
+                android:id="@+id/tv_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2017-12-12至2017-12-13"
