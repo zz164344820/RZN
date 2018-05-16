@@ -29,17 +29,23 @@ import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.commonbaselib.utils.SelectStatePopWindow;
 import com.rzn.module_driver.R;
 import com.rzn.module_driver.ui.bean.WorkTypeBean;
+import com.rzn.module_driver.ui.bean.WorkTypeObjBean;
 import com.rzn.module_driver.ui.drivermaksure.DriverMakeSureActivity;
 import com.zyhealth.expertlib.utils.MLog;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.finalteam.galleryfinal.GalleryFinal;
 import cn.finalteam.galleryfinal.model.PhotoInfo;
+
+import static com.zyhealth.expertlib.net.OkHttpLoader.gson;
 
 
 /**
@@ -158,11 +164,24 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
                         ) {
 
                     LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
-                    //提交机手认证信息接口
-                    mPresenter.pushDriverMessage(loginResponseBean.getUserId(), "", etName.getText() + "", flag, etData.getText().toString().trim(),
-                            etIdent.getText().toString().trim(), etPhone.getText().toString().trim(), "", "", "", "2", etCarTab.getText().toString().trim(),
-                            etCarNumber.getText().toString().trim(), "", "", "",
-                            "", workTypeBean.toString());
+
+                    Map<String, String> map = new HashMap<>();
+                    map.put("userId", loginResponseBean.getUserId());
+                    map.put("handlerId", "");
+                    map.put("name", etName.getText().toString());
+                    map.put("sex", flag);
+                    map.put("birthday", etData.getText().toString().trim());
+                    map.put("idNo", etCarNumber.getText().toString().trim());
+                    map.put("mobile", etPhone.getText().toString().trim());
+                    map.put("icon", "");
+                    map.put("startDate", "2012-02-03");
+                    map.put("endDate","2018-02-03");
+                    map.put("years", "6");
+                    map.put("carType",etCarTab.getText().toString().trim());
+                    map.put("carNo", etCarNumber.getText().toString().trim());
+                    map.put("belongs", workTypeBean.toString());
+                    map.put("kindTypeDetail", gson.toJson(tempList));
+                    mPresenter.pushDriverMessage(map,new File(onePath),new File(twoPath),new File(threePath),new File(fourPath));
 
                 } else {
                     //跳转用到的
@@ -295,15 +314,24 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
         }
     }
 
+    String  onePath;
+    String  twoPath;
+    String  threePath;
+    String  fourPath;
+
     private void showImage(String imagePath) {
         Bitmap bm = BitmapFactory.decodeFile(imagePath);
         if ("one".equals(fag)) {
             ivPhotoCars.setImageBitmap(bm);
+            onePath =imagePath;
         } else if ("two".equals(fag)) {
+            twoPath =imagePath;
             ivPhotoCar.setImageBitmap(bm);
         } else if ("three".equals(fag)) {
+            threePath =imagePath;
             ivCarPhotoOne.setImageBitmap(bm);
         } else if ("four".equals(fag)) {
+            fourPath=imagePath;
             ivCarPhotoTwo.setImageBitmap(bm);
         }
 
@@ -323,6 +351,9 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
 
     }
 
+
+    List<WorkTypeBean> tempList = new ArrayList<>();
+
     @Override
     public void showPopWindow_SelectJobTypes(final List<WorkTypeBean> list) {
         //弹出选择框
@@ -331,6 +362,7 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
         sendPopUpWindow.setOnListener(new SendPopUpWindow.OnClickListener() {
             @Override
             public void onClick(int position, int typePosition) {
+                tempList.clear();
                 //获取作业类型
                 workTypeBean = list.get(position);
                 kind = list.get(position).getKindId();
@@ -338,6 +370,26 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
                 kindTypeId = list.get(position).getTypeArray().get(typePosition).getKindId();
                 unitPrice = list.get(position).getTypeArray().get(typePosition).getTypeUnitPrice();
                 etWorkTab.setText(list.get(position).getKindName() + "    " + list.get(position).getTypeArray().get(typePosition).getTypeName());
+
+                WorkTypeBean tempBean=  new WorkTypeBean();
+                tempBean.setKindName(list.get(position).getKindName());
+                tempBean.setKindId(list.get(position).getKindId());
+                tempBean.setTypeUnitPrice(list.get(position).getTypeUnitPrice());
+
+                WorkTypeBean tempBean2=  new WorkTypeBean();
+                tempBean2.setKindName(list.get(position).getTypeArray().get(typePosition).getTypeName());
+                tempBean2.setKindId(kindTypeId);
+                tempBean2.setTypeUnitPrice(list.get(position).getTypeUnitPrice());
+
+                WorkTypeObjBean  tempTypeBean= new WorkTypeObjBean();
+                tempTypeBean.setKindId(kindTypeId);
+                tempTypeBean.setTypeId(kindType);
+                tempTypeBean.setTypeName(list.get(position).getTypeArray().get(typePosition).getTypeName());
+                tempTypeBean.setTypeUnitPrice(unitPrice);
+                List<WorkTypeObjBean> tempTypeList=  new ArrayList<>();
+                tempTypeList.add(tempTypeBean);
+                tempBean.setTypeArray(tempTypeList);
+                tempList.add(tempBean);
             }
         });
         if (sendPopUpWindow.isShowing()) {

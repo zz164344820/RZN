@@ -10,6 +10,7 @@ import com.zyhealth.expertlib.bean.ResponseBean;
 import com.zyhealth.expertlib.net.OkHttpLoader;
 import com.zyhealth.expertlib.utils.MLog;
 
+import java.io.File;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
@@ -40,60 +41,30 @@ public class Driver_identificationPresenter extends BasePresenterImpl<Driver_ide
     }
 
     @Override
-    public void pushDriverMessage(String userId, String handlerId, String name,
-                                  String sex, String birthday, String idNo,
-                                  String mobile, String icon, String startDate,
-                                  String endDate, String years, String carType,
-                                  String carNo, String carPic1, String carPic2,
-                                  String machinePic1, String machinePic2,
-                                  String belongs) {
-
+    public void pushDriverMessage(final Map<String,String> map , File oneFile , File twoFile , File  threeFile, File  fourFile) {
         mView.showLoading(false, "");
-        Map<String, String> map = new HashMap<>();
-        map.put("userId", userId);
-        map.put("handlerId", handlerId);
-        map.put("name", name);
-        map.put("sex", sex);
-        map.put("birthday", birthday);
-        map.put("idNo", idNo);
-        map.put("mobile", mobile);
-        map.put("icon", icon);
-        map.put("startDate", startDate);
-        map.put("endDate", endDate);
-        map.put("years", years);
-        map.put("carType", carType);
-        map.put("carNo", carNo);
-        // map.put("carPic1", carPic1);
-        //  map.put("carPic2", carPic2);
-        // map.put("machinePic1", machinePic1);
-        // map.put("machinePic2", machinePic2);
-        map.put("belongs", belongs);
-        //http://1724l9l212.iask.in/farmHand/handler/updateSaveHandler
-        //9：机手审核认证修改保存(机手)
-
-
-        /*OkHttpUtils.post()//
-                .addFile("carPic1", "messenger_01.png", file)//
-                .addFile("carPic2", "test1.txt", file2)//
-                .addFile("machinePic1", "test1.txt", file2)//
-                .addFile("machinePic2", "test1.txt", file2)//
+        OkHttpUtils.post()//
+                .addFile("carPic1", oneFile.getName(), oneFile)//
+                .addFile("carPic2", twoFile.getName(), twoFile)//
+                .addFile("machinePic1", threeFile.getName(),threeFile)//
+                .addFile("machinePic2", fourFile.getName(), fourFile)//
                 .url(OkHttpLoader.BASEURL+"farmHand/handler/updateSaveHandler")
                 .params(map)//
                 .build()//
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                      MLog.e(e.getMessage());
+                      mView.hideLoading();
                     }
 
                     @Override
                     public void onResponse(String response, int id) {
-
+                        MLog.e(gson.toJson(map));
+                        MLog.e(response);
+                        mView.hideLoading();
                     }
-                });*/
-        reqData(mContext, "farmHand/handler/updateSaveHandler", map, 111);//
-
-
+                });
     }
 
     @Override

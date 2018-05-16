@@ -9,15 +9,15 @@ import java.util.List;
 public class WorkTypeBean {
     private String kindId;
     private String kindName;
+    private String typeUnitPrice;
     private List<WorkTypeObjBean> typeArray;
 
-    @Override
-    public String toString() {
-        return "WorkTypeBean{" +
-                "kindId='" + kindId + '\'' +
-                ", kindName='" + kindName + '\'' +
-                ", typeArray=" + typeArray +
-                '}';
+    public String getTypeUnitPrice() {
+        return typeUnitPrice == null ? "" : typeUnitPrice;
+    }
+
+    public void setTypeUnitPrice(String typeUnitPrice) {
+        this.typeUnitPrice = typeUnitPrice;
     }
 
     public String getKindId() {

@@ -4,7 +4,9 @@ import com.rzn.commonbaselib.mvp.BasePresenter;
 import com.rzn.commonbaselib.mvp.BaseView;
 import com.rzn.module_driver.ui.bean.WorkTypeBean;
 
+import java.io.File;
 import java.util.List;
+import java.util.Map;
 
 /**
  * MVPPlugin
@@ -24,10 +26,7 @@ public class Driver_identificationContract {
     interface Presenter extends BasePresenter<View> {
         void  getJobTypes();
 
-        void pushDriverMessage(String userId,String handlerId,String name,String sex,String birthday,String idNo,
-                               String mobile,String icon,String startDate,String endDate,String years,String carType,String carNo,
-                               String carPic1,String carPic2,String machinePic1,String machinePic2,String belongs
-                               );
+        void pushDriverMessage(Map<String,String> map , File oneFile , File twoFile , File  threeFile, File  fourFile);
     }
 
 
