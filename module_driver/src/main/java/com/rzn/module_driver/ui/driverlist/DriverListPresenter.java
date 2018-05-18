@@ -56,7 +56,7 @@ public class DriverListPresenter extends BasePresenterImpl<DriverListContract.Vi
         driverListAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                ToastUtils.showShortSafe("条目");
+               // ToastUtils.showShortSafe("条目");
                 //跳转作业详情界面
                 mContext.startActivity(new Intent(mContext, JobdetailsActivity.class));
             }
@@ -65,7 +65,13 @@ public class DriverListPresenter extends BasePresenterImpl<DriverListContract.Vi
         driverListAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                ToastUtils.showShortSafe("点击抢单按钮");
+                Map<String,String> map = new HashMap<>();
+                LoginResponseBean  bean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+                map.put("handlerId",bean.getHandlerId());
+                map.put("farmerTaskId","");
+
+                reqData(mContext,"farmHand/handler/grabTask",map ,166);
+               // ToastUtils.showShortSafe("点击抢单按钮");
             }
         });
 
@@ -85,6 +91,9 @@ public class DriverListPresenter extends BasePresenterImpl<DriverListContract.Vi
         super.httpRequestResult(response, requestId);
         switch (requestId) {
             case 111:
+                break;
+            case  166:
+                // TODO: 2018/5/18 弹窗 
                 break;
         }
     }

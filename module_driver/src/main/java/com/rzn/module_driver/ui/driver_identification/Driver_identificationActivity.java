@@ -28,6 +28,7 @@ import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.commonbaselib.utils.SelectStatePopWindow;
 import com.rzn.module_driver.R;
+import com.rzn.module_driver.ui.bean.SelectWorkTypeBean;
 import com.rzn.module_driver.ui.bean.WorkTypeBean;
 import com.rzn.module_driver.ui.bean.WorkTypeObjBean;
 import com.rzn.module_driver.ui.drivermaksure.DriverMakeSureActivity;
@@ -93,7 +94,6 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
         mPresenter.onCreate();
         initViews();
         initListener();
-
     }
 
     /**
@@ -149,7 +149,6 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
                     flag = "1";
 
                 } else if (cbGril.isChecked()) {
-
                     flag = "2";
                 }
 
@@ -179,7 +178,7 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
                     map.put("years", "6");
                     map.put("carType",etCarTab.getText().toString().trim());
                     map.put("carNo", etCarNumber.getText().toString().trim());
-                    map.put("belongs", workTypeBean.toString());
+                    map.put("belongs", etFromHome.getText().toString());
                     map.put("kindTypeDetail", gson.toJson(tempList));
                     mPresenter.pushDriverMessage(map,new File(onePath),new File(twoPath),new File(threePath),new File(fourPath));
 
@@ -352,7 +351,7 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
     }
 
 
-    List<WorkTypeBean> tempList = new ArrayList<>();
+    List<SelectWorkTypeBean> tempList = new ArrayList<>();
 
     @Override
     public void showPopWindow_SelectJobTypes(final List<WorkTypeBean> list) {
@@ -363,33 +362,25 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
             @Override
             public void onClick(int position, int typePosition) {
                 tempList.clear();
-                //获取作业类型
-                workTypeBean = list.get(position);
-                kind = list.get(position).getKindId();
-                kindType = list.get(position).getTypeArray().get(typePosition).getTypeId();
-                kindTypeId = list.get(position).getTypeArray().get(typePosition).getKindId();
-                unitPrice = list.get(position).getTypeArray().get(typePosition).getTypeUnitPrice();
+
                 etWorkTab.setText(list.get(position).getKindName() + "    " + list.get(position).getTypeArray().get(typePosition).getTypeName());
 
-                WorkTypeBean tempBean=  new WorkTypeBean();
-                tempBean.setKindName(list.get(position).getKindName());
-                tempBean.setKindId(list.get(position).getKindId());
-                tempBean.setTypeUnitPrice(list.get(position).getTypeUnitPrice());
+                SelectWorkTypeBean bean = new SelectWorkTypeBean();
+                bean.setKindId(list.get(position).getKindId());
+                bean.setKindName(list.get(position).getKindName());
+                bean.setKindTypeId(list.get(position).getTypeArray().get(typePosition).getTypeId());
+                bean.setKindTypeName(list.get(position).getTypeArray().get(typePosition).getTypeName());
+                bean.setUnitPrice(list.get(position).getTypeArray().get(typePosition).getTypeUnitPrice());
 
-                WorkTypeBean tempBean2=  new WorkTypeBean();
-                tempBean2.setKindName(list.get(position).getTypeArray().get(typePosition).getTypeName());
-                tempBean2.setKindId(kindTypeId);
-                tempBean2.setTypeUnitPrice(list.get(position).getTypeUnitPrice());
+                SelectWorkTypeBean bean2 = new SelectWorkTypeBean();
+                bean2.setKindId(list.get(position).getKindId());
+                bean2.setKindName(list.get(position).getKindName());
+                bean2.setKindTypeId(list.get(position).getTypeArray().get(typePosition).getTypeId());
+                bean2.setKindTypeName(list.get(position).getTypeArray().get(typePosition).getTypeName());
+                bean2.setUnitPrice(list.get(position).getTypeArray().get(typePosition).getTypeUnitPrice());
 
-                WorkTypeObjBean  tempTypeBean= new WorkTypeObjBean();
-                tempTypeBean.setKindId(kindTypeId);
-                tempTypeBean.setTypeId(kindType);
-                tempTypeBean.setTypeName(list.get(position).getTypeArray().get(typePosition).getTypeName());
-                tempTypeBean.setTypeUnitPrice(unitPrice);
-                List<WorkTypeObjBean> tempTypeList=  new ArrayList<>();
-                tempTypeList.add(tempTypeBean);
-                tempBean.setTypeArray(tempTypeList);
-                tempList.add(tempBean);
+                tempList.add(bean);
+                tempList.add(bean2);
             }
         });
         if (sendPopUpWindow.isShowing()) {
