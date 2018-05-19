@@ -8,6 +8,10 @@ import android.widget.TextView;
 
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.module_driver.R;
+import com.rzn.module_driver.ui.bean.OrederInfo;
+import com.zyhealth.expertlib.utils.MLog;
+
+import java.util.List;
 
 
 /**
@@ -61,5 +65,10 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
     @Override
     public void postFailed() {
 
+    }
+
+    @Override
+    public void setOrderInfo(List<OrederInfo> list) {
+        MLog.e(list.size()+"--------");
     }
 }

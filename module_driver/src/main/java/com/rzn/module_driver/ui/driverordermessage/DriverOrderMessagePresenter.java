@@ -4,9 +4,13 @@ package com.rzn.module_driver.ui.driverordermessage;
 import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.BasePresenterImpl;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
+import com.rzn.commonbaselib.utils.GsonUtils;
+import com.rzn.module_driver.ui.bean.OrederInfo;
 import com.zyhealth.expertlib.bean.ResponseBean;
+import com.zyhealth.expertlib.utils.MLog;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -27,7 +31,7 @@ public class DriverOrderMessagePresenter extends BasePresenterImpl<DriverOrderMe
         Map<String ,String> map = new HashMap<>();
         LoginResponseBean  loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
         map.put("handlerId",loginResponseBean.getHandlerId());
-        reqData(mContext,"farmHand/handler/queryHandler",map ,119);
+        reqData(mContext,"farmHand/handler/queryKindTypeByHandlerId",map ,119);
     }
 
     @Override
@@ -42,7 +46,10 @@ public class DriverOrderMessagePresenter extends BasePresenterImpl<DriverOrderMe
         super.httpRequestResult(response, requestId);
         switch (requestId){
             case 119:
-                break;
+            List<OrederInfo>  list =  GsonUtils.gsonParseList(gson,response.getResult());
+            MLog.e(list.size());
+            mView.setOrderInfo(list);
+            break;
             case 111:
                 break;
         }

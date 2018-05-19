@@ -40,31 +40,12 @@ public class Driver_identificationPresenter extends BasePresenterImpl<Driver_ide
 
     }
 
-    @Override
-    public void pushDriverMessage(final Map<String,String> map , File oneFile , File twoFile , File  threeFile, File  fourFile) {
-        mView.showLoading(false, "");
-        OkHttpUtils.post()//
-                .addFile("carPic1", oneFile.getName(), oneFile)//
-                .addFile("carPic2", twoFile.getName(), twoFile)//
-                .addFile("machinePic1", threeFile.getName(),threeFile)//
-                .addFile("machinePic2", fourFile.getName(), fourFile)//
-                .url(OkHttpLoader.BASEURL+"farmHand/handler/updateSaveHandler")
-                .params(map)//
-                .build()//
-                .execute(new StringCallback() {
-                    @Override
-                    public void onError(Call call, Exception e, int id) {
-                      MLog.e(e.getMessage());
-                      mView.hideLoading();
-                    }
 
-                    @Override
-                    public void onResponse(String response, int id) {
-                        MLog.e(gson.toJson(map));
-                        MLog.e(response);
-                        mView.hideLoading();
-                    }
-                });
+
+    @Override
+    public void pushDriverMessage(final Map<String,String> map ) {
+        mView.showLoading(false, "");
+        reqData(mContext,"farmHand/handler/updateSaveHandler",map,111);
     }
 
     @Override

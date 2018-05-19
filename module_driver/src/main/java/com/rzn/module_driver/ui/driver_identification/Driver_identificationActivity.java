@@ -180,7 +180,8 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
                     map.put("carNo", etCarNumber.getText().toString().trim());
                     map.put("belongs", etFromHome.getText().toString());
                     map.put("kindTypeDetail", gson.toJson(tempList));
-                    mPresenter.pushDriverMessage(map,new File(onePath),new File(twoPath),new File(threePath),new File(fourPath));
+                   // mPresenter.pushDriverMessage(map,new File(onePath),new File(twoPath),new File(threePath),new File(fourPath));
+                    mPresenter.pushDriverMessage(map);
 
                 } else {
                     //跳转用到的
