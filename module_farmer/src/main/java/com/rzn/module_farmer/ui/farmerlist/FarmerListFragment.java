@@ -82,6 +82,7 @@ public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View,
         swipeToLoadLayout = (SwipeToLoadLayout) rootView.findViewById(R.id.swipeToLoadLayout);
         swipeTarget.setLayoutManager(new LinearLayoutManager(getActivity()));
         farmerListAdapter = new FarmerListAdapter(list);
+        farmerListAdapter.setEmptyView(R.layout.farmerorder_nullpager,(ViewGroup)swipeTarget.getParent());
         swipeTarget.setAdapter(farmerListAdapter);
 
         farmerListAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
@@ -118,7 +119,6 @@ public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View,
     public void loadDriverMessageSuccessed(List<FarmerDriverMessageBean> list1) {
         list.addAll(list1);
         farmerListAdapter.notifyDataSetChanged();
-        Toast.makeText(mContext, list.get(0).getCarNo() + "", Toast.LENGTH_LONG).show();
     }
 
     /**

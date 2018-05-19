@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawableTop="@drawable/order_nullpager"
-        android:text="暂无作业需求\n可先开启接单，等待农户联系您哦！"
+        android:text="暂无符合条件的机手\n可先发布作业需求，等待机手抢单哦！"
         android:gravity="center_horizontal"
         android:textSize="18sp"
         android:textColor="@color/text_888"
