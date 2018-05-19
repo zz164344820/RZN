@@ -47,7 +47,6 @@ public class DriverOrderMessagePresenter extends BasePresenterImpl<DriverOrderMe
         switch (requestId){
             case 119:
             List<OrederInfo>  list =  GsonUtils.gsonParseList(gson,response.getResult());
-            MLog.e(list.size());
             mView.setOrderInfo(list);
             break;
             case 111:
