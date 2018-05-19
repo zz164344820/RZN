@@ -4,8 +4,10 @@ package com.rzn.module_driver.ui.driverlist;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +18,13 @@ import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.lonch.zyhealth.loadmorelibrary.LoadMoreUtils;
+import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
+import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.module_driver.R;
 import com.rzn.module_driver.R2;
 import com.rzn.module_driver.ui.driver_identification.Driver_identificationActivity;
+import com.rzn.module_driver.ui.driverordermessage.DriverOrderMessageActivity;
 import com.rzn.module_driver.ui.jobOrder.myjoborder.MyjobOrderActivity;
 import com.zhy.autolayout.AutoLinearLayout;
 
@@ -73,9 +78,10 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
             @Override
             public void onClick(View view) {
                 //判断是否认证机手
-                if (false) {
+            LoginResponseBean  loginResponseBean= (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+                if (!TextUtils.isEmpty(loginResponseBean.getHandlerId())) {
                     //已认证机手
-                    startActivity(new Intent(mContext, MyjobOrderActivity.class));
+                    startActivity(new Intent(mContext, DriverOrderMessageActivity.class));
                 } else {
                     //未认证机手
                     startActivity(new Intent(mContext, Driver_identificationActivity.class));
