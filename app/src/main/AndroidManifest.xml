@@ -6,10 +6,10 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/appicon"
         android:label="@string/app_name"
         android:name=".application.RZNApplication"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/appicon"
         android:supportsRtl="true"
         tools:replace="android:name, android:allowBackup ,android:label ,android:supportsRtl"
         android:theme="@style/AppTheme2" >
