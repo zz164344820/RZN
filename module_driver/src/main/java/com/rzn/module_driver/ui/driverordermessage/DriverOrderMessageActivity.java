@@ -11,7 +11,9 @@ import com.rzn.module_driver.R;
 import com.rzn.module_driver.ui.bean.OrederInfo;
 import com.zyhealth.expertlib.utils.MLog;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -40,7 +42,8 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
         tvStartPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mPresenter.httpPost();
+                Map<String,String> map = new HashMap<>();
+                mPresenter.supplementOrderInfo(map);
             }
         });
     }
@@ -51,21 +54,8 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
 
     }
 
-    /**
-     * 开始接单成功
-     */
-    @Override
-    public void postSuccessed() {
 
-    }
 
-    /**
-     * 开始接单失败
-     */
-    @Override
-    public void postFailed() {
-
-    }
 
     @Override
     public void setOrderInfo(List<OrederInfo> list) {

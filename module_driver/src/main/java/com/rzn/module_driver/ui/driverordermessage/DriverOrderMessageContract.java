@@ -6,6 +6,7 @@ import com.rzn.commonbaselib.mvp.BaseView;
 import com.rzn.module_driver.ui.bean.OrederInfo;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * MVPPlugin
@@ -14,14 +15,11 @@ import java.util.List;
 
 public class DriverOrderMessageContract {
     interface View extends BaseView {
-        void postSuccessed();
-
-        void postFailed();
 
         void  setOrderInfo(List<OrederInfo> list);
     }
 
     interface Presenter extends BasePresenter<View> {
-        void httpPost();
+        void supplementOrderInfo(Map<String,String> map);
     }
 }

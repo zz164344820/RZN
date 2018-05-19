@@ -35,9 +35,9 @@ public class DriverOrderMessagePresenter extends BasePresenterImpl<DriverOrderMe
     }
 
     @Override
-    public void httpPost() {
-
-        reqData(mContext,"farmHand/handler/updateSaveHandlerInfo",null,111);
+    public void supplementOrderInfo(Map<String,String> map ) {
+        mView.showLoading(false,"");
+        reqData(mContext,"farmHand/handler/updateSaveHandlerInfo",map,111);
     }
 
 
@@ -50,7 +50,10 @@ public class DriverOrderMessagePresenter extends BasePresenterImpl<DriverOrderMe
             mView.setOrderInfo(list);
             break;
             case 111:
+                // TODO: 2018/5/19  开始接单完善信息请求成功处理
                 break;
         }
     }
+
+
 }
