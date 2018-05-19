@@ -23,6 +23,7 @@ import com.rzn.commonbaselib.mvp.MVPBaseFragment;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.module_driver.R;
 import com.rzn.module_driver.R2;
+import com.rzn.module_driver.ui.bean.DriverGrabOrderInfo;
 import com.rzn.module_driver.ui.driver_identification.Driver_identificationActivity;
 import com.rzn.module_driver.ui.driverordermessage.DriverOrderMessageActivity;
 import com.rzn.module_driver.ui.jobOrder.myjoborder.MyjobOrderActivity;
@@ -112,10 +113,11 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
     }
 
     @Override
-    public DriverListAdapter setAdapter(List<String> list) {
+    public DriverListAdapter setAdapter(List<DriverGrabOrderInfo> list) {
         swipeTarget.setLayoutManager(new LinearLayoutManager(getActivity()));
-        DriverListAdapter driverListAdapter = new DriverListAdapter(R.layout.driver_item_driverlists, list);
+        DriverListAdapter driverListAdapter = new DriverListAdapter(list);
         swipeTarget.setAdapter(driverListAdapter);
+        driverListAdapter.setEmptyView(R.layout.driverorder_nullpager,(ViewGroup)swipeTarget.getParent());
         return driverListAdapter;
     }
 

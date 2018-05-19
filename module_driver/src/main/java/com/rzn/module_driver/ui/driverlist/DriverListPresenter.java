@@ -9,6 +9,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.BasePresenterImpl;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
+import com.rzn.module_driver.ui.bean.DriverGrabOrderInfo;
 import com.rzn.module_driver.ui.jobdetails.JobdetailsActivity;
 import com.zyhealth.expertlib.bean.ResponseBean;
 
@@ -26,7 +27,7 @@ import java.util.List;
 public class DriverListPresenter extends BasePresenterImpl<DriverListContract.View> implements DriverListContract.Presenter {
 
     DriverListAdapter driverListAdapter;
-    List<String> list  = new ArrayList<>();
+    List<DriverGrabOrderInfo> list  = new ArrayList<>();
     @Override
     public void onCreate() {
         super.onCreate();
@@ -48,10 +49,7 @@ public class DriverListPresenter extends BasePresenterImpl<DriverListContract.Vi
     }
 
     private void setAdapter() {
-        list.add("");
-        list.add("");
-        list.add("");
-        list.add("");
+
         driverListAdapter =  mView.setAdapter(list);
         driverListAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
@@ -68,10 +66,8 @@ public class DriverListPresenter extends BasePresenterImpl<DriverListContract.Vi
                 Map<String,String> map = new HashMap<>();
                 LoginResponseBean  bean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
                 map.put("handlerId",bean.getHandlerId());
-                map.put("farmerTaskId","");
-
+                map.put("farmerTaskId",list.get(position).getFarmerTaskId());
                 reqData(mContext,"farmHand/handler/grabTask",map ,166);
-               // ToastUtils.showShortSafe("点击抢单按钮");
             }
         });
 

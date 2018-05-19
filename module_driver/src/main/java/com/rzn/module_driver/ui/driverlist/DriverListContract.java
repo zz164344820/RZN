@@ -2,6 +2,7 @@ package com.rzn.module_driver.ui.driverlist;
 
 import com.rzn.commonbaselib.mvp.BasePresenter;
 import com.rzn.commonbaselib.mvp.BaseView;
+import com.rzn.module_driver.ui.bean.DriverGrabOrderInfo;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class DriverListContract {
         //获取抢单列表失败
         void getListFailed();
 
-        DriverListAdapter setAdapter(List<String> list);
+        DriverListAdapter setAdapter(List<DriverGrabOrderInfo> list);
 
         void  recycleViewRestore();
 

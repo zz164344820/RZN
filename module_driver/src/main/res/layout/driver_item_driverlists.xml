@@ -19,10 +19,11 @@
 
             <ImageView
                 android:id="@+id/iv_header_photo"
-                android:layout_width="42dp"
-                android:layout_height="42dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="26dp"
+                android:background="@drawable/logo"
                 />
 
             <TextView

@@ -23,7 +23,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:drawablePadding="7px"
+                android:drawablePadding="10px"
                 android:drawableRight="@drawable/driver_pulldown_black"
                 android:gravity="center"
                 android:text="作业类型"
@@ -51,7 +51,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:drawablePadding="7px"
+                android:drawablePadding="10px"
                 android:drawableRight="@drawable/driver_pulldown_black"
                 android:gravity="center"
                 android:text="作业地区"
@@ -59,32 +59,9 @@
                 android:textSize="36px" />
 
         </com.zhy.autolayout.AutoLinearLayout>
-        <View
-            android:layout_width="4px"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="11px"
-            android:layout_marginTop="11px"
-            android:background="#dddddd" />
 
-        <com.zhy.autolayout.AutoLinearLayout
-            android:id="@+id/ll_obScreeningcapacity"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:drawablePadding="7px"
-                android:drawableRight="@drawable/driver_pulldown_black"
-                android:gravity="center"
-                android:text="智能排序"
-                android:textColor="@color/text_333"
-                android:textSize="36px" />
 
-        </com.zhy.autolayout.AutoLinearLayout>
     </com.zhy.autolayout.AutoLinearLayout>
 
     <com.zhy.autolayout.AutoRelativeLayout
