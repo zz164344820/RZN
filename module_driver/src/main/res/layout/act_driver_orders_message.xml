@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
-    <include  layout="@layout/topbar"/>
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/topbar" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -21,8 +23,7 @@
                 android:paddingLeft="10dp"
                 android:text="请按下方条目完善本次接单信息:"
                 android:textColor="#333333"
-                android:textSize="18dp"
-                />
+                android:textSize="18dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -31,8 +32,7 @@
                 android:layout_marginTop="16.5dp"
                 android:text="本次接单作业类型"
                 android:textColor="#333333"
-                android:textSize="18dp"
-                />
+                android:textSize="18dp" />
 
             <RadioGroup
                 android:layout_width="wrap_content"
@@ -40,33 +40,34 @@
                 android:layout_gravity="center_horizontal">
 
                 <RadioButton
+                    android:id="@+id/rb_one"
                     android:layout_width="171.5dp"
                     android:layout_height="36.5dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/selector_driver_order_message"
                     android:button="@null"
                     android:gravity="center"
-                    android:text="水稻-联合整地"
-                    />
+                    android:text="水稻-联合整地" />
 
                 <RadioButton
+                    android:id="@+id/rb_two"
                     android:layout_width="171.5dp"
                     android:layout_height="36.5dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/selector_driver_order_message"
                     android:button="@null"
                     android:gravity="center"
-                    android:text="小麦-联合整地"/>
+                    android:text="小麦-联合整地" />
 
                 <RadioButton
+                    android:id="@+id/rb_three"
                     android:layout_width="171.5dp"
                     android:layout_height="36.5dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/selector_driver_order_message"
                     android:button="@null"
                     android:gravity="center"
-                    android:text="水稻-收割"
-                    />
+                    android:text="水稻-收割" />
             </RadioGroup>
 
 
@@ -74,83 +75,80 @@
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:layout_marginTop="10dp"
-                android:background="#DDDDDD"
-                />
+                android:background="#DDDDDD" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
-                android:orientation="horizontal"
-
-                >
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="18dp"
                     android:layout_height="18dp"
                     android:layout_marginLeft="10dp"
-                    />
+                    android:src="@drawable/icon_address" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:text="本次作业地区："
                     android:textColor="#333333"
-                    android:textSize="18dp"
-                    />
+                    android:textSize="18dp" />
             </LinearLayout>
 
             <EditText
+                android:id="@+id/et_address"
                 android:layout_width="318.5dp"
                 android:layout_height="37dp"
                 android:layout_marginLeft="34dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/shape_input_bg"
                 android:hint="必填"
-                />
+                android:paddingLeft="10dp" />
 
             <LinearLayout
+                android:id="@+id/ll_more_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:orientation="horizontal"
-                >
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="18dp"
                     android:layout_height="18dp"
                     android:layout_marginLeft="34dp"
-                    />
+                    android:src="@drawable/icon_add" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:text="添加更多地址"
                     android:textColor="#333333"
-                    android:textSize="16dp"
-                    />
+                    android:textSize="16dp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="18dp"
                     android:layout_height="18dp"
-                    android:layout_marginLeft="34dp"
-                    />
+                    android:layout_marginLeft="34dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="不限作业区域"
                     android:textColor="#333333"
-                    android:textSize="16dp"
-                    />
+                    android:textSize="16dp" />
             </LinearLayout>
 
 
@@ -158,23 +156,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:orientation="horizontal"
-
-                >
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="18dp"
                     android:layout_height="18dp"
                     android:layout_marginLeft="10dp"
-                    />
+                    android:src="@drawable/icon_oclock" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="本次作业地区："
+                    android:layout_marginLeft="5dp"
+                    android:text="本次可接单时间："
                     android:textColor="#333333"
-                    android:textSize="18dp"
-                    />
+                    android:textSize="18dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -182,122 +179,113 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="9dp"
                 android:gravity="center_horizontal"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
 
-                <EditText
+                <TextView
+                    android:id="@+id/tv_time_start"
                     android:layout_width="146.5dp"
                     android:layout_height="37dp"
                     android:background="@drawable/shape_input_bg"
                     android:gravity="center"
-                    android:hint="随时"
-                    />
+                    android:hint="随时" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="至"
                     android:textColor="#333333"
-                    android:textSize="16dp"
-                    />
+                    android:textSize="16dp" />
 
-                <EditText
+                <TextView
+                    android:id="@+id/tv_time_end"
                     android:layout_width="146.5dp"
                     android:layout_height="37dp"
                     android:background="@drawable/shape_input_bg"
                     android:gravity="center"
-                    android:hint="随时"
-                    />
+                    android:hint="随时" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:orientation="horizontal"
-                >
+                android:id="@+id/ll_more_time"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="18dp"
                     android:layout_height="18dp"
                     android:layout_marginLeft="34dp"
-                    />
+                    android:src="@drawable/icon_add" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="添加更多接单时间"
                     android:textColor="#333333"
-                    android:textSize="16dp"
-                    />
+                    android:textSize="16dp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="18dp"
                     android:layout_height="18dp"
-                    android:layout_marginLeft="34dp"
-                    />
+                    android:layout_marginLeft="34dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="可随时作业"
                     android:textColor="#333333"
-                    android:textSize="16dp"
-                    />
+                    android:textSize="16dp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:orientation="horizontal"
-
-                >
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="18dp"
                     android:layout_height="18dp"
                     android:layout_marginLeft="10dp"
-                    />
+                    android:src="@drawable/icon_book" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="本次作业地区："
+                    android:text="补充说明："
                     android:textColor="#333333"
-                    android:textSize="18dp"
-                    />
+                    android:textSize="18dp" />
             </LinearLayout>
 
             <EditText
+                android:id="@+id/et_message"
                 android:layout_width="318.5dp"
                 android:layout_height="100.5dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/shape_input_bg"
-                android:hint="想对机手说什么，不妨写在这里"
-                />
+                android:hint="想对机手说什么，不妨写在这里" />
 
             <TextView
                 android:id="@+id/tv_start_post"
                 android:layout_width="341.5dp"
                 android:layout_height="42.5dp"
-                android:background="#fb9300"
-                android:textSize="18dp"
-                android:textColor="#ffffff"
-                android:text="开始接单"
-                android:gravity="center"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
-                />
+                android:background="#fb9300"
+                android:gravity="center"
+                android:text="开始接单"
+                android:textColor="#ffffff"
+                android:textSize="18dp" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

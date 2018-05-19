@@ -174,13 +174,13 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
                     map.put("mobile", etPhone.getText().toString().trim());
                     map.put("icon", "");
                     map.put("startDate", "2012-02-03");
-                    map.put("endDate","2018-02-03");
+                    map.put("endDate", "2018-02-03");
                     map.put("years", "6");
-                    map.put("carType",etCarTab.getText().toString().trim());
+                    map.put("carType", etCarTab.getText().toString().trim());
                     map.put("carNo", etCarNumber.getText().toString().trim());
                     map.put("belongs", etFromHome.getText().toString());
                     map.put("kindTypeDetail", gson.toJson(tempList));
-                   // mPresenter.pushDriverMessage(map,new File(onePath),new File(twoPath),new File(threePath),new File(fourPath));
+                    // mPresenter.pushDriverMessage(map,new File(onePath),new File(twoPath),new File(threePath),new File(fourPath));
                     mPresenter.pushDriverMessage(map);
 
                 } else {
@@ -314,24 +314,24 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
         }
     }
 
-    String  onePath;
-    String  twoPath;
-    String  threePath;
-    String  fourPath;
+    String onePath;
+    String twoPath;
+    String threePath;
+    String fourPath;
 
     private void showImage(String imagePath) {
         Bitmap bm = BitmapFactory.decodeFile(imagePath);
         if ("one".equals(fag)) {
             ivPhotoCars.setImageBitmap(bm);
-            onePath =imagePath;
+            onePath = imagePath;
         } else if ("two".equals(fag)) {
-            twoPath =imagePath;
+            twoPath = imagePath;
             ivPhotoCar.setImageBitmap(bm);
         } else if ("three".equals(fag)) {
-            threePath =imagePath;
+            threePath = imagePath;
             ivCarPhotoOne.setImageBitmap(bm);
         } else if ("four".equals(fag)) {
-            fourPath=imagePath;
+            fourPath = imagePath;
             ivCarPhotoTwo.setImageBitmap(bm);
         }
 
@@ -341,7 +341,7 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
     @Override
     public void pushDriverMessageSuccess() {
         //机手信息提交成功跳转下一界面
-
+        startActivity(new Intent(this, DriverMakeSureActivity.class));
     }
 
     //提交信息失败
