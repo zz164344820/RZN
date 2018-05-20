@@ -104,6 +104,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"
+                        android:background="@drawable/shape_order_message_no_press"
                         android:gravity="center"
                         android:text="水稻-联合整地" />
 
@@ -114,6 +115,7 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
+                        android:background="@drawable/shape_order_message_no_press"
                         android:gravity="center"
                         android:text="水稻-联合整地" />
 
@@ -133,6 +135,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"
+                        android:background="@drawable/shape_order_message_no_press"
                         android:gravity="center"
                         android:text="水稻-联合整地" />
 
@@ -143,6 +146,7 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
+                        android:background="@drawable/shape_order_message_no_press"
                         android:gravity="center"
                         android:text="水稻-联合整地" />
 
@@ -194,18 +198,20 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="14dp"
+                        android:gravity="center_vertical"
                         android:orientation="horizontal">
 
                         <ImageView
                             android:layout_width="18dp"
                             android:layout_height="18dp"
-                           android:background="@drawable/icon_address"
-                            android:layout_marginLeft="21dp" />
+                            android:layout_marginLeft="21dp"
+                            android:background="@drawable/icon_address" />
 
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
                             android:text="作业地点："
                             android:textColor="#333333"
                             android:textSize="18dp" />
@@ -237,18 +243,20 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="14dp"
+                        android:gravity="center_vertical"
                         android:orientation="horizontal">
 
                         <ImageView
                             android:layout_width="18dp"
                             android:layout_height="18dp"
-                            android:src="@drawable/icon_oclock"
-                            android:layout_marginLeft="21dp" />
+                            android:layout_marginLeft="21dp"
+                            android:src="@drawable/icon_oclock" />
 
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
                             android:text="作业时间："
                             android:textColor="#333333"
                             android:textSize="18dp" />
@@ -269,18 +277,20 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="14dp"
+                        android:gravity="center_vertical"
                         android:orientation="horizontal">
 
                         <ImageView
                             android:layout_width="18dp"
                             android:layout_height="18dp"
-                            android:src="@drawable/icon_book"
-                            android:layout_marginLeft="21dp" />
+                            android:layout_marginLeft="21dp"
+                            android:src="@drawable/icon_book" />
 
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
                             android:text="补充说明："
                             android:textColor="#333333"
                             android:textSize="18dp" />
@@ -305,7 +315,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="10dp"
-                        android:background="#fb9300"
+                        android:background="@drawable/shape_background"
                         android:gravity="center"
                         android:text="预约机手"
                         android:textColor="#ffffff"

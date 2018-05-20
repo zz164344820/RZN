@@ -17,14 +17,22 @@ import java.util.List;
 
 public class FarmerListAdapter extends BaseQuickAdapter<FarmerDriverMessageBean, BaseViewHolder> {
 
-    public FarmerListAdapter( @Nullable  List<FarmerDriverMessageBean>  data) {
+    private String contents;
+
+    public FarmerListAdapter(@Nullable List<FarmerDriverMessageBean> data) {
         super(R.layout.farmer_item_farmerlist, data);
     }
 
     @Override
     protected void convert(BaseViewHolder helper, FarmerDriverMessageBean item) {
         helper.addOnClickListener(R.id.tv_work);
-        helper.setText(R.id.tv_name,item.getName());
+        helper.setText(R.id.tv_name, item.getName());
+        helper.setText(R.id.tv_price, item.getMinUnitPrice() + "元/亩");
+        contents="";
+        for (int i = 0; i < item.getTypes().size(); i++) {
+            contents = contents + item.getTypes().get(i).getKindName() +"-"+ item.getTypes().get(i).getKindTypeName()+"  ";
+        }
+        helper.setText(R.id.tv_contents, contents);
 
     }
 
