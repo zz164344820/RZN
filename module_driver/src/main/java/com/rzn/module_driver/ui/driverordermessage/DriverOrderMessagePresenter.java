@@ -48,8 +48,7 @@ public class DriverOrderMessagePresenter extends BasePresenterImpl<DriverOrderMe
         super.httpRequestResult(response, requestId);
         switch (requestId){
             case 119:
-           // List<OrederInfo>  list = GsonParseUtils.GsonToList(response.getResult(),OrederInfo.class);
-                List<OrederInfo>  list= gson.fromJson(gson.toJson(response.getResult()),new TypeToken<List<OrederInfo>>() {
+            List<OrederInfo>  list= gson.fromJson(gson.toJson(response.getResult()),new TypeToken<List<OrederInfo>>() {
             }.getType());
             mView.setOrderInfo(list);
             break;

@@ -57,7 +57,6 @@ public class FarmerDriverDetialActivity extends MVPBaseActivity<FarmerDriverDeti
         tvCommit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //请求预约机手接口   文档7接口对应
                 mPresenter.getFarmerOreder();
             }
         });

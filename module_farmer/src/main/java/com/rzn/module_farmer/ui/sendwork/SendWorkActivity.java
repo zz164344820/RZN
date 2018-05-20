@@ -117,7 +117,7 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
                             etDetialAddress.getText().toString().trim(), etDetial.getText().toString().trim(), "1", "1", "1", "1", "1", "1"
                     );
                 } else {
-//                    Toast.makeText(this, "send", Toast.LENGTH_LONG).show();
+                   ToastUtils.showShort("请完善作业信息!");
                 }
 
 
