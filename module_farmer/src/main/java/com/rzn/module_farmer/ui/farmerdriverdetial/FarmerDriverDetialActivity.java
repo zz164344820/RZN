@@ -86,6 +86,26 @@ public class FarmerDriverDetialActivity extends MVPBaseActivity<FarmerDriverDeti
     @Override
     public void driverMessageSuccess(DriverDetialMessageBean driverDetialMessageBean) {
 
+        //給布局赋值
+        showViewData(driverDetialMessageBean);
+
+
+    }
+
+    private void showViewData(DriverDetialMessageBean driverDetialMessageBean) {
+        tvName.setText(driverDetialMessageBean.getName());
+        tvContent.setText("从业" + driverDetialMessageBean.getYears() + "年" + "    " + driverDetialMessageBean.getBirthday().substring(2, 2) + "后");
+        tvText.setText("从业" + driverDetialMessageBean.getYears() + "年神勇老司机" + ",神勇无敌!");
+        tvContentOne.setText("llllll");
+        tvContentTwo.setText("ssssss");
+        tvPrice.setText("元/亩");
+        tvTitle.setText("");
+        tvAddress.setText(driverDetialMessageBean.getJsonArrayTaskPlace().get(0).getProvinceName() + driverDetialMessageBean.getJsonArrayTaskPlace().get(0).getCityName()
+                + driverDetialMessageBean.getJsonArrayTaskPlace().get(0).getAreaName() + "");
+        tvAddressTwo.setText(driverDetialMessageBean.getJsonArrayTaskPlace().get(1).getProvinceName() + driverDetialMessageBean.getJsonArrayTaskPlace().get(0).getCityName() +
+                driverDetialMessageBean.getJsonArrayTaskPlace().get(0).getAreaName() + "");
+        tvTime.setText(driverDetialMessageBean.getCreateTimeInfo());
+        tvMessage.setText(driverDetialMessageBean.getRemark());
     }
 
 
