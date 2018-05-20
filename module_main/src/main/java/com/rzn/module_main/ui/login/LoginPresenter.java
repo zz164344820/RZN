@@ -3,6 +3,7 @@ package com.rzn.module_main.ui.login;
 import android.widget.Toast;
 
 import com.blankj.utilcode.util.EncryptUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.BasePresenterImpl;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
@@ -34,6 +35,14 @@ public class LoginPresenter extends BasePresenterImpl<LoginContract.View> implem
         reqData(mContext, "farmHand/user/userRegister", map, 111);
     }
 
+    @Override
+    public void getAuthCode(String phone) {
+        mView.showLoading(false, "");
+        Map<String, String> map = new HashMap<>();
+        map.put("phone", phone);
+        reqData(mContext, "farmHand/user/getCode", map, 112);
+    }
+
 
     @Override
     public void httpRequestResult(ResponseBean response, int requestId) {
@@ -44,11 +53,11 @@ public class LoginPresenter extends BasePresenterImpl<LoginContract.View> implem
                 LoginResponseBean loginResponseBean = GsonUtils.gsonParseBean(gson, response.getResult(), LoginResponseBean.class);
                 //将数据进行保存
                 FileSaveUtils.fileSaveObject(loginResponseBean, "loginBean");
-                //将数据取出的方法
-//                FileSaveUtils.readObject("loginBean");
                 //登录成功回调
                 mView.loginSuccess();
-
+                break;
+            case 112:
+                ToastUtils.showShort("短信验证码下发成功!");
                 break;
         }
 

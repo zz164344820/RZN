@@ -4,19 +4,18 @@ package com.rzn.module_main.ui.login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.rzn.commonbaselib.bean.LoginResponseBean;
+import com.alibaba.android.arouter.utils.TextUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
-import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.module_main.R;
 import com.rzn.module_main.R2;
-import com.rzn.module_main.ui.jobscreening.JobScreeningActivity;
 import com.rzn.module_main.ui.main.MainActivity;
 
 import butterknife.BindView;
@@ -54,17 +53,29 @@ public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPres
 
     }
 
-
-    @OnClick(R2.id.bt_affirm)
-    public void onViewClicked() {
-        mPresenter.login("18888888888", "1234");
-        /*if (!TextUtils.isEmpty(edPhoneNum.getText().toString()) && !TextUtils.isEmpty(edAuthCode.getText().toString())) {
-            if (btAffirm.isClickable()) {
-                mPresenter.login(edPhoneNum.getText().toString(), edAuthCode.getText().toString());
-            } else {
-                Toast.makeText(this, "请同意协议后在录", Toast.LENGTH_SHORT).show();
+    @Override
+    public void initView() {
+        super.initView();
+        tvGetAuthCode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPresenter.getAuthCode(edPhoneNum.getText().toString());
             }
-        }*/
+        });
+        btAffirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               // mPresenter.login("18810050361", "7859");
+                if (!TextUtils.isEmpty(edPhoneNum.getText().toString()) && !TextUtils.isEmpty(edAuthCode.getText().toString())) {
+                    if (btAffirm.isClickable()) {
+                        mPresenter.login(edPhoneNum.getText().toString(), edAuthCode.getText().toString());
+                    } else {
+                        ToastUtils.showShort("请同意协议后在录");
+                    }
+                }
+            }
+        });
+
     }
 
     /**
@@ -75,6 +86,4 @@ public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPres
         startActivity(new Intent(this, MainActivity.class));
         finish();
     }
-
-
 }
