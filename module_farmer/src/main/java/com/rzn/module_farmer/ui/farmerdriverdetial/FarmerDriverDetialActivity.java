@@ -49,7 +49,7 @@ public class FarmerDriverDetialActivity extends MVPBaseActivity<FarmerDriverDeti
     }
 
     private void initData() {
-        String  driverId =  getIntent().getStringExtra("driverId");
+        String driverId = getIntent().getStringExtra("driverId");
         mPresenter.httpDriverMessage(driverId);
     }
 
@@ -59,7 +59,9 @@ public class FarmerDriverDetialActivity extends MVPBaseActivity<FarmerDriverDeti
             public void onClick(View view) {
                 //请求预约机手接口   文档7接口对应
                 mPresenter.getFarmerOreder();
-               // mPresenter.httpAppointmentDriver("需求作业订单id", "40289f6c6247d1a4016247d400d46660");
+
+
+                // mPresenter.httpAppointmentDriver("需求作业订单id", "40289f6c6247d1a4016247d400d46660");
             }
         });
     }
@@ -88,6 +90,26 @@ public class FarmerDriverDetialActivity extends MVPBaseActivity<FarmerDriverDeti
     @Override
     public void driverMessageSuccess(DriverDetialMessageBean driverDetialMessageBean) {
 
+        //給布局赋值
+        showViewData(driverDetialMessageBean);
+
+
+    }
+
+    private void showViewData(DriverDetialMessageBean driverDetialMessageBean) {
+        tvName.setText(driverDetialMessageBean.getName());
+        tvContent.setText("从业" + driverDetialMessageBean.getYears() + "年" + "    " + driverDetialMessageBean.getBirthday().substring(2, 2) + "后");
+        tvText.setText("从业" + driverDetialMessageBean.getYears() + "年神勇老司机" + ",神勇无敌!");
+        tvContentOne.setText("llllll");
+        tvContentTwo.setText("ssssss");
+        tvPrice.setText("元/亩");
+        tvTitle.setText("");
+        tvAddress.setText(driverDetialMessageBean.getJsonArrayTaskPlace().get(0).getProvinceName() + driverDetialMessageBean.getJsonArrayTaskPlace().get(0).getCityName()
+                + driverDetialMessageBean.getJsonArrayTaskPlace().get(0).getAreaName() + "");
+        tvAddressTwo.setText(driverDetialMessageBean.getJsonArrayTaskPlace().get(1).getProvinceName() + driverDetialMessageBean.getJsonArrayTaskPlace().get(0).getCityName() +
+                driverDetialMessageBean.getJsonArrayTaskPlace().get(0).getAreaName() + "");
+        tvTime.setText(driverDetialMessageBean.getCreateTimeInfo());
+        tvMessage.setText(driverDetialMessageBean.getRemark());
     }
 
     //获取机手信息失败
@@ -99,7 +121,7 @@ public class FarmerDriverDetialActivity extends MVPBaseActivity<FarmerDriverDeti
     @Override
     public void appointmentSuccess() {
         //跳转到确认预约界面
-       // startActivity( new Intent(this ,));
+        // startActivity( new Intent(this ,));
     }
 
     @Override
