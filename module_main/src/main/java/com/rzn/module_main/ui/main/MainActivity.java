@@ -49,6 +49,7 @@ public class MainActivity extends MVPBaseActivity<MainContract.View, MainPresent
         rbHomepage.setChecked(true);
         viewpager.setCurrentItem(0);
         mPresenter.initViewPager(viewpager);
+        mPresenter.initRadioGroup(rgBottom);
 
     }
 
