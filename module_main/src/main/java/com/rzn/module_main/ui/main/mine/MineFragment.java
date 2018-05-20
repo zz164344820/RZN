@@ -1,15 +1,20 @@
 package com.rzn.module_main.ui.main.mine;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
 import com.rzn.module_main.R;
+import com.rzn.module_main.ui.driverhome.DriverHomeActivity;
+import com.rzn.module_main.ui.myadvice.MyAdviceActivity;
+import com.rzn.module_main.ui.setting.SettingActivity;
 
 import io.reactivex.internal.operators.observable.ObservableNever;
 
@@ -39,7 +44,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         llAdvice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(mContext, MyAdviceActivity.class));
             }
         });
 
@@ -47,7 +52,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         llMyCollection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Toast.makeText(mContext, "暂未开通", Toast.LENGTH_LONG).show();
             }
         });
         llMyWork.setOnClickListener(new View.OnClickListener() {
@@ -59,12 +64,14 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         llPhoneConcel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(new Intent(mContext, DriverHomeActivity.class));
 
             }
         });
         llSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(new Intent(mContext, SettingActivity.class));
 
             }
         });

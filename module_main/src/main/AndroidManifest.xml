@@ -3,10 +3,10 @@
 
     package="com.rzn.module_main">
 
-    <application android:allowBackup="true"
+    <application
+        android:allowBackup="true"
         android:label="@string/app_name"
-        android:supportsRtl="true"
-        >
+        android:supportsRtl="true">
 
         <activity
             android:name=".ui.login.LoginActivity"
@@ -18,8 +18,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.main.MainActivity"/>
-        <activity android:name=".ui.jobscreening.JobScreeningActivity"/>
+        <activity android:name=".ui.main.MainActivity" />
+        <activity android:name=".ui.jobscreening.JobScreeningActivity" />
+        <activity android:name=".ui.myadvice.MyAdviceActivity" />
+        <activity android:name=".ui.driverhome.DriverHomeActivity" />
+        <activity android:name=".ui.setting.SettingActivity" />
 
     </application>
 

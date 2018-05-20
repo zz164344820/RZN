@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/topbar" />
+
+    <com.rzn.commonbaselib.views.AutoRadioGroup
+        android:id="@+id/rgGroup"
+        android:layout_width="match_parent"
+        android:layout_height="83px"
+        android:layout_marginBottom="17px"
+        android:layout_marginLeft="109px"
+        android:layout_marginRight="109px"
+        android:layout_marginTop="17px"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_rarmer"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/main_selector_left"
+            android:button="@android:color/transparent"
+            android:checked="true"
+            android:gravity="center"
+            android:text="热门文章"
+            android:textColor="@drawable/main_tab_text_select"
+            android:textSize="36px" />
+
+        <RadioButton
+            android:id="@+id/rb_driver"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/main_selector_right"
+            android:button="@android:color/transparent"
+            android:gravity="center"
+            android:text="农业资讯"
+            android:textColor="@drawable/main_tab_text_select"
+            android:textSize="36px" />
+
+    </com.rzn.commonbaselib.views.AutoRadioGroup>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rc_work_List"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none" />
+
+</LinearLayout>
