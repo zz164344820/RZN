@@ -17,5 +17,6 @@ public class LoginContract {
 
     interface  Presenter extends BasePresenter<View> {
         void login(String phone ,String code);
+        void getAuthCode(String phone);
     }
 }
