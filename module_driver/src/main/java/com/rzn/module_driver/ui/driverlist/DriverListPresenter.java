@@ -66,7 +66,7 @@ public class DriverListPresenter extends BasePresenterImpl<DriverListContract.Vi
                 Map<String,String> map = new HashMap<>();
                 LoginResponseBean  bean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
                 map.put("handlerId",bean.getHandlerId());
-                map.put("farmerTaskId",list.get(position).getFarmerTaskId());
+                map.put("farmerTaskId",list.get(position).getId());
                 reqData(mContext,"farmHand/handler/grabTask",map ,166);
             }
         });

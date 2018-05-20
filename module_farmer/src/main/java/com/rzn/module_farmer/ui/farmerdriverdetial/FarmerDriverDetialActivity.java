@@ -49,7 +49,7 @@ public class FarmerDriverDetialActivity extends MVPBaseActivity<FarmerDriverDeti
     }
 
     private void initData() {
-        String driverId = getIntent().getStringExtra("driverId");
+        String  driverId =  getIntent().getStringExtra("handlerId");
         mPresenter.httpDriverMessage(driverId);
     }
 
@@ -57,11 +57,7 @@ public class FarmerDriverDetialActivity extends MVPBaseActivity<FarmerDriverDeti
         tvCommit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //请求预约机手接口   文档7接口对应
                 mPresenter.getFarmerOreder();
-
-
-                // mPresenter.httpAppointmentDriver("需求作业订单id", "40289f6c6247d1a4016247d400d46660");
             }
         });
     }
@@ -112,20 +108,13 @@ public class FarmerDriverDetialActivity extends MVPBaseActivity<FarmerDriverDeti
         tvMessage.setText(driverDetialMessageBean.getRemark());
     }
 
-    //获取机手信息失败
-    @Override
-    public void driverMessageFailed() {
 
-    }
 
     @Override
     public void appointmentSuccess() {
         //跳转到确认预约界面
-        // startActivity( new Intent(this ,));
+       // startActivity( new Intent(this ,));
     }
 
-    @Override
-    public void appointmentFailed() {
 
-    }
 }

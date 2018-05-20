@@ -1,9 +1,11 @@
 package com.rzn.module_driver.ui.driverordermessage;
 
 
+import com.google.gson.reflect.TypeToken;
 import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.BasePresenterImpl;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
+import com.rzn.commonbaselib.utils.GsonParseUtils;
 import com.rzn.commonbaselib.utils.GsonUtils;
 import com.rzn.module_driver.ui.bean.OrederInfo;
 import com.zyhealth.expertlib.bean.ResponseBean;
@@ -46,7 +48,8 @@ public class DriverOrderMessagePresenter extends BasePresenterImpl<DriverOrderMe
         super.httpRequestResult(response, requestId);
         switch (requestId){
             case 119:
-            List<OrederInfo>  list =  GsonUtils.gsonParseList(gson,response.getResult());
+            List<OrederInfo>  list= gson.fromJson(gson.toJson(response.getResult()),new TypeToken<List<OrederInfo>>() {
+            }.getType());
             mView.setOrderInfo(list);
             break;
             case 111:

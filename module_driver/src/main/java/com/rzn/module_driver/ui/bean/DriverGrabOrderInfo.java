@@ -27,7 +27,6 @@ public class DriverGrabOrderInfo {
     private String    types;//小麦-小麦打捆",
     private String     unit_price;// 20,
     private String    user_id;//40288ad75c81124b015c8132bfe8000f"
-    private String    farmerTaskId;//40288ad75c81124b015c8132bfe8000f"
 
 
     public String getArea_code() {
@@ -198,11 +197,4 @@ public class DriverGrabOrderInfo {
         this.user_id = user_id;
     }
 
-    public String getFarmerTaskId() {
-        return farmerTaskId;
-    }
-
-    public void setFarmerTaskId(String farmerTaskId) {
-        this.farmerTaskId = farmerTaskId;
-    }
 }
