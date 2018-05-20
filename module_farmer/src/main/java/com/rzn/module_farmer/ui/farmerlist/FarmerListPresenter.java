@@ -41,11 +41,8 @@ public class FarmerListPresenter extends BasePresenterImpl<FarmerListContract.Vi
         super.httpRequestResult(response, requestId);
         switch (requestId) {
             case 111:
-//                List<FarmerDriverMessageBean> list= (List<FarmerDriverMessageBean>) response.getResult();
-
                 Type type = new TypeToken<List<FarmerDriverMessageBean>>(){}.getType();
                 List<FarmerDriverMessageBean> list= gson.fromJson(gson.toJson(response.getResult()), type);
-//               List<FarmerDriverMessageBean> list = GsonUtils.stringToArray((String)response.getResult(),FarmerDriverMessageBean[].class);
                 mView.loadDriverMessageSuccessed(list);
                 break;
 

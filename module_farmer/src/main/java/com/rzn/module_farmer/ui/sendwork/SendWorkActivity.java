@@ -191,10 +191,6 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
         tvPrice = (EditText) findViewById(R.id.tv_price);//作业价格
         etDetial = (EditText) findViewById(R.id.et_detial);//想对机手说些什么
         tvConfim = (TextView) findViewById(R.id.tv_confim);//确认发布
-
-
-        //登录保存的信息
-//        loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
     }
 
     /**
@@ -205,7 +201,6 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
         //发布订单成功
         startActivity(new Intent(this, SendWorkSuccessActivity.class));
         finish();
-//        Toast.makeText(this, "send", Toast.LENGTH_LONG).show();
     }
 
 

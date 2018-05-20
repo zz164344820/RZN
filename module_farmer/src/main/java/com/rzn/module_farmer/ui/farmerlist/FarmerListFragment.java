@@ -17,7 +17,9 @@ import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
+import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.module_farmer.R;
 import com.rzn.module_farmer.bean.FarmerDriverMessageBean;
 import com.rzn.module_farmer.ui.farmerdriverdetial.FarmerDriverDetialActivity;
@@ -61,6 +63,8 @@ public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View,
      * 初始化网络数据
      */
     private void initData() {//40288ad75c81124b015c8132bfe8000f//40289e9362bd29870162bd2b809c0002
+        LoginResponseBean loginResponseBean= (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+       // mPresenter.httpLoadDriverMessage(loginResponseBean.getUserId(), "1", "340403", "1666");
         mPresenter.httpLoadDriverMessage("40288ad75c81124b015c8132bfe8000f", "1", "340403", "1666");
     }
 
@@ -89,7 +93,7 @@ public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View,
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 Intent intent  = new Intent(getContext(),FarmerDriverDetialActivity.class);
-                intent.putExtra("driverId",list.get(position).getHandlerId());
+                intent.putExtra("handlerId",list.get(position).getHandlerId());
                 startActivity(intent);
             }
         });

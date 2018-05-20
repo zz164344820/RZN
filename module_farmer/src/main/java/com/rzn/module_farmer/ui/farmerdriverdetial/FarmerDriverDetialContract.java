@@ -15,21 +15,16 @@ public class FarmerDriverDetialContract {
         //获取机手信息成功
         void driverMessageSuccess(DriverDetialMessageBean driverDetialMessageBean);
 
-        //获取机手信息失败
-        void driverMessageFailed();
 
 
         //预约机手成功
         void appointmentSuccess();
 
-        //预约机手失败
-        void appointmentFailed();
+
 
     }
 
     interface Presenter extends BasePresenter<View> {
-        //预约机手
-        void httpAppointmentDriver(String farmerTaskId, String handlerId);
 
         //获取机手信息成功
         void httpDriverMessage(String handlerId);

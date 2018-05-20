@@ -12,6 +12,7 @@ import com.rzn.module_farmer.R;
 import com.rzn.module_farmer.bean.AppointmentDriverBean;
 import com.rzn.module_farmer.bean.DriverDetialMessageBean;
 import com.rzn.module_farmer.bean.IsHasSendPostOreder;
+import com.rzn.module_farmer.ui.selectaddress.SelectAddressActivity;
 import com.rzn.module_farmer.ui.sendwork.SendWorkActivity;
 import com.zyhealth.expertlib.bean.ResponseBean;
 
@@ -25,28 +26,21 @@ import java.util.Map;
  */
 
 public class FarmerDriverDetialPresenter extends BasePresenterImpl<FarmerDriverDetialContract.View> implements FarmerDriverDetialContract.Presenter {
+   private  String  handlerId;
+
     @Override
     public void onCreate() {
         super.onCreate();
         StatusBarUtil.setTransparent(mContext);
     }
 
-    //预约机手
-    @Override
-    public void httpAppointmentDriver(String farmerTaskId, String handlerId) {
-
-        Map<String, String> map = new HashMap<>();
-        map.put("farmerTaskId", farmerTaskId);
-        map.put("handlerId", handlerId);
-        reqData(mContext, "farmHand/farmerTask/confirmAppoint", map, 111);
-
-    }
 
     //获取机手信息
     @Override
     public void httpDriverMessage(String handlerId) {
         Map<String, String> map = new HashMap<>();
         map.put("handlerId", handlerId);
+        this.handlerId =handlerId;
         reqData(mContext, "farmHand/handler/queryhandlerInfo", map, 222);
     }
 
@@ -76,11 +70,15 @@ public class FarmerDriverDetialPresenter extends BasePresenterImpl<FarmerDriverD
             case  123:
                 IsHasSendPostOreder  isHasSendPostOreder = GsonUtils.gsonParseBean(gson,response.getResult(), IsHasSendPostOreder.class);
                 if("ture".equals(isHasSendPostOreder.getFlag())){
-
                     //跳转道有农民发布的列表页面
+                    Intent intent = new Intent(mContext, SelectAddressActivity.class);
+                    intent.putExtra("handlerId",handlerId);
+                    mContext.startActivity(intent);
                 }else{
                    //todo 跳转发布信息页面
-                    mContext.startActivity(new Intent(mContext, SendWorkActivity.class));
+                    Intent intent = new Intent(mContext, SendWorkActivity.class);
+                    intent.putExtra("handlerId",handlerId);
+                    mContext.startActivity(intent);
                 }
 
         }

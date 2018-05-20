@@ -64,7 +64,6 @@ public class SendWorkPresenter extends BasePresenterImpl<SendWorkContract.View> 
         map.put("cityCode", cityCode);
         map.put("areaName", areaName);
         map.put("areaCode", areaCode);
-
         reqData(mContext, "farmHand/farmerTask/updateSaveTaskToF", map, 111);
     }
 
@@ -77,16 +76,6 @@ public class SendWorkPresenter extends BasePresenterImpl<SendWorkContract.View> 
                 mView.sendSuccess(sendWorkBean);
                 break;
             case 222:
-
-//                List<WorkTypeBean> list1 = GsonUtils.gsonParseList(gson, response.getResult());
-//                WorkTypeBean workTypeBean=list1.get(0);
-//                List<WorkTypeObjBean> list = workTypeBean.getTypeArray();
-//                List<WorkTypeObjBean> list = GsonUtils.gsonParseList(gson, list1);
-//                WorkTypeObjBean workTypeObjBean = GsonUtils.gsonParseBean(gson, list.get(0), WorkTypeObjBean.class);
-//                WorkTypeBean workTypeBean = GsonUtils.gsonParseBean(gson, response.getResult(),WorkTypeBean.class);
-
-
-
                 Type type = new TypeToken<List<WorkTypeBean>>(){}.getType();
                 List<WorkTypeBean> list= gson.fromJson(gson.toJson(response.getResult()), type);
                 mView.getWorkTypeSuccess(list);

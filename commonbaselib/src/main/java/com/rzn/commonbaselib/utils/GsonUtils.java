@@ -33,11 +33,10 @@ public class GsonUtils {
      * gson解析集合
      * 根据泛型返回解析制定的类型
      */
-    public static <T> T gsonParseList(Gson gson,Object obj){
+    public static <T> T gsonParseList(Gson gson,Object obj,Class<T> Class){
 
-        Type type = new TypeToken<T>(){}.getType();
-
-        return gson.fromJson(gson.toJson(obj), type);
+         Type type = new TypeToken<List<Class>>(){}.getType();
+          return gson.fromJson(gson.toJson(obj), type);
     }
 
     public static <T> List<T> stringToArray(String s, Class<T[]> clazz) {
