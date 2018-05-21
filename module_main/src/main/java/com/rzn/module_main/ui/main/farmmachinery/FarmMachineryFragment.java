@@ -3,6 +3,7 @@ package com.rzn.module_main.ui.main.farmmachinery;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,9 @@ import android.view.ViewGroup;
 
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
 import com.rzn.module_main.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * MVPPlugin
@@ -31,6 +35,17 @@ public class FarmMachineryFragment extends MVPBaseFragment<FarmMachineryContract
 
     private void initViews() {
         rcWorkList = (RecyclerView) rootView.findViewById(R.id.rc_work_List);
+
+
+        rcWorkList.setLayoutManager(new LinearLayoutManager(getActivity()));
+        List<String> s = new ArrayList<>();
+        s.add("1");
+        s.add("1");
+        s.add("1");
+        s.add("1");
+        s.add("1");
+        FarmMachineryAdapter farmMachineryAdapter = new FarmMachineryAdapter(R.layout.item_farm_machinery, s);
+        rcWorkList.setAdapter(farmMachineryAdapter);
 
     }
 }

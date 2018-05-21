@@ -23,6 +23,7 @@
         <activity android:name=".ui.myadvice.MyAdviceActivity" />
         <activity android:name=".ui.driverhome.DriverHomeActivity" />
         <activity android:name=".ui.setting.SettingActivity" />
+        <activity android:name=".ui.keepstation.KeepStationActivity" />
 
     </application>
 

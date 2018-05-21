@@ -7,10 +7,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="140dp"
-        android:background="#ffffff"
-        android:orientation="horizontal"
         android:layout_marginBottom="10dp"
-        >
+        android:background="#ffffff"
+        android:orientation="horizontal">
 
         <ImageView
             android:layout_width="110dp"
@@ -29,27 +28,23 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
-                android:text="红富士 基地直发 隔天..."
+                android:text="大力实施乡村振兴战略..."
                 android:textColor="#ff333333"
                 android:textSize="18dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
                 android:layout_marginLeft="10dp"
-
+                android:layout_marginTop="15dp"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:src="@drawable/icon_address_photo" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="山东烟台某个山头"
+                    android:maxLines="2"
+                    android:text="1月15日，河北省农村工作会议在石家庄举行。会议强调，要坚持以习近平新时…"
                     android:textColor="#ff888888"
                     android:textSize="16dp" />
 
@@ -60,23 +55,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
+               android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="70.00元/箱"
-                    android:textColor="#ffff5050"
+                    android:text="2015-02-18  18:00"
+                    android:textColor="#888888"
                     android:textSize="18dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="70dp"
-                    android:text="3小时前"
-                    android:textColor="#ff888888"
-                    android:textSize="14dp" />
+                <ImageView
+                    android:layout_marginLeft="50dp"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp" />
 
             </LinearLayout>
         </LinearLayout>

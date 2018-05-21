@@ -13,6 +13,7 @@ import com.rzn.module_main.R2;
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
 import com.rzn.module_main.R;
 import com.rzn.module_main.ui.jobscreening.JobScreeningActivity;
+import com.rzn.module_main.ui.keepstation.KeepStationActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,13 +30,29 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
     @BindView(R2.id.tv_main_address)
     TextView tvMainAddress;
     Unbinder unbinder;
+    private TextView tvMainWeixiuzhan;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.main_fragment_home, container, false);
         unbinder = ButterKnife.bind(this, rootView);
+        initViews();
+        initListener();
         return rootView;
+    }
+
+    private void initListener() {
+        tvMainWeixiuzhan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(mContext, KeepStationActivity.class));
+            }
+        });
+    }
+
+    private void initViews() {
+        tvMainWeixiuzhan = (TextView) rootView.findViewById(R.id.tv_main_weixiuzhan);
     }
 
 
