@@ -15,6 +15,7 @@ import com.rzn.module_main.ui.main.shopping.ShoppingFragment;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
  * MVPPlugin
  *  邮箱 784787081@qq.com
@@ -27,6 +28,7 @@ public class MainPresenter extends BasePresenterImpl<MainContract.View> implemen
     public void onCreate() {
         initFragment();
         super.onCreate();
+       // AddressUtils.CreateDBData(mContext, "address.json");
     }
 
     private void initFragment() {

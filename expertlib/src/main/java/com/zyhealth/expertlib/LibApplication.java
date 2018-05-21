@@ -18,6 +18,8 @@ import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zyhealth.expertlib.utils.MLog;
 
+import org.litepal.LitePalApplication;
+
 import java.util.Stack;
 import java.util.concurrent.TimeUnit;
 
@@ -33,7 +35,7 @@ import okhttp3.OkHttpClient;
  * Created by zz on 2017/4/6.
  */
 
-public class LibApplication extends Application {
+public class LibApplication extends LitePalApplication {
     public static LibApplication instance;
     public static Stack<Activity> mActivityStack = new Stack<Activity>();
     public static Handler mMainThreadHanler;

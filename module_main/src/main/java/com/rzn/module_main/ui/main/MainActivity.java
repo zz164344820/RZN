@@ -13,10 +13,13 @@ import com.rzn.commonbaselib.views.AutoRadioGroup;
 import com.rzn.commonbaselib.views.NosrollViewPager;
 import com.rzn.module_main.R;
 import com.rzn.module_main.R2;
+import com.rzn.module_main.ui.login.LoginActivity;
 import com.zyhealth.expertlib.utils.MLog;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import chihane.jdaddressselector.AddressUtils;
+import chihane.jdaddressselector.BottomDialog;
 
 
 /**
@@ -40,6 +43,10 @@ public class MainActivity extends MVPBaseActivity<MainContract.View, MainPresent
         setContentView(R.layout.main_act_main);
         ButterKnife.bind(this);
         mPresenter.onCreate();
+        AddressUtils.CreateDBData(this, "address.json");
+      /*  BottomDialog dialog = new BottomDialog(LoginActivity.this);
+        dialog.setOnAddressSelectedListener(this);
+        dialog.show();*/
     }
 
 

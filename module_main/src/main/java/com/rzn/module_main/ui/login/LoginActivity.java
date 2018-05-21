@@ -21,6 +21,13 @@ import com.rzn.module_main.ui.main.MainActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import chihane.jdaddressselector.AddressUtils;
+import chihane.jdaddressselector.BottomDialog;
+import chihane.jdaddressselector.OnAddressSelectedListener;
+import chihane.jdaddressselector.model.City;
+import chihane.jdaddressselector.model.County;
+import chihane.jdaddressselector.model.Province;
+import chihane.jdaddressselector.model.Street;
 import cn.jpush.android.api.JPushInterface;
 
 
@@ -29,7 +36,7 @@ import cn.jpush.android.api.JPushInterface;
  * 邮箱 784787081@qq.com
  */
 
-public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPresenter> implements LoginContract.View {
+public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPresenter> implements LoginContract.View ,OnAddressSelectedListener {
 
 
     @BindView(R2.id.ed_phoneNum)
@@ -40,7 +47,6 @@ public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPres
     TextView tvGetAuthCode;
     @BindView(R2.id.bt_affirm)
     Button btAffirm;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +65,7 @@ public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPres
         tvGetAuthCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mPresenter.getAuthCode(edPhoneNum.getText().toString());
+              mPresenter.getAuthCode(edPhoneNum.getText().toString());
             }
         });
         btAffirm.setOnClickListener(new View.OnClickListener() {
@@ -85,5 +91,10 @@ public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPres
     public void loginSuccess() {
         startActivity(new Intent(this, MainActivity.class));
         finish();
+    }
+
+    @Override
+    public void onAddressSelected(Province province, City city, County county, Street street) {
+        ToastUtils.showShort(province.getName()+"---"+county.getName()+"---"+county.getName());
     }
 }
