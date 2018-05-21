@@ -9,6 +9,10 @@ import com.rzn.module_farmer.bean.WorkTypeObjBean;
 
 import java.util.List;
 
+import chihane.jdaddressselector.model.City;
+import chihane.jdaddressselector.model.County;
+import chihane.jdaddressselector.model.Province;
+
 /**
  * MVPPlugin
  * 邮箱 784787081@qq.com
@@ -28,7 +32,7 @@ public class SendWorkContract {
 
         void httpSendWork(String userId, String farmerTaskId, String name, String mobile, String address,
                           String kind, String kindType, String kindTypeId, String unitPrice, String areas, String flag, String flagNum,
-                          String startDate, String endDate, String taskPlace, String remark, String provinceName, String provinceCode,
-                          String cityName, String cityCode, String areaName, String areaCode);
+                          String startDate, String endDate, String taskPlace, String remark, Province province,City city ,County county
+                          );
     }
 }

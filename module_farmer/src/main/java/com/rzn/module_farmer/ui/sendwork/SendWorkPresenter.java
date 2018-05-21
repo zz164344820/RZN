@@ -15,6 +15,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import chihane.jdaddressselector.model.City;
+import chihane.jdaddressselector.model.County;
+import chihane.jdaddressselector.model.Province;
+
 /**
  * MVPPlugin
  * 邮箱 784787081@qq.com
@@ -36,8 +40,7 @@ public class SendWorkPresenter extends BasePresenterImpl<SendWorkContract.View> 
     @Override
     public void httpSendWork(String userId, String farmerTaskId, String name, String mobile, String address,
                              String kind, String kindType, String kindTypeId, String unitPrice, String areas, String flag, String flagNum,
-                             String startDate, String endDate, String taskPlace, String remark, String provinceName, String provinceCode,
-                             String cityName, String cityCode, String areaName, String areaCode
+                             String startDate, String endDate, String taskPlace, String remark, Province province,City city,County county
     ) {
         //请求提交发布作业接口
         mView.showLoading(false, "");
@@ -58,12 +61,12 @@ public class SendWorkPresenter extends BasePresenterImpl<SendWorkContract.View> 
         map.put("endDate", endDate);
         map.put("taskPlace", taskPlace);
         map.put("remark", remark);
-        map.put("provinceName", provinceName);
-        map.put("provinceCode", provinceCode);
-        map.put("cityName", cityName);
-        map.put("cityCode", cityCode);
-        map.put("areaName", areaName);
-        map.put("areaCode", areaCode);
+        map.put("provinceName", province.getName());
+        map.put("provinceCode", province.getId()+"");
+        map.put("cityName", city.getName());
+        map.put("cityCode", city.getId()+"");
+        map.put("areaName", county.getName());
+        map.put("areaCode", county.getId()+"");
         reqData(mContext, "farmHand/farmerTask/updateSaveTaskToF", map, 111);
     }
 

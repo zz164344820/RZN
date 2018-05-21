@@ -23,24 +23,35 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import chihane.jdaddressselector.BottomDialog;
+import chihane.jdaddressselector.OnAddressSelectedListener;
+import chihane.jdaddressselector.model.City;
+import chihane.jdaddressselector.model.County;
+import chihane.jdaddressselector.model.Province;
+import chihane.jdaddressselector.model.Street;
+
 
 /**
  * MVPPlugin
  * 邮箱 784787081@qq.com
  */
 
-public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessageContract.View, DriverOrderMessagePresenter> implements DriverOrderMessageContract.View {
+public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessageContract.View, DriverOrderMessagePresenter> implements DriverOrderMessageContract.View ,OnAddressSelectedListener {
 
     private TextView tvStartPost;
     private RadioButton rbOne;
     private RadioButton rbTwo;
     private RadioButton rbThree;
-    private EditText etAddress;
+    private TextView tv_address;
     private LinearLayout llMoreAddress;
     private TextView tvTimeStart;
     private TextView tvTimeEnd;
     private LinearLayout llMoreTime;
     private Calendar showDate = Calendar.getInstance();   //初始化时间选择器
+    BottomDialog bottomDialog;
+    Province province;
+    City city;
+    County county;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,12 +60,19 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
         initViews();
         initListener();
         mPresenter.onCreate();
-//        showLoading(false,"");
 
     }
 
 
     private void initListener() {
+
+        tv_address.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         tvStartPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -131,7 +149,7 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
         rbOne = (RadioButton) findViewById(R.id.rb_one);
         rbTwo = (RadioButton) findViewById(R.id.rb_two);
         rbThree = (RadioButton) findViewById(R.id.rb_three);
-        etAddress = (EditText) findViewById(R.id.et_address);
+        tv_address = (TextView) findViewById(R.id.tv_address);
         llMoreAddress = (LinearLayout) findViewById(R.id.ll_more_address);
         tvTimeStart = (TextView) findViewById(R.id.tv_time_start);
         tvTimeEnd = (TextView) findViewById(R.id.tv_time_end);
@@ -140,6 +158,8 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
         rbOne.setVisibility(View.GONE);
         rbTwo.setVisibility(View.GONE);
         rbThree.setVisibility(View.GONE);
+        bottomDialog = new BottomDialog(this);
+        bottomDialog.setOnAddressSelectedListener(this);
 
 
     }
@@ -161,5 +181,15 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
             rbTwo.setVisibility(View.GONE);
             rbThree.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    public void onAddressSelected(Province province, City city, County county, Street street) {
+        this.province = province;
+        this.city=city;
+        this.county =county;
+        tv_address.setText(province.getName()+"  "+city.getName()+"  "+county.getName());
+        bottomDialog.dismiss();
+
     }
 }

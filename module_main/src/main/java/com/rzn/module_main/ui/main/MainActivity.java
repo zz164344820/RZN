@@ -44,9 +44,6 @@ public class MainActivity extends MVPBaseActivity<MainContract.View, MainPresent
         ButterKnife.bind(this);
         mPresenter.onCreate();
         AddressUtils.CreateDBData(this, "address.json");
-      /*  BottomDialog dialog = new BottomDialog(LoginActivity.this);
-        dialog.setOnAddressSelectedListener(this);
-        dialog.show();*/
     }
 
 

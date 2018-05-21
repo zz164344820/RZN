@@ -99,8 +99,8 @@
                     android:textSize="18dp" />
             </LinearLayout>
 
-            <EditText
-                android:id="@+id/et_address"
+            <TextView
+                android:id="@+id/tv_address"
                 android:layout_width="318.5dp"
                 android:layout_height="37dp"
                 android:layout_marginLeft="34dp"
