@@ -11,10 +11,10 @@ import com.rzn.commonbaselib.mvp.BaseView;
 
 public class SelectAddressContract {
     interface View extends BaseView {
-        
     }
 
     interface  Presenter extends BasePresenter<View> {
-        
+
+        void affirmAppointment(String farmerTaskId,String handlerId);
     }
 }

@@ -10,6 +10,7 @@
         <activity android:name=".ui.sendwork.SendWorkActivity" />
         <activity android:name=".ui.farmerdriverdetial.FarmerDriverDetialActivity" />
         <activity android:name=".ui.sendworksuccess.SendWorkSuccessActivity" />
+        <activity android:name=".ui.selectaddress.SelectAddressActivity" />
     </application>
 
 </manifest>

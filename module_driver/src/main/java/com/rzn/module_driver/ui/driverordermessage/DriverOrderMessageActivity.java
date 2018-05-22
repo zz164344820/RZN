@@ -14,10 +14,13 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
+import com.rzn.commonbaselib.utils.GsonParseUtils;
 import com.rzn.module_driver.R;
 import com.rzn.module_driver.ui.bean.OrederInfo;
+import com.rzn.module_driver.ui.bean.PlaceBean;
 import com.zyhealth.expertlib.utils.MLog;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -69,7 +72,7 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
         tv_address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                bottomDialog.show();
             }
         });
 
@@ -77,6 +80,9 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
             @Override
             public void onClick(View view) {
                 Map<String, String> map = new HashMap<>();
+                List<PlaceBean>  list= setPlaceList();
+                map.put("taskPlaceDetail",GsonParseUtils.GsonString(list));
+
                 mPresenter.supplementOrderInfo(map);
             }
         });
@@ -125,6 +131,19 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
             }
         });
 
+    }
+
+    private List<PlaceBean> setPlaceList() {
+        List<PlaceBean> list = new ArrayList<>() ;
+        PlaceBean placeBean = new PlaceBean();
+        placeBean.setProvinceCode(province.getId()+"");
+        placeBean.setProvinceName(province.getName());
+        placeBean.setCityCode(city.getId()+"");
+        placeBean.setCityName(city.getName());
+        placeBean.setAreaCode(county.getId()+"");
+        placeBean.setAreaName(county.getName());
+        list.add(placeBean);
+        return  list;
     }
 
     private void showDateDialog(final int tab) {

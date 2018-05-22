@@ -69,7 +69,7 @@ public class FarmerDriverDetialPresenter extends BasePresenterImpl<FarmerDriverD
 
             case  123:
                 IsHasSendPostOreder  isHasSendPostOreder = GsonUtils.gsonParseBean(gson,response.getResult(), IsHasSendPostOreder.class);
-                if("ture".equals(isHasSendPostOreder.getFlag())){
+                if("true".equals(isHasSendPostOreder.getFlag())){
                     //跳转道有农民发布的列表页面
                     Intent intent = new Intent(mContext, SelectAddressActivity.class);
                     intent.putExtra("handlerId",handlerId);

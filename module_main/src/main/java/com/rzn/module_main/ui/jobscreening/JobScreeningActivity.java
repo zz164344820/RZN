@@ -10,6 +10,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.rzn.commonbaselib.applictaion.ViewManager;
 import com.rzn.commonbaselib.bean.LoginResponseBean;
@@ -25,7 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-
+@Route(path = "/module/JobScreeningActivity")
 public class JobScreeningActivity extends MVPBaseActivity<JobScreeningContract.View, JobScreeningPresenter> implements JobScreeningContract.View {
     @BindView(R2.id.tv_title)
     TextView tvTitle;

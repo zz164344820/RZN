@@ -1,6 +1,8 @@
 package com.rzn.module_farmer.ui.selectaddress;
 
 import android.support.annotation.Nullable;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -15,8 +17,8 @@ import java.util.List;
  */
 
 public class SelectAddressAdapter extends BaseQuickAdapter<SelectAddressBean, BaseViewHolder> {
-    public SelectAddressAdapter(int layoutResId, @Nullable List<SelectAddressBean> data) {
-        super(layoutResId, data);
+    public SelectAddressAdapter( @Nullable List<SelectAddressBean> data) {
+        super(R.layout.item_select_work, data);
     }
 
     @Override
@@ -25,5 +27,7 @@ public class SelectAddressAdapter extends BaseQuickAdapter<SelectAddressBean, Ba
         helper.setText(R.id.tv_size, item.getAddress());
         helper.setText(R.id.tv_work_adress, item.getAreas());
         helper.setText(R.id.tv_time, item.getCreateTime() + "至" + item.getUpdateTime());
+        helper.setChecked(R.id.tv_checked,item.isChecked());
+        helper.addOnClickListener(R.id.tv_checked);
     }
 }

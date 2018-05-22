@@ -19,7 +19,9 @@
         </activity>
 
         <activity android:name=".ui.main.MainActivity" />
-        <activity android:name=".ui.jobscreening.JobScreeningActivity" />
+        <activity android:name=".ui.jobscreening.JobScreeningActivity"
+            android:launchMode="singleTask"
+            />
         <activity android:name=".ui.myadvice.MyAdviceActivity" />
         <activity android:name=".ui.driverhome.DriverHomeActivity" />
         <activity android:name=".ui.setting.SettingActivity" />
