@@ -10,6 +10,7 @@ import android.view.ViewManager;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
 import com.rzn.module_driver.R;
@@ -25,7 +26,7 @@ import com.zhy.autolayout.AutoFrameLayout;
  * MVPPlugin
  * 邮箱 784787081@qq.com
  */
-
+@Route(path = "/driver/myjobdetial")
 public class MyjobOrderActivity extends MVPBaseActivity<MyjobOrderContract.View, MyjobOrderPresenter> implements MyjobOrderContract.View {
 
 

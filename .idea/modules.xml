@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/RZN.iml" filepath="$PROJECT_DIR$/RZN.iml" />
       <module fileurl="file://$PROJECT_DIR$/addressLib/addressLib.iml" filepath="$PROJECT_DIR$/addressLib/addressLib.iml" />
+      <module fileurl="file://E:\asfolder\RZN\addressLib\addressLib.iml" filepath="E:\asfolder\RZN\addressLib\addressLib.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/commonbaselib/commonbaselib.iml" filepath="$PROJECT_DIR$/commonbaselib/commonbaselib.iml" />
       <module fileurl="file://$PROJECT_DIR$/expertlib/expertlib.iml" filepath="$PROJECT_DIR$/expertlib/expertlib.iml" />

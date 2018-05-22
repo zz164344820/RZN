@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
 import com.rzn.module_main.R;
 import com.rzn.module_main.ui.driverhome.DriverHomeActivity;
@@ -58,7 +59,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         llMyWork.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                ARouter.getInstance().build("/driver/myjobdetial").navigation();
             }
         });
         llPhoneConcel.setOnClickListener(new View.OnClickListener() {
