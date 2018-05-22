@@ -82,7 +82,7 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
                 Map<String, String> map = new HashMap<>();
                 List<PlaceBean>  list= setPlaceList();
                 map.put("taskPlaceDetail",GsonParseUtils.GsonString(list));
-
+                // TODO: 2018/5/22 继续添加其他字段 
                 mPresenter.supplementOrderInfo(map);
             }
         });
