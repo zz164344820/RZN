@@ -54,7 +54,11 @@ public class MainActivity extends MVPBaseActivity<MainContract.View, MainPresent
         viewpager.setCurrentItem(0);
         mPresenter.initViewPager(viewpager);
         mPresenter.initRadioGroup(rgBottom);
+    }
 
+    public void setCheckedPager(int checkIndex ,int viewId){
+        viewpager.setCurrentItem(checkIndex);
+        rgBottom.check(viewId);
     }
 
 

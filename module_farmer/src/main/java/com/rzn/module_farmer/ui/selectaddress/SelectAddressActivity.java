@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -85,6 +86,10 @@ public class SelectAddressActivity extends MVPBaseActivity<SelectAddressContract
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 if(view.getId()==R.id.tv_checked){
+                    if(position==chekedIndex){
+                        list.get(chekedIndex).setChecked(((CheckBox)view).isChecked());
+                        return;
+                    }
                     list.get(chekedIndex).setChecked(false);
                     selectAddressAdapter.notifyItemChanged(chekedIndex);
                     list.get(position).setChecked(true);
@@ -109,7 +114,14 @@ public class SelectAddressActivity extends MVPBaseActivity<SelectAddressContract
             @Override
             public void onClick(View view) {
                 //请求预约接口
-             mPresenter.affirmAppointment(list.get(chekedIndex).getFarmerTaskId(),handlerId);
+                if(list.size()>0){
+                    if(list.get(chekedIndex).isChecked()){
+                        mPresenter.affirmAppointment(list.get(chekedIndex).getFarmerTaskId(),handlerId);
+                    }else{
+                        ToastUtils.showShort("请先选择作业");
+                    }
+                }
+
             }
         });
     }

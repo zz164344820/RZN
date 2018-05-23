@@ -57,10 +57,22 @@ public class LoginPresenter extends BasePresenterImpl<LoginContract.View> implem
                 mView.loginSuccess();
                 break;
             case 112:
+                mView.startRun();
                 ToastUtils.showShort("短信验证码下发成功!");
                 break;
         }
 
     }
 
+    @Override
+    public void httpRequestFailure(ResponseBean response, int requestId) {
+        super.httpRequestFailure(response, requestId);
+        mView.restoreClickTextView();
+    }
+
+    @Override
+    public void httpRequestErr(String response, int requestId) {
+        super.httpRequestErr(response, requestId);
+        mView.restoreTextView();
+    }
 }
