@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.module_driver.R;
+import com.rzn.module_driver.ui.bean.DriverGrabOrderInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,7 @@ import java.util.List;
 public class PostingActivity extends MVPBaseActivity<PostingContract.View, PostingPresenter> implements PostingContract.View {
 
     private RecyclerView rvType;
+    List<DriverGrabOrderInfo> list=new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,13 +38,19 @@ public class PostingActivity extends MVPBaseActivity<PostingContract.View, Posti
         setTitle("正在接单");
         rvType = (RecyclerView) findViewById(R.id.rv_type);
         rvType.setLayoutManager(new LinearLayoutManager(this));
-        List<String> list = new ArrayList<>();
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
+//        List<String> list = new ArrayList<>();
+//        list.add("1");
+//        list.add("1");
+//        list.add("1");
+//        list.add("1");
+
         PostingAdapter postingAdapter = new PostingAdapter(R.layout.driver_item_driverlists, list);
         rvType.setAdapter(postingAdapter);
+
+    }
+
+    @Override
+    public void getListSuccess() {
 
     }
 }

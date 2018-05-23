@@ -11,10 +11,10 @@ import com.rzn.commonbaselib.mvp.BaseView;
 
 public class PostingContract {
     interface View extends BaseView {
-        
+        void getListSuccess();
     }
 
     interface  Presenter extends BasePresenter<View> {
-        
+        void getList();
     }
 }

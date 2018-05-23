@@ -12,13 +12,14 @@ import java.util.List;
  * Created by 17662 on 2018/5/23.
  */
 
-public class PostingAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
-    public PostingAdapter(int layoutResId, @Nullable List<String> data) {
+public class PostingAdapter extends BaseQuickAdapter<DriverGrabOrderInfo, BaseViewHolder> {
+    public PostingAdapter(int layoutResId, @Nullable List<DriverGrabOrderInfo> data) {
         super(layoutResId, data);
     }
 
+
     @Override
-    protected void convert(BaseViewHolder helper, String item) {
+    protected void convert(BaseViewHolder helper, DriverGrabOrderInfo item) {
 
     }
 }
