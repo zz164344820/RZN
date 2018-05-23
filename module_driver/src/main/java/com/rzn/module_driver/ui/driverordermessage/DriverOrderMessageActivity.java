@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.format.DateFormat;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -39,7 +40,7 @@ import chihane.jdaddressselector.model.Street;
  * 邮箱 784787081@qq.com
  */
 
-public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessageContract.View, DriverOrderMessagePresenter> implements DriverOrderMessageContract.View ,OnAddressSelectedListener {
+public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessageContract.View, DriverOrderMessagePresenter> implements DriverOrderMessageContract.View, OnAddressSelectedListener {
 
     private TextView tvStartPost;
     private RadioButton rbOne;
@@ -55,6 +56,12 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
     Province province;
     City city;
     County county;
+    private CheckBox cbWorkTime;
+    private CheckBox cbWorkAres;
+    private EditText etMessage;
+    private RadioGroup rgAll;
+    private List<OrederInfo> orderList;
+    private int num;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -80,9 +87,29 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
             @Override
             public void onClick(View view) {
                 Map<String, String> map = new HashMap<>();
-                List<PlaceBean>  list= setPlaceList();
-                map.put("taskPlaceDetail",GsonParseUtils.GsonString(list));
-                // TODO: 2018/5/22 继续添加其他字段 
+                List<PlaceBean> list = setPlaceList();
+                map.put("taskPlaceDetail", GsonParseUtils.GsonString(list));
+                // TODO: 2018/5/22 继续添加其他字段
+                map.put("handlerId", "");//机手id
+                map.put("handlerInfoId", "");//机手id详情
+                map.put("kindTypeDetail",orderList.get(num).toString() );//作业类型数组
+                map.put("timeStart1", tvTimeStart.getText().toString());//開始时间
+                map.put("timeEnd1", tvTimeEnd.getText().toString());//结束时间
+                map.put("timeStart2", "");//开始时间
+                map.put("timeEnd2", "");//结束时间
+                if (cbWorkAres.isChecked()) {
+                    map.put("anywhere", "1");//是否随地作业 0否1是
+                } else {
+                    map.put("anywhere", "0");//是否随地作业 0否1是
+                }
+                if (cbWorkTime.isChecked()) {
+                    map.put("anytime", "1");//是否随时作业 0否1是
+                } else {
+                    map.put("anytime", "0");//是否随时作业 0否1是
+                }
+                map.put("remark", etMessage.getText().toString());//补充说明
+
+
                 mPresenter.supplementOrderInfo(map);
             }
         });
@@ -131,19 +158,30 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
             }
         });
 
+
+        rgAll.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if (i == R.id.rb_one) {
+                    num = 0;
+                } else if (i == R.id.rb_two) {
+                    num = 1;
+                }
+            }
+        });
     }
 
     private List<PlaceBean> setPlaceList() {
-        List<PlaceBean> list = new ArrayList<>() ;
+        List<PlaceBean> list = new ArrayList<>();
         PlaceBean placeBean = new PlaceBean();
-        placeBean.setProvinceCode(province.getId()+"");
+        placeBean.setProvinceCode(province.getId() + "");
         placeBean.setProvinceName(province.getName());
-        placeBean.setCityCode(city.getId()+"");
+        placeBean.setCityCode(city.getId() + "");
         placeBean.setCityName(city.getName());
-        placeBean.setAreaCode(county.getId()+"");
+        placeBean.setAreaCode(county.getId() + "");
         placeBean.setAreaName(county.getName());
         list.add(placeBean);
-        return  list;
+        return list;
     }
 
     private void showDateDialog(final int tab) {
@@ -173,6 +211,11 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
         tvTimeStart = (TextView) findViewById(R.id.tv_time_start);
         tvTimeEnd = (TextView) findViewById(R.id.tv_time_end);
         llMoreTime = (LinearLayout) findViewById(R.id.ll_more_time);
+        cbWorkTime = (CheckBox) findViewById(R.id.cb_work_time);
+        cbWorkAres = (CheckBox) findViewById(R.id.cb_work_ares);
+        etMessage = (EditText) findViewById(R.id.et_message);
+        rgAll = (RadioGroup) findViewById(R.id.rg_all);
+
 
         rbOne.setVisibility(View.GONE);
         rbTwo.setVisibility(View.GONE);
@@ -186,6 +229,7 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
 
     @Override
     public void setOrderInfo(List<OrederInfo> list) {
+        orderList = list;
         MLog.e(list.size() + "--------");
         if (list.size() == 1) {
             rbOne.setVisibility(View.VISIBLE);
@@ -205,9 +249,9 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
     @Override
     public void onAddressSelected(Province province, City city, County county, Street street) {
         this.province = province;
-        this.city=city;
-        this.county =county;
-        tv_address.setText(province.getName()+"  "+city.getName()+"  "+county.getName());
+        this.city = city;
+        this.county = county;
+        tv_address.setText(province.getName() + "  " + city.getName() + "  " + county.getName());
         bottomDialog.dismiss();
 
     }

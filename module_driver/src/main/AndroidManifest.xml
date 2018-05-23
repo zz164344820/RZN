@@ -1,18 +1,22 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 
     package="com.rzn.module_driver">
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <application android:allowBackup="true"
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <application
+        android:allowBackup="true"
         android:label="@string/app_name"
         android:supportsRtl="true">
 
 
-        <activity android:name=".ui.jobOrder.myjoborder.MyjobOrderActivity"/>
-        <activity android:name=".ui.driver_identification.Driver_identificationActivity"/>
-        <activity android:name=".ui.jobdetails.JobdetailsActivity"/>
-        <activity android:name=".ui.drivermaksure.DriverMakeSureActivity"/>
-        <activity android:name=".ui.joborderdetial.JobOrderDetialActivity"/>
-        <activity android:name=".ui.driverordermessage.DriverOrderMessageActivity"/>
+        <activity android:name=".ui.jobOrder.myjoborder.MyjobOrderActivity" />
+        <activity android:name=".ui.driver_identification.Driver_identificationActivity" />
+        <activity android:name=".ui.jobdetails.JobdetailsActivity" />
+        <activity android:name=".ui.drivermaksure.DriverMakeSureActivity" />
+        <activity android:name=".ui.joborderdetial.JobOrderDetialActivity" />
+        <activity android:name=".ui.driverordermessage.DriverOrderMessageActivity" />
+        <activity android:name=".ui.posting.PostingActivity" />
+
 
     </application>
 
