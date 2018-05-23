@@ -13,6 +13,10 @@ public class LoginContract {
     interface View extends BaseView {
 
         void loginSuccess();
+
+        void  restoreTextView();
+        void  restoreClickTextView();
+        void  startRun();
     }
 
     interface  Presenter extends BasePresenter<View> {

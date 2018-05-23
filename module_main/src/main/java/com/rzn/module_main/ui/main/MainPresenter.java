@@ -43,7 +43,6 @@ public class MainPresenter extends BasePresenterImpl<MainContract.View> implemen
     public void initViewPager(ViewPager viewPager) {
         this.viewPager =viewPager;
         viewPager.setCurrentItem(0);
-        viewPager.addOnPageChangeListener(new MyOnPageChangeListener());
         viewPager.setAdapter(new MainViewpagerAdapter(mContext.getSupportFragmentManager(),fragments));
         viewPager.setOffscreenPageLimit(3);
     }
@@ -68,21 +67,4 @@ public class MainPresenter extends BasePresenterImpl<MainContract.View> implemen
     }
 
 
-    class MyOnPageChangeListener implements ViewPager.OnPageChangeListener{
-
-        @Override
-        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-        }
-
-        @Override
-        public void onPageSelected(int position) {
-         //当页面切换到某一页的时候，在加载数据
-        }
-
-        @Override
-        public void onPageScrollStateChanged(int state) {
-
-        }
-    }
 }

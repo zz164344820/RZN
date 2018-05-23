@@ -44,7 +44,7 @@ public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPres
     @BindView(R2.id.ed_authCode)
     EditText edAuthCode;
     @BindView(R2.id.tv_getAuthCode)
-    TextView tvGetAuthCode;
+    CountdownTextView tvGetAuthCode;
     @BindView(R2.id.bt_affirm)
     Button btAffirm;
     @Override
@@ -65,7 +65,12 @@ public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPres
         tvGetAuthCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              mPresenter.getAuthCode(edPhoneNum.getText().toString());
+                if(!android.text.TextUtils.isEmpty(edPhoneNum.getText().toString())) {
+                    mPresenter.getAuthCode(edPhoneNum.getText().toString());
+                    tvGetAuthCode.setClickable(false);
+                }else{
+                    ToastUtils.showShort("请输入手机号！");
+                }
             }
         });
         btAffirm.setOnClickListener(new View.OnClickListener() {
@@ -96,5 +101,31 @@ public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPres
     @Override
     public void onAddressSelected(Province province, City city, County county, Street street) {
         ToastUtils.showShort(province.getName()+"---"+county.getName()+"---"+county.getName());
+    }
+
+
+    @Override
+    public void restoreTextView() {
+        tvGetAuthCode.setText("再次获取");
+        tvGetAuthCode.setBackgroundColor(getResources().getColor(R.color.main_color));
+        tvGetAuthCode.setClickable(true);
+    }
+
+    @Override
+    public void restoreClickTextView() {
+        tvGetAuthCode.setBackgroundColor(getResources().getColor(R.color.main_color));
+        tvGetAuthCode.setClickable(true);
+    }
+
+    @Override
+    public void startRun() {
+        tvGetAuthCode.startCountdown(60, new CountdownTextView.CountdownCallBack() {
+            @Override
+            public void countdownFinsh() {
+                tvGetAuthCode.setText("再次获取");
+                tvGetAuthCode.setBackgroundColor(getResources().getColor(R.color.main_color));
+                tvGetAuthCode.setClickable(true);
+            }
+        });
     }
 }

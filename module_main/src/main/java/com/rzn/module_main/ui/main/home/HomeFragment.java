@@ -14,6 +14,7 @@ import com.rzn.commonbaselib.mvp.MVPBaseFragment;
 import com.rzn.module_main.R;
 import com.rzn.module_main.ui.jobscreening.JobScreeningActivity;
 import com.rzn.module_main.ui.keepstation.KeepStationActivity;
+import com.rzn.module_main.ui.main.MainActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -65,5 +66,10 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
     @OnClick(R2.id.tv_main_address)
     public void onViewClicked() {
         startActivity(new Intent(getActivity(), JobScreeningActivity.class));
+    }
+
+    @OnClick(R2.id.tv_main_nongjitong)
+    public void tv_main_nongjitong() {
+        ((MainActivity)getActivity()).setCheckedPager(2,R.id.rb_nongjitong);
     }
 }
