@@ -63,7 +63,7 @@ public class FarmerDriverDetialActivity extends MVPBaseActivity<FarmerDriverDeti
     }
 
     private void initViews() {
-
+        setTitle("机手详情");
         ivPhoto = (ImageView) findViewById(R.id.iv_photo);
         tvName = (TextView) findViewById(R.id.tv_name);
         tvContent = (TextView) findViewById(R.id.tv_content);

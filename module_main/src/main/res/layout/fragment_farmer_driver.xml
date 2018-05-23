@@ -1,11 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/topbar" />
 
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="88px"
+        android:background="@color/main_color"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="88px"
+            android:text="农机通"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="18dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/main_xiaoxi" />
+
+    </com.zhy.autolayout.AutoRelativeLayout>
     <com.rzn.commonbaselib.views.AutoRadioGroup
         android:id="@+id/rgGroup"
         android:layout_width="match_parent"
@@ -49,4 +74,4 @@
         android:layout_height="match_parent"
         android:scrollbars="none" />
 
-</LinearLayout>
+</com.zhy.autolayout.AutoLinearLayout>

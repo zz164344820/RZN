@@ -81,7 +81,7 @@
                 android:layout_margin="10dp"
                 android:text="发布作业需求"
                 android:gravity="center"
-                android:background="#70c63f"
+                android:background="@drawable/shape_maincolor_5"
                 android:textColor="#ffffff"
                 android:textSize="18dp"
                 android:layout_alignParentBottom="true"

@@ -35,6 +35,7 @@ public class ShoppingFragment extends MVPBaseFragment<ShoppingContract.View, Sho
     }
 
     private void initViews() {
+
         swipeTarget = (RecyclerView) rootView.findViewById(R.id.swipe_target);
         swipeTarget.setLayoutManager(new LinearLayoutManager(getActivity()));
         List<String> s = new ArrayList<>();

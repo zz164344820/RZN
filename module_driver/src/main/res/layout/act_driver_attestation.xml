@@ -273,13 +273,13 @@
 
                     <TextView
                         android:id="@+id/tv_work_time"
-                        android:layout_width="110dp"
+                        android:layout_width="80dp"
                         android:layout_height="37dp"
-                        android:layout_margin="10dp"
+                        android:layout_margin="5dp"
                         android:background="@drawable/shape_input_bg"
                         android:gravity="center_vertical"
                         android:paddingLeft="4dp"
-                        android:text="2015-01-24"
+                        android:text="2015-01"
                         android:textColor="#333333"
                         android:textSize="18dp" />
 
@@ -293,9 +293,9 @@
 
                     <TextView
                         android:id="@+id/tv_work_time_now"
-                        android:layout_width="50dp"
+                        android:layout_width="80dp"
                         android:layout_height="37dp"
-                        android:layout_margin="10dp"
+                        android:layout_margin="5dp"
                         android:background="@drawable/shape_input_bg"
                         android:gravity="center"
                         android:text="今"
@@ -304,11 +304,11 @@
 
                     <TextView
                         android:layout_width="40dp"
-                        android:layout_height="37dp"
-                        android:layout_margin="10dp"
-                        android:background="#dddddd"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="#F1F4F5"
                         android:gravity="center"
-                        android:text="2"
+                        android:text="21"
                         android:textColor="#333333"
                         android:textSize="18dp" />
 
@@ -316,6 +316,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="年"
+                        android:layout_marginLeft="5dp"
                         android:textColor="#333333"
                         android:textSize="18dp" />
 
@@ -329,34 +330,62 @@
                     android:orientation="horizontal">
 
 
-                    <LinearLayout
+                    <RelativeLayout
+                        android:id="@+id/rl_photo_cars"
                         android:layout_width="166.5dp"
                         android:layout_height="111.5dp"
                         android:layout_marginLeft="10dp"
                         android:background="@drawable/imaginaryline"
                         android:padding="1dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="点此上传驾照图片"
+                            android:textColor="@color/text_888"
+                            android:textSize="16sp"
+                            android:drawableTop="@drawable/iv_jiazhao"
+                            android:gravity="center"
+                            android:layout_centerInParent="true"
+                            />
 
                         <ImageView
                             android:id="@+id/iv_photo_cars"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:visibility="invisible"
                             android:background="@color/bg_color" />
-                    </LinearLayout>
+                    </RelativeLayout>
 
 
-                    <LinearLayout
+                    <RelativeLayout
+                        android:id="@+id/rl_photo_car"
                         android:layout_width="166.5dp"
                         android:layout_height="111.5dp"
                         android:layout_marginLeft="10dp"
                         android:background="@drawable/imaginaryline"
                         android:padding="1dp">
 
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="点此上传驾照图片"
+                            android:textColor="@color/text_888"
+                            android:textSize="16sp"
+                            android:drawableTop="@drawable/iv_jiazhao"
+                            android:gravity="center"
+                            android:layout_centerInParent="true"
+                            />
+
                         <ImageView
                             android:id="@+id/iv_photo_car"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:visibility="invisible"
                             android:background="@color/bg_color" />
-                    </LinearLayout>
+
+
+                    </RelativeLayout>
 
                 </LinearLayout>
             </LinearLayout>
@@ -467,33 +496,62 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
-                    <LinearLayout
+                    <RelativeLayout
+                        android:id="@+id/rl_car_photo_one"
                         android:layout_width="166.5dp"
                         android:layout_height="111.5dp"
                         android:layout_marginLeft="10dp"
                         android:background="@drawable/imaginaryline"
                         android:padding="1dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="点此上传农机图片"
+                            android:textColor="@color/text_888"
+                            android:textSize="16sp"
+                            android:drawableTop="@drawable/iv_nongji"
+                            android:gravity="center"
+                            android:layout_centerInParent="true"
+                            />
 
                         <ImageView
                             android:id="@+id/iv_car_photo_one"
-                            android:layout_width="166.5dp"
-                            android:layout_height="111.5dp"
-                            android:layout_marginLeft="10dp" />
-                    </LinearLayout>
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:visibility="invisible"
+                            android:background="@color/bg_color" />
 
-                    <LinearLayout
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rl_car_photo_two"
                         android:layout_width="166.5dp"
                         android:layout_height="111.5dp"
                         android:layout_marginLeft="10dp"
                         android:background="@drawable/imaginaryline"
                         android:padding="1dp">
 
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="点此上传农机图片"
+                            android:textColor="@color/text_888"
+                            android:textSize="16sp"
+                            android:drawableTop="@drawable/iv_nongji"
+                            android:gravity="center"
+                            android:layout_centerInParent="true"
+                            />
+
                         <ImageView
                             android:id="@+id/iv_car_photo_two"
-                            android:layout_width="166.5dp"
-                            android:layout_height="111.5dp"
-                            android:layout_marginLeft="10dp" />
-                    </LinearLayout>
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:visibility="invisible"
+                            android:background="@color/bg_color" />
+
+                    </RelativeLayout>
                 </LinearLayout>
             </LinearLayout>
 

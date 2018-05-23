@@ -1,24 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <com.zhy.autolayout.AutoRelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="400px"
         android:background="#2324">
 
-        <RelativeLayout
+        <com.zhy.autolayout.AutoRelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="42dp">
-
-            <ImageView
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="23dp"
-                android:src="@drawable/icon_arrow" />
+            android:layout_height="88px">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -29,13 +22,13 @@
                 android:textSize="20dp" />
 
             <ImageView
-                android:layout_width="16dp"
-                android:layout_height="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="23dp"
+                android:layout_marginRight="18dp"
                 android:src="@drawable/main_xiaoxi" />
-        </RelativeLayout>
+        </com.zhy.autolayout.AutoRelativeLayout>
 
         <ImageView
             android:id="@+id/iv_photo"
@@ -67,7 +60,17 @@
                 android:src="@drawable/icon_sex_boy" />
         </LinearLayout>
 
-    </RelativeLayout>
+        <ImageView
+            android:id="@+id/tv_bianji"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bianji"
+            android:layout_alignParentRight="true"
+           android:layout_marginTop="70dp"
+            android:layout_marginRight="18dp"
+            />
+
+    </com.zhy.autolayout.AutoRelativeLayout>
 
 
     <LinearLayout
@@ -99,10 +102,20 @@
             android:layout_weight="1" />
 
         <ImageView
-            android:layout_width="14dp"
-            android:layout_height="16dp"
-            android:layout_marginRight="12dp" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/right_enter"
+            />
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1.5px"
+        android:background="@color/bg_color"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        />
 
     <LinearLayout
         android:id="@+id/ll_my_collection"
@@ -132,10 +145,20 @@
             android:layout_weight="1" />
 
         <ImageView
-            android:layout_width="14dp"
-            android:layout_height="16dp"
-            android:layout_marginRight="12dp" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/right_enter"
+            />
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1.5px"
+        android:background="@color/bg_color"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        />
 
     <LinearLayout
         android:id="@+id/ll_phone_concel"
@@ -165,9 +188,11 @@
             android:layout_weight="1" />
 
         <ImageView
-            android:layout_width="14dp"
-            android:layout_height="16dp"
-            android:layout_marginRight="12dp" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/right_enter"
+            />
     </LinearLayout>
 
 
@@ -200,10 +225,20 @@
             android:layout_weight="1" />
 
         <ImageView
-            android:layout_width="14dp"
-            android:layout_height="16dp"
-            android:layout_marginRight="12dp" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/right_enter"
+            />
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1.5px"
+        android:background="@color/bg_color"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        />
 
     <LinearLayout
         android:id="@+id/ll_setting"
@@ -233,9 +268,11 @@
             android:layout_weight="1" />
 
         <ImageView
-            android:layout_width="14dp"
-            android:layout_height="16dp"
-            android:layout_marginRight="12dp" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/right_enter"
+            />
     </LinearLayout>
 
     <View
@@ -249,7 +286,7 @@
         android:layout_gravity="center_horizontal"
         android:text="客服热线：400 300 2234"
         android:textColor="#ff888888"
-        android:textSize="18dp" />
+        android:textSize="14dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -257,5 +294,6 @@
         android:layout_gravity="center_horizontal"
         android:text="版本号：V1.2"
         android:textColor="#ff888888"
-        android:textSize="18dp" />
-</LinearLayout>
+        android:layout_marginBottom="10dp"
+        android:textSize="14dp" />
+</com.zhy.autolayout.AutoLinearLayout>

@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -15,6 +16,7 @@ import com.rzn.commonbaselib.mvp.MVPBaseFragment;
 import com.rzn.module_main.R;
 import com.rzn.module_main.ui.driverhome.DriverHomeActivity;
 import com.rzn.module_main.ui.myadvice.MyAdviceActivity;
+import com.rzn.module_main.ui.personalinfo.PersonalInfoActivity;
 import com.rzn.module_main.ui.setting.SettingActivity;
 
 import io.reactivex.internal.operators.observable.ObservableNever;
@@ -31,6 +33,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     private LinearLayout llAdvice;
     private LinearLayout llPhoneConcel;
     private LinearLayout llSetting;
+    private ImageView tv_bianji;
 
     @Nullable
     @Override
@@ -77,7 +80,12 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
             }
         });
 
-
+        tv_bianji.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(mContext, PersonalInfoActivity.class));
+            }
+        });
     }
 
     private void initViews() {
@@ -87,6 +95,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         llAdvice = (LinearLayout) rootView.findViewById(R.id.ll_advice);
         llPhoneConcel = (LinearLayout) rootView.findViewById(R.id.ll_phone_concel);
         llSetting = (LinearLayout) rootView.findViewById(R.id.ll_setting);
+        tv_bianji = (ImageView) rootView.findViewById(R.id.tv_bianji);
 
     }
 }

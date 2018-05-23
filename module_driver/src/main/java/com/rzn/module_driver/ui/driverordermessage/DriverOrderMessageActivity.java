@@ -14,7 +14,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
+import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.commonbaselib.utils.GsonParseUtils;
 import com.rzn.module_driver.R;
 import com.rzn.module_driver.ui.bean.OrederInfo;
@@ -61,6 +63,7 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
     private EditText etMessage;
     private RadioGroup rgAll;
     private List<OrederInfo> orderList;
+    List<OrederInfo> tempList = new ArrayList<>();//入参的作业类型集合
     private int num;
 
     @Override
@@ -89,10 +92,10 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
                 Map<String, String> map = new HashMap<>();
                 List<PlaceBean> list = setPlaceList();
                 map.put("taskPlaceDetail", GsonParseUtils.GsonString(list));
-                // TODO: 2018/5/22 继续添加其他字段
-                map.put("handlerId", "");//机手id
-                map.put("handlerInfoId", "");//机手id详情
-                map.put("kindTypeDetail",orderList.get(num).toString() );//作业类型数组
+                LoginResponseBean  loginResponseBean= (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+                map.put("handlerId", loginResponseBean.getHandlerId());//机手id
+               // map.put("handlerInfoId", "");//机手id详情
+                map.put("kindTypeDetail",GsonParseUtils.GsonString(tempList) );//作业类型数组
                 map.put("timeStart1", tvTimeStart.getText().toString());//開始时间
                 map.put("timeEnd1", tvTimeEnd.getText().toString());//结束时间
                 map.put("timeStart2", "");//开始时间
@@ -108,7 +111,6 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
                     map.put("anytime", "0");//是否随时作业 0否1是
                 }
                 map.put("remark", etMessage.getText().toString());//补充说明
-
 
                 mPresenter.supplementOrderInfo(map);
             }
@@ -154,7 +156,7 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
         tvTimeEnd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                showDateDialog(2);//tab   1 代表开始时间   2代表结束的时间
             }
         });
 
@@ -167,6 +169,8 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
                 } else if (i == R.id.rb_two) {
                     num = 1;
                 }
+                // TODO: 2018/5/23 此处处理不正确，可以多选，后期需要更改逻辑 
+                tempList.add(orderList.get(num));
             }
         });
     }

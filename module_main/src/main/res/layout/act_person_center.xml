@@ -31,7 +31,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginRight="10dp"
-            android:background="#2345" />
+            android:background="@drawable/logo" />
 
     </LinearLayout>
 

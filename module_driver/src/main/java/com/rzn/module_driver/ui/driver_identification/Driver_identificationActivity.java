@@ -109,9 +109,9 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
                 showDate.set(Calendar.MONTH, monthOfYear);
                 showDate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                 if (tab == 1) {
-                    tvWorkTime.setText(DateFormat.format("yyyy-MM-dd", showDate));
+                    tvWorkTime.setText(DateFormat.format("yyyy-MM", showDate));
                 } else if (tab == 2) {
-                    tvWorkTimeNow.setText(DateFormat.format("yyyy-MM-dd", showDate));
+                    tvWorkTimeNow.setText(DateFormat.format("yyyy-MM", showDate));
                 }
             }
         }, showDate.get(Calendar.YEAR), showDate.get(Calendar.MONTH), showDate.get(Calendar.DAY_OF_MONTH)).show();
@@ -193,7 +193,7 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
 
         final SelectStatePopWindow[] window = new SelectStatePopWindow[1];
         //上传图片机手驾驶证
-        ivPhotoCars.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.rl_photo_cars).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 fag = "one";
@@ -202,7 +202,7 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
         });
 
         //上传图片机手驾驶证
-        ivPhotoCar.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.rl_photo_car).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 fag = "two";
@@ -210,7 +210,7 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
             }
         });
         //上传农机照片
-        ivCarPhotoOne.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.rl_car_photo_one).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 fag = "three";
@@ -218,7 +218,7 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
             }
         });
         //上传农机照片
-        ivCarPhotoTwo.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.rl_car_photo_two).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 fag = "four";
@@ -323,16 +323,20 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
         Bitmap bm = BitmapFactory.decodeFile(imagePath);
         if ("one".equals(fag)) {
             ivPhotoCars.setImageBitmap(bm);
+            ivPhotoCars.setVisibility(View.VISIBLE);
             onePath = imagePath;
         } else if ("two".equals(fag)) {
             twoPath = imagePath;
             ivPhotoCar.setImageBitmap(bm);
+            ivPhotoCar.setVisibility(View.VISIBLE);
         } else if ("three".equals(fag)) {
             threePath = imagePath;
             ivCarPhotoOne.setImageBitmap(bm);
+            ivCarPhotoOne.setVisibility(View.VISIBLE);
         } else if ("four".equals(fag)) {
             fourPath = imagePath;
             ivCarPhotoTwo.setImageBitmap(bm);
+            ivCarPhotoTwo.setVisibility(View.VISIBLE);
         }
 
     }
