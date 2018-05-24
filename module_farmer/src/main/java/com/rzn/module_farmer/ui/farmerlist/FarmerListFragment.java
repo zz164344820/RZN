@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,23 +18,33 @@ import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.lonch.zyhealth.loadmorelibrary.LoadMoreUtils;
 import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.module_farmer.R;
 import com.rzn.module_farmer.bean.FarmerDriverMessageBean;
+import com.rzn.module_farmer.bean.WorkTypeBean;
 import com.rzn.module_farmer.ui.farmerdriverdetial.FarmerDriverDetialActivity;
+import com.rzn.module_farmer.ui.sendwork.SendPopUpWindow;
 import com.rzn.module_farmer.ui.sendwork.SendWorkActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import chihane.jdaddressselector.BottomDialog;
+import chihane.jdaddressselector.OnAddressSelectedListener;
+import chihane.jdaddressselector.model.City;
+import chihane.jdaddressselector.model.County;
+import chihane.jdaddressselector.model.Province;
+import chihane.jdaddressselector.model.Street;
 
 /**
  * MVPPlugin
  * 邮箱 784787081@qq.com
  */
 @Route(path = "/farmer/farmerFargment")
-public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View, FarmerListPresenter> implements FarmerListContract.View, OnLoadMoreListener, OnRefreshListener {
+public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View, FarmerListPresenter> implements FarmerListContract.View, OnLoadMoreListener, OnRefreshListener ,OnAddressSelectedListener{
 
 
     private View rootView;
@@ -42,6 +53,11 @@ public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View,
     private TextView tvStartGet;
     private List<FarmerDriverMessageBean> list = new ArrayList<>();
     private FarmerListAdapter farmerListAdapter;
+    BottomDialog bottomDialog;
+    String kindTypeId;
+    Province province;//省
+    County county;    //市
+    City  city;       //县
 
     public static FarmerListFragment newInstance() {
         return new FarmerListFragment();
@@ -62,9 +78,9 @@ public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View,
     /**
      * 初始化网络数据
      */
-    private void initData() {//40288ad75c81124b015c8132bfe8000f//40289e9362bd29870162bd2b809c0002
+    private void initData() {
         LoginResponseBean loginResponseBean= (LoginResponseBean) FileSaveUtils.readObject("loginBean");
-       // mPresenter.httpLoadDriverMessage(loginResponseBean.getUserId(), "1", "340403", "1666");
+
         mPresenter.httpLoadDriverMessage("40288ad75c81124b015c8132bfe8000f", "1", "340403", "1666");
     }
 
@@ -88,6 +104,8 @@ public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View,
         farmerListAdapter = new FarmerListAdapter(list);
         farmerListAdapter.setEmptyView(R.layout.farmerorder_nullpager,(ViewGroup)swipeTarget.getParent());
         swipeTarget.setAdapter(farmerListAdapter);
+        bottomDialog = new BottomDialog(getActivity());
+        bottomDialog.setOnAddressSelectedListener(this);
 
         farmerListAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
@@ -104,16 +122,56 @@ public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View,
 
             }
         });
+
+        rootView.findViewById(R.id.tv_orderArea).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bottomDialog.show();
+            }
+        });
+
+        rootView.findViewById(R.id.tv_orderType).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPresenter.httpGetWorkType();
+            }
+        });
     }
 
+
+
+    /**
+     * 获取作业类型成功
+     */
+    @Override
+    public void getWorkTypeSuccess(final List<WorkTypeBean> worTypeList) {
+
+        //弹出选择作业类型弹窗
+        SendPopUpWindow sendPopUpWindow = new SendPopUpWindow(getActivity(), worTypeList);
+        sendPopUpWindow.setOnListener(new SendPopUpWindow.OnClickListener() {
+            @Override
+            public void onClick(int position, int typePosition) {
+                //获取作业类型
+                kindTypeId = worTypeList.get(position).getTypeArray().get(typePosition).getKindId();
+                LoginResponseBean  loginResponseBean= (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+                list.clear();
+                mPresenter.httpLoadDriverMessage(loginResponseBean.getUserId(), "1", "", kindTypeId);
+            }
+        });
+        if (sendPopUpWindow.isShowing()) {
+            return;
+        }
+        sendPopUpWindow.showAtLocation(tvStartGet, Gravity.BOTTOM, 0, 0);
+    }
     @Override
     public void onLoadMore() {
-
+        mPresenter.httpLoadDriverMessage("40288ad75c81124b015c8132bfe8000f", "1", "340403", "1666");
     }
 
     @Override
     public void onRefresh() {
-
+        list.clear();
+        mPresenter.httpLoadDriverMessage("40288ad75c81124b015c8132bfe8000f", "1", "340403", "1666");
     }
 
     /**
@@ -121,6 +179,7 @@ public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View,
      */
     @Override
     public void loadDriverMessageSuccessed(List<FarmerDriverMessageBean> list1) {
+        LoadMoreUtils.recycleViewRestore(swipeToLoadLayout);
         list.addAll(list1);
         farmerListAdapter.notifyDataSetChanged();
     }
@@ -131,5 +190,16 @@ public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View,
     @Override
     public void loadDriverMessageFailed() {
 
+    }
+
+    @Override
+    public void onAddressSelected(Province province, City city, County county, Street street) {
+        this.province = province;
+        this.city=city;
+        this.county =county;
+        bottomDialog.dismiss();
+        LoginResponseBean  loginResponseBean= (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+        list.clear();
+        mPresenter.httpLoadDriverMessage(loginResponseBean.getUserId(), "1", county.getId()+"", "");
     }
 }

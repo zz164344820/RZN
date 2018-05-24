@@ -25,7 +25,7 @@ public class Driver_identificationContract {
 
     interface Presenter extends BasePresenter<View> {
         void  getJobTypes();
-
+        void uploadImage(List<File> files);
         //void pushDriverMessage(Map<String,String> map , File oneFile , File twoFile , File  threeFile, File  fourFile);
         void pushDriverMessage(Map<String,String> map );
     }

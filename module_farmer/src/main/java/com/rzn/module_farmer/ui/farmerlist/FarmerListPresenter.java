@@ -6,6 +6,7 @@ import com.google.gson.reflect.TypeToken;
 import com.rzn.commonbaselib.mvp.BasePresenterImpl;
 import com.rzn.commonbaselib.utils.GsonUtils;
 import com.rzn.module_farmer.bean.FarmerDriverMessageBean;
+import com.rzn.module_farmer.bean.WorkTypeBean;
 import com.zyhealth.expertlib.bean.ResponseBean;
 
 import org.json.JSONArray;
@@ -33,7 +34,13 @@ public class FarmerListPresenter extends BasePresenterImpl<FarmerListContract.Vi
         map.put("page", page);
         map.put("areaCode",areaCode);
         map.put("kindTypeId",kindTypeId);
+        mView.showLoading(false,"");
         reqData(mContext, "farmHand/farmerTask/handlerList", map, 111);
+    }
+
+    @Override
+    public void httpGetWorkType() {
+        reqData(mContext, "farmHand/farmerTask/queryKind", null, 222);
     }
 
     @Override
@@ -44,6 +51,11 @@ public class FarmerListPresenter extends BasePresenterImpl<FarmerListContract.Vi
                 Type type = new TypeToken<List<FarmerDriverMessageBean>>(){}.getType();
                 List<FarmerDriverMessageBean> list= gson.fromJson(gson.toJson(response.getResult()), type);
                 mView.loadDriverMessageSuccessed(list);
+                break;
+            case 222:
+                Type type2 = new TypeToken<List<WorkTypeBean>>(){}.getType();
+                List<WorkTypeBean> list2= gson.fromJson(gson.toJson(response.getResult()), type2);
+                mView.getWorkTypeSuccess(list2);
                 break;
 
         }

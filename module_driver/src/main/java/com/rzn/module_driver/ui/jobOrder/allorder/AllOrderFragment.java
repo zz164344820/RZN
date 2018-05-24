@@ -18,6 +18,7 @@ import com.rzn.commonbaselib.mvp.MVPBaseFragment;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.module_driver.R;
 import com.rzn.module_driver.ui.bean.MyWorkDetialBean;
+import com.rzn.module_driver.ui.jobOrder.myjoborder.MyjobOrderActivity;
 import com.rzn.module_driver.ui.joborderdetial.JobOrderDetialActivity;
 
 import java.util.ArrayList;
@@ -51,7 +52,7 @@ public class AllOrderFragment extends MVPBaseFragment<AllOrderContract.View, All
 
         LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
         Map<String, String> map = new HashMap<>();
-//        map.put("handlerId",loginResponseBean.getHandlerId());
+        map.put("handlerId",loginResponseBean.getHandlerId());
         map.put("status", "");
         mPresenter.getList(map);
     }

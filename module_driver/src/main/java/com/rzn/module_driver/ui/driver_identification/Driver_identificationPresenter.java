@@ -1,7 +1,10 @@
 package com.rzn.module_driver.ui.driver_identification;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.google.gson.reflect.TypeToken;
+import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.BasePresenterImpl;
+import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.commonbaselib.utils.GsonUtils;
 import com.rzn.module_driver.ui.bean.WorkTypeBean;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -26,6 +29,11 @@ import static com.rzn.commonbaselib.utils.GsonUtils.gsonParseList;
  */
 
 public class Driver_identificationPresenter extends BasePresenterImpl<Driver_identificationContract.View> implements Driver_identificationContract.Presenter {
+    File file1;
+    File file2;
+    File file3;
+    File file4;
+
 
     @Override
     public void onCreate() {
@@ -40,10 +48,43 @@ public class Driver_identificationPresenter extends BasePresenterImpl<Driver_ide
 
     }
 
+    @Override
+    public void uploadImage(List<File> files ) {
 
+        Map<String,String> headMap = new HashMap<>();
+        Map<String,String> bodyMap = new HashMap<>();
+        LoginResponseBean  loginResponseBean= (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+        headMap.put("userId",loginResponseBean.getUserId());
+        for(int i = 0;i<4;i++){
+            if(i<2){
+                bodyMap.put("type","1");
+            }else{
+                bodyMap.put("type","2");
+            }
+            OkHttpUtils.post()//
+                    .addFile("file", files.get(i).getName(), files.get(i))//
+                    .url(OkHttpLoader.BASEURL+"farmHand/handler/upFile")
+                    .params(bodyMap)//
+                    .headers(headMap)//
+                    .build()//
+                    .execute(new StringCallback() {
+                        @Override
+                        public void onError(Call call, Exception e, int id) {
+                            MLog.e(e.getMessage());
+                        }
+
+                        @Override
+                        public void onResponse(String response, int id) {
+                            MLog.e(response);
+                        }
+                    });
+        }
+
+
+    }
 
     @Override
-    public void pushDriverMessage(final Map<String,String> map ) {
+    public void pushDriverMessage(final Map<String,String> map) {
         mView.showLoading(false, "");
         reqData(mContext,"farmHand/handler/updateSaveHandler",map,111);
     }

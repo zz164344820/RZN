@@ -9,12 +9,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.amap.api.location.AMapLocation;
+import com.amap.api.location.AMapLocationClient;
+import com.amap.api.location.AMapLocationClientOption;
+import com.amap.api.location.AMapLocationListener;
+import com.blankj.utilcode.util.SPUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.rzn.module_main.R2;
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
 import com.rzn.module_main.R;
 import com.rzn.module_main.ui.jobscreening.JobScreeningActivity;
 import com.rzn.module_main.ui.keepstation.KeepStationActivity;
 import com.rzn.module_main.ui.main.MainActivity;
+import com.zyhealth.expertlib.utils.MLog;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,7 +39,8 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
     TextView tvMainAddress;
     Unbinder unbinder;
     private TextView tvMainWeixiuzhan;
-
+    public AMapLocationClient mLocationClient = null;
+    public AMapLocationClientOption mLocationOption = null;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -40,7 +48,27 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
         unbinder = ButterKnife.bind(this, rootView);
         initViews();
         initListener();
+        initLocation();
         return rootView;
+    }
+
+    private void initLocation() {
+        //声明AMapLocationClient类对象
+        mLocationClient = new AMapLocationClient(getActivity());
+       //初始化AMapLocationClientOption对象
+        mLocationOption = new AMapLocationClientOption();
+        //单次定位
+        mLocationOption.setOnceLocation(true);
+        mLocationClient.setLocationListener(new AMapLocationListener() {
+            @Override
+            public void onLocationChanged(AMapLocation aMapLocation) {
+                tvMainAddress.setText(aMapLocation.getDistrict());
+                SPUtils.getInstance().put("addressName",aMapLocation.getDistrict());
+            }
+        });
+        mLocationClient.setLocationOption(mLocationOption);
+        //启动定位
+        mLocationClient.startLocation();
     }
 
     private void initListener() {
