@@ -14,10 +14,14 @@ import java.util.Map;
 
 public class AllOrderContract {
     interface View extends BaseView {
+
+//        void getFarmerListSuccess(List<MyWorkDetialBean> lists);
+
         void getListSuccess(List<MyWorkDetialBean> list);
     }
 
     interface  Presenter extends BasePresenter<View> {
         void getList(Map<String,String> map);
+        void getFarmerListSuccess(Map<String,String> map);
     }
 }

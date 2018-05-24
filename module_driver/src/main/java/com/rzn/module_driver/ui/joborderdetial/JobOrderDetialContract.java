@@ -19,5 +19,6 @@ public class JobOrderDetialContract {
 
     interface Presenter extends BasePresenter<View> {
         void getData(String farmerTaskId);
+        void  getFarmerData(String farmerTaskId);
     }
 }

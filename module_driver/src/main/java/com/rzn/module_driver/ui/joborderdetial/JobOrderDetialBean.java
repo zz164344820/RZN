@@ -5,52 +5,35 @@ package com.rzn.module_driver.ui.joborderdetial;
  */
 
 public class JobOrderDetialBean {
-
-    private String address;
-    private String areas;
-    private String createTime;
-    private String endDate;
-    private String farmerTaskId;
-    private String flag;
-    private String handlerId;
-    private String mobile;
-    private String name;
-    private String realAreas;
-    private String realTotalprice;
-    private String remark;
-    private String startDate;
-    private int status;
-    private String taskPlace;
-    private String totalprice;
-    private String types;
-    private String unitPrice;
-    private String updateTime;
-    private String userId;
-    @Override
-    public String toString() {
-        return "JobOrderDetialBean{" +
-                "address='" + address + '\'' +
-                ", areas='" + areas + '\'' +
-                ", createTime='" + createTime + '\'' +
-                ", endDate='" + endDate + '\'' +
-                ", farmerTaskId='" + farmerTaskId + '\'' +
-                ", flag='" + flag + '\'' +
-                ", handlerId='" + handlerId + '\'' +
-                ", mobile='" + mobile + '\'' +
-                ", name='" + name + '\'' +
-                ", realAreas='" + realAreas + '\'' +
-                ", realTotalprice='" + realTotalprice + '\'' +
-                ", remark='" + remark + '\'' +
-                ", startDate='" + startDate + '\'' +
-                ", status='" + status + '\'' +
-                ", taskPlace='" + taskPlace + '\'' +
-                ", totalprice='" + totalprice + '\'' +
-                ", types='" + types + '\'' +
-                ", unitPrice='" + unitPrice + '\'' +
-                ", updateTime='" + updateTime + '\'' +
-                ", userId='" + userId + '\'' +
-                '}';
-    }
+    private String address;//": "河北省石家庄天上马街1处", //家庭地址
+    private String areaCode;//": "340406", //区Code
+    private String areaName;//": "潘集区", //区名称
+    private String areas;//": "25.58", //亩数
+    private String cityCode;//": "340400", //城市Code
+    private String cityName;//": "淮南市", //城市名称
+    private String createTime;//": "2018-03-20 21:36:47", //创建时间
+    private String endDate;//": "2018-06-21",//作业单结束时间
+    private String farmerTaskId;//": "40289f6c62439f1d016243a0653c0002",//
+    private String flag;//": "1",
+    private String flagNum;//": "",
+    private String handlerId;//": "40289f6c6247d1a4016247d400d40001",
+    private String kindTypeId;//": "1666",
+    private String mobile;//": "18080808081",
+    private String name;//": "君宝1",
+    private String orderNo;//": "18040700002",
+    private String provinceCode;//": "340000",
+    private String provinceName;//": "安徽省",
+    private String realAreas;//": "50.50",
+    private String realTotalprice;//": "2042.73",
+    private String remark;//": "记得来早点呀!",
+    private String startDate;//": "2018-05-28",
+    private String status;//": "4",
+    private String taskPlace;//": "河北石家庄地下天帝2路",
+    private String totalprice;//": "280.01",
+    private String types;//": "小麦-播种",
+    private String unitPrice;//": "40.45",
+    private String updateTime;//": "2018-05-12 18:00:53",
+    private String userId;//": "40288ad75c81124b015c8132bfe8000f"
 
 
     public String getAddress() {
@@ -61,12 +44,44 @@ public class JobOrderDetialBean {
         this.address = address;
     }
 
+    public String getAreaCode() {
+        return areaCode;
+    }
+
+    public void setAreaCode(String areaCode) {
+        this.areaCode = areaCode;
+    }
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
+    }
+
     public String getAreas() {
         return areas;
     }
 
     public void setAreas(String areas) {
         this.areas = areas;
+    }
+
+    public String getCityCode() {
+        return cityCode;
+    }
+
+    public void setCityCode(String cityCode) {
+        this.cityCode = cityCode;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
     }
 
     public String getCreateTime() {
@@ -101,12 +116,28 @@ public class JobOrderDetialBean {
         this.flag = flag;
     }
 
+    public String getFlagNum() {
+        return flagNum;
+    }
+
+    public void setFlagNum(String flagNum) {
+        this.flagNum = flagNum;
+    }
+
     public String getHandlerId() {
         return handlerId;
     }
 
     public void setHandlerId(String handlerId) {
         this.handlerId = handlerId;
+    }
+
+    public String getKindTypeId() {
+        return kindTypeId;
+    }
+
+    public void setKindTypeId(String kindTypeId) {
+        this.kindTypeId = kindTypeId;
     }
 
     public String getMobile() {
@@ -123,6 +154,30 @@ public class JobOrderDetialBean {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getOrderNo() {
+        return orderNo;
+    }
+
+    public void setOrderNo(String orderNo) {
+        this.orderNo = orderNo;
+    }
+
+    public String getProvinceCode() {
+        return provinceCode;
+    }
+
+    public void setProvinceCode(String provinceCode) {
+        this.provinceCode = provinceCode;
+    }
+
+    public String getProvinceName() {
+        return provinceName;
+    }
+
+    public void setProvinceName(String provinceName) {
+        this.provinceName = provinceName;
     }
 
     public String getRealAreas() {
@@ -157,11 +212,11 @@ public class JobOrderDetialBean {
         this.startDate = startDate;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -213,13 +268,38 @@ public class JobOrderDetialBean {
         this.userId = userId;
     }
 
-
-
-
-
-
-
-
-
-
+    @Override
+    public String toString() {
+        return "JobOrderDetialBean{" +
+                "address='" + address + '\'' +
+                ", areaCode='" + areaCode + '\'' +
+                ", areaName='" + areaName + '\'' +
+                ", areas='" + areas + '\'' +
+                ", cityCode='" + cityCode + '\'' +
+                ", cityName='" + cityName + '\'' +
+                ", createTime='" + createTime + '\'' +
+                ", endDate='" + endDate + '\'' +
+                ", farmerTaskId='" + farmerTaskId + '\'' +
+                ", flag='" + flag + '\'' +
+                ", flagNum='" + flagNum + '\'' +
+                ", handlerId='" + handlerId + '\'' +
+                ", kindTypeId='" + kindTypeId + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", name='" + name + '\'' +
+                ", orderNo='" + orderNo + '\'' +
+                ", provinceCode='" + provinceCode + '\'' +
+                ", provinceName='" + provinceName + '\'' +
+                ", realAreas='" + realAreas + '\'' +
+                ", realTotalprice='" + realTotalprice + '\'' +
+                ", remark='" + remark + '\'' +
+                ", startDate='" + startDate + '\'' +
+                ", status='" + status + '\'' +
+                ", taskPlace='" + taskPlace + '\'' +
+                ", totalprice='" + totalprice + '\'' +
+                ", types='" + types + '\'' +
+                ", unitPrice='" + unitPrice + '\'' +
+                ", updateTime='" + updateTime + '\'' +
+                ", userId='" + userId + '\'' +
+                '}';
+    }
 }

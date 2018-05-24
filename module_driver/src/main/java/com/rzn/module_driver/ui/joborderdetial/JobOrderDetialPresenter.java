@@ -35,12 +35,24 @@ public class JobOrderDetialPresenter extends BasePresenterImpl<JobOrderDetialCon
     }
 
     @Override
+    public void getFarmerData(String farmerTaskId) {
+        mView.showLoading(false, "");
+        Map<String, String> map = new HashMap<>();
+        map.put("farmerTaskId", farmerTaskId);
+        reqData(mContext, "farmHand/farmerTask/farmerTaskInfo", map, 222);
+    }
+
+    @Override
     public void httpRequestResult(ResponseBean response, int requestId) {
         super.httpRequestResult(response, requestId);
         switch (requestId) {
             case 111:
                 JobOrderDetialBean jobOrderDetialBean = GsonUtils.gsonParseBean(gson, response.getResult(), JobOrderDetialBean.class);
                 mView.getDataSuccess(jobOrderDetialBean);
+                break;
+            case 222:
+                JobOrderDetialBean jobOrderDetialBeans = GsonUtils.gsonParseBean(gson, response.getResult(), JobOrderDetialBean.class);
+                mView.getDataSuccess(jobOrderDetialBeans);
                 break;
         }
     }
