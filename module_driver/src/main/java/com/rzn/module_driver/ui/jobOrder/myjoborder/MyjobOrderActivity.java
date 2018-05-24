@@ -1,9 +1,11 @@
 package com.rzn.module_driver.ui.jobOrder.myjoborder;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.view.ViewManager;
@@ -44,6 +46,8 @@ public class MyjobOrderActivity extends MVPBaseActivity<MyjobOrderContract.View,
     private RadioButton rbRamer;
     private RadioButton rbDriver;
     String flag = "farmer";
+    private FragmentManager manager;
+    private FragmentTransaction transaction;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,7 +59,7 @@ public class MyjobOrderActivity extends MVPBaseActivity<MyjobOrderContract.View,
         //初始化布局
         initViews();
         //初始化fragment
-        initFragment();
+//        initFragment();
         initListener();
 
 
@@ -73,6 +77,17 @@ public class MyjobOrderActivity extends MVPBaseActivity<MyjobOrderContract.View,
         rbRamer = (RadioButton) findViewById(R.id.rb_rarmer);
         rbDriver = (RadioButton) findViewById(R.id.rb_driver);
 
+        tvAll.setTextColor(Color.parseColor("#fb9300"));
+        tvFinish.setTextColor(Color.parseColor("#333333"));
+        tvWork.setTextColor(Color.parseColor("#333333"));
+
+
+        manager = getSupportFragmentManager();
+        transaction = manager.beginTransaction();
+        transaction.add(R.id.rl_content, new AllOrderFragment());
+        transaction.commit();
+
+
     }
 
     private void initListener() {
@@ -80,19 +95,40 @@ public class MyjobOrderActivity extends MVPBaseActivity<MyjobOrderContract.View,
         tvAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                switchContentFragment(allOrderFragment);
+                tvAll.setTextColor(Color.parseColor("#fb9300"));
+                tvFinish.setTextColor(Color.parseColor("#333333"));
+                tvWork.setTextColor(Color.parseColor("#333333"));
+//                switchContentFragment(allOrderFragment);
+                transaction = manager.beginTransaction();
+                transaction.replace(R.id.rl_content, new AllOrderFragment());
+                transaction.commit();
+
             }
         });
         tvWork.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                switchContentFragment(awaitJobFragment);
+                tvAll.setTextColor(Color.parseColor("#333333"));
+                tvFinish.setTextColor(Color.parseColor("#333333"));
+                tvWork.setTextColor(Color.parseColor("#fb9300"));
+                transaction = manager.beginTransaction();
+
+                transaction.replace(R.id.rl_content, new Await_jobFragment());
+                transaction.commit();
+//                switchContentFragment(awaitJobFragment);
             }
         });
         tvFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                switchContentFragment(haveFinishedFragment);
+                tvAll.setTextColor(Color.parseColor("#333333"));
+                tvFinish.setTextColor(Color.parseColor("#fb9300"));
+                tvWork.setTextColor(Color.parseColor("#333333"));
+                transaction = manager.beginTransaction();
+
+                transaction.replace(R.id.rl_content, new HaveFinishedFragment());
+                transaction.commit();
+//                switchContentFragment(haveFinishedFragment);
             }
         });
 
@@ -100,7 +136,14 @@ public class MyjobOrderActivity extends MVPBaseActivity<MyjobOrderContract.View,
             @Override
             public void onClick(View view) {
                 flag = "driver";
-                switchContentFragment(allOrderFragment);
+                tvAll.setTextColor(Color.parseColor("#fb9300"));
+                tvFinish.setTextColor(Color.parseColor("#333333"));
+                tvWork.setTextColor(Color.parseColor("#333333"));
+//                switchContentFragment(allOrderFragment);
+                transaction = manager.beginTransaction();
+
+                transaction.replace(R.id.rl_content, new AllOrderFragment());
+                transaction.commit();
             }
         });
 
@@ -108,7 +151,14 @@ public class MyjobOrderActivity extends MVPBaseActivity<MyjobOrderContract.View,
             @Override
             public void onClick(View view) {
                 flag = "farmer";
-                switchContentFragment(allOrderFragment);
+                tvAll.setTextColor(Color.parseColor("#fb9300"));
+                tvFinish.setTextColor(Color.parseColor("#333333"));
+                tvWork.setTextColor(Color.parseColor("#333333"));
+                transaction = manager.beginTransaction();
+
+                transaction.replace(R.id.rl_content, new AllOrderFragment());
+                transaction.commit();
+//                switchContentFragment(allOrderFragment);
 
             }
         });
@@ -121,30 +171,30 @@ public class MyjobOrderActivity extends MVPBaseActivity<MyjobOrderContract.View,
     }
 
 
-    private void initFragment() {
+//    private void initFragment() {
+//
+////        MVPBaseFragment fragment=    com.rzn.commonbaselib.applictaion.ViewManager.getInstance().getFragment(0);
+//
+//        haveFinishedFragment = new HaveFinishedFragment();
+//        awaitJobFragment = new Await_jobFragment();
+//        allOrderFragment = new AllOrderFragment();
+//
+//        switchContentFragment(allOrderFragment);
+//    }
 
-//        MVPBaseFragment fragment=    com.rzn.commonbaselib.applictaion.ViewManager.getInstance().getFragment(0);
-
-        haveFinishedFragment = new HaveFinishedFragment();
-        awaitJobFragment = new Await_jobFragment();
-        allOrderFragment = new AllOrderFragment();
-
-        switchContentFragment(allOrderFragment);
-    }
-
-    private void switchContentFragment(MVPBaseFragment fragment) {
-
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        if (currentFragment != fragment) {
-            if (currentFragment != null) {
-                transaction.hide(fragment);
-            }
-            if (fragment.isAdded()) {
-                transaction.show(fragment).commit();
-            } else {
-                transaction.add(R.id.rl_content, fragment).commit();
-            }
-            currentFragment = fragment;
-        }
-    }
+//    private void switchContentFragment(MVPBaseFragment fragment) {
+//
+//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//        if (currentFragment != fragment) {
+//            if (currentFragment != null) {
+//                transaction.hide(fragment);
+//            }
+//            if (fragment.isAdded()) {
+//                transaction.show(fragment).commit();
+//            } else {
+//                transaction.add(R.id.rl_content, fragment).commit();
+//            }
+//            currentFragment = fragment;
+//        }
+//    }
 }

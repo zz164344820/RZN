@@ -18,6 +18,7 @@ import com.rzn.commonbaselib.mvp.MVPBaseFragment;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.module_driver.R;
 import com.rzn.module_driver.ui.bean.MyWorkDetialBean;
+import com.rzn.module_driver.ui.jobOrder.myjoborder.MyjobOrderActivity;
 import com.rzn.module_driver.ui.joborderdetial.JobOrderDetialActivity;
 
 import java.util.ArrayList;
@@ -44,16 +45,26 @@ public class AllOrderFragment extends MVPBaseFragment<AllOrderContract.View, All
         mPresenter.onCreate();
         initViews();
         initData();
+
         return rootView;
     }
 
-    public void initData() {
+    private void initData() {
 
         LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
-        Map<String, String> map = new HashMap<>();
-//        map.put("handlerId",loginResponseBean.getHandlerId());
-        map.put("status", "");
-        mPresenter.getList(map);
+
+        if ("farmer".equals(((MyjobOrderActivity) getActivity()).getLabel())) {
+            Map<String, String> map = new HashMap<>();
+            map.put("userId", loginResponseBean.getUserId());
+            map.put("status", "");
+            mPresenter.getFarmerListSuccess(map);
+        } else if ("driver".equals(((MyjobOrderActivity) getActivity()).getLabel())) {
+            Map<String, String> map = new HashMap<>();
+            map.put("handlerId", loginResponseBean.getHandlerId());
+            map.put("status", "");
+            mPresenter.getList(map);
+        }
+
     }
 
     private void initViews() {
@@ -66,7 +77,18 @@ public class AllOrderFragment extends MVPBaseFragment<AllOrderContract.View, All
         allOrderAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                startActivity(new Intent(mContext, JobOrderDetialActivity.class));
+                if ("farmer".equals(((MyjobOrderActivity) getActivity()).getLabel())) {
+                    Intent intent = new Intent(getContext(), JobOrderDetialActivity.class);
+                    intent.putExtra("flag", "farmer");
+                    intent.putExtra("farmerTaskId",mylist.get(position).getFarmerTaskId());
+                    startActivity(intent);
+                } else if ("driver".equals(((MyjobOrderActivity) getActivity()).getLabel())) {
+                    Intent intent = new Intent(getContext(), JobOrderDetialActivity.class);
+                    intent.putExtra("flag", "driver");
+                    intent.putExtra("farmerTaskId",mylist.get(position).getFarmerTaskId());
+                    startActivity(intent);
+                }
+//                startActivity(new Intent(mContext, JobOrderDetialActivity.class));
             }
         });
 
@@ -86,8 +108,13 @@ public class AllOrderFragment extends MVPBaseFragment<AllOrderContract.View, All
     @Override
     public void onResume() {
         super.onResume();
-        Log.d("fragment", "zhoule-------------------------------------");
+//        Log.d("fragment", "zhoule-------------------------------------");
     }
+
+//    @Override
+//    public void getFarmerListSuccess() {
+//
+//    }
 
     @Override
     public void getListSuccess(List<MyWorkDetialBean> list) {

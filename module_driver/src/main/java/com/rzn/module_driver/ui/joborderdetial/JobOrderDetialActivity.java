@@ -6,7 +6,9 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
 
+import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
+import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.module_driver.R;
 
 
@@ -66,20 +68,28 @@ public class JobOrderDetialActivity extends MVPBaseActivity<JobOrderDetialContra
      * 初始化数据
      */
     private void initData() {
-        mPresenter.getData("");
+        String flag = getIntent().getStringExtra("flag");
+        String farmerTaskId = getIntent().getStringExtra("farmerTaskId");
+//        LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+        if ("farmer".equals(flag)) {
+            mPresenter.getFarmerData(farmerTaskId);
+        } else if ("driver".equals(flag)) {
+            mPresenter.getData(farmerTaskId);
+        }
+
     }
 
     private void showView(JobOrderDetialBean jobOrderDetialBean) {
 
         if (jobOrderDetialBean != null) {
 
-            if (1 == jobOrderDetialBean.getStatus()) {
+            if ("1".equals(jobOrderDetialBean.getStatus())) {
                 tvCancel.setText("待接单");
-            } else if (2 == jobOrderDetialBean.getStatus()) {
+            } else if ("2".equals(jobOrderDetialBean.getStatus())) {
                 tvCancel.setText("待作业");
-            } else if (3 == jobOrderDetialBean.getStatus()) {
+            } else if ("3".equals(jobOrderDetialBean.getStatus())) {
                 tvCancel.setText("取消");
-            } else if (4 == jobOrderDetialBean.getStatus()) {
+            } else if ("4".equals(jobOrderDetialBean.getStatus())) {
                 tvCancel.setText("已完成");
             }
             tvAddress.setText(jobOrderDetialBean.getAddress());
@@ -90,6 +100,7 @@ public class JobOrderDetialActivity extends MVPBaseActivity<JobOrderDetialContra
             tvMoney.setText(jobOrderDetialBean.getTotalprice());
             tvCreateTime.setText(jobOrderDetialBean.getCreateTime());
             tvPost.setText("");
+
 
 
         }
