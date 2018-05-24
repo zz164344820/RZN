@@ -34,13 +34,14 @@
                 android:textColor="#333333"
                 android:textSize="18dp" />
 
-            <RadioGroup
+            <LinearLayout
+                android:orientation="vertical"
                 android:id="@+id/rg_all"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal">
 
-                <RadioButton
+                <CheckBox
                     android:id="@+id/rb_one"
                     android:layout_width="171.5dp"
                     android:layout_height="36.5dp"
@@ -50,7 +51,7 @@
                     android:gravity="center"
                     android:text="水稻-联合整地" />
 
-                <RadioButton
+                <CheckBox
                     android:id="@+id/rb_two"
                     android:layout_width="171.5dp"
                     android:layout_height="36.5dp"
@@ -60,7 +61,7 @@
                     android:gravity="center"
                     android:text="小麦-联合整地" />
 
-                <RadioButton
+                <CheckBox
                     android:id="@+id/rb_three"
                     android:layout_width="171.5dp"
                     android:layout_height="36.5dp"
@@ -69,7 +70,7 @@
                     android:button="@null"
                     android:gravity="center"
                     android:text="水稻-收割" />
-            </RadioGroup>
+            </LinearLayout>
 
 
             <View

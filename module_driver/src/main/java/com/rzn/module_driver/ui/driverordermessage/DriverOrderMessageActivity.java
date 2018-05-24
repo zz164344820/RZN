@@ -45,9 +45,9 @@ import chihane.jdaddressselector.model.Street;
 public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessageContract.View, DriverOrderMessagePresenter> implements DriverOrderMessageContract.View, OnAddressSelectedListener {
 
     private TextView tvStartPost;
-    private RadioButton rbOne;
-    private RadioButton rbTwo;
-    private RadioButton rbThree;
+    private CheckBox rbOne;
+    private CheckBox rbTwo;
+    private CheckBox rbThree;
     private TextView tv_address;
     private LinearLayout llMoreAddress;
     private TextView tvTimeStart;
@@ -61,7 +61,7 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
     private CheckBox cbWorkTime;
     private CheckBox cbWorkAres;
     private EditText etMessage;
-    private RadioGroup rgAll;
+    private LinearLayout rgAll;
     private List<OrederInfo> orderList;
     List<OrederInfo> tempList = new ArrayList<>();//入参的作业类型集合
     private int num;
@@ -92,10 +92,17 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
                 Map<String, String> map = new HashMap<>();
                 List<PlaceBean> list = setPlaceList();
                 map.put("taskPlaceDetail", GsonParseUtils.GsonString(list));
-                LoginResponseBean  loginResponseBean= (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+                LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
                 map.put("handlerId", loginResponseBean.getHandlerId());//机手id
-               // map.put("handlerInfoId", "");//机手id详情
-                map.put("kindTypeDetail",GsonParseUtils.GsonString(tempList) );//作业类型数组
+                // map.put("handlerInfoId", "");//机手id详情
+                tempList.clear();
+                if (rbOne.isChecked()) {
+                    tempList.add(orderList.get(0));
+                }
+                if (rbTwo.isChecked()) {
+                    tempList.add(orderList.get(1));
+                }
+                map.put("kindTypeDetail", GsonParseUtils.GsonString(tempList));//作业类型数组
                 map.put("timeStart1", tvTimeStart.getText().toString());//開始时间
                 map.put("timeEnd1", tvTimeEnd.getText().toString());//结束时间
                 map.put("timeStart2", "");//开始时间
@@ -113,24 +120,6 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
                 map.put("remark", etMessage.getText().toString());//补充说明
 
                 mPresenter.supplementOrderInfo(map);
-            }
-        });
-        rbOne.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-        rbTwo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-        rbThree.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
             }
         });
         llMoreAddress.setOnClickListener(new View.OnClickListener() {
@@ -161,18 +150,18 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
         });
 
 
-        rgAll.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.rb_one) {
-                    num = 0;
-                } else if (i == R.id.rb_two) {
-                    num = 1;
-                }
-                // TODO: 2018/5/23 此处处理不正确，可以多选，后期需要更改逻辑 
-                tempList.add(orderList.get(num));
-            }
-        });
+//        rgAll.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+//                if (i == R.id.rb_one) {
+//                    num = 0;
+//                } else if (i == R.id.rb_two) {
+//                    num = 1;
+//                }
+//                // TODO: 2018/5/23 此处处理不正确，可以多选，后期需要更改逻辑
+//                tempList.add(orderList.get(num));
+//            }
+//        });
     }
 
     private List<PlaceBean> setPlaceList() {
@@ -207,9 +196,9 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
     private void initViews() {
         setTitle("完善接单信息");
         tvStartPost = (TextView) findViewById(R.id.tv_start_post);
-        rbOne = (RadioButton) findViewById(R.id.rb_one);
-        rbTwo = (RadioButton) findViewById(R.id.rb_two);
-        rbThree = (RadioButton) findViewById(R.id.rb_three);
+        rbOne = (CheckBox) findViewById(R.id.rb_one);
+        rbTwo = (CheckBox) findViewById(R.id.rb_two);
+        rbThree = (CheckBox) findViewById(R.id.rb_three);
         tv_address = (TextView) findViewById(R.id.tv_address);
         llMoreAddress = (LinearLayout) findViewById(R.id.ll_more_address);
         tvTimeStart = (TextView) findViewById(R.id.tv_time_start);
@@ -218,7 +207,7 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
         cbWorkTime = (CheckBox) findViewById(R.id.cb_work_time);
         cbWorkAres = (CheckBox) findViewById(R.id.cb_work_ares);
         etMessage = (EditText) findViewById(R.id.et_message);
-        rgAll = (RadioGroup) findViewById(R.id.rg_all);
+        rgAll = (LinearLayout) findViewById(R.id.rg_all);
 
 
         rbOne.setVisibility(View.GONE);

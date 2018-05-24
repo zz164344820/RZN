@@ -6,12 +6,16 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
+import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.module_driver.R;
 import com.rzn.module_driver.ui.bean.MyWorkDetialBean;
 import com.rzn.module_driver.ui.joborderdetial.JobOrderDetialActivity;
@@ -43,9 +47,11 @@ public class AllOrderFragment extends MVPBaseFragment<AllOrderContract.View, All
         return rootView;
     }
 
-    private void initData() {
+    public void initData() {
+
+        LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
         Map<String, String> map = new HashMap<>();
-        map.put("handlerId", "");
+//        map.put("handlerId",loginResponseBean.getHandlerId());
         map.put("status", "");
         mPresenter.getList(map);
     }
@@ -65,6 +71,22 @@ public class AllOrderFragment extends MVPBaseFragment<AllOrderContract.View, All
         });
 
 
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (hidden) {
+            //显示
+        } else {
+            //隐藏
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("fragment", "zhoule-------------------------------------");
     }
 
     @Override

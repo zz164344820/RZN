@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.view.ViewManager;
 import android.view.WindowManager;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -18,6 +19,8 @@ import com.rzn.module_driver.ui.jobOrder.allorder.AllOrderFragment;
 import com.rzn.module_driver.ui.jobOrder.await_job.Await_jobFragment;
 import com.rzn.module_driver.ui.jobOrder.havefinished.HaveFinishedFragment;
 import com.zhy.autolayout.AutoFrameLayout;
+
+import mlxy.utils.T;
 
 
 /**
@@ -38,6 +41,9 @@ public class MyjobOrderActivity extends MVPBaseActivity<MyjobOrderContract.View,
     private TextView tvAll;
     private TextView tvWork;
     private TextView tvFinish;
+    private RadioButton rbRamer;
+    private RadioButton rbDriver;
+    String flag = "farmer";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,6 +69,10 @@ public class MyjobOrderActivity extends MVPBaseActivity<MyjobOrderContract.View,
         tvWork = (TextView) findViewById(R.id.tv_work);
         tvFinish = (TextView) findViewById(R.id.tv_finish);
 
+
+        rbRamer = (RadioButton) findViewById(R.id.rb_rarmer);
+        rbDriver = (RadioButton) findViewById(R.id.rb_driver);
+
     }
 
     private void initListener() {
@@ -86,7 +96,30 @@ public class MyjobOrderActivity extends MVPBaseActivity<MyjobOrderContract.View,
             }
         });
 
+        rbDriver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                flag = "driver";
+                switchContentFragment(allOrderFragment);
+            }
+        });
+
+        rbRamer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                flag = "farmer";
+                switchContentFragment(allOrderFragment);
+
+            }
+        });
+
+
     }
+
+    public String getLabel() {
+        return flag;
+    }
+
 
     private void initFragment() {
 

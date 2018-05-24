@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,7 +37,7 @@ import cn.jpush.android.api.JPushInterface;
  * 邮箱 784787081@qq.com
  */
 
-public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPresenter> implements LoginContract.View ,OnAddressSelectedListener {
+public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPresenter> implements LoginContract.View, OnAddressSelectedListener {
 
 
     @BindView(R2.id.ed_phoneNum)
@@ -47,12 +48,15 @@ public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPres
     CountdownTextView tvGetAuthCode;
     @BindView(R2.id.bt_affirm)
     Button btAffirm;
+    private CheckBox cbAgree;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.main_act_login);
+        cbAgree = (CheckBox) findViewById(R.id.cb_agree);
         ButterKnife.bind(this);
         mPresenter.onCreate();
         JPushInterface.setAlias(this, 111, "123456");
@@ -65,10 +69,10 @@ public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPres
         tvGetAuthCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!android.text.TextUtils.isEmpty(edPhoneNum.getText().toString())) {
+                if (!android.text.TextUtils.isEmpty(edPhoneNum.getText().toString())) {
                     mPresenter.getAuthCode(edPhoneNum.getText().toString());
                     tvGetAuthCode.setClickable(false);
-                }else{
+                } else {
                     ToastUtils.showShort("请输入手机号！");
                 }
             }
@@ -76,9 +80,9 @@ public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPres
         btAffirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // mPresenter.login("18810050361", "7859");
+                // mPresenter.login("18810050361", "7859");
                 if (!TextUtils.isEmpty(edPhoneNum.getText().toString()) && !TextUtils.isEmpty(edAuthCode.getText().toString())) {
-                    if (btAffirm.isClickable()) {
+                    if (cbAgree.isChecked()) {
                         mPresenter.login(edPhoneNum.getText().toString(), edAuthCode.getText().toString());
                     } else {
                         ToastUtils.showShort("请同意协议后在录");
@@ -100,7 +104,7 @@ public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPres
 
     @Override
     public void onAddressSelected(Province province, City city, County county, Street street) {
-        ToastUtils.showShort(province.getName()+"---"+county.getName()+"---"+county.getName());
+        ToastUtils.showShort(province.getName() + "---" + county.getName() + "---" + county.getName());
     }
 
 

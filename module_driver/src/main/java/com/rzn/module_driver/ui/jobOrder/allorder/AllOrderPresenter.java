@@ -31,10 +31,10 @@ public class AllOrderPresenter extends BasePresenterImpl<AllOrderContract.View> 
         super.httpRequestResult(response, requestId);
         switch (requestId) {
             case 111:
-                Type type = new TypeToken<List<MyWorkDetialBean>>() {
-                }.getType();
-                List<MyWorkDetialBean> list = gson.fromJson(gson.toJson(response.getResult()), type);
-                mView.getListSuccess(list);
+//                Type type = new TypeToken<List<MyWorkDetialBean>>() {
+//                }.getType();
+//                List<MyWorkDetialBean> list = gson.fromJson(gson.toJson(response.getResult()), type);
+//                mView.getListSuccess(list);
                 break;
         }
 
