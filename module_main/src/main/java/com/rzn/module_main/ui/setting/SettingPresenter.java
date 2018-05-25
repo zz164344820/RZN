@@ -12,6 +12,5 @@ public class SettingPresenter extends BasePresenterImpl<SettingContract.View> im
     @Override
     public void onCreate() {
         super.onCreate();
-        reqData(mContext,"Test/index",null,111);
     }
 }

@@ -23,15 +23,25 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
+import com.rzn.commonbaselib.utils.GsonParseUtils;
+import com.rzn.commonbaselib.utils.GsonUtils;
 import com.rzn.commonbaselib.utils.SelectStatePopWindow;
 import com.rzn.module_driver.R;
+import com.rzn.module_driver.ui.bean.ImagePath;
 import com.rzn.module_driver.ui.bean.SelectWorkTypeBean;
 import com.rzn.module_driver.ui.bean.WorkTypeBean;
 import com.rzn.module_driver.ui.bean.WorkTypeObjBean;
 import com.rzn.module_driver.ui.drivermaksure.DriverMakeSureActivity;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
+import com.zyhealth.expertlib.bean.ResponseBean;
+import com.zyhealth.expertlib.net.GenericsCallback;
+import com.zyhealth.expertlib.net.JsonGenericsSerializator;
+import com.zyhealth.expertlib.net.OkHttpLoader;
 import com.zyhealth.expertlib.utils.MLog;
 
 import java.io.File;
@@ -45,6 +55,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.finalteam.galleryfinal.GalleryFinal;
 import cn.finalteam.galleryfinal.model.PhotoInfo;
+import okhttp3.Call;
 
 import static com.zyhealth.expertlib.net.OkHttpLoader.gson;
 
@@ -62,12 +73,13 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
     private LinearLayout llRootView;
     private EditText etName;
     private EditText etIdent;
-    private EditText etData;
+    private TextView tvData;
     private EditText etPhone;
     private TextView etWorkTab;
     private EditText etCarTab;
     private EditText etCarNumber;
     private EditText etFromHome;
+    private EditText tv_year;
     private TextView tvCommit;
     private ImageView ivPhotoCars;
     private ImageView ivPhotoCar;
@@ -85,6 +97,7 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
     private CheckBox cbGril;
     private String flag;
     private WorkTypeBean workTypeBean;
+    List<File> listFils = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -112,6 +125,8 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
                     tvWorkTime.setText(DateFormat.format("yyyy-MM", showDate));
                 } else if (tab == 2) {
                     tvWorkTimeNow.setText(DateFormat.format("yyyy-MM", showDate));
+                }else if(tab ==3){
+                    tvData.setText(DateFormat.format("yyyy-MM-dd", showDate));
                 }
             }
         }, showDate.get(Calendar.YEAR), showDate.get(Calendar.MONTH), showDate.get(Calendar.DAY_OF_MONTH)).show();
@@ -139,6 +154,16 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
             }
         });
 
+        tvData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //弹出系统时间选择器
+                showDateDialog(3);
+            }
+        });
+
+
+
 
         tvCommit.setOnClickListener(new View.OnClickListener() {
 
@@ -154,12 +179,16 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
 
                 if (!TextUtils.isEmpty(etName.getText()) &&
                         !TextUtils.isEmpty(etIdent.getText()) &&
-                        !TextUtils.isEmpty(etData.getText()) &&
+                        !TextUtils.isEmpty(tvData.getText()) &&
                         !TextUtils.isEmpty(etPhone.getText()) &&
                         !TextUtils.isEmpty(etWorkTab.getText()) &&
                         !TextUtils.isEmpty(etCarTab.getText()) &&
                         !TextUtils.isEmpty(etCarNumber.getText()) &&
-                        !TextUtils.isEmpty(etFromHome.getText())
+                        !TextUtils.isEmpty(etFromHome.getText())&&
+                        !TextUtils.isEmpty(onePath)&&
+                        !TextUtils.isEmpty(threePath)&&
+                        !TextUtils.isEmpty(tvWorkTime.getText().toString()) &&
+                        !TextUtils.isEmpty(tvWorkTimeNow.getText().toString())
                         ) {
 
                     LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
@@ -169,23 +198,27 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
                     map.put("handlerId", "");
                     map.put("name", etName.getText().toString());
                     map.put("sex", flag);
-                    map.put("birthday", etData.getText().toString().trim());
+                    map.put("birthday", tvData.getText().toString().trim());
                     map.put("idNo", etCarNumber.getText().toString().trim());
                     map.put("mobile", etPhone.getText().toString().trim());
                     map.put("icon", "");
-                    map.put("startDate", "2012-02-03");
-                    map.put("endDate", "2018-02-03");
-                    map.put("years", "6");
+                    map.put("startDate",tvWorkTime.getText().toString().trim());
+                    map.put("endDate", tvWorkTimeNow.getText().toString().trim());
+                    map.put("years", tv_year.getText().toString().trim());
                     map.put("carType", etCarTab.getText().toString().trim());
                     map.put("carNo", etCarNumber.getText().toString().trim());
                     map.put("belongs", etFromHome.getText().toString());
                     map.put("kindTypeDetail", gson.toJson(tempList));
-                    // mPresenter.pushDriverMessage(map,new File(onePath),new File(twoPath),new File(threePath),new File(fourPath));
+                    map.put("carPic1", onePath);
+                    map.put("carPic2", twoPath);
+                    map.put("machinePic1",threePath);
+                    map.put("machinePic2",fourPath);
                     mPresenter.pushDriverMessage(map);
 
                 } else {
+                    ToastUtils.showShort("请完善全部信息");
                     //跳转用到的
-                    startActivity(new Intent(Driver_identificationActivity.this, DriverMakeSureActivity.class));
+                   // startActivity(new Intent(Driver_identificationActivity.this, DriverMakeSureActivity.class));
 
                 }
             }
@@ -263,7 +296,7 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
         //身份证号码
         etIdent = (EditText) findViewById(R.id.et_ident);
         //出生日期
-        etData = (EditText) findViewById(R.id.et_date);
+        tvData = (TextView) findViewById(R.id.tv_date);
         //联系电话
         etPhone = (EditText) findViewById(R.id.et_phone);
         //作业类型
@@ -280,6 +313,8 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
         tvWorkTime = (TextView) findViewById(R.id.tv_work_time);
         //从业时间到什么时间
         tvWorkTimeNow = (TextView) findViewById(R.id.tv_work_time_now);
+
+        tv_year = (EditText) findViewById(R.id.tv_year);
 
         //点击上传机手驾照
         ivPhotoCars = (ImageView) findViewById(R.id.iv_photo_cars);
@@ -324,28 +359,70 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
         if ("one".equals(fag)) {
             ivPhotoCars.setImageBitmap(bm);
             ivPhotoCars.setVisibility(View.VISIBLE);
-            onePath = imagePath;
+            //onePath = imagePath;
+            uploadImage(new File(imagePath) ,1 ,"1" );
         } else if ("two".equals(fag)) {
-            twoPath = imagePath;
+           // twoPath = imagePath;
+            uploadImage(new File(imagePath) ,2 ,"1" );
             ivPhotoCar.setImageBitmap(bm);
             ivPhotoCar.setVisibility(View.VISIBLE);
         } else if ("three".equals(fag)) {
-            threePath = imagePath;
+           // threePath = imagePath;
+            uploadImage(new File(imagePath) ,3 ,"2" );
             ivCarPhotoOne.setImageBitmap(bm);
             ivCarPhotoOne.setVisibility(View.VISIBLE);
         } else if ("four".equals(fag)) {
-            fourPath = imagePath;
+           // fourPath = imagePath;
+            uploadImage(new File(imagePath) ,4 ,"2" );
             ivCarPhotoTwo.setImageBitmap(bm);
             ivCarPhotoTwo.setVisibility(View.VISIBLE);
         }
 
     }
 
+
+    public void uploadImage(File file , final int pos , String  type ) {
+
+        Map<String,String> bodyMap = new HashMap<>();
+        bodyMap.put("type",type);
+
+            OkHttpUtils.post()//
+                    .addFile("file", file.getName(), file)//
+                    .url(OkHttpLoader.BASEURL+"farmHand/handler/upFile")
+                    .params(bodyMap)//
+                    .build()//
+                    .execute(new GenericsCallback<ResponseBean>(new JsonGenericsSerializator()) {
+                        @Override
+                        public void onError(Call call, Exception e, int id) {
+
+                        }
+
+                        @Override
+                        public void onResponse(ResponseBean response, int id) {
+                            ImagePath imagePath=  GsonParseUtils.GsonToBean(response.getResult(), ImagePath.class);
+                            MLog.e(imagePath.getFileName());
+                            if(pos==1){
+                                onePath=imagePath.getFileName();
+                            }else if(pos==2){
+                                twoPath=imagePath.getFileName();
+                            }else if(pos==3){
+                                threePath=imagePath.getFileName();
+                            }else if(pos==4){
+                                fourPath=imagePath.getFileName();
+                            }
+
+                        }
+                    });
+            }
+
+
+
     //提交信息成功
     @Override
     public void pushDriverMessageSuccess() {
         //机手信息提交成功跳转下一界面
         startActivity(new Intent(this, DriverMakeSureActivity.class));
+        finish();
     }
 
     //提交信息失败

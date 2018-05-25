@@ -161,13 +161,15 @@
                         android:textColor="#333333"
                         android:textSize="16dp" />
 
-                    <EditText
-                        android:id="@+id/et_date"
+                    <TextView
+                        android:id="@+id/tv_date"
                         android:layout_width="266dp"
                         android:layout_height="36.5dp"
                         android:background="@drawable/shape_input_bg"
                         android:hint="必填"
+                        android:singleLine="true"
                         android:paddingLeft="4dp"
+                        android:gravity="center_vertical"
                         android:textSize="16dp" />
                 </LinearLayout>
                 <!--联系电话-->
@@ -302,13 +304,14 @@
                         android:textColor="#333333"
                         android:textSize="18dp" />
 
-                    <TextView
+                    <EditText
+                        android:id="@+id/tv_year"
                         android:layout_width="40dp"
                         android:layout_height="35dp"
                         android:layout_marginLeft="10dp"
                         android:background="#F1F4F5"
                         android:gravity="center"
-                        android:text="21"
+                        android:text="1"
                         android:textColor="#333333"
                         android:textSize="18dp" />
 
@@ -579,7 +582,8 @@
                 android:layout_height="41.5dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
-                android:background="#70c63f"
+                android:background="@drawable/shape_order_message_press"
+                android:layout_marginBottom="20dp"
                 android:gravity="center"
                 android:text="提交申请"
                 android:textColor="#ffffff"

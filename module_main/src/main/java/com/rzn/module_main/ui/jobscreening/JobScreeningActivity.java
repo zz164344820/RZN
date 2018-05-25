@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.blankj.utilcode.util.SPUtils;
 import com.rzn.commonbaselib.applictaion.ViewManager;
 import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
@@ -49,7 +50,8 @@ public class JobScreeningActivity extends MVPBaseActivity<JobScreeningContract.V
     @Override
     public void initView() {
         super.initView();
-        setTitle("张大千");
+        String addressName= SPUtils.getInstance().getString("addressName");
+        setTitle(addressName);
         initFragment();
         initRadioGroup(rgGroup);
     }
