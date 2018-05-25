@@ -8,6 +8,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.rzn.commonbaselib.applictaion.BaseApplication;
 import com.rzn.njt.BuildConfig;
 import com.rzn.njt.R;
+import com.tencent.bugly.Bugly;
 import com.zyhealth.expertlib.Constants;
 import com.zyhealth.expertlib.LibApplication;
 import com.zyhealth.expertlib.net.OkHttpLoader;
@@ -30,6 +31,11 @@ public class RZNApplication extends LibApplication {
         OkHttpLoader.changServer();
         initArouter();
         initJPush();
+        initBugly();
+    }
+
+    private void initBugly() {
+        Bugly.init(getApplicationContext(), "082e2de220", false);
     }
 
     private void initJPush() {

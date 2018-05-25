@@ -4,6 +4,13 @@
     package="com.rzn.njt">
 
 
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/appicon"
@@ -14,6 +21,11 @@
         tools:replace="android:name, android:allowBackup ,android:label ,android:supportsRtl"
         android:theme="@style/AppTheme2" >
 
+
+        <activity
+            android:name="com.tencent.bugly.beta.ui.BetaActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|locale"
+            android:theme="@android:style/Theme.Translucent" />
 
         <service android:name="cn.jpush.android.service.PushService"
             android:process=":multiprocess"
