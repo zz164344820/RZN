@@ -19,14 +19,15 @@
         </activity>
 
         <activity android:name=".ui.main.MainActivity" />
-        <activity android:name=".ui.jobscreening.JobScreeningActivity"
-            android:launchMode="singleTask"
-            />
+        <activity
+            android:name=".ui.jobscreening.JobScreeningActivity"
+            android:launchMode="singleTask" />
         <activity android:name=".ui.myadvice.MyAdviceActivity" />
         <activity android:name=".ui.driverhome.DriverHomeActivity" />
         <activity android:name=".ui.setting.SettingActivity" />
         <activity android:name=".ui.keepstation.KeepStationActivity" />
         <activity android:name=".ui.personalinfo.PersonalInfoActivity" />
+        <activity android:name=".ui.drivercenter.DriverCenterActivity" />
 
     </application>
 

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,14 +53,22 @@ public class AllOrderFragment extends MVPBaseFragment<AllOrderContract.View, All
     private void initData() {
 
         LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
-
+        if (loginResponseBean == null) {
+            return;
+        }
         if ("farmer".equals(((MyjobOrderActivity) getActivity()).getLabel())) {
             Map<String, String> map = new HashMap<>();
+            if (TextUtils.isEmpty(loginResponseBean.getUserId())){
+                return;
+            }
             map.put("userId", loginResponseBean.getUserId());
             map.put("status", "");
             mPresenter.getFarmerListSuccess(map);
         } else if ("driver".equals(((MyjobOrderActivity) getActivity()).getLabel())) {
             Map<String, String> map = new HashMap<>();
+            if (TextUtils.isEmpty(loginResponseBean.getHandlerId())){
+                return;
+            }
             map.put("handlerId", loginResponseBean.getHandlerId());
             map.put("status", "");
             mPresenter.getList(map);
@@ -74,18 +83,19 @@ public class AllOrderFragment extends MVPBaseFragment<AllOrderContract.View, All
 
         allOrderAdapter = new AllOrderAdapter(R.layout.driver_item_work_order, mylist);
         rcWorkList.setAdapter(allOrderAdapter);
+        allOrderAdapter.setEmptyView(R.layout.driverorder_nullpager,(ViewGroup)rcWorkList.getParent());
         allOrderAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 if ("farmer".equals(((MyjobOrderActivity) getActivity()).getLabel())) {
                     Intent intent = new Intent(getContext(), JobOrderDetialActivity.class);
                     intent.putExtra("flag", "farmer");
-                    intent.putExtra("farmerTaskId",mylist.get(position).getFarmerTaskId());
+                    intent.putExtra("farmerTaskId", mylist.get(position).getFarmerTaskId());
                     startActivity(intent);
                 } else if ("driver".equals(((MyjobOrderActivity) getActivity()).getLabel())) {
                     Intent intent = new Intent(getContext(), JobOrderDetialActivity.class);
                     intent.putExtra("flag", "driver");
-                    intent.putExtra("farmerTaskId",mylist.get(position).getFarmerTaskId());
+                    intent.putExtra("farmerTaskId", mylist.get(position).getFarmerTaskId());
                     startActivity(intent);
                 }
 //                startActivity(new Intent(mContext, JobOrderDetialActivity.class));

@@ -81,6 +81,7 @@ public class MyjobOrderActivity extends MVPBaseActivity<MyjobOrderContract.View,
         tvFinish.setTextColor(Color.parseColor("#333333"));
         tvWork.setTextColor(Color.parseColor("#333333"));
 
+        tvFinish.setText("待接单");
 
         manager = getSupportFragmentManager();
         transaction = manager.beginTransaction();
@@ -136,6 +137,7 @@ public class MyjobOrderActivity extends MVPBaseActivity<MyjobOrderContract.View,
             @Override
             public void onClick(View view) {
                 flag = "driver";
+                tvFinish.setText("已完成");
                 tvAll.setTextColor(Color.parseColor("#fb9300"));
                 tvFinish.setTextColor(Color.parseColor("#333333"));
                 tvWork.setTextColor(Color.parseColor("#333333"));
@@ -151,6 +153,7 @@ public class MyjobOrderActivity extends MVPBaseActivity<MyjobOrderContract.View,
             @Override
             public void onClick(View view) {
                 flag = "farmer";
+                tvFinish.setText("待接单");
                 tvAll.setTextColor(Color.parseColor("#fb9300"));
                 tvFinish.setTextColor(Color.parseColor("#333333"));
                 tvWork.setTextColor(Color.parseColor("#333333"));

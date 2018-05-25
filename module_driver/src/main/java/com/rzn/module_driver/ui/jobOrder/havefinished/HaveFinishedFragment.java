@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,16 +50,24 @@ public class HaveFinishedFragment extends MVPBaseFragment<HaveFinishedContract.V
     private void initData() {
 
         LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
-
+        if (loginResponseBean == null) {
+            return;
+        }
         if ("farmer".equals(((MyjobOrderActivity) getActivity()).getLabel())) {
             Map<String, String> map = new HashMap<>();
+            if (TextUtils.isEmpty(loginResponseBean.getUserId())) {
+                return;
+            }
             map.put("userId", loginResponseBean.getUserId());
-            map.put("status", "");
+            map.put("status", "1");
             mPresenter.getFarmerListSuccess(map);
         } else if ("driver".equals(((MyjobOrderActivity) getActivity()).getLabel())) {
             Map<String, String> map = new HashMap<>();
+            if (TextUtils.isEmpty(loginResponseBean.getHandlerId())) {
+                return;
+            }
             map.put("handlerId", loginResponseBean.getHandlerId());
-            map.put("status", "");
+            map.put("status", "4");
             mPresenter.getList(map);
         }
 
@@ -71,6 +80,7 @@ public class HaveFinishedFragment extends MVPBaseFragment<HaveFinishedContract.V
 
         allOrderAdapter = new AllOrderAdapter(R.layout.driver_item_work_order, mylist);
         rcWorkList.setAdapter(allOrderAdapter);
+        allOrderAdapter.setEmptyView(R.layout.driverorder_nullpager, (ViewGroup) rcWorkList.getParent());
         allOrderAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {

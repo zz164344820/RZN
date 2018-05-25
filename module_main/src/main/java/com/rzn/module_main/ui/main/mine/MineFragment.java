@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
 import com.rzn.module_main.R;
+import com.rzn.module_main.ui.drivercenter.DriverCenterActivity;
 import com.rzn.module_main.ui.driverhome.DriverHomeActivity;
 import com.rzn.module_main.ui.myadvice.MyAdviceActivity;
 import com.rzn.module_main.ui.personalinfo.PersonalInfoActivity;
@@ -68,7 +69,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         llPhoneConcel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(mContext, DriverHomeActivity.class));
+                startActivity(new Intent(mContext, DriverCenterActivity.class));//DriverHomeActivity
 
             }
         });
