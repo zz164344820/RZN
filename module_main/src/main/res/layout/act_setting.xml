@@ -28,12 +28,23 @@
             android:layout_weight="1" />
 
         <TextView
+            android:id="@+id/tv_messageStute"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
             android:text="接收消息推送"
             android:textColor="#ff888888"
             android:textSize="16dp" />
+
+        <CheckBox
+            android:id="@+id/cb_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/messagewarn"
+            android:background="@null"
+            android:layout_marginRight="10dp"
+            android:checked="true"
+            />
 
     </LinearLayout>
 
@@ -76,12 +87,13 @@
 
 
     <TextView
+        android:id="@+id/tv_logout"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
         android:background="#ffffff"
         android:gravity="center"
-        android:text="推出登录"
+        android:text="退出登录"
         android:textColor="#ffff5050"
         android:textSize="18dp"
 

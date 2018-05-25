@@ -18,6 +18,7 @@ import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.module_main.R;
 import com.rzn.module_main.R2;
 import com.rzn.module_main.ui.main.MainActivity;
+import com.rzn.module_main.ui.setting.SettingActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -59,7 +60,7 @@ public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPres
         cbAgree = (CheckBox) findViewById(R.id.cb_agree);
         ButterKnife.bind(this);
         mPresenter.onCreate();
-        JPushInterface.setAlias(this, 111, "123456");
+
 
     }
 
@@ -99,7 +100,6 @@ public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPres
     @Override
     public void loginSuccess() {
         startActivity(new Intent(this, MainActivity.class));
-        finish();
     }
 
     @Override
