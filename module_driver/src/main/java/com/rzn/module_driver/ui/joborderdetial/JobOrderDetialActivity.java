@@ -15,6 +15,8 @@ import com.rzn.module_driver.R;
 import java.util.HashMap;
 import java.util.Map;
 
+import mlxy.utils.T;
+
 
 /**
  * MVPPlugin
@@ -24,7 +26,7 @@ import java.util.Map;
 public class JobOrderDetialActivity extends MVPBaseActivity<JobOrderDetialContract.View, JobOrderDetialPresenter> implements JobOrderDetialContract.View {
 
     private TextView tvCancel;
-    private TextView tvTitle;
+    private TextView tvTitles;
     private TextView tvAddress;
     private TextView tvAddressTwo;
     private TextView tvTime;
@@ -43,6 +45,7 @@ public class JobOrderDetialActivity extends MVPBaseActivity<JobOrderDetialContra
     private TextView tvMu;
     private String farmerTaskId;
     JobOrderDetialBean jobOrderDetialBean;
+    private TextView tvT;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,11 +63,11 @@ public class JobOrderDetialActivity extends MVPBaseActivity<JobOrderDetialContra
             @Override
             public void onClick(View view) {
                 //删除订单
-                if ("farmer".equals(flag)) {
-
-                } else if ("driver".equals(flag)) {
-
-                }
+//                if ("farmer".equals(flag)) {
+//
+//                } else if ("driver".equals(flag)) {
+//
+//                }
                 Map<String, String> map = new HashMap<>();
                 map.put("farmerTaskId", farmerTaskId);
                 mPresenter.deletePost(map);
@@ -79,6 +82,7 @@ public class JobOrderDetialActivity extends MVPBaseActivity<JobOrderDetialContra
                         //修改作业需求
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("jobOrderDetialBean", jobOrderDetialBean);
+                        bundle.putString("jobdetial", "jobdetial");
                         ARouter.getInstance().build("/farmer/sendwork").withBundle("bean", bundle).navigation();
                     } else if ("联系机手".equals(tvHadWork.getText().toString())) {
 
@@ -117,7 +121,7 @@ public class JobOrderDetialActivity extends MVPBaseActivity<JobOrderDetialContra
     private void initViews() {
         setTitle("作业订单详情");
         tvCancel = (TextView) findViewById(R.id.tv_cancel);//取消按钮
-        tvTitle = (TextView) findViewById(R.id.tv_title);//多少亩标题
+        tvTitles = (TextView) findViewById(R.id.tv_titles);//多少亩标题
         tvAddress = (TextView) findViewById(R.id.tv_address);//地址
         tvAddressTwo = (TextView) findViewById(R.id.tv_address_two);//地址
         tvTime = (TextView) findViewById(R.id.tv_time);//时间
@@ -127,6 +131,7 @@ public class JobOrderDetialActivity extends MVPBaseActivity<JobOrderDetialContra
         tvCreateTime = (TextView) findViewById(R.id.tv_create_time);//创建时间
         tvPost = (TextView) findViewById(R.id.tv_post);//单号
         tvCancelTime = (TextView) findViewById(R.id.tv_cancel_time);//取消时间
+        tvT = (TextView) findViewById(R.id.tv_t);
 
 
         tvDeletePost = (TextView) findViewById(R.id.tv_delete_post);
@@ -188,8 +193,8 @@ public class JobOrderDetialActivity extends MVPBaseActivity<JobOrderDetialContra
             tvCancel.setText("已完成");
         }
 
-
-        tvAddress.setText(jobOrderDetialBean.getAddress());
+        tvAddress.setText(jobOrderDetialBean.getProvinceName() + jobOrderDetialBean.getAreaName() + jobOrderDetialBean.getCityName() + "");
+//        tvAddress.setText(jobOrderDetialBean.getAddress());
         tvAddressTwo.setText(jobOrderDetialBean.getTaskPlace());
         tvTime.setText(jobOrderDetialBean.getStartDate() + "至" + jobOrderDetialBean.getEndDate());
         tvMessage.setText(jobOrderDetialBean.getRemark());
@@ -197,7 +202,12 @@ public class JobOrderDetialActivity extends MVPBaseActivity<JobOrderDetialContra
         tvMoney.setText(jobOrderDetialBean.getTotalprice() + "元");
         tvCreateTime.setText(jobOrderDetialBean.getCreateTime());
         tvPost.setText(jobOrderDetialBean.getOrderNo());
-
+        if ("1".equals(jobOrderDetialBean.getFlag())) {
+            tvTitles.setText(jobOrderDetialBean.getAreas() + "亩/" + "集中连片" + jobOrderDetialBean.getFlagNum() + "块");
+        } else if ("2".equals(jobOrderDetialBean.getFlag())) {
+            tvTitles.setText(jobOrderDetialBean.getAreas() + "亩/" + "零星分散" + jobOrderDetialBean.getFlagNum() + "块");
+        }
+        tvT.setText(jobOrderDetialBean.getTypes());
     }
 
     private void showFarmer(JobOrderDetialBean jobOrderDetialBean) {
@@ -237,7 +247,8 @@ public class JobOrderDetialActivity extends MVPBaseActivity<JobOrderDetialContra
                 llMu.setVisibility(View.VISIBLE);
                 tvMu.setText(jobOrderDetialBean.getAreas() + "亩");
             }
-            tvAddress.setText(jobOrderDetialBean.getAddress());
+            tvAddress.setText(jobOrderDetialBean.getProvinceName() + jobOrderDetialBean.getAreaName() + jobOrderDetialBean.getCityName() + "");
+//            tvAddress.setText(jobOrderDetialBean.getAddress());
             tvAddressTwo.setText(jobOrderDetialBean.getTaskPlace());
             tvTime.setText(jobOrderDetialBean.getStartDate() + "至" + jobOrderDetialBean.getEndDate());
             tvMessage.setText(jobOrderDetialBean.getRemark());
@@ -245,6 +256,12 @@ public class JobOrderDetialActivity extends MVPBaseActivity<JobOrderDetialContra
             tvMoney.setText(jobOrderDetialBean.getTotalprice() + "元");
             tvCreateTime.setText(jobOrderDetialBean.getCreateTime());
             tvPost.setText(jobOrderDetialBean.getOrderNo());
+            if ("1".equals(jobOrderDetialBean.getFlag())) {
+                tvTitles.setText(jobOrderDetialBean.getAreas() + "亩/" + "集中连片" + jobOrderDetialBean.getFlagNum() + "块");
+            } else if ("2".equals(jobOrderDetialBean.getFlag())) {
+                tvTitles.setText(jobOrderDetialBean.getAreas() + "亩/" + "零星分散" + jobOrderDetialBean.getFlagNum() + "块");
+            }
+            tvT.setText(jobOrderDetialBean.getTypes());
 
 
         }

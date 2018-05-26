@@ -39,13 +39,13 @@
                     android:id="@+id/et_people"
                     android:layout_width="match_parent"
                     android:layout_height="37dp"
+                    android:layout_marginBottom="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:paddingLeft="4dp"
                     android:background="@drawable/shape_input_bg"
                     android:hint="必填"
+                    android:paddingLeft="4dp"
                     android:textSize="16dp" />
 
             </LinearLayout>
@@ -68,14 +68,14 @@
                     android:id="@+id/et_phone"
                     android:layout_width="match_parent"
                     android:layout_height="37dp"
+                    android:layout_marginBottom="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:inputType="number"
-                    android:maxLength="11"
                     android:background="@drawable/shape_input_bg"
                     android:hint="13598456828"
+                    android:inputType="number"
+                    android:maxLength="11"
                     android:paddingLeft="4dp"
                     android:textSize="16dp" />
 
@@ -99,10 +99,10 @@
                     android:id="@+id/et_home_address"
                     android:layout_width="match_parent"
                     android:layout_height="37dp"
+                    android:layout_marginBottom="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
                     android:background="@drawable/shape_input_bg"
                     android:hint="必填"
                     android:paddingLeft="4dp"
@@ -133,10 +133,10 @@
                     android:id="@+id/tv_work_tab"
                     android:layout_width="match_parent"
                     android:layout_height="37dp"
+                    android:layout_marginBottom="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
                     android:background="@drawable/shape_input_bg"
                     android:gravity="center_vertical"
                     android:hint="必填"
@@ -159,20 +159,34 @@
                     android:textColor="#333333"
                     android:textSize="18dp" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="共"
+                    android:textColor="#333333"
+                    android:textSize="16dp" />
+
                 <EditText
                     android:id="@+id/et_work_areas"
-                    android:layout_width="match_parent"
+                    android:layout_width="50dp"
                     android:layout_height="37dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/shape_input_bg"
                     android:gravity="center_vertical"
                     android:hint="必填"
                     android:paddingLeft="4dp"
                     android:textSize="16dp" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="亩"
+                    android:textColor="#333333"
+                    android:textSize="16dp" />
             </LinearLayout>
             <!--地块类型-->
             <LinearLayout
@@ -181,44 +195,65 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="地块分布:"
+                        android:textColor="#333333"
+                        android:textSize="18dp" />
+
+                    <RadioButton
+                        android:id="@+id/cb_one"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:background="@null"
+                        android:button="@drawable/button_checked" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="37dp"
+                        android:layout_margin="3dp"
+                        android:gravity="center_vertical"
+                        android:hint="集中连片" />
+
+                    <RadioButton
+                        android:id="@+id/cb_two"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:background="@null"
+                        android:button="@drawable/button_checked" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="37dp"
+                        android:layout_margin="3dp"
+                        android:gravity="center_vertical"
+                        android:hint="零星分散" />
+                </RadioGroup>
+
+                <EditText
+                    android:id="@+id/et_kuai"
+                    android:layout_width="40dp"
+                    android:layout_height="37dp"
+                    android:background="@drawable/shape_input_bg" />
+
                 <TextView
-                    android:layout_width="80dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="地块分布:"
+                    android:text="块"
                     android:textColor="#333333"
-                    android:textSize="18dp" />
-
-                <CheckBox
-                    android:id="@+id/cb_one"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:background="@null"
-                    android:button="@drawable/button_checked" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="37dp"
-                    android:layout_margin="10dp"
-                    android:gravity="center_vertical"
-                    android:hint="集中连片" />
-
-                <CheckBox
-                    android:id="@+id/cb_two"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:background="@null"
-                    android:button="@drawable/button_checked" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="37dp"
-                    android:layout_margin="10dp"
-                    android:gravity="center_vertical"
-                    android:hint="零星分散" />
-
+                    android:textSize="16dp" />
             </LinearLayout>
 
             <!--作业地点-->
@@ -237,25 +272,25 @@
                     android:textSize="18dp" />
 
                 <!--<TextView-->
-                    <!--android:id="@+id/tv_work_address"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="37dp"-->
-                    <!--android:layout_marginLeft="10dp"-->
-                    <!--android:layout_marginRight="20dp"-->
-                    <!--android:layout_marginTop="10dp"-->
-                    <!--android:layout_marginBottom="10dp"-->
-                    <!--android:background="@drawable/shape_input_bg"-->
-                    <!--android:gravity="center_vertical"-->
-                    <!--android:paddingLeft="4dp"-->
-                    <!--android:hint="必填" />-->
+                <!--android:id="@+id/tv_work_address"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="37dp"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:layout_marginRight="20dp"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:layout_marginBottom="10dp"-->
+                <!--android:background="@drawable/shape_input_bg"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:paddingLeft="4dp"-->
+                <!--android:hint="必填" />-->
                 <TextView
                     android:id="@+id/tv_work_address"
                     android:layout_width="match_parent"
                     android:layout_height="37dp"
+                    android:layout_marginBottom="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
                     android:background="@drawable/shape_input_bg"
                     android:gravity="center_vertical"
                     android:hint="必填"
@@ -296,8 +331,8 @@
                     android:layout_margin="10dp"
                     android:background="@drawable/shape_input_bg"
                     android:gravity="center_vertical"
-                    android:paddingLeft="4dp"
-                    android:hint="2015-01-24" />
+                    android:hint="2015-01-24"
+                    android:paddingLeft="4dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -313,8 +348,8 @@
                     android:layout_margin="10dp"
                     android:background="@drawable/shape_input_bg"
                     android:gravity="center_vertical"
-                    android:paddingLeft="4dp"
-                    android:hint="必填" />
+                    android:hint="必填"
+                    android:paddingLeft="4dp" />
 
             </LinearLayout>
             <!--作业价格-->
@@ -333,25 +368,25 @@
                     android:textSize="18dp" />
 
                 <!--<TextView-->
-                    <!--android:id="@+id/tv_price"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="37dp"-->
-                    <!--android:layout_marginLeft="10dp"-->
-                    <!--android:layout_marginRight="20dp"-->
-                    <!--android:layout_marginTop="10dp"-->
-                    <!--android:layout_marginBottom="10dp"-->
-                    <!--android:background="@drawable/shape_input_bg"-->
-                    <!--android:gravity="center_vertical"-->
-                    <!--android:hint="必填"-->
-                    <!--android:textSize="16dp" />-->
+                <!--android:id="@+id/tv_price"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="37dp"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:layout_marginRight="20dp"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:layout_marginBottom="10dp"-->
+                <!--android:background="@drawable/shape_input_bg"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:hint="必填"-->
+                <!--android:textSize="16dp" />-->
                 <EditText
                     android:id="@+id/tv_price"
                     android:layout_width="match_parent"
                     android:layout_height="37dp"
+                    android:layout_marginBottom="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
                     android:background="@drawable/shape_input_bg"
                     android:gravity="center_vertical"
                     android:hint="必填"

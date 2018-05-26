@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by a111 on 2018/4/19.
  */
 
-public class JobOrderDetialBean implements Serializable{
+public class JobOrderDetialBean implements Serializable {
     private String address;//": "河北省石家庄天上马街1处", //家庭地址
     private String areaCode;//": "340406", //区Code
     private String areaName;//": "潘集区", //区名称
@@ -36,6 +36,36 @@ public class JobOrderDetialBean implements Serializable{
     private String unitPrice;//": "40.45",
     private String updateTime;//": "2018-05-12 18:00:53",
     private String userId;//": "40288ad75c81124b015c8132bfe8000f"
+    private String kind;
+    private String kindId;
+    private String kindType;
+
+    public String getKindType() {
+        return kindType;
+    }
+
+    public void setKindType(String kindType) {
+        this.kindType = kindType;
+    }
+
+
+
+
+    public String getKind() {
+        return kind;
+    }
+
+    public void setKind(String kind) {
+        this.kind = kind;
+    }
+
+    public String getKindId() {
+        return kindId;
+    }
+
+    public void setKindId(String kindId) {
+        this.kindId = kindId;
+    }
 
 
     public String getAddress() {
@@ -302,6 +332,9 @@ public class JobOrderDetialBean implements Serializable{
                 ", unitPrice='" + unitPrice + '\'' +
                 ", updateTime='" + updateTime + '\'' +
                 ", userId='" + userId + '\'' +
+                ", kind='" + kind + '\'' +
+                ", kindId='" + kindId + '\'' +
+                ", kindType='" + kindType + '\'' +
                 '}';
     }
 }

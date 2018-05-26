@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -63,8 +64,8 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
     private LoginResponseBean loginResponseBean;
     private WorkTypeObjBean woekTypeObjBean;
     private EditText etWorkAreas;
-    private CheckBox cbOne;
-    private CheckBox cbTwo;
+    private RadioButton cbOne;
+    private RadioButton cbTwo;
     private String farmerTaskId = "";
     private String flag = "1";
     private String kind;
@@ -76,6 +77,9 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
     Province province;//省
     County county;    //市
     City city;       //县
+    private String key;
+    private JobOrderDetialBean jobOrderDetialBean;
+    private EditText etKuai;
 
 
     @Override
@@ -83,12 +87,20 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_release_assignments);
         Bundle bean = getIntent().getBundleExtra("bean");
-        JobOrderDetialBean jobOrderDetialBean = (JobOrderDetialBean) bean.getSerializable("jobOrderDetialBean");
-        if (jobOrderDetialBean != null) {
-            Toast.makeText(this, "asdfaasdfadsg", Toast.LENGTH_LONG).show();
+        if (bean != null) {
+            key = bean.getString("jobdetial");
+            jobOrderDetialBean = (JobOrderDetialBean) bean.getSerializable("jobOrderDetialBean");
         }
+
+//        if (jobOrderDetialBean != null) {
+//            Toast.makeText(this, "asdfaasdfadsg", Toast.LENGTH_LONG).show();
+//        }
         mPresenter.onCreate();
-        setTitle("发布作业需求");
+        if ("jobdetial".equals(key)) {
+            setTitle("修改作业需求");
+        } else {
+            setTitle("发布作业需求");
+        }
         initViews();
         initListenter();
 //        showLoading(false, "");
@@ -128,7 +140,7 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
                         !TextUtils.isEmpty(etDetial.getText().toString().trim())) {
                     mPresenter.httpSendWork(loginResponseBean.getUserId(), farmerTaskId, etPeople.getText().toString().trim(),
                             etPhone.getText().toString().trim(), etHomeAddress.getText().toString().trim()
-                            , kind, kindType, kindTypeId, unitPrice, etWorkAreas.getText().toString().trim(), flag, "1", tvStartTime.getText().toString().trim(),
+                            , kind, kindType, kindTypeId, unitPrice, etWorkAreas.getText().toString().trim(), flag, etKuai.getText().toString().trim(), tvStartTime.getText().toString().trim(),
                             tvToTime.getText().toString().trim(),
                             etDetialAddress.getText().toString().trim(), etDetial.getText().toString().trim(), province, city, county
                     );
@@ -198,8 +210,9 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
         etHomeAddress = (EditText) findViewById(R.id.et_home_address);//家地址
         tvWorkTab = (TextView) findViewById(R.id.tv_work_tab);//作业类型
         etWorkAreas = (EditText) findViewById(R.id.et_work_areas);
-        cbOne = (CheckBox) findViewById(R.id.cb_one);
-        cbTwo = (CheckBox) findViewById(R.id.cb_two);
+        cbOne = (RadioButton) findViewById(R.id.cb_one);
+        cbTwo = (RadioButton) findViewById(R.id.cb_two);
+        etKuai = (EditText) findViewById(R.id.et_kuai);
         tvWorkAddress = (TextView) findViewById(R.id.tv_work_address);//作业地点
         etDetialAddress = (EditText) findViewById(R.id.et_detial_address);//详细地址
         tvStartTime = (TextView) findViewById(R.id.tv_start_time);//作业开始时间
@@ -209,6 +222,46 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
         tvConfim = (TextView) findViewById(R.id.tv_confim);//确认发布
         bottomDialog = new BottomDialog(SendWorkActivity.this);
         bottomDialog.setOnAddressSelectedListener(this);
+
+
+        if ("jobdetial".equals(key) && jobOrderDetialBean != null) {
+            etPeople.setText(jobOrderDetialBean.getName());
+            etPhone.setText(jobOrderDetialBean.getMobile());
+            etHomeAddress.setText(jobOrderDetialBean.getAddress());
+            kind = jobOrderDetialBean.getKind();
+            kindType = jobOrderDetialBean.getKindType();
+            kindTypeId = jobOrderDetialBean.getKindTypeId();
+            unitPrice = jobOrderDetialBean.getUnitPrice();
+
+            tvWorkTab.setText(jobOrderDetialBean.getTypes());
+            tvWorkAddress.setText(jobOrderDetialBean.getAreas());
+            if ("1".equals(jobOrderDetialBean.getFlag())) {
+                cbOne.setChecked(true);
+            } else if ("2".equals(jobOrderDetialBean.getFlag())) {
+                cbTwo.setChecked(true);
+            }
+            province = new Province();
+            province.setName(jobOrderDetialBean.getProvinceName());
+            province.setId(Integer.valueOf(jobOrderDetialBean.getProvinceCode()));
+            city = new City();
+            city.setId(Integer.valueOf(jobOrderDetialBean.getCityCode()));
+            city.setName(jobOrderDetialBean.getName());
+            county = new County();
+            county.setId(Integer.valueOf(jobOrderDetialBean.getAreaCode()));
+            county.setCity_id(Integer.valueOf(jobOrderDetialBean.getAreaCode()));
+            county.setName(jobOrderDetialBean.getAreaName());
+            etWorkAreas.setText(jobOrderDetialBean.getAreas());
+            tvWorkAddress.setText(jobOrderDetialBean.getProvinceName() + " " + jobOrderDetialBean.getAreaName() + " " + jobOrderDetialBean.getCityName());
+            etDetialAddress.setText(jobOrderDetialBean.getTaskPlace());
+            tvStartTime.setText(jobOrderDetialBean.getStartDate());
+            tvToTime.setText(jobOrderDetialBean.getEndDate());
+            tvPrice.setText(jobOrderDetialBean.getTotalprice());
+            etDetial.setText(jobOrderDetialBean.getRemark());
+            etKuai.setText(jobOrderDetialBean.getFlagNum());
+            farmerTaskId = jobOrderDetialBean.getFarmerTaskId();
+            tvConfim.setText("保存");
+        }
+
     }
 
     /**
@@ -234,9 +287,9 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
             @Override
             public void onClick(int position, int typePosition) {
                 //获取作业类型
-                kind = list.get(position).getKindId();
-                kindType = list.get(position).getTypeArray().get(typePosition).getTypeId();
-                kindTypeId = list.get(position).getTypeArray().get(typePosition).getKindId();
+                kind = list.get(position).getKindName();
+                kindType = list.get(position).getTypeArray().get(typePosition).getTypeName();
+                kindTypeId = list.get(position).getTypeArray().get(typePosition).getTypeId();
                 unitPrice = list.get(position).getTypeArray().get(typePosition).getTypeUnitPrice();
                 tvWorkTab.setText(list.get(position).getKindName() + "    " + list.get(position).getTypeArray().get(typePosition).getTypeName());
             }

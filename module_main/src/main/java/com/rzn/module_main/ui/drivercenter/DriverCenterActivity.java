@@ -177,7 +177,7 @@ public class DriverCenterActivity extends MVPBaseActivity<DriverCenterContract.V
             rlFour.setBackgroundResource(R.drawable.icon_blue);
         }
         tvName.setText(driverBean.getName());
-        tvContent.setText("从业多年老司机，技术超群！");
+        tvText.setText("从业多年老司机，技术超群！");
         if ("0".equals(driverBean.getSex())) {
             //女
             ivSex.setBackgroundResource(R.drawable.icon_sex_gril);
