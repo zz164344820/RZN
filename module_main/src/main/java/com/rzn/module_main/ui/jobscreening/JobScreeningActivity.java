@@ -52,6 +52,12 @@ public class JobScreeningActivity extends MVPBaseActivity<JobScreeningContract.V
         super.initView();
         String addressName= SPUtils.getInstance().getString("addressName");
         setTitle(addressName);
+        setRightImage(R.drawable.order_liebiao).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ARouter.getInstance().build("/driver/myjobdetial").navigation();
+            }
+        });
         initFragment();
         initRadioGroup(rgGroup);
     }
@@ -87,13 +93,5 @@ public class JobScreeningActivity extends MVPBaseActivity<JobScreeningContract.V
         });
     }
 
-    @OnClick({R2.id.tv_title, R2.id.iv_right})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R2.id.tv_title:
-                break;
-            case R2.id.iv_right:
-                break;
-        }
-    }
+
 }
