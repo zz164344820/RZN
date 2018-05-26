@@ -2,15 +2,19 @@ package com.rzn.module_farmer.ui.farmerdriverdetial;
 
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.jaeger.library.StatusBarUtil;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.module_farmer.R;
 import com.rzn.module_farmer.bean.DriverDetialMessageBean;
+import com.zyhealth.expertlib.utils.GlideUtils;
 
 
 /**
@@ -21,7 +25,7 @@ import com.rzn.module_farmer.bean.DriverDetialMessageBean;
 
 public class FarmerDriverDetialActivity extends MVPBaseActivity<FarmerDriverDetialContract.View, FarmerDriverDetialPresenter> implements FarmerDriverDetialContract.View {
 
-    private ImageView ivPhoto;
+    private ImageView ivPhoto,headbackground;
     private TextView tvName;
     private TextView tvContent;
     private TextView tvText;
@@ -40,6 +44,11 @@ public class FarmerDriverDetialActivity extends MVPBaseActivity<FarmerDriverDeti
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (Build.VERSION.SDK_INT >= 21) {
+            View decorView = getWindow().getDecorView();
+            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        }
         setContentView(R.layout.act_farmer_driver_detial);
         mPresenter.onCreate();
         initViews();
@@ -78,6 +87,10 @@ public class FarmerDriverDetialActivity extends MVPBaseActivity<FarmerDriverDeti
         tvTime = (TextView) findViewById(R.id.tv_time);
         tvMessage = (TextView) findViewById(R.id.tv_message);
         tvCommit = (TextView) findViewById(R.id.tv_commit);
+        headbackground = (ImageView) findViewById(R.id.headbackground);
+
+        GlideUtils.loadImageRound(this,"http://img1.touxiang.cn/uploads/20120717/17-010343_962.jpg",ivPhoto,30);
+        GlideUtils.loadImageView(this,"http://img1.touxiang.cn/uploads/20120717/17-010343_962.jpg",headbackground);
 
     }
 

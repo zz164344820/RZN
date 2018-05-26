@@ -14,6 +14,7 @@ import com.rzn.commonbaselib.views.NosrollViewPager;
 import com.rzn.module_main.R;
 import com.rzn.module_main.R2;
 import com.rzn.module_main.ui.login.LoginActivity;
+import com.zyhealth.expertlib.utils.GlideUtils;
 import com.zyhealth.expertlib.utils.MLog;
 
 import butterknife.BindView;

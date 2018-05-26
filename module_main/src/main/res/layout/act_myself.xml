@@ -9,6 +9,13 @@
         android:layout_height="400px"
         android:background="#2324">
 
+        <ImageView
+            android:id="@+id/iv_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            />
+
         <com.zhy.autolayout.AutoRelativeLayout
             android:layout_width="match_parent"
             android:layout_height="88px">
@@ -186,6 +193,16 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tv_Status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:text="未认证"
+            android:textColor="@color/text_888"
+            android:layout_marginRight="6dp"
+            />
 
         <ImageView
             android:layout_width="wrap_content"

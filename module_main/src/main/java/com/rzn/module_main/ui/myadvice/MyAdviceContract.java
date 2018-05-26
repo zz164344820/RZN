@@ -15,6 +15,6 @@ public class MyAdviceContract {
     }
 
     interface  Presenter extends BasePresenter<View> {
-        
+        void commitInfo(String feedback,String contactWay );
     }
 }
