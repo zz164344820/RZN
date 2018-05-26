@@ -22,7 +22,8 @@ import java.util.List;
 public class PostingActivity extends MVPBaseActivity<PostingContract.View, PostingPresenter> implements PostingContract.View {
 
     private RecyclerView rvType;
-    List<DriverGrabOrderInfo> list=new ArrayList<>();
+    List<DriverGrabOrderInfo> list = new ArrayList<>();
+    private PostingAdapter postingAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,13 +45,14 @@ public class PostingActivity extends MVPBaseActivity<PostingContract.View, Posti
 //        list.add("1");
 //        list.add("1");
 
-        PostingAdapter postingAdapter = new PostingAdapter(R.layout.driver_item_driverlists, list);
+        postingAdapter = new PostingAdapter(R.layout.driver_item_driverlists, list);
         rvType.setAdapter(postingAdapter);
 
     }
 
     @Override
-    public void getListSuccess() {
-
+    public void getListSuccess(List<DriverGrabOrderInfo> tempList) {
+        list.addAll(tempList);
+        postingAdapter.notifyDataSetChanged();
     }
 }
