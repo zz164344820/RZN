@@ -72,18 +72,18 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
 
     private static final int IMAGE = 1;
 
-    private LinearLayout llRootView;
+    private LinearLayout llRootView,ll_jobOrderType2;
     private EditText etName;
     private EditText etIdent;
     private TextView tvData;
     private EditText etPhone;
-    private TextView etWorkTab;
+    private TextView etWorkTab,tv_work_tab2;
     private EditText etCarTab;
     private EditText etCarNumber;
     private EditText etFromHome;
     private EditText tv_year;
     private TextView tvCommit;
-    private ImageView ivPhotoCars;
+    private ImageView ivPhotoCars,iv_addOrderType,iv_subtractOrderType;
     private ImageView ivPhotoCar;
     private String fag;
     private TextView tvWorkTime;
@@ -99,8 +99,11 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
     private CheckBox cbGril;
     private String flag;
     private WorkTypeBean workTypeBean;
+    SelectWorkTypeBean workType1;
+    SelectWorkTypeBean workType2;
     List<File> listFils = new ArrayList<>();
     private String setting;
+    int showMoreJobType=0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -181,18 +184,52 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
             }
         });
 
+        iv_addOrderType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ll_jobOrderType2.setVisibility(View.VISIBLE);
+                iv_addOrderType.setVisibility(View.INVISIBLE);
+            }
+        });
+
+        iv_subtractOrderType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ll_jobOrderType2.setVisibility(View.GONE);
+                iv_addOrderType.setVisibility(View.VISIBLE);
+                workType2=null;
+                tv_work_tab2.setText("");
+            }
+        });
+
+        tv_work_tab2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showMoreJobType=1;
+                mPresenter.getJobTypes();
+            }
+        });
+        etWorkTab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showMoreJobType=0;
+                mPresenter.getJobTypes();
+            }
+        });
+
 
         tvCommit.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
 
-                if (cbBoy.isChecked()) {
-                    flag = "1";
+                if (isEmpty()) {
+                    if (cbBoy.isChecked()) {
+                        flag = "1";
 
-                } else if (cbGril.isChecked()) {
-                    flag = "2";
-                }
+                    } else if (cbGril.isChecked()) {
+                        flag = "2";
+                    }
 
                 if (!TextUtils.isEmpty(etName.getText()) &&
                         !TextUtils.isEmpty(etIdent.getText()) &&
@@ -208,6 +245,14 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
                         !TextUtils.isEmpty(tvWorkTimeNow.getText().toString())
                         ) {
 
+                    if(workType1==null){
+                        ToastUtils.showShort("请选择作业类型");
+                        return;
+                    }
+                    tempList.add(workType2);
+                    if(workType1!=null){
+                        tempList.add(workType2);
+                    }
                     LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
 
                     Map<String, String> map = new HashMap<>();
@@ -276,12 +321,22 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
             }
         });
 
-        etWorkTab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPresenter.getJobTypes();
-            }
-        });
+
+    }
+
+    private boolean isEmpty() {
+        return !TextUtils.isEmpty(etName.getText()) &&
+                !TextUtils.isEmpty(etIdent.getText()) &&
+                !TextUtils.isEmpty(tvData.getText()) &&
+                !TextUtils.isEmpty(etPhone.getText()) &&
+                !TextUtils.isEmpty(etWorkTab.getText()) &&
+                !TextUtils.isEmpty(etCarTab.getText()) &&
+                !TextUtils.isEmpty(etCarNumber.getText()) &&
+                !TextUtils.isEmpty(etFromHome.getText())&&
+                !TextUtils.isEmpty(onePath)&&
+                !TextUtils.isEmpty(threePath)&&
+                !TextUtils.isEmpty(tvWorkTime.getText().toString()) &&
+                !TextUtils.isEmpty(tvWorkTimeNow.getText().toString());
     }
 
     private void showSelectPic(final SelectStatePopWindow[] window) {
@@ -318,6 +373,7 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
         etPhone = (EditText) findViewById(R.id.et_phone);
         //作业类型
         etWorkTab = (TextView) findViewById(R.id.et_work_tab);
+        tv_work_tab2 = (TextView) findViewById(R.id.tv_work_tab2);
         //车辆类型
         etCarTab = (EditText) findViewById(R.id.et_car_tab);
         //车牌号
@@ -330,6 +386,10 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
         tvWorkTime = (TextView) findViewById(R.id.tv_work_time);
         //从业时间到什么时间
         tvWorkTimeNow = (TextView) findViewById(R.id.tv_work_time_now);
+
+        iv_addOrderType = (ImageView) findViewById(R.id.iv_addOrderType);
+        iv_subtractOrderType = (ImageView) findViewById(R.id.iv_subtractOrderType);
+        ll_jobOrderType2 = (LinearLayout) findViewById(R.id.ll_jobOrderType2);
 
         tv_year = (EditText) findViewById(R.id.tv_year);
 
@@ -477,26 +537,26 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
         sendPopUpWindow.setOnListener(new SendPopUpWindow.OnClickListener() {
             @Override
             public void onClick(int position, int typePosition) {
-                tempList.clear();
 
-                etWorkTab.setText(list.get(position).getKindName() + "    " + list.get(position).getTypeArray().get(typePosition).getTypeName());
 
-                SelectWorkTypeBean bean = new SelectWorkTypeBean();
-                bean.setKindId(list.get(position).getKindId());
-                bean.setKindName(list.get(position).getKindName());
-                bean.setKindTypeId(list.get(position).getTypeArray().get(typePosition).getTypeId());
-                bean.setKindTypeName(list.get(position).getTypeArray().get(typePosition).getTypeName());
-                bean.setUnitPrice(list.get(position).getTypeArray().get(typePosition).getTypeUnitPrice());
+                if (showMoreJobType==0){
+                    etWorkTab.setText(list.get(position).getKindName() + "    " + list.get(position).getTypeArray().get(typePosition).getTypeName());
+                    workType1 = new SelectWorkTypeBean();
+                    workType1.setKindId(list.get(position).getKindId());
+                    workType1.setKindName(list.get(position).getKindName());
+                    workType1.setKindTypeId(list.get(position).getTypeArray().get(typePosition).getTypeId());
+                    workType1.setKindTypeName(list.get(position).getTypeArray().get(typePosition).getTypeName());
+                    workType1.setUnitPrice(list.get(position).getTypeArray().get(typePosition).getTypeUnitPrice());
+                }else {
+                    tv_work_tab2.setText(list.get(position).getKindName() + "    " + list.get(position).getTypeArray().get(typePosition).getTypeName());
+                    workType2 = new SelectWorkTypeBean();
+                    workType2.setKindId(list.get(position).getKindId());
+                    workType2.setKindName(list.get(position).getKindName());
+                    workType2.setKindTypeId(list.get(position).getTypeArray().get(typePosition).getTypeId());
+                    workType2.setKindTypeName(list.get(position).getTypeArray().get(typePosition).getTypeName());
+                    workType2.setUnitPrice(list.get(position).getTypeArray().get(typePosition).getTypeUnitPrice());
+                }
 
-                SelectWorkTypeBean bean2 = new SelectWorkTypeBean();
-                bean2.setKindId(list.get(position).getKindId());
-                bean2.setKindName(list.get(position).getKindName());
-                bean2.setKindTypeId(list.get(position).getTypeArray().get(typePosition).getTypeId());
-                bean2.setKindTypeName(list.get(position).getTypeArray().get(typePosition).getTypeName());
-                bean2.setUnitPrice(list.get(position).getTypeArray().get(typePosition).getTypeUnitPrice());
-
-                tempList.add(bean);
-                tempList.add(bean2);
             }
         });
         if (sendPopUpWindow.isShowing()) {

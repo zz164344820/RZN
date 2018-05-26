@@ -50,16 +50,16 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
     private CheckBox rbOne;
     private CheckBox rbTwo;
     private CheckBox rbThree;
-    private TextView tv_address;
-    private LinearLayout llMoreAddress;
-    private TextView tvTimeStart;
-    private TextView tvTimeEnd;
+    private TextView tv_address,tv_address2;
+    private LinearLayout llMoreAddress,ll_time2;
+    private TextView tvTimeStart,tvTimeStart2;
+    private TextView tvTimeEnd,tvTimeEnd2;
     private LinearLayout llMoreTime;
     private Calendar showDate = Calendar.getInstance();   //初始化时间选择器
     BottomDialog bottomDialog;
-    Province province;
-    City city;
-    County county;
+    Province province,province2;
+    City city,city2;
+    County county,county2;
     private CheckBox cbWorkTime;
     private CheckBox cbWorkAres;
     private EditText etMessage;
@@ -78,12 +78,20 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
 
     }
 
-
+   int  flag=0;
     private void initListener() {
 
         tv_address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                flag=0;
+                bottomDialog.show();
+            }
+        });
+        tv_address2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                flag=1;
                 bottomDialog.show();
             }
         });
@@ -114,12 +122,19 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
                 }
                 if(TextUtils.isEmpty(tvTimeStart.getText().toString())||TextUtils.isEmpty(tvTimeEnd.getText().toString())){
                     ToastUtils.showShort("作业开始时间或结束时间不能为空");
+                    return;
+                }else if(!TextUtils.isEmpty(tvTimeStart2.getText().toString()) && TextUtils.isEmpty(tvTimeEnd2.getText().toString())){
+                    ToastUtils.showShort("选填结束时间不能为空");
+                    return;
+                }else if(TextUtils.isEmpty(tvTimeStart2.getText().toString()) && !TextUtils.isEmpty(tvTimeEnd2.getText().toString())){
+                    ToastUtils.showShort("选填开始时间不能为空");
+                    return;
                 }
                 map.put("kindTypeDetail", GsonParseUtils.GsonString(tempList));//作业类型数组
                 map.put("timeStart1", tvTimeStart.getText().toString());//開始时间
                 map.put("timeEnd1", tvTimeEnd.getText().toString());//结束时间
-                map.put("timeStart2", "");//开始时间
-                map.put("timeEnd2", "");//结束时间
+                map.put("timeStart2", tvTimeStart2.getText().toString());//开始时间
+                map.put("timeEnd2", tvTimeEnd2.getText().toString());//结束时间
                 if (cbWorkAres.isChecked()) {
                     map.put("anywhere", "1");//是否随地作业 0否1是
                 } else {
@@ -138,13 +153,15 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
         llMoreAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                tv_address2.setVisibility(View.VISIBLE);
+                llMoreAddress.setVisibility(View.GONE);
             }
         });
         llMoreTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                ll_time2.setVisibility(View.VISIBLE);
+                llMoreTime.setVisibility(View.GONE);
             }
         });
 
@@ -162,6 +179,21 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
             }
         });
 
+        tvTimeStart2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //弹出系统时间选择器
+                showDateDialog(3);//tab   1 代表开始时间   2代表结束的时间
+            }
+        });
+
+        tvTimeEnd2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDateDialog(4);//tab   1 代表开始时间   2代表结束的时间
+            }
+        });
+
     }
 
     private List<PlaceBean> setPlaceList() {
@@ -174,6 +206,17 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
         placeBean.setAreaCode(county.getId() + "");
         placeBean.setAreaName(county.getName());
         list.add(placeBean);
+
+        if(province2!=null && city2!=null && county2!=null){
+            PlaceBean placeBean2 = new PlaceBean();
+            placeBean2.setProvinceCode(province2.getId() + "");
+            placeBean2.setProvinceName(province2.getName());
+            placeBean2.setCityCode(city2.getId() + "");
+            placeBean2.setCityName(city2.getName());
+            placeBean2.setAreaCode(county2.getId() + "");
+            placeBean2.setAreaName(county2.getName());
+            list.add(placeBean2);
+        }
         return list;
     }
 
@@ -188,6 +231,10 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
                     tvTimeStart.setText(DateFormat.format("yyyy-MM-dd", showDate));
                 } else if (tab == 2) {
                     tvTimeEnd.setText(DateFormat.format("yyyy-MM-dd", showDate));
+                }else if(tab == 3){
+                    tvTimeStart2.setText(DateFormat.format("yyyy-MM-dd", showDate));
+                }else if(tab == 4){
+                    tvTimeEnd2.setText(DateFormat.format("yyyy-MM-dd", showDate));
                 }
             }
         }, showDate.get(Calendar.YEAR), showDate.get(Calendar.MONTH), showDate.get(Calendar.DAY_OF_MONTH)).show();
@@ -200,10 +247,14 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
         rbTwo = (CheckBox) findViewById(R.id.rb_two);
         rbThree = (CheckBox) findViewById(R.id.rb_three);
         tv_address = (TextView) findViewById(R.id.tv_address);
+        tv_address2 = (TextView) findViewById(R.id.tv_address2);
         llMoreAddress = (LinearLayout) findViewById(R.id.ll_more_address);
         tvTimeStart = (TextView) findViewById(R.id.tv_time_start);
+        tvTimeStart2 = (TextView) findViewById(R.id.tv_time_start2);
         tvTimeEnd = (TextView) findViewById(R.id.tv_time_end);
+        tvTimeEnd2 = (TextView) findViewById(R.id.tv_time_end2);
         llMoreTime = (LinearLayout) findViewById(R.id.ll_more_time);
+        ll_time2 = (LinearLayout) findViewById(R.id.ll_time2);
         cbWorkTime = (CheckBox) findViewById(R.id.cb_work_time);
         cbWorkAres = (CheckBox) findViewById(R.id.cb_work_ares);
         etMessage = (EditText) findViewById(R.id.et_message);
@@ -241,10 +292,17 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
 
     @Override
     public void onAddressSelected(Province province, City city, County county, Street street) {
-        this.province = province;
-        this.city = city;
-        this.county = county;
-        tv_address.setText(province.getName() + "  " + city.getName() + "  " + county.getName());
+        if(flag==0){
+            this.province = province;
+            this.city = city;
+            this.county = county;
+            tv_address.setText(province.getName() + "  " + city.getName() + "  " + county.getName());
+        }else{
+            this.province2 = province;
+            this.city2 = city;
+            this.county2 = county;
+            tv_address2.setText(province.getName() + "  " + city.getName() + "  " + county.getName());
+        }
         bottomDialog.dismiss();
 
     }
