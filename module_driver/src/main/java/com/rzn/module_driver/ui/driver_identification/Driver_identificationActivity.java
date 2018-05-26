@@ -23,6 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.blankj.utilcode.util.ToastUtils;
 import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
@@ -65,7 +66,7 @@ import static com.zyhealth.expertlib.net.OkHttpLoader.gson;
  * 机手认证信息界面
  * 邮箱 784787081@qq.com
  */
-
+@Route(path = "/driver/driverident")
 public class Driver_identificationActivity extends MVPBaseActivity<Driver_identificationContract.View, Driver_identificationPresenter> implements Driver_identificationContract.View {
 
     private static final int IMAGE = 1;

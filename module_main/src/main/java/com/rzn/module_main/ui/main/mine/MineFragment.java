@@ -42,7 +42,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     private LinearLayout llAdvice;
     private LinearLayout llPhoneConcel;
     private LinearLayout llSetting;
-    private ImageView tv_bianji ,iv_photo,iv_background;
+    private ImageView tv_bianji, iv_photo, iv_background;
     private TextView tv_Status;
 
     @Nullable
@@ -82,7 +82,8 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
             public void onClick(View view) {
                 LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
                 if (TextUtils.isEmpty(loginResponseBean.getHandlerId())) {
-                    Toast.makeText(mContext, "您还不是机手！", Toast.LENGTH_LONG).show();
+//                    Toast.makeText(mContext, "您还不是机手！", Toast.LENGTH_LONG).show();/driver/driverident
+                    ARouter.getInstance().build("/driver/driverident").navigation();
                     return;
                 }
                 startActivity(new Intent(mContext, DriverCenterActivity.class));//DriverHomeActivity
@@ -117,12 +118,12 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         iv_photo = (ImageView) rootView.findViewById(R.id.iv_photo);
         iv_background = (ImageView) rootView.findViewById(R.id.iv_background);
 
-        GlideUtils.loadImageRound(getActivity(),"http://img1.touxiang.cn/uploads/20120717/17-010343_962.jpg",iv_photo,30);
-        GlideUtils.loadImageView(getActivity(),"http://img1.touxiang.cn/uploads/20120717/17-010343_962.jpg",iv_background);
-        LoginResponseBean loginResponseBean= (LoginResponseBean) FileSaveUtils.readObject("loginBean");
-        if(TextUtils.isEmpty(loginResponseBean.getHandlerId())){
+        GlideUtils.loadImageRound(getActivity(), "http://img1.touxiang.cn/uploads/20120717/17-010343_962.jpg", iv_photo, 30);
+        GlideUtils.loadImageView(getActivity(), "http://img1.touxiang.cn/uploads/20120717/17-010343_962.jpg", iv_background);
+        LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+        if (TextUtils.isEmpty(loginResponseBean.getHandlerId())) {
             tv_Status.setText("未认证");
-        }else{
+        } else {
             tv_Status.setText("已认证");
         }
 
