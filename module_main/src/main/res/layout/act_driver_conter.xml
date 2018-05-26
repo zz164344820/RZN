@@ -76,8 +76,7 @@
                                 android:layout_width="21dp"
                                 android:layout_height="21dp"
                                 android:layout_marginLeft="90dp"
-                                android:src="@drawable/icon_setting_white"
-                                />
+                                android:src="@drawable/icon_setting_white" />
 
                         </LinearLayout>
 
@@ -94,7 +93,8 @@
                             android:id="@+id/tv_wei"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:padding="5dp"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
                             android:textColor="#ffffff"
                             android:textSize="16dp"
                             android:visibility="gone" />
@@ -248,21 +248,20 @@
                             android:id="@+id/iv_eye"
                             android:layout_width="20dp"
                             android:layout_height="13dp"
-                            android:src="@drawable/icon_eye"
                             android:layout_alignParentRight="true"
                             android:layout_marginRight="20dp"
                             android:layout_marginTop="15dp"
-                            />
+                            android:src="@drawable/icon_eye" />
+
                         <ImageView
                             android:id="@+id/iv_eyes"
                             android:layout_width="20dp"
                             android:layout_height="13dp"
-                            android:src="@drawable/icon_eyes"
-                            android:visibility="gone"
                             android:layout_alignParentRight="true"
                             android:layout_marginRight="20dp"
                             android:layout_marginTop="15dp"
-                            />
+                            android:src="@drawable/icon_eyes"
+                            android:visibility="gone" />
 
 
                         <TextView
