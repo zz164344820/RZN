@@ -200,6 +200,7 @@ public class JobOrderDetialActivity extends MVPBaseActivity<JobOrderDetialContra
                 tvMore.setBackgroundResource(R.drawable.driver_shape_background_hui);
                 tvHadWork.setVisibility(View.VISIBLE);
                 tvHadWork.setText("编辑");
+
 //                tvHadWork.setBackground();
                 tvHadWork.setBackgroundResource(R.drawable.driver_shape_background);
             } else if ("2".equals(jobOrderDetialBean.getStatus())) {

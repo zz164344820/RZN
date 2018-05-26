@@ -4,6 +4,7 @@ package com.rzn.module_main.ui.main.mine;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,9 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
+import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.module_main.R;
 import com.rzn.module_main.ui.drivercenter.DriverCenterActivity;
 import com.rzn.module_main.ui.driverhome.DriverHomeActivity;
@@ -21,6 +24,7 @@ import com.rzn.module_main.ui.personalinfo.PersonalInfoActivity;
 import com.rzn.module_main.ui.setting.SettingActivity;
 
 import io.reactivex.internal.operators.observable.ObservableNever;
+import mlxy.utils.L;
 
 /**
  * MVPPlugin
@@ -69,6 +73,11 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         llPhoneConcel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+                if (TextUtils.isEmpty(loginResponseBean.getHandlerId())) {
+                    Toast.makeText(mContext, "您还不是机手！", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 startActivity(new Intent(mContext, DriverCenterActivity.class));//DriverHomeActivity
 
             }
