@@ -1,18 +1,15 @@
 package com.rzn.module_driver.ui.joborderdetial;
 
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.rzn.commonbaselib.bean.LoginResponseBean;
+import com.rzn.commonbaselib.bean.JobOrderDetialBean;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
-import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.module_driver.R;
 
 import java.util.HashMap;
@@ -68,6 +65,9 @@ public class JobOrderDetialActivity extends MVPBaseActivity<JobOrderDetialContra
                 } else if ("driver".equals(flag)) {
 
                 }
+                Map<String, String> map = new HashMap<>();
+                map.put("farmerTaskId", farmerTaskId);
+                mPresenter.deletePost(map);
             }
         });
         tvHadWork.setOnClickListener(new View.OnClickListener() {
@@ -77,7 +77,9 @@ public class JobOrderDetialActivity extends MVPBaseActivity<JobOrderDetialContra
                 if ("farmer".equals(flag)) {
                     if ("编辑".equals(tvHadWork.getText().toString())) {
                         //修改作业需求
-//                        ARouter.getInstance().build("").navigation();
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("jobOrderDetialBean", jobOrderDetialBean);
+                        ARouter.getInstance().build("/farmer/sendwork").withBundle("bean", bundle).navigation();
                     } else if ("联系机手".equals(tvHadWork.getText().toString())) {
 
                     }
@@ -280,5 +282,13 @@ public class JobOrderDetialActivity extends MVPBaseActivity<JobOrderDetialContra
     public void finishWorkSuccess() {
         finish();
 
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void deletePostSuccess() {
+        finish();
     }
 }

@@ -1,10 +1,12 @@
-package com.rzn.module_driver.ui.joborderdetial;
+package com.rzn.commonbaselib.bean;
+
+import java.io.Serializable;
 
 /**
  * Created by a111 on 2018/4/19.
  */
 
-public class JobOrderDetialBean {
+public class JobOrderDetialBean implements Serializable{
     private String address;//": "河北省石家庄天上马街1处", //家庭地址
     private String areaCode;//": "340406", //区Code
     private String areaName;//": "潘集区", //区名称

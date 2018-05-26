@@ -1,6 +1,7 @@
 package com.rzn.module_driver.ui.joborderdetial;
 
 
+import com.rzn.commonbaselib.bean.JobOrderDetialBean;
 import com.rzn.commonbaselib.mvp.BasePresenterImpl;
 import com.rzn.commonbaselib.utils.GsonUtils;
 import com.zyhealth.expertlib.bean.ResponseBean;
@@ -54,6 +55,11 @@ public class JobOrderDetialPresenter extends BasePresenterImpl<JobOrderDetialCon
     }
 
     @Override
+    public void deletePost(Map<String, String> map) {
+        reqData(mContext, "farmHand/farmerTask/deleteTask", map, 518);
+    }
+
+    @Override
     public void httpRequestResult(ResponseBean response, int requestId) {
         super.httpRequestResult(response, requestId);
         switch (requestId) {
@@ -76,6 +82,10 @@ public class JobOrderDetialPresenter extends BasePresenterImpl<JobOrderDetialCon
 
 
             case 218:
+                mView.finishWorkSuccess();
+                break;
+            case 518:
+                mView.deletePostSuccess();
                 break;
         }
     }

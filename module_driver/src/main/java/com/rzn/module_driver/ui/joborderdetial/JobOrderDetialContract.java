@@ -1,6 +1,7 @@
 package com.rzn.module_driver.ui.joborderdetial;
 
 
+import com.rzn.commonbaselib.bean.JobOrderDetialBean;
 import com.rzn.commonbaselib.mvp.BasePresenter;
 import com.rzn.commonbaselib.mvp.BaseView;
 
@@ -19,8 +20,9 @@ public class JobOrderDetialContract {
 
         void cancelPostSuccess();
 
-
         void finishWorkSuccess();
+
+        void deletePostSuccess();
 
     }
 
@@ -32,6 +34,8 @@ public class JobOrderDetialContract {
         void cancelPost(Map<String, String> map);
 
         void finishWork(Map<String, String> map);
+
+        void deletePost(Map<String, String> map);
 
     }
 }

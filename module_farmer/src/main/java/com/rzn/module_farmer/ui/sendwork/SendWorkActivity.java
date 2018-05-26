@@ -15,7 +15,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.blankj.utilcode.util.ToastUtils;
+import com.rzn.commonbaselib.bean.JobOrderDetialBean;
 import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
@@ -34,6 +36,7 @@ import chihane.jdaddressselector.model.City;
 import chihane.jdaddressselector.model.County;
 import chihane.jdaddressselector.model.Province;
 import chihane.jdaddressselector.model.Street;
+import mlxy.utils.L;
 
 
 /**
@@ -41,8 +44,8 @@ import chihane.jdaddressselector.model.Street;
  * MVPPlugin
  * 邮箱 784787081@qq.com
  */
-
-public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, SendWorkPresenter> implements SendWorkContract.View ,OnAddressSelectedListener{
+@Route(path = "/farmer/sendwork")
+public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, SendWorkPresenter> implements SendWorkContract.View, OnAddressSelectedListener {
 
 
     private EditText etPeople;
@@ -72,13 +75,18 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
 
     Province province;//省
     County county;    //市
-    City  city;       //县
+    City city;       //县
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_release_assignments);
+        Bundle bean = getIntent().getBundleExtra("bean");
+        JobOrderDetialBean jobOrderDetialBean = (JobOrderDetialBean) bean.getSerializable("jobOrderDetialBean");
+        if (jobOrderDetialBean != null) {
+            Toast.makeText(this, "asdfaasdfadsg", Toast.LENGTH_LONG).show();
+        }
         mPresenter.onCreate();
         setTitle("发布作业需求");
         initViews();
@@ -122,10 +130,10 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
                             etPhone.getText().toString().trim(), etHomeAddress.getText().toString().trim()
                             , kind, kindType, kindTypeId, unitPrice, etWorkAreas.getText().toString().trim(), flag, "1", tvStartTime.getText().toString().trim(),
                             tvToTime.getText().toString().trim(),
-                            etDetialAddress.getText().toString().trim(), etDetial.getText().toString().trim(),province,city,county
+                            etDetialAddress.getText().toString().trim(), etDetial.getText().toString().trim(), province, city, county
                     );
                 } else {
-                   ToastUtils.showShort("请完善作业信息!");
+                    ToastUtils.showShort("请完善作业信息!");
                 }
 
 
@@ -242,9 +250,9 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
     @Override
     public void onAddressSelected(Province province, City city, County county, Street street) {
         this.province = province;
-        this.city=city;
-        this.county =county;
-        tvWorkAddress.setText(province.getName()+"  "+city.getName()+"  "+county.getName());
+        this.city = city;
+        this.county = county;
+        tvWorkAddress.setText(province.getName() + "  " + city.getName() + "  " + county.getName());
         bottomDialog.dismiss();
 
     }
