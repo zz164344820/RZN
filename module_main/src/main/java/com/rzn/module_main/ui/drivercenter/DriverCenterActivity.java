@@ -89,6 +89,7 @@ public class DriverCenterActivity extends MVPBaseActivity<DriverCenterContract.V
         ivSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 startActivity(new Intent(DriverCenterActivity.this, SettingActivity.class));
             }
         });

@@ -32,6 +32,7 @@ import com.rzn.commonbaselib.utils.GsonParseUtils;
 import com.rzn.commonbaselib.utils.GsonUtils;
 import com.rzn.commonbaselib.utils.SelectStatePopWindow;
 import com.rzn.module_driver.R;
+import com.rzn.module_driver.ui.bean.DriverIdentBean;
 import com.rzn.module_driver.ui.bean.ImagePath;
 import com.rzn.module_driver.ui.bean.SelectWorkTypeBean;
 import com.rzn.module_driver.ui.bean.WorkTypeBean;
@@ -99,15 +100,32 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
     private String flag;
     private WorkTypeBean workTypeBean;
     List<File> listFils = new ArrayList<>();
+    private String setting;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_driver_attestation);
+        setting = getIntent().getStringExtra("setting");
         ButterKnife.bind(this);
         mPresenter.onCreate();
         initViews();
+        initData();
         initListener();
+    }
+
+    private void initData() {
+        if ("setting".equals(setting)) {
+
+
+            LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+
+            Map<String, String> map = new HashMap<>();
+            map.put("handlerId", loginResponseBean.getHandlerId());
+            mPresenter.getDriverMessage(map);
+        } else {
+            return;
+        }
     }
 
     /**
@@ -126,7 +144,7 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
                     tvWorkTime.setText(DateFormat.format("yyyy-MM", showDate));
                 } else if (tab == 2) {
                     tvWorkTimeNow.setText(DateFormat.format("yyyy-MM", showDate));
-                }else if(tab ==3){
+                } else if (tab == 3) {
                     tvData.setText(DateFormat.format("yyyy-MM-dd", showDate));
                 }
             }
@@ -164,8 +182,6 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
         });
 
 
-
-
         tvCommit.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -185,9 +201,9 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
                         !TextUtils.isEmpty(etWorkTab.getText()) &&
                         !TextUtils.isEmpty(etCarTab.getText()) &&
                         !TextUtils.isEmpty(etCarNumber.getText()) &&
-                        !TextUtils.isEmpty(etFromHome.getText())&&
-                        !TextUtils.isEmpty(onePath)&&
-                        !TextUtils.isEmpty(threePath)&&
+                        !TextUtils.isEmpty(etFromHome.getText()) &&
+                        !TextUtils.isEmpty(onePath) &&
+                        !TextUtils.isEmpty(threePath) &&
                         !TextUtils.isEmpty(tvWorkTime.getText().toString()) &&
                         !TextUtils.isEmpty(tvWorkTimeNow.getText().toString())
                         ) {
@@ -203,7 +219,7 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
                     map.put("idNo", etCarNumber.getText().toString().trim());
                     map.put("mobile", etPhone.getText().toString().trim());
                     map.put("icon", "");
-                    map.put("startDate",tvWorkTime.getText().toString().trim());
+                    map.put("startDate", tvWorkTime.getText().toString().trim());
                     map.put("endDate", tvWorkTimeNow.getText().toString().trim());
                     map.put("years", tv_year.getText().toString().trim());
                     map.put("carType", etCarTab.getText().toString().trim());
@@ -212,14 +228,14 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
                     map.put("kindTypeDetail", gson.toJson(tempList));
                     map.put("carPic1", onePath);
                     map.put("carPic2", twoPath);
-                    map.put("machinePic1",threePath);
-                    map.put("machinePic2",fourPath);
+                    map.put("machinePic1", threePath);
+                    map.put("machinePic2", fourPath);
                     mPresenter.pushDriverMessage(map);
 
                 } else {
                     ToastUtils.showShort("请完善全部信息");
                     //跳转用到的
-                   // startActivity(new Intent(Driver_identificationActivity.this, DriverMakeSureActivity.class));
+                    // startActivity(new Intent(Driver_identificationActivity.this, DriverMakeSureActivity.class));
 
                 }
             }
@@ -328,6 +344,24 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
         //男女
         cbBoy = (CheckBox) findViewById(R.id.cb_boy);
         cbGril = (CheckBox) findViewById(R.id.cb_gril);
+
+
+//        if ("setting".equals(setting)) {
+//            etName.setText();
+//            etIdent.setText();
+//            tvData.setText();
+//            etPhone.setText();
+//            etWorkTab.setText();
+//            etCarTab.setText();
+//            etCarNumber.setText();
+//            etFromHome.setText();
+//            tvWorkTime.setText();
+//            tvWorkTimeNow.setText();
+//            tv_year.setText();
+//
+//        }
+
+
     }
 
     @Override
@@ -361,20 +395,20 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
             ivPhotoCars.setImageBitmap(bm);
             ivPhotoCars.setVisibility(View.VISIBLE);
             //onePath = imagePath;
-            uploadImage(new File(imagePath) ,1 ,"1" );
+            uploadImage(new File(imagePath), 1, "1");
         } else if ("two".equals(fag)) {
-           // twoPath = imagePath;
-            uploadImage(new File(imagePath) ,2 ,"1" );
+            // twoPath = imagePath;
+            uploadImage(new File(imagePath), 2, "1");
             ivPhotoCar.setImageBitmap(bm);
             ivPhotoCar.setVisibility(View.VISIBLE);
         } else if ("three".equals(fag)) {
-           // threePath = imagePath;
-            uploadImage(new File(imagePath) ,3 ,"2" );
+            // threePath = imagePath;
+            uploadImage(new File(imagePath), 3, "2");
             ivCarPhotoOne.setImageBitmap(bm);
             ivCarPhotoOne.setVisibility(View.VISIBLE);
         } else if ("four".equals(fag)) {
-           // fourPath = imagePath;
-            uploadImage(new File(imagePath) ,4 ,"2" );
+            // fourPath = imagePath;
+            uploadImage(new File(imagePath), 4, "2");
             ivCarPhotoTwo.setImageBitmap(bm);
             ivCarPhotoTwo.setVisibility(View.VISIBLE);
         }
@@ -382,40 +416,39 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
     }
 
 
-    public void uploadImage(File file , final int pos , String  type ) {
+    public void uploadImage(File file, final int pos, String type) {
 
-        Map<String,String> bodyMap = new HashMap<>();
-        bodyMap.put("type",type);
+        Map<String, String> bodyMap = new HashMap<>();
+        bodyMap.put("type", type);
 
-            OkHttpUtils.post()//
-                    .addFile("file", file.getName(), file)//
-                    .url(OkHttpLoader.BASEURL+"farmHand/handler/upFile")
-                    .params(bodyMap)//
-                    .build()//
-                    .execute(new GenericsCallback<ResponseBean>(new JsonGenericsSerializator()) {
-                        @Override
-                        public void onError(Call call, Exception e, int id) {
+        OkHttpUtils.post()//
+                .addFile("file", file.getName(), file)//
+                .url(OkHttpLoader.BASEURL + "farmHand/handler/upFile")
+                .params(bodyMap)//
+                .build()//
+                .execute(new GenericsCallback<ResponseBean>(new JsonGenericsSerializator()) {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
 
+                    }
+
+                    @Override
+                    public void onResponse(ResponseBean response, int id) {
+                        ImagePath imagePath = GsonParseUtils.GsonToBean(response.getResult(), ImagePath.class);
+                        MLog.e(imagePath.getFileName());
+                        if (pos == 1) {
+                            onePath = imagePath.getFileName();
+                        } else if (pos == 2) {
+                            twoPath = imagePath.getFileName();
+                        } else if (pos == 3) {
+                            threePath = imagePath.getFileName();
+                        } else if (pos == 4) {
+                            fourPath = imagePath.getFileName();
                         }
 
-                        @Override
-                        public void onResponse(ResponseBean response, int id) {
-                            ImagePath imagePath=  GsonParseUtils.GsonToBean(response.getResult(), ImagePath.class);
-                            MLog.e(imagePath.getFileName());
-                            if(pos==1){
-                                onePath=imagePath.getFileName();
-                            }else if(pos==2){
-                                twoPath=imagePath.getFileName();
-                            }else if(pos==3){
-                                threePath=imagePath.getFileName();
-                            }else if(pos==4){
-                                fourPath=imagePath.getFileName();
-                            }
-
-                        }
-                    });
-            }
-
+                    }
+                });
+    }
 
 
     //提交信息成功
@@ -471,6 +504,25 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
         }
         sendPopUpWindow.showAtLocation(etWorkTab, Gravity.BOTTOM, 0, 0);
 
+
+    }
+
+    @Override
+    public void getDriverMessageSuccess(DriverIdentBean bean) {
+        if ("setting".equals(setting)) {
+            etName.setText(bean.getName());
+            etIdent.setText(bean.getIdNo());
+            tvData.setText(bean.getBirthday());
+            etPhone.setText(bean.getMobile());
+//            etWorkTab.setText(bean.get);
+            etCarTab.setText(bean.getCarType());
+            etCarNumber.setText(bean.getCarNo());
+            etFromHome.setText(bean.getBelongs());
+            tvWorkTime.setText(bean.getStartDate());
+            tvWorkTimeNow.setText(bean.getEndDate());
+            tv_year.setText(bean.getYears());
+
+        }
 
     }
 

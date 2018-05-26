@@ -2,6 +2,7 @@ package com.rzn.module_driver.ui.driver_identification;
 
 import com.rzn.commonbaselib.mvp.BasePresenter;
 import com.rzn.commonbaselib.mvp.BaseView;
+import com.rzn.module_driver.ui.bean.DriverIdentBean;
 import com.rzn.module_driver.ui.bean.WorkTypeBean;
 
 import java.io.File;
@@ -19,15 +20,24 @@ public class Driver_identificationContract {
 
         void pushDriverMessageFaile();
 
-        void  showPopWindow_SelectJobTypes(List<WorkTypeBean> list);
+        void showPopWindow_SelectJobTypes(List<WorkTypeBean> list);
+
+
+        void getDriverMessageSuccess(DriverIdentBean bean);
+
 
     }
 
     interface Presenter extends BasePresenter<View> {
-        void  getJobTypes();
+        void getJobTypes();
+
         void uploadImage(List<File> files);
+
         //void pushDriverMessage(Map<String,String> map , File oneFile , File twoFile , File  threeFile, File  fourFile);
-        void pushDriverMessage(Map<String,String> map );
+        void pushDriverMessage(Map<String, String> map);
+
+        void getDriverMessage(Map<String, String> map);
+
     }
 
 

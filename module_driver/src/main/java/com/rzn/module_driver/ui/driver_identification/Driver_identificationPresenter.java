@@ -6,6 +6,7 @@ import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.BasePresenterImpl;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.commonbaselib.utils.GsonUtils;
+import com.rzn.module_driver.ui.bean.DriverIdentBean;
 import com.rzn.module_driver.ui.bean.WorkTypeBean;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -49,21 +50,21 @@ public class Driver_identificationPresenter extends BasePresenterImpl<Driver_ide
     }
 
     @Override
-    public void uploadImage(List<File> files ) {
+    public void uploadImage(List<File> files) {
 
-        Map<String,String> headMap = new HashMap<>();
-        Map<String,String> bodyMap = new HashMap<>();
-        LoginResponseBean  loginResponseBean= (LoginResponseBean) FileSaveUtils.readObject("loginBean");
-        headMap.put("userId",loginResponseBean.getUserId());
-        for(int i = 0;i<4;i++){
-            if(i<2){
-                bodyMap.put("type","1");
-            }else{
-                bodyMap.put("type","2");
+        Map<String, String> headMap = new HashMap<>();
+        Map<String, String> bodyMap = new HashMap<>();
+        LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+        headMap.put("userId", loginResponseBean.getUserId());
+        for (int i = 0; i < 4; i++) {
+            if (i < 2) {
+                bodyMap.put("type", "1");
+            } else {
+                bodyMap.put("type", "2");
             }
             OkHttpUtils.post()//
                     .addFile("file", files.get(i).getName(), files.get(i))//
-                    .url(OkHttpLoader.BASEURL+"farmHand/handler/upFile")
+                    .url(OkHttpLoader.BASEURL + "farmHand/handler/upFile")
                     .params(bodyMap)//
                     .headers(headMap)//
                     .build()//
@@ -84,9 +85,14 @@ public class Driver_identificationPresenter extends BasePresenterImpl<Driver_ide
     }
 
     @Override
-    public void pushDriverMessage(final Map<String,String> map) {
+    public void pushDriverMessage(final Map<String, String> map) {
         mView.showLoading(false, "");
-        reqData(mContext,"farmHand/handler/updateSaveHandler",map,111);
+        reqData(mContext, "farmHand/handler/updateSaveHandler", map, 111);
+    }
+
+    @Override
+    public void getDriverMessage(Map<String, String> map) {
+        reqData(mContext, "farmHand/handler/queryHandler", map, 218);
     }
 
     @Override
@@ -98,10 +104,15 @@ public class Driver_identificationPresenter extends BasePresenterImpl<Driver_ide
                 break;
             case 124:
 //                List<WorkTypeBean> list = GsonUtils.gsonParseList(gson, response.getResult());  todo  你这个工具方法不好用，在类型转换得时候会丢失范型
-                Type type = new TypeToken<List<WorkTypeBean>>(){}.getType();
-                List<WorkTypeBean> list= gson.fromJson(gson.toJson(response.getResult()), type);
+                Type type = new TypeToken<List<WorkTypeBean>>() {
+                }.getType();
+                List<WorkTypeBean> list = gson.fromJson(gson.toJson(response.getResult()), type);
                 MLog.e(list.size());
                 mView.showPopWindow_SelectJobTypes(list);
+                break;
+            case 218:
+                DriverIdentBean driverIdentBean = GsonUtils.gsonParseBean(gson, response.getResult(), DriverIdentBean.class);
+                mView.getDriverMessageSuccess(driverIdentBean);
                 break;
         }
 
