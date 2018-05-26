@@ -217,7 +217,7 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
                         ToastUtils.showShort("请选择作业类型");
                         return;
                     }
-                    tempList.add(workType2);
+                    tempList.add(workType1);
                     if(workType1!=null){
                         tempList.add(workType2);
                     }
@@ -485,7 +485,6 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
         sendPopUpWindow.setOnListener(new SendPopUpWindow.OnClickListener() {
             @Override
             public void onClick(int position, int typePosition) {
-
 
                 if (showMoreJobType==0){
                     etWorkTab.setText(list.get(position).getKindName() + "    " + list.get(position).getTypeArray().get(typePosition).getTypeName());
