@@ -9,6 +9,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import jp.wasabeef.glide.transformations.BlurTransformation;
+
 public class GlideUtils {
 
     /**
@@ -153,5 +155,17 @@ public class GlideUtils {
         //清理内存缓存  可以在UI主线程中进行
         Glide.get(mContext).clearMemory();
     }
+
+    //高斯模糊
+    public static void GaussianBlur(Context mContext, String url, ImageView imageView , int radius , int ratio ) {
+
+        Glide.with(mContext)
+                .load(url)
+                .bitmapTransform(new BlurTransformation(mContext,radius,ratio))  // “23”：设置模糊度(在0.0到25.0之间)，默认”25";"4":图片缩放比例,默认“1”。
+                .into(imageView);
+    }
+
+
+
 
 }

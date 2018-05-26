@@ -50,7 +50,6 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.act_myself, container, false);
         mPresenter.onCreate();
-
         initViews();
         initListener();
         return rootView;
@@ -118,12 +117,12 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         iv_photo = (ImageView) rootView.findViewById(R.id.iv_photo);
         iv_background = (ImageView) rootView.findViewById(R.id.iv_background);
 
-        GlideUtils.loadImageRound(getActivity(), "http://img1.touxiang.cn/uploads/20120717/17-010343_962.jpg", iv_photo, 30);
-        GlideUtils.loadImageView(getActivity(), "http://img1.touxiang.cn/uploads/20120717/17-010343_962.jpg", iv_background);
-        LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
-        if (TextUtils.isEmpty(loginResponseBean.getHandlerId())) {
+        GlideUtils.loadImageRound(getContext(),"http://www.fzlol.com/upimg/allimg/140408/1_1G0291243.jpg",iv_photo,40);
+        GlideUtils.GaussianBlur(getContext(),"http://www.fzlol.com/upimg/allimg/140408/1_1G0291243.jpg",iv_background,8,1);
+        LoginResponseBean loginResponseBean= (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+        if(TextUtils.isEmpty(loginResponseBean.getHandlerId())){
             tv_Status.setText("未认证");
-        } else {
+        }else{
             tv_Status.setText("已认证");
         }
 

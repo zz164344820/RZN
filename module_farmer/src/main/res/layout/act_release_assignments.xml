@@ -378,7 +378,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="42dp"
                 android:layout_margin="10dp"
-                android:background="#70c63f"
+                android:background="@drawable/shape_maincolor_5"
                 android:gravity="center"
                 android:text="确认发布"
                 android:textColor="#ffffff"

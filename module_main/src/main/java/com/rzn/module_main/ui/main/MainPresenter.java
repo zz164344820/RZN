@@ -28,7 +28,6 @@ public class MainPresenter extends BasePresenterImpl<MainContract.View> implemen
     public void onCreate() {
         initFragment();
         super.onCreate();
-       // AddressUtils.CreateDBData(mContext, "address.json");
     }
 
     private void initFragment() {

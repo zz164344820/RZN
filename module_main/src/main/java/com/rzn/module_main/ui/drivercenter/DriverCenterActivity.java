@@ -2,6 +2,8 @@ package com.rzn.module_main.ui.drivercenter;
 
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -16,6 +18,7 @@ import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.module_main.R;
 import com.rzn.module_main.ui.setting.SettingActivity;
+import com.zyhealth.expertlib.utils.GlideUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -39,7 +42,7 @@ public class DriverCenterActivity extends MVPBaseActivity<DriverCenterContract.V
     private TextView tvText;
     private TextView tvNumberMu;
     private TextView tvMoney;
-    private ImageView ivPhoto;
+    private ImageView ivPhoto ,iv_background;
     private TextView tvWei;
     private LinearLayout llDriver;
     private ImageView ivSex;
@@ -52,6 +55,11 @@ public class DriverCenterActivity extends MVPBaseActivity<DriverCenterContract.V
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (Build.VERSION.SDK_INT >= 21) {
+            View decorView = getWindow().getDecorView();
+            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        }
         setContentView(R.layout.act_driver_conter);
         initViews();
         initData();
@@ -121,6 +129,10 @@ public class DriverCenterActivity extends MVPBaseActivity<DriverCenterContract.V
         ivEyes = (ImageView) findViewById(R.id.iv_eyes);
         ivSetting = (ImageView) findViewById(R.id.iv_setting);
         ivFinish = (ImageView) findViewById(R.id.iv_finish);
+        iv_background = (ImageView) findViewById(R.id.iv_background);
+
+        GlideUtils.loadImageRound(this,"http://www.fzlol.com/upimg/allimg/140408/1_1G0291243.jpg",ivPhoto,40);
+        GlideUtils.GaussianBlur(this,"http://www.fzlol.com/upimg/allimg/140408/1_1G0291243.jpg",iv_background,8,1);
     }
 
 
