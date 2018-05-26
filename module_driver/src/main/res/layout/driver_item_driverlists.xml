@@ -1,5 +1,5 @@
 <?xml  version="1.0"  encoding="utf-8"?>
-<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="8dp"
@@ -23,8 +23,7 @@
                 android:layout_height="50dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="26dp"
-                android:background="@drawable/logo"
-                />
+                android:src="@drawable/logo" />
 
             <TextView
                 android:id="@+id/tv_name"
@@ -34,8 +33,7 @@
                 android:layout_marginTop="8.5dp"
                 android:text="韩梅梅"
                 android:textColor="#333333"
-                android:textSize="18dp"
-                />
+                android:textSize="18dp" />
 
         </LinearLayout>
 
@@ -43,13 +41,11 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/tv_name_product"
@@ -58,8 +54,7 @@
                     android:layout_marginTop="15.5dp"
                     android:text="水稻-联合整地"
                     android:textColor="#333333"
-                    android:textSize="18dp"
-                    />
+                    android:textSize="18dp" />
 
                 <TextView
                     android:id="@+id/tv_distance"
@@ -70,8 +65,7 @@
                     android:layout_marginRight="10dp"
                     android:text="据您1.2公里"
                     android:textColor="#888888"
-                    android:textSize="16dp"
-                    />
+                    android:textSize="16dp" />
             </RelativeLayout>
 
             <TextView
@@ -81,27 +75,26 @@
                 android:layout_marginTop="14.5dp"
                 android:text="12亩/集中连片"
                 android:textColor="#333333"
-                android:textSize="16dp"
-                />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/tv_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
                 android:text="作业地点：任丘市青塔乡老王村 "
                 android:textColor="#333333"
-                android:textSize="16dp"
-                />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/tv_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="14dp"
+                android:singleLine="true"
                 android:text="作业时间：2018-02-12"
                 android:textColor="#333333"
-                android:textSize="16dp"
-                />
+                android:textSize="16dp" />
         </LinearLayout>
 
     </LinearLayout>
@@ -110,13 +103,11 @@
         android:layout_width="match_parent"
         android:layout_height="2.5dp"
         android:layout_alignBottom="@+id/ll_top"
-        android:background="#DDDDDD"
-        />
+        android:background="#DDDDDD" />
     <!--底部布局-->
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="51dp"
-        >
+        android:layout_height="51dp">
 
         <TextView
             android:id="@+id/tv_money"
@@ -126,8 +117,7 @@
             android:layout_marginLeft="12dp"
             android:text="480.00元"
             android:textColor="#ff5050"
-            android:textSize="18dp"
-            />
+            android:textSize="18dp" />
 
         <TextView
             android:id="@+id/tv_money_scope"
@@ -137,8 +127,7 @@
             android:layout_toRightOf="@id/tv_money"
             android:text="(40元/亩)"
             android:textColor="#888888"
-            android:textSize="16dp"
-            />
+            android:textSize="16dp" />
 
         <TextView
             android:id="@+id/tv_get_post"
@@ -151,7 +140,6 @@
             android:gravity="center"
             android:text="抢单"
             android:textColor="#ffffff"
-            android:textSize="16dp"
-            />
+            android:textSize="16dp" />
     </RelativeLayout>
 </LinearLayout>

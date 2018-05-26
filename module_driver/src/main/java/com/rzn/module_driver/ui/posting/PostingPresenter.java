@@ -4,12 +4,15 @@ package com.rzn.module_driver.ui.posting;
 import android.text.TextUtils;
 import android.widget.Switch;
 
+import com.google.gson.reflect.TypeToken;
 import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.BasePresenterImpl;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
+import com.rzn.module_driver.ui.bean.DriverGrabOrderInfo;
 import com.zyhealth.expertlib.bean.ResponseBean;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -40,6 +43,9 @@ public class PostingPresenter extends BasePresenterImpl<PostingContract.View> im
         super.httpRequestResult(response, requestId);
         switch (requestId) {
             case 122:
+                List<DriverGrabOrderInfo> tempList = gson.fromJson(gson.toJson(response.getResult()), new TypeToken<List<DriverGrabOrderInfo>>() {
+                }.getType());
+                mView.getListSuccess(tempList);
                 break;
         }
     }
