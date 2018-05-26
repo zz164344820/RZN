@@ -43,6 +43,17 @@ public class JobOrderDetialPresenter extends BasePresenterImpl<JobOrderDetialCon
     }
 
     @Override
+    public void cancelPost(Map<String, String> map) {
+        reqData(mContext, "farmHand/farmerTask/cancelTask", map, 567);
+    }
+
+    @Override
+    public void finishWork(Map<String, String> map) {
+
+        reqData(mContext, "farmHand/handler/finishTask", map, 218);
+    }
+
+    @Override
     public void httpRequestResult(ResponseBean response, int requestId) {
         super.httpRequestResult(response, requestId);
         switch (requestId) {
@@ -53,6 +64,18 @@ public class JobOrderDetialPresenter extends BasePresenterImpl<JobOrderDetialCon
             case 222:
                 JobOrderDetialBean jobOrderDetialBeans = GsonUtils.gsonParseBean(gson, response.getResult(), JobOrderDetialBean.class);
                 mView.getDataSuccess(jobOrderDetialBeans);
+                break;
+            case 567:
+//                "code": 2002,
+//                    "message": "返回数据成功",
+//                    "result": {
+//                "farmerTaskid": "40289f6c62439f1d0162439fec3d0001",
+//                        "status":
+                mView.cancelPostSuccess();
+                break;
+
+
+            case 218:
                 break;
         }
     }

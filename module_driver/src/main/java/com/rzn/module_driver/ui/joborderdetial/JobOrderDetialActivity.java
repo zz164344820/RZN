@@ -9,10 +9,14 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.module_driver.R;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -40,6 +44,8 @@ public class JobOrderDetialActivity extends MVPBaseActivity<JobOrderDetialContra
     private LinearLayout llCancelTime;
     private LinearLayout llMu;
     private TextView tvMu;
+    private String farmerTaskId;
+    JobOrderDetialBean jobOrderDetialBean;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -70,13 +76,18 @@ public class JobOrderDetialActivity extends MVPBaseActivity<JobOrderDetialContra
                 //已完成作业
                 if ("farmer".equals(flag)) {
                     if ("编辑".equals(tvHadWork.getText().toString())) {
-
+                        //修改作业需求
+//                        ARouter.getInstance().build("").navigation();
                     } else if ("联系机手".equals(tvHadWork.getText().toString())) {
 
                     }
                 } else if ("driver".equals(flag)) {
                     if ("完成作业".equals(tvHadWork.getText().toString())) {
-
+                        Map<String, String> map = new HashMap<>();
+                        map.put("farmerTaskId", farmerTaskId);
+                        map.put("realAreas", jobOrderDetialBean.getAreas().toString());
+                        map.put("realTotalprice", jobOrderDetialBean.getTotalprice().toString());
+                        mPresenter.finishWork(map);
                     }
                 }
             }
@@ -87,7 +98,9 @@ public class JobOrderDetialActivity extends MVPBaseActivity<JobOrderDetialContra
                 //更多
                 if ("farmer".equals(flag)) {
                     if ("取消订单".equals(tvMore.getText().toString())) {
-
+                        Map<String, String> map = new HashMap<>();
+                        map.put("farmerTaskId", farmerTaskId);
+                        mPresenter.cancelPost(map);
                     }
                 } else if ("driver".equals(flag)) {
                     if ("更多".equals(tvMore.getText().toString())) {
@@ -130,7 +143,7 @@ public class JobOrderDetialActivity extends MVPBaseActivity<JobOrderDetialContra
      */
     private void initData() {
         flag = getIntent().getStringExtra("flag");
-        String farmerTaskId = getIntent().getStringExtra("farmerTaskId");
+        farmerTaskId = getIntent().getStringExtra("farmerTaskId");
 //        LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
         if ("farmer".equals(flag)) {
             mPresenter.getFarmerData(farmerTaskId);
@@ -142,7 +155,7 @@ public class JobOrderDetialActivity extends MVPBaseActivity<JobOrderDetialContra
 
     private void showView(JobOrderDetialBean jobOrderDetialBean) {
 
-
+        this.jobOrderDetialBean = jobOrderDetialBean;
         //判断是机手还是农民
         if ("farmer".equals(flag)) {
             showFarmer(jobOrderDetialBean);
@@ -249,6 +262,23 @@ public class JobOrderDetialActivity extends MVPBaseActivity<JobOrderDetialContra
 
     @Override
     public void getDataFaile() {
+
+    }
+
+    /**
+     * 农户取消订单成功
+     */
+    @Override
+    public void cancelPostSuccess() {
+        finish();
+    }
+
+    /**
+     * 完成訂單
+     */
+    @Override
+    public void finishWorkSuccess() {
+        finish();
 
     }
 }
