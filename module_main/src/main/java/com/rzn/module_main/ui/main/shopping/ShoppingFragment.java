@@ -30,7 +30,7 @@ public class ShoppingFragment extends MVPBaseFragment<ShoppingContract.View, Sho
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_shop, container, false);
         initViews();
-//        initListener();
+//      initListener();
         return rootView;
     }
 

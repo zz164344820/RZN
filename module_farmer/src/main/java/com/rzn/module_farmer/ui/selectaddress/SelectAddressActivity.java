@@ -100,7 +100,7 @@ public class SelectAddressActivity extends MVPBaseActivity<SelectAddressContract
             }
         });
 
-        findViewById(R.id.tv_work_need).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.ll_work_need).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(SelectAddressActivity.this, SendWorkActivity.class));

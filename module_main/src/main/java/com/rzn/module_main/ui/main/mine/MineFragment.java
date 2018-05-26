@@ -43,7 +43,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     private LinearLayout llPhoneConcel;
     private LinearLayout llSetting;
     private ImageView tv_bianji, iv_photo, iv_background;
-    private TextView tv_Status;
+    private TextView tv_Status ,tv_name;
 
     @Nullable
     @Override
@@ -114,12 +114,14 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         llSetting = (LinearLayout) rootView.findViewById(R.id.ll_setting);
         tv_bianji = (ImageView) rootView.findViewById(R.id.tv_bianji);
         tv_Status = (TextView) rootView.findViewById(R.id.tv_Status);
+        tv_name = (TextView) rootView.findViewById(R.id.tv_name);
         iv_photo = (ImageView) rootView.findViewById(R.id.iv_photo);
         iv_background = (ImageView) rootView.findViewById(R.id.iv_background);
 
         GlideUtils.loadImageRound(getContext(),"http://www.fzlol.com/upimg/allimg/140408/1_1G0291243.jpg",iv_photo,40);
         GlideUtils.GaussianBlur(getContext(),"http://www.fzlol.com/upimg/allimg/140408/1_1G0291243.jpg",iv_background,8,1);
         LoginResponseBean loginResponseBean= (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+        tv_name.setText(loginResponseBean.getPhone());
         if(TextUtils.isEmpty(loginResponseBean.getHandlerId())){
             tv_Status.setText("未认证");
         }else{
