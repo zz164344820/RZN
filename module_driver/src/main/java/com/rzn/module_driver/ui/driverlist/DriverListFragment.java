@@ -8,6 +8,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,33 +22,43 @@ import com.lonch.zyhealth.loadmorelibrary.LoadMoreUtils;
 import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
+import com.rzn.commonbaselib.utils.SelectStatePopWindow;
 import com.rzn.module_driver.R;
 import com.rzn.module_driver.R2;
 import com.rzn.module_driver.ui.bean.DriverGrabOrderInfo;
+import com.rzn.module_driver.ui.bean.WorkTypeBean;
 import com.rzn.module_driver.ui.driver_identification.Driver_identificationActivity;
+import com.rzn.module_driver.ui.driver_identification.SendPopUpWindow;
 import com.rzn.module_driver.ui.driverordermessage.DriverOrderMessageActivity;
 import com.rzn.module_driver.ui.jobOrder.myjoborder.MyjobOrderActivity;
 import com.zhy.autolayout.AutoLinearLayout;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import chihane.jdaddressselector.BottomDialog;
+import chihane.jdaddressselector.OnAddressSelectedListener;
+import chihane.jdaddressselector.model.City;
+import chihane.jdaddressselector.model.County;
+import chihane.jdaddressselector.model.Province;
+import chihane.jdaddressselector.model.Street;
+import cn.finalteam.galleryfinal.GalleryFinal;
 
 /**
  * MVPPlugin
  * 邮箱 784787081@qq.com
  */
 @Route(path = "/driver/driverFargment")
-public class DriverListFragment extends MVPBaseFragment<DriverListContract.View, DriverListPresenter> implements DriverListContract.View, OnLoadMoreListener, OnRefreshListener {
+public class DriverListFragment extends MVPBaseFragment<DriverListContract.View, DriverListPresenter> implements DriverListContract.View, OnLoadMoreListener, OnRefreshListener,OnAddressSelectedListener {
 
     View rootView;
-    @BindView(R2.id.ll_jobScreeningType)
-    AutoLinearLayout llJobScreeningType;
-    @BindView(R2.id.ll_jobScreeningRegion)
-    AutoLinearLayout llJobScreeningRegion;
+    @BindView(R2.id.ll_rootView)
+    AutoLinearLayout ll_rootView;
     @BindView(R2.id.swipe_target)
     RecyclerView swipeTarget;
     @BindView(R2.id.swipeToLoadLayout)
@@ -55,6 +66,12 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
     private TextView tvStartGet;
     private DriverListAdapter driverListAdapter;
     Unbinder unbinder;
+    List<DriverGrabOrderInfo> list;
+    BottomDialog bottomDialog;
+    Province province;
+    County county;
+    City  city;
+    final SelectMatchingPopWindow[] window = new SelectMatchingPopWindow[1];
 
     public static DriverListFragment newInstance() {
         return new DriverListFragment();
@@ -70,6 +87,13 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
         tvStartGet = (TextView) rootView.findViewById(R.id.tv_start_get);
         initLinistener();
         return rootView;
+    }
+
+    @Override
+    public void initView() {
+        super.initView();
+        bottomDialog = new BottomDialog(getActivity());
+        bottomDialog.setOnAddressSelectedListener(this);
     }
 
     private void initLinistener() {
@@ -100,6 +124,32 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
     }
 
 
+    /**
+     * 获取作业类型成功
+     */
+    @Override
+    public void getWorkTypeSuccess(final List<WorkTypeBean> worTypeList) {
+
+        //弹出选择作业类型弹窗
+        SendPopUpWindow sendPopUpWindow = new SendPopUpWindow(getActivity(), worTypeList);
+        sendPopUpWindow.setOnListener(new SendPopUpWindow.OnClickListener() {
+            @Override
+            public void onClick(int position, int typePosition) {
+                //获取作业类型
+               String   kindTypeId = worTypeList.get(position).getTypeArray().get(typePosition).getKindId();
+                list.clear();
+                Map<String,String> map =new HashMap<>();
+                map.put("filterKindType",kindTypeId);
+                mPresenter.getDriverList(map);
+            }
+        });
+        if (sendPopUpWindow.isShowing()) {
+            return;
+        }
+        sendPopUpWindow.showAtLocation(tvStartGet, Gravity.BOTTOM, 0, 0);
+    }
+
+
     //请求抢单列表成功
     @Override
     public void getListSuccess() {
@@ -114,6 +164,7 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
 
     @Override
     public DriverListAdapter setAdapter(List<DriverGrabOrderInfo> list) {
+        this.list =list;
         swipeTarget.setLayoutManager(new LinearLayoutManager(getActivity()));
         DriverListAdapter driverListAdapter = new DriverListAdapter(list);
         swipeTarget.setAdapter(driverListAdapter);
@@ -141,11 +192,46 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R2.id.ll_jobScreeningType:
+                mPresenter.httpGetWorkType();
                 break;
             case R2.id.ll_jobScreeningRegion:
+                bottomDialog.show();
                 break;
             case R2.id.ll_obScreeningcapacity:
+                showSelectPic(window);
                 break;
         }
+    }
+
+    @Override
+    public void onAddressSelected(Province province, City city, County county, Street street) {
+        this.province = province;
+        this.city=city;
+        this.county =county;
+        bottomDialog.dismiss();
+        list.clear();
+        Map<String,String> map =new HashMap<>();
+        map.put("filterTaskPlace",county.getId()+"");
+        mPresenter.getDriverList(map);
+    }
+
+    private void showSelectPic(final SelectMatchingPopWindow[] window) {
+        window[0] = new SelectMatchingPopWindow(getActivity(), new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Map<String,String> map =new HashMap<>();
+                if (v.getId() == R.id.tv_closeRange) {
+                    window[0].dismiss();
+                    map.put("recently","1");
+                } else if (v.getId() == R.id.tv_normal) {
+                    window[0].dismiss();
+                    map.put("recently","0");
+                }
+                list.clear();
+                mPresenter.getDriverList(map);
+            }
+        });
+
+        window[0].showAtLocation(ll_rootView, Gravity.BOTTOM, 10, 10);
     }
 }

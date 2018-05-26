@@ -2,6 +2,10 @@ package com.rzn.module_main.ui.myadvice;
 
 
 import com.rzn.commonbaselib.mvp.BasePresenterImpl;
+import com.zyhealth.expertlib.bean.ResponseBean;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * MVPPlugin
@@ -12,6 +16,18 @@ public class MyAdvicePresenter extends BasePresenterImpl<MyAdviceContract.View> 
     @Override
     public void onCreate() {
         super.onCreate();
-        reqData(mContext,"Test/index",null,111);
+
+    }
+
+    @Override
+    public void commitInfo(String feedback, String contactWay) {
+        Map<String,String> map = new HashMap<>();
+        reqData(mContext,"Test/index",map,111);
+    }
+
+    @Override
+    public void httpRequestResult(ResponseBean response, int requestId) {
+        super.httpRequestResult(response, requestId);
+        mContext.finish();
     }
 }

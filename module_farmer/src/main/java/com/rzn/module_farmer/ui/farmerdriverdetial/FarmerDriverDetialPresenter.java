@@ -31,7 +31,7 @@ public class FarmerDriverDetialPresenter extends BasePresenterImpl<FarmerDriverD
     @Override
     public void onCreate() {
         super.onCreate();
-        StatusBarUtil.setTransparent(mContext);
+
     }
 
 

@@ -40,6 +40,7 @@ public class FarmerListPresenter extends BasePresenterImpl<FarmerListContract.Vi
 
     @Override
     public void httpGetWorkType() {
+        mView.showLoading(false,"");
         reqData(mContext, "farmHand/farmerTask/queryKind", null, 222);
     }
 

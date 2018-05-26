@@ -6,13 +6,17 @@ import android.view.View;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.google.gson.reflect.TypeToken;
 import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.BasePresenterImpl;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
+import com.rzn.commonbaselib.utils.GsonUtils;
 import com.rzn.module_driver.ui.bean.DriverGrabOrderInfo;
+import com.rzn.module_driver.ui.bean.WorkTypeBean;
 import com.rzn.module_driver.ui.jobdetails.JobdetailsActivity;
 import com.zyhealth.expertlib.bean.ResponseBean;
 
+import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,15 +37,21 @@ public class DriverListPresenter extends BasePresenterImpl<DriverListContract.Vi
         super.onCreate();
         /*在presenter中写apdater是因为数据源在这里*/
         setAdapter();
-        getDriverList();
+
+        getDriverList(new HashMap<String, String>());
 
     }
 
-    private void getDriverList() {
+    @Override
+    public void httpGetWorkType() {
+        mView.showLoading(false,"");
+        reqData(mContext, "farmHand/farmerTask/queryKind", null, 222);
+    }
 
-        Map<String,String> map = new HashMap<>();
+    @Override
+    public void getDriverList(Map<String,String> map) {
         LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
-       if(!TextUtils.isEmpty(loginResponseBean.getHandlerId())){
+        if(!TextUtils.isEmpty(loginResponseBean.getHandlerId())){
            mView.showLoading(false,"");
            map.put("handlerId",loginResponseBean.getHandlerId());
            reqData(mContext,"farmHand/handler/recommendFarmerTask",map,122);
@@ -73,23 +83,24 @@ public class DriverListPresenter extends BasePresenterImpl<DriverListContract.Vi
 
     }
 
-    @Override
-    public void getList(String userId, String farmerId) {
-        mView.showLoading(false, "");
-        Map<String, String> map = new HashMap<>();
-        map.put("userId", userId);
-        reqData(mContext, "", map, 111);
 
-    }
 
     @Override
     public void httpRequestResult(ResponseBean response, int requestId) {
         super.httpRequestResult(response, requestId);
         switch (requestId) {
-            case 111:
+            case 122:
+                List<DriverGrabOrderInfo> tempList = gson.fromJson(gson.toJson(response.getResult()),new TypeToken<List<DriverGrabOrderInfo>>(){}.getType());
+                list.addAll(tempList);
+                driverListAdapter.notifyDataSetChanged();
                 break;
             case  166:
                 // TODO: 2018/5/18 弹窗 
+                break;
+            case 222:
+                Type type2 = new TypeToken<List<WorkTypeBean>>(){}.getType();
+                List<WorkTypeBean> list2= gson.fromJson(gson.toJson(response.getResult()), type2);
+                mView.getWorkTypeSuccess(list2);
                 break;
         }
     }

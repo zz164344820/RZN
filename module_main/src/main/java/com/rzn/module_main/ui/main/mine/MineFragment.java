@@ -10,9 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.rzn.commonbaselib.bean.LoginResponseBean;
+import com.jaeger.library.StatusBarUtil;
 import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
@@ -22,6 +25,7 @@ import com.rzn.module_main.ui.driverhome.DriverHomeActivity;
 import com.rzn.module_main.ui.myadvice.MyAdviceActivity;
 import com.rzn.module_main.ui.personalinfo.PersonalInfoActivity;
 import com.rzn.module_main.ui.setting.SettingActivity;
+import com.zyhealth.expertlib.utils.GlideUtils;
 
 import io.reactivex.internal.operators.observable.ObservableNever;
 import mlxy.utils.L;
@@ -38,12 +42,15 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     private LinearLayout llAdvice;
     private LinearLayout llPhoneConcel;
     private LinearLayout llSetting;
-    private ImageView tv_bianji;
+    private ImageView tv_bianji ,iv_photo,iv_background;
+    private TextView tv_Status;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.act_myself, container, false);
+        mPresenter.onCreate();
+
         initViews();
         initListener();
         return rootView;
@@ -106,6 +113,18 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         llPhoneConcel = (LinearLayout) rootView.findViewById(R.id.ll_phone_concel);
         llSetting = (LinearLayout) rootView.findViewById(R.id.ll_setting);
         tv_bianji = (ImageView) rootView.findViewById(R.id.tv_bianji);
+        tv_Status = (TextView) rootView.findViewById(R.id.tv_Status);
+        iv_photo = (ImageView) rootView.findViewById(R.id.iv_photo);
+        iv_background = (ImageView) rootView.findViewById(R.id.iv_background);
+
+        GlideUtils.loadImageRound(getActivity(),"http://img1.touxiang.cn/uploads/20120717/17-010343_962.jpg",iv_photo,30);
+        GlideUtils.loadImageView(getActivity(),"http://img1.touxiang.cn/uploads/20120717/17-010343_962.jpg",iv_background);
+        LoginResponseBean loginResponseBean= (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+        if(TextUtils.isEmpty(loginResponseBean.getHandlerId())){
+            tv_Status.setText("未认证");
+        }else{
+            tv_Status.setText("已认证");
+        }
 
     }
 }

@@ -3,8 +3,10 @@ package com.rzn.module_driver.ui.driverlist;
 import com.rzn.commonbaselib.mvp.BasePresenter;
 import com.rzn.commonbaselib.mvp.BaseView;
 import com.rzn.module_driver.ui.bean.DriverGrabOrderInfo;
+import com.rzn.module_driver.ui.bean.WorkTypeBean;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * MVPPlugin
@@ -23,10 +25,16 @@ public class DriverListContract {
 
         void  recycleViewRestore();
 
+        void  getWorkTypeSuccess(List<WorkTypeBean> worTypeList);
+
     }
 
     interface Presenter extends BasePresenter<View> {
-        //获取抢单列表
-        void getList(String userId, String farmerId);
+
+
+        void httpGetWorkType();
+
+        /*获取抢单list*/
+        void getDriverList(Map<String,String> map);
     }
 }
