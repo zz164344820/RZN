@@ -48,6 +48,7 @@
                     android:layout_marginTop="10dp"
                     android:background="@drawable/selector_driver_order_message"
                     android:button="@null"
+                    android:textColor="@drawable/text_write_black"
                     android:gravity="center"
                     android:text="水稻-联合整地" />
 
@@ -58,6 +59,7 @@
                     android:layout_marginTop="10dp"
                     android:background="@drawable/selector_driver_order_message"
                     android:button="@null"
+                    android:textColor="@drawable/text_write_black"
                     android:gravity="center"
                     android:text="小麦-联合整地" />
 
@@ -68,6 +70,7 @@
                     android:layout_marginTop="10dp"
                     android:background="@drawable/selector_driver_order_message"
                     android:button="@null"
+                    android:textColor="@drawable/text_write_black"
                     android:gravity="center"
                     android:text="水稻-收割" />
             </LinearLayout>
@@ -169,6 +172,7 @@
                     android:layout_width="18dp"
                     android:layout_height="18dp"
                     android:layout_marginLeft="10dp"
+                    android:layout_gravity="center_vertical"
                     android:src="@drawable/icon_oclock" />
 
                 <TextView
@@ -222,6 +226,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:id="@+id/ll_more_time"
+                android:layout_gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -287,6 +292,9 @@
                 android:layout_height="100.5dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
+                android:gravity="top"
+                android:padding="5dp"
+                android:textSize="16dp"
                 android:background="@drawable/shape_input_bg"
                 android:hint="想对机手说什么，不妨写在这里" />
 

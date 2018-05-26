@@ -4,6 +4,7 @@ package com.rzn.module_driver.ui.driverordermessage;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.CheckBox;
@@ -14,6 +15,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
@@ -90,6 +92,10 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
             @Override
             public void onClick(View view) {
                 Map<String, String> map = new HashMap<>();
+                if(province==null ||city==null ||county==null){
+                    ToastUtils.showShort("作业地址不能为空");
+                    return;
+                }
                 List<PlaceBean> list = setPlaceList();
                 map.put("taskPlaceDetail", GsonParseUtils.GsonString(list));
                 LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
@@ -101,6 +107,13 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
                 }
                 if (rbTwo.isChecked()) {
                     tempList.add(orderList.get(1));
+                }
+                if(tempList.size()==0){
+                    ToastUtils.showShort("请选择作业类型");
+                    return;
+                }
+                if(TextUtils.isEmpty(tvTimeStart.getText().toString())||TextUtils.isEmpty(tvTimeEnd.getText().toString())){
+                    ToastUtils.showShort("作业开始时间或结束时间不能为空");
                 }
                 map.put("kindTypeDetail", GsonParseUtils.GsonString(tempList));//作业类型数组
                 map.put("timeStart1", tvTimeStart.getText().toString());//開始时间
@@ -149,19 +162,6 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
             }
         });
 
-
-//        rgAll.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-//                if (i == R.id.rb_one) {
-//                    num = 0;
-//                } else if (i == R.id.rb_two) {
-//                    num = 1;
-//                }
-//                // TODO: 2018/5/23 此处处理不正确，可以多选，后期需要更改逻辑
-//                tempList.add(orderList.get(num));
-//            }
-//        });
     }
 
     private List<PlaceBean> setPlaceList() {

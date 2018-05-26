@@ -15,7 +15,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
-        app:SpinKit_Color="@color/blue" />
+        app:SpinKit_Color="#70C63F"/>
 
     <TextView
         android:id="@+id/loading_tips_show"

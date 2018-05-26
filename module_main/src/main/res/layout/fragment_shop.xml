@@ -2,7 +2,9 @@
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:backgroundTint="@color/white"
+    >
 
 
     <com.zhy.autolayout.AutoRelativeLayout
@@ -76,14 +78,32 @@
         android:layout_marginBottom="10dp"
         android:orientation="horizontal">
 
-        <TextView
+        <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:text="价格"
-            android:textColor="#333333"
-            android:textSize="18dp" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="价格"
+                android:textColor="#333333"
+                android:textSize="18dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/gray_filtrate"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="4dp"
+                />
+
+        </LinearLayout>
+
 
         <View
             android:layout_width="1dp"
@@ -91,14 +111,31 @@
             android:background="#dddddd"
             />
 
-        <TextView
+        <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:text="最新上架"
-            android:textColor="#333333"
-            android:textSize="18dp" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="最新上架"
+                android:textColor="#333333"
+                android:textSize="18dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/gray_filtrate"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="4dp"
+                />
+
+        </LinearLayout>
 
     </LinearLayout>
 

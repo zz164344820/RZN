@@ -12,9 +12,15 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amap.api.location.AMapLocation;
+import com.amap.api.location.AMapLocationClient;
+import com.amap.api.location.AMapLocationClientOption;
+import com.amap.api.location.AMapLocationListener;
+import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
@@ -49,7 +55,7 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
     private EditText etPhone;
     private EditText etHomeAddress;
     private TextView tvWorkTab;
-    private TextView tvWorkAddress;
+    private TextView tvWorkAddress ;
     private EditText etDetialAddress;
     private TextView tvStartTime;
     private TextView tvToTime;
@@ -68,7 +74,11 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
     private String kindType;
     private String kindTypeId;
     private String unitPrice;
+    private ImageView iv_address;
     BottomDialog bottomDialog;
+
+    public AMapLocationClient mLocationClient = null;
+    public AMapLocationClientOption mLocationOption = null;
 
     Province province;//省
     County county;    //市
@@ -80,10 +90,9 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_release_assignments);
         mPresenter.onCreate();
-        setTitle("发布作业需求");
         initViews();
         initListenter();
-//        showLoading(false, "");
+        initLocation();
     }
 
     private void initListenter() {
@@ -164,7 +173,13 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
                 mPresenter.httpGetWorkType();
             }
         });
-        //发布作业信息监听
+
+        iv_address.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mLocationClient.startLocation();
+            }
+        });
     }
 
     private void showDateDialog(final int tab) {
@@ -185,6 +200,7 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
     }
 
     private void initViews() {
+        setTitle("发布作业需求");
         etPeople = (EditText) findViewById(R.id.et_people);//联系人
         etPhone = (EditText) findViewById(R.id.et_phone);//电话号
         etHomeAddress = (EditText) findViewById(R.id.et_home_address);//家地址
@@ -199,6 +215,7 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
         tvPrice = (EditText) findViewById(R.id.tv_price);//作业价格
         etDetial = (EditText) findViewById(R.id.et_detial);//想对机手说些什么
         tvConfim = (TextView) findViewById(R.id.tv_confim);//确认发布
+        iv_address = (ImageView) findViewById(R.id.iv_address);//定位
         bottomDialog = new BottomDialog(SendWorkActivity.this);
         bottomDialog.setOnAddressSelectedListener(this);
     }
@@ -248,4 +265,22 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
         bottomDialog.dismiss();
 
     }
+
+    private void initLocation() {
+        //声明AMapLocationClient类对象
+        mLocationClient = new AMapLocationClient(this);
+        //初始化AMapLocationClientOption对象
+        mLocationOption = new AMapLocationClientOption();
+        //单次定位
+        mLocationOption.setOnceLocation(true);
+        mLocationClient.setLocationListener(new AMapLocationListener() {
+            @Override
+            public void onLocationChanged(AMapLocation aMapLocation) {
+                etHomeAddress.setText(aMapLocation.getDistrict()+aMapLocation.getStreet()+aMapLocation.getStreetNum());
+            }
+        });
+        mLocationClient.setLocationOption(mLocationOption);
+
+    }
+
 }

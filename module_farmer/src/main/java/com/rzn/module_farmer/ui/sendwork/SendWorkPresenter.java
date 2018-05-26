@@ -29,11 +29,11 @@ public class SendWorkPresenter extends BasePresenterImpl<SendWorkContract.View> 
     @Override
     public void onCreate() {
         super.onCreate();
-//        reqData(mContext, "Test/index", null, 111);
     }
 
     @Override
     public void httpGetWorkType() {
+        mView.showLoading(false,"");
         reqData(mContext, "farmHand/farmerTask/queryKind", null, 222);
     }
 
