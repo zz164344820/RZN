@@ -89,8 +89,8 @@ public class FarmerDriverDetialActivity extends MVPBaseActivity<FarmerDriverDeti
         tvCommit = (TextView) findViewById(R.id.tv_commit);
         headbackground = (ImageView) findViewById(R.id.headbackground);
 
-        GlideUtils.loadImageRound(this,"",ivPhoto,40);
-        GlideUtils.GaussianBlur(this,"",headbackground,8,1);
+        GlideUtils.loadImageRound(this,"http://p0.so.qhmsg.com/bdr/_240_/t01eccf86bc0d2cf28f.jpg",ivPhoto,40);
+        GlideUtils.GaussianBlur(this,"http://p0.so.qhmsg.com/bdr/_240_/t01eccf86bc0d2cf28f.jpg",headbackground,8,1);
     }
 
     //获取机手信息成功
