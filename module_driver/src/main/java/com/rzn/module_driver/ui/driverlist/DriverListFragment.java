@@ -114,6 +114,28 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
 
             }
         });
+
+
+        rootView.findViewById(R.id.ll_jobScreeningType).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPresenter.httpGetWorkType();
+            }
+        });
+
+        rootView.findViewById(R.id.ll_jobScreeningRegion).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bottomDialog.show();
+            }
+        });
+
+        rootView.findViewById(R.id.ll_obScreeningcapacity).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showSelectPic(window);
+            }
+        });
     }
 
 
@@ -188,20 +210,6 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
     }
 
 
-    @OnClick({R2.id.ll_jobScreeningType, R2.id.ll_jobScreeningRegion, R2.id.ll_obScreeningcapacity})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R2.id.ll_jobScreeningType:
-                mPresenter.httpGetWorkType();
-                break;
-            case R2.id.ll_jobScreeningRegion:
-                bottomDialog.show();
-                break;
-            case R2.id.ll_obScreeningcapacity:
-                showSelectPic(window);
-                break;
-        }
-    }
 
     @Override
     public void onAddressSelected(Province province, City city, County county, Street street) {
