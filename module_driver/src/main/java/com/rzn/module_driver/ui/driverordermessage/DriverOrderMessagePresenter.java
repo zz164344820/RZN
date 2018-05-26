@@ -59,6 +59,7 @@ public class DriverOrderMessagePresenter extends BasePresenterImpl<DriverOrderMe
             case 111:
                 // TODO: 2018/5/19  开始接单完善信息请求成功处理
                 mContext.startActivity(new Intent(mContext, PostingActivity.class));
+                mContext.finish();
                 break;
         }
     }
