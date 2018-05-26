@@ -45,6 +45,7 @@ public class BannerPagerAdapter  extends PagerAdapter{
 
         GlideUtils.loadImageView(mContext,list.get(position),imageView);
         container.addView(view);
+
         return view;
 }
 
