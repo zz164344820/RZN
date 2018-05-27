@@ -73,7 +73,7 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/shape_input_bg"
-                    android:hint="13598456828"
+                    android:hint="必填"
                     android:inputType="number"
                     android:maxLength="11"
                     android:paddingLeft="4dp"

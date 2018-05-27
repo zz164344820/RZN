@@ -31,7 +31,7 @@ public class DriverListContract {
 
     interface Presenter extends BasePresenter<View> {
 
-
+        void isOrderReceiving(String type);
         void httpGetWorkType();
 
         /*获取抢单list*/

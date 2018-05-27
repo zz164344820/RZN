@@ -12,9 +12,11 @@ import com.rzn.commonbaselib.mvp.BasePresenterImpl;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.commonbaselib.utils.GsonUtils;
 import com.rzn.module_driver.ui.bean.DriverGrabOrderInfo;
+import com.rzn.module_driver.ui.bean.ReceivingOrder;
 import com.rzn.module_driver.ui.bean.WorkTypeBean;
 import com.rzn.module_driver.ui.jobdetails.JobdetailsActivity;
 import com.zyhealth.expertlib.bean.ResponseBean;
+import com.zyhealth.expertlib.utils.GlideUtils;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
@@ -32,6 +34,9 @@ public class DriverListPresenter extends BasePresenterImpl<DriverListContract.Vi
 
     DriverListAdapter driverListAdapter;
     List<DriverGrabOrderInfo> list  = new ArrayList<>();
+    LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+    boolean isReceivingOrder =false;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -43,6 +48,17 @@ public class DriverListPresenter extends BasePresenterImpl<DriverListContract.Vi
     }
 
     @Override
+    public void isOrderReceiving(String type) {
+        Map<String,String> map = new HashMap<>();
+        if(!TextUtils.isEmpty(loginResponseBean.getHandlerId())){
+            map.put("handlerId",loginResponseBean.getHandlerId());
+            map.put("isJoin",type);
+            reqData(mContext, "farmHand/handler/stopJoinToHandler", map, 665);
+        }
+
+    }
+
+    @Override
     public void httpGetWorkType() {
         mView.showLoading(false,"");
         reqData(mContext, "farmHand/farmerTask/queryKind", null, 222);
@@ -50,7 +66,7 @@ public class DriverListPresenter extends BasePresenterImpl<DriverListContract.Vi
 
     @Override
     public void getDriverList(Map<String,String> map) {
-        LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+
         if(!TextUtils.isEmpty(loginResponseBean.getHandlerId())){
            mView.showLoading(false,"");
            map.put("handlerId",loginResponseBean.getHandlerId());
@@ -102,6 +118,7 @@ public class DriverListPresenter extends BasePresenterImpl<DriverListContract.Vi
                 List<WorkTypeBean> list2= gson.fromJson(gson.toJson(response.getResult()), type2);
                 mView.getWorkTypeSuccess(list2);
                 break;
+
         }
     }
 }
