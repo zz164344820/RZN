@@ -92,46 +92,104 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1" />
-
-        <CheckBox
-            android:id="@+id/cb_boy"
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10px"
-            android:background="@null"
-            android:button="@drawable/button_checked" />
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="15dp"
-            android:layout_height="17.5dp"
-            android:src="@drawable/icon_sex_boy" />
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="(男)"
-            android:textColor="#333333"
-            android:textSize="16dp" />
+                <RadioButton
+                    android:id="@+id/cb_boy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10px"
+                    android:background="@null"
+                    android:button="@drawable/button_checked" />
 
-        <CheckBox
-            android:id="@+id/cb_gril"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10px"
-            android:background="@null"
-            android:button="@drawable/button_checked" />
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="17.5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/icon_nan" />
 
-        <ImageView
-            android:layout_width="15dp"
-            android:layout_height="17.5dp"
-            android:src="@drawable/icon_sex_gril" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(男)"
+                    android:textColor="#333333"
+                    android:textSize="16dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="(女)"
-            android:textColor="#333333"
-            android:textSize="16dp" />
+                <RadioButton
+                    android:id="@+id/cb_gril"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10px"
+                    android:background="@null"
+                    android:button="@drawable/button_checked" />
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="17.5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/icon_nv" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(女)"
+                    android:textColor="#333333"
+                    android:textSize="16dp" />
+
+            </RadioGroup>
+        </LinearLayout>
+        <!--<CheckBox-->
+            <!--android:id="@+id/cb_boy"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="10px"-->
+            <!--android:background="@null"-->
+            <!--android:button="@drawable/button_checked" />-->
+
+        <!--<ImageView-->
+            <!--android:layout_width="15dp"-->
+            <!--android:layout_height="17.5dp"-->
+            <!--android:src="@drawable/icon_sex_boy" />-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="(男)"-->
+            <!--android:textColor="#333333"-->
+            <!--android:textSize="16dp" />-->
+
+        <!--<CheckBox-->
+            <!--android:id="@+id/cb_gril"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="10px"-->
+            <!--android:background="@null"-->
+            <!--android:button="@drawable/button_checked" />-->
+
+        <!--<ImageView-->
+            <!--android:layout_width="15dp"-->
+            <!--android:layout_height="17.5dp"-->
+            <!--android:src="@drawable/icon_sex_gril" />-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="(女)"-->
+            <!--android:textColor="#333333"-->
+            <!--android:textSize="16dp" />-->
 
     </LinearLayout>
 

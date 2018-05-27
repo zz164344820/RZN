@@ -29,7 +29,7 @@ public class SendPopUpWindow extends PopupWindow {
     private Context context;
     private View popUpWindow;
     private List<WorkTypeBean> list;
-    List<WorkTypeBean> Lists = new ArrayList<>();
+    List<WorkTypeBean> lists = new ArrayList<>();
     List<WorkTypeObjBean> typeList = new ArrayList<>();
     private TypesAdapter typesAdapter;
     private TextView tvCancel;
@@ -77,13 +77,19 @@ public class SendPopUpWindow extends PopupWindow {
         //一级列表
         RecyclerView rvType = (RecyclerView) popUpWindow.findViewById(R.id.rv_type);
         rvType.setLayoutManager(new LinearLayoutManager(context));
-        Lists.addAll(list);
-        typeAdapter = new TypeAdapter(R.layout.item_type, Lists);
+        lists.addAll(list);
+        typeAdapter = new TypeAdapter(R.layout.item_type, lists);
         rvType.setAdapter(typeAdapter);
         typeAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 positions = position;
+                lists.clear();
+                typeAdapter.getPost(list.get(position).getKindName());
+                lists.addAll(list);
+                typeAdapter.notifyDataSetChanged();
+
+
                 typeList.clear();
                 typeList.addAll(list.get(position).getTypeArray());
                 typesAdapter.notifyDataSetChanged();
@@ -101,6 +107,13 @@ public class SendPopUpWindow extends PopupWindow {
 //                typesAdapter.getPosition(position);
 //                typesAdapter.notifyDataSetChanged();
                 typePosition = position;
+
+
+                typeList.clear();
+                typesAdapter.getPost(list.get(positions).getTypeArray().get(position).getTypeName());
+                typeList.addAll(list.get(positions).getTypeArray());
+                typesAdapter.notifyDataSetChanged();
+
             }
         });
     }

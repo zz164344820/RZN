@@ -1,6 +1,8 @@
 package com.rzn.module_driver.ui.driver_identification;
 
+import android.graphics.Color;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -15,9 +17,10 @@ import java.util.List;
  */
 
 public class TypeAdapter extends BaseQuickAdapter<WorkTypeBean, BaseViewHolder> {
-    private int postion;
-
-
+    private String name = "";
+    public void getPost(String name) {
+        this.name = name;
+    }
 //    public void getPosition(int position) {
 //        this.postion = postion;
 //    }
@@ -32,6 +35,15 @@ public class TypeAdapter extends BaseQuickAdapter<WorkTypeBean, BaseViewHolder> 
     @Override
     protected void convert(BaseViewHolder helper, WorkTypeBean item) {
         helper.setText(R.id.tv_type, item.getKindName());
+        if (!TextUtils.isEmpty(name)) {
+
+            if (name.equals(item.getKindName())) {
+                helper.setTextColor(R.id.tv_type, Color.parseColor("#70c63f"));
+            } else {
+                helper.setTextColor(R.id.tv_type, Color.parseColor("#333333"));
+            }
+
+        }
 //        if (postion == helper.getPosition()) {
 //            helper.setTextColor(R.id.tv_type, Color.parseColor("#70c63f"));
 //        } else {

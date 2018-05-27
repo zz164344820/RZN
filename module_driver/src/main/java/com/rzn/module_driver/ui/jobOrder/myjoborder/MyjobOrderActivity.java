@@ -157,6 +157,9 @@ public class MyjobOrderActivity extends MVPBaseActivity<MyjobOrderContract.View,
             public void onClick(View view) {
                 flag = "driver";
                 tvFinish.setText("已完成");
+                viewOne.setVisibility(View.VISIBLE);
+                viewTwo.setVisibility(View.GONE);
+                viewThree.setVisibility(View.GONE);
                 tvAll.setTextColor(Color.parseColor("#fb9300"));
                 tvFinish.setTextColor(Color.parseColor("#333333"));
                 tvWork.setTextColor(Color.parseColor("#333333"));
@@ -173,6 +176,9 @@ public class MyjobOrderActivity extends MVPBaseActivity<MyjobOrderContract.View,
             public void onClick(View view) {
                 flag = "farmer";
                 tvFinish.setText("待接单");
+                viewOne.setVisibility(View.VISIBLE);
+                viewTwo.setVisibility(View.GONE);
+                viewThree.setVisibility(View.GONE);
                 tvAll.setTextColor(Color.parseColor("#fb9300"));
                 tvFinish.setTextColor(Color.parseColor("#333333"));
                 tvWork.setTextColor(Color.parseColor("#333333"));
