@@ -20,11 +20,13 @@ public class JobdetailsPresenter extends BasePresenterImpl<JobdetailsContract.Vi
 
     @Override
     public void getMessage(Map<String, String> map) {
+        mView.showLoading(false,"");
         reqData(mContext, "farmHand/farmerTask/farmerTaskInfo", map, 222);
     }
 
     @Override
     public void getPost(Map<String, String> map) {
+        mView.showLoading(false,"");
         reqData(mContext,"farmHand/handler/grabTask",map ,166);
     }
 
