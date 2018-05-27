@@ -48,6 +48,9 @@ public class MyjobOrderActivity extends MVPBaseActivity<MyjobOrderContract.View,
     String flag = "farmer";
     private FragmentManager manager;
     private FragmentTransaction transaction;
+    private View viewOne;
+    private View viewTwo;
+    private View viewThree;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -81,6 +84,13 @@ public class MyjobOrderActivity extends MVPBaseActivity<MyjobOrderContract.View,
         tvFinish.setTextColor(Color.parseColor("#333333"));
         tvWork.setTextColor(Color.parseColor("#333333"));
 
+        viewOne = findViewById(R.id.view_one);
+        viewTwo = findViewById(R.id.view_two);
+        viewThree = findViewById(R.id.view_three);
+        viewOne.setVisibility(View.VISIBLE);
+        viewTwo.setVisibility(View.GONE);
+        viewThree.setVisibility(View.GONE);
+
         tvFinish.setText("待接单");
 
         manager = getSupportFragmentManager();
@@ -96,6 +106,9 @@ public class MyjobOrderActivity extends MVPBaseActivity<MyjobOrderContract.View,
         tvAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                viewOne.setVisibility(View.VISIBLE);
+                viewTwo.setVisibility(View.GONE);
+                viewThree.setVisibility(View.GONE);
                 tvAll.setTextColor(Color.parseColor("#fb9300"));
                 tvFinish.setTextColor(Color.parseColor("#333333"));
                 tvWork.setTextColor(Color.parseColor("#333333"));
@@ -109,6 +122,9 @@ public class MyjobOrderActivity extends MVPBaseActivity<MyjobOrderContract.View,
         tvWork.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                viewOne.setVisibility(View.GONE);
+                viewTwo.setVisibility(View.VISIBLE);
+                viewThree.setVisibility(View.GONE);
                 tvAll.setTextColor(Color.parseColor("#333333"));
                 tvFinish.setTextColor(Color.parseColor("#333333"));
                 tvWork.setTextColor(Color.parseColor("#fb9300"));
@@ -122,6 +138,9 @@ public class MyjobOrderActivity extends MVPBaseActivity<MyjobOrderContract.View,
         tvFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                viewOne.setVisibility(View.GONE);
+                viewTwo.setVisibility(View.GONE);
+                viewThree.setVisibility(View.VISIBLE);
                 tvAll.setTextColor(Color.parseColor("#333333"));
                 tvFinish.setTextColor(Color.parseColor("#fb9300"));
                 tvWork.setTextColor(Color.parseColor("#333333"));

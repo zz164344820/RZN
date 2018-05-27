@@ -50,35 +50,78 @@
         android:background="#ffffff"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tv_all"
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="全部"
-            android:textColor="@drawable/selector_word_color"
-            android:textSize="18dp" />
+            android:layout_weight="1">
 
-        <TextView
-            android:id="@+id/tv_work"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="待作业"
-            android:textColor="@drawable/selector_word_color"
-            android:textSize="18dp" />
+            <TextView
+                android:id="@+id/tv_all"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="全部"
+                android:textColor="@drawable/selector_word_color"
+                android:textSize="18dp" />
 
-        <TextView
-            android:id="@+id/tv_finish"
+            <View
+                android:id="@+id/view_one"
+                android:layout_width="50dp"
+                android:layout_height="2dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:background="#fb9300"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="已完成"
-            android:textColor="@drawable/selector_word_color"
-            android:textSize="18dp" />
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_work"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="待作业"
+                android:textColor="@drawable/selector_word_color"
+                android:textSize="18dp" />
+
+            <View
+                android:id="@+id/view_two"
+                android:layout_width="50dp"
+                android:layout_height="2dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:background="#fb9300"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_finish"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="已完成"
+                android:textColor="@drawable/selector_word_color"
+                android:textSize="18dp" />
+
+            <View
+                android:id="@+id/view_three"
+                android:layout_width="50dp"
+                android:layout_height="2dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:background="#fb9300"
+                android:visibility="gone" />
+        </RelativeLayout>
 
     </LinearLayout>
 
