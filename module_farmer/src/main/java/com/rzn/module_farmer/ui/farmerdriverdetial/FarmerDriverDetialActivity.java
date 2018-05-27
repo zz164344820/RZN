@@ -119,10 +119,16 @@ public class FarmerDriverDetialActivity extends MVPBaseActivity<FarmerDriverDeti
         tvContentTwo.setText("ssssss");
         tvPrice.setText("元/亩");
         tvTitle.setText("");
-        tvAddress.setText(driverDetialMessageBean.getJsonArrayTaskPlace().get(0).getProvinceName() + driverDetialMessageBean.getJsonArrayTaskPlace().get(0).getCityName()
-                + driverDetialMessageBean.getJsonArrayTaskPlace().get(0).getAreaName() + "");
-        tvAddressTwo.setText(driverDetialMessageBean.getJsonArrayTaskPlace().get(1).getProvinceName() + driverDetialMessageBean.getJsonArrayTaskPlace().get(0).getCityName() +
-                driverDetialMessageBean.getJsonArrayTaskPlace().get(0).getAreaName() + "");
+        if (driverDetialMessageBean.getJsonArrayTaskPlace().size() == 1) {
+            tvAddressTwo.setVisibility(View.GONE);
+            tvAddress.setText(driverDetialMessageBean.getJsonArrayTaskPlace().get(0).getProvinceName() + driverDetialMessageBean.getJsonArrayTaskPlace().get(0).getCityName()
+                    + driverDetialMessageBean.getJsonArrayTaskPlace().get(0).getAreaName() + "");
+        } else if (driverDetialMessageBean.getJsonArrayTaskPlace().size() == 2) {
+            tvAddress.setText(driverDetialMessageBean.getJsonArrayTaskPlace().get(0).getProvinceName() + driverDetialMessageBean.getJsonArrayTaskPlace().get(0).getCityName()
+                    + driverDetialMessageBean.getJsonArrayTaskPlace().get(0).getAreaName() + "");
+            tvAddressTwo.setText(driverDetialMessageBean.getJsonArrayTaskPlace().get(1).getProvinceName() + driverDetialMessageBean.getJsonArrayTaskPlace().get(0).getCityName() +
+                    driverDetialMessageBean.getJsonArrayTaskPlace().get(0).getAreaName() + "");
+        }
         tvTime.setText(driverDetialMessageBean.getCreateTimeInfo());
         tvMessage.setText(driverDetialMessageBean.getRemark());
     }
