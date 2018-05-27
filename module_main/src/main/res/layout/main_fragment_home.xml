@@ -51,10 +51,12 @@
 
         </com.zhy.autolayout.AutoLinearLayout>
         <ImageView
+            android:id="@+id/iv_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingLeft="25px"
+
             android:src="@drawable/main_xiaoxi"
-            android:layout_marginLeft="25px"
             />
 
     </com.zhy.autolayout.AutoLinearLayout>

@@ -16,20 +16,20 @@ import android.widget.Toast;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.AppUtils;
 import com.rzn.commonbaselib.bean.LoginResponseBean;
-import com.jaeger.library.StatusBarUtil;
-import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.module_main.R;
+import com.rzn.module_main.R2;
 import com.rzn.module_main.ui.drivercenter.DriverCenterActivity;
-import com.rzn.module_main.ui.driverhome.DriverHomeActivity;
+import com.rzn.module_main.ui.mesagecenter.MessageCenterActivity;
 import com.rzn.module_main.ui.myadvice.MyAdviceActivity;
 import com.rzn.module_main.ui.personalinfo.PersonalInfoActivity;
 import com.rzn.module_main.ui.setting.SettingActivity;
 import com.zyhealth.expertlib.utils.GlideUtils;
 
-import io.reactivex.internal.operators.observable.ObservableNever;
-import mlxy.utils.L;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
 
 /**
  * MVPPlugin
@@ -38,13 +38,14 @@ import mlxy.utils.L;
 
 public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresenter> implements MineContract.View {
     View rootView;
+    Unbinder unbinder;
     private LinearLayout llMyWork;
     private LinearLayout llMyCollection;
     private LinearLayout llAdvice;
     private LinearLayout llPhoneConcel;
     private LinearLayout llSetting;
     private ImageView tv_bianji, iv_photo, iv_background;
-    private TextView tv_Status ,tv_name ,tv_VersionName;
+    private TextView tv_Status, tv_name, tv_VersionName;
 
     @Nullable
     @Override
@@ -53,6 +54,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         mPresenter.onCreate();
         initViews();
         initListener();
+        unbinder = ButterKnife.bind(this, rootView);
         return rootView;
     }
 
@@ -120,18 +122,29 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         iv_background = (ImageView) rootView.findViewById(R.id.iv_background);
         tv_VersionName = (TextView) rootView.findViewById(R.id.tv_VersionName);
 
-        GlideUtils.loadImageRound(getContext(),"http://www.fzlol.com/upimg/allimg/140408/1_1G0291243.jpg",iv_photo,40);
-        GlideUtils.GaussianBlur(getContext(),"http://www.fzlol.com/upimg/allimg/140408/1_1G0291243.jpg",iv_background,8,1);
-        LoginResponseBean loginResponseBean= (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+        GlideUtils.loadImageRound(getContext(), "http://www.fzlol.com/upimg/allimg/140408/1_1G0291243.jpg", iv_photo, 40);
+        GlideUtils.GaussianBlur(getContext(), "http://www.fzlol.com/upimg/allimg/140408/1_1G0291243.jpg", iv_background, 8, 1);
+        LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
         tv_name.setText(loginResponseBean.getPhone());
-        if(TextUtils.isEmpty(loginResponseBean.getHandlerId())){
+        if (TextUtils.isEmpty(loginResponseBean.getHandlerId())) {
             tv_Status.setText("未认证");
-        }else{
+        } else {
             tv_Status.setText("已认证");
             tv_Status.setTextColor(getResources().getColor(R.color.main_color));
         }
 
-        tv_VersionName.setText("v "+AppUtils.getAppVersionName());
+        tv_VersionName.setText("版本号：v " + AppUtils.getAppVersionName());
 
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
+
+    @OnClick(R2.id.iv_message)
+    public void onViewClicked() {
+        startActivity(new Intent(getActivity(), MessageCenterActivity.class));
     }
 }
