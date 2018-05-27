@@ -19,6 +19,7 @@ public class SelectAddressBean {
     private String kindTypeId;//":"1000", //作业类型Id
     private String mobile;//":"18080808080",//联系电话
     private String name;//":"胡君宝",//联系人
+    private String flagNum;//分散地数
     private String orderNo;//":"18040700003", //预约单号
     private String provinceCode;//":"340000",//省code
     private String provinceName;//":"安徽省",
@@ -35,6 +36,17 @@ public class SelectAddressBean {
     private String userId;//":"40288ad75c81124b015c8132bfe8000f"//用户id
     private boolean isChecked;
 
+
+
+
+
+    public String getFlagNum() {
+        return flagNum;
+    }
+
+    public void setFlagNum(String flagNum) {
+        this.flagNum = flagNum;
+    }
 
     public boolean isChecked() {
         return isChecked;

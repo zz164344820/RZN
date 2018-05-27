@@ -23,10 +23,16 @@ public class SelectAddressAdapter extends BaseQuickAdapter<SelectAddressBean, Ba
 
     @Override
     protected void convert(BaseViewHolder helper, SelectAddressBean item) {
+        String type ;
+        if("1".equals(item.getFlag())){
+            type="集中连片";
+        }else {
+            type="零星分散";
+        }
         helper.setText(R.id.tv_title, item.getTypes());
-        helper.setText(R.id.tv_size, item.getAddress());
-        helper.setText(R.id.tv_work_adress, item.getAreas());
-        helper.setText(R.id.tv_time, item.getCreateTime() + "至" + item.getUpdateTime());
+        helper.setText(R.id.tv_size, item.getAreas()+"亩/"+type+"/"+item.getFlagNum()+"块");
+        helper.setText(R.id.tv_work_adress, item.getAddress());
+        helper.setText(R.id.tv_time, item.getStartDate() + "至" + item.getEndDate());
         helper.setChecked(R.id.tv_checked,item.isChecked());
         helper.addOnClickListener(R.id.tv_checked);
     }
