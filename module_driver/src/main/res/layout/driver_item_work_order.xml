@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
-              android:layout_height="176.5dp"
+              android:layout_height="wrap_content"
               android:layout_marginTop="10dp"
               android:background="#ffffff"
               android:orientation="vertical">
@@ -58,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:text="10亩/零星分散/5块"
         android:textColor="#333333"
         android:textSize="16dp"
@@ -68,6 +68,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="3dp"
         >
 
         <TextView
@@ -83,7 +84,7 @@
             android:id="@+id/tv_adress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="6dp"
             android:singleLine="true"
             android:text="邯郸市白塔塔乡老陈村塔乡老陈… "
             android:textColor="#333333"
@@ -95,6 +96,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="3dp"
         >
 
         <TextView
@@ -110,7 +112,7 @@
             android:id="@+id/tv_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="6dp"
             android:text="2017-12-12 至 2017-12-13"
             android:singleLine="true"
             android:textColor="#333333"
@@ -121,21 +123,21 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:background="#dddddd"
         />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:orientation="horizontal"
+        android:gravity="center_vertical"
         >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
             android:text="实际作业亩数:"
             android:textColor="#333333"
             android:textSize="16dp"
@@ -146,7 +148,6 @@
             android:id="@+id/tv_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:text="12.3亩"
             android:textColor="#333333"
             android:textSize="18dp"
@@ -154,27 +155,28 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            >
             <TextView
                 android:id="@+id/tv_true_money"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
                 android:text="492.00元"
                 android:textColor="#FF5050"
                 android:textSize="18dp"
                 />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_toLeftOf="@id/tv_true_money"
                 android:text="实付款："
                 android:textColor="#333333"
-                android:textSize="16dp"
-                />
+                android:layout_centerVertical="true"
+                android:textSize="16dp" />
 
 
         </RelativeLayout>

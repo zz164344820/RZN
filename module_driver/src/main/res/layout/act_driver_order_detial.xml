@@ -79,12 +79,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="14dp"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="18dp"
                         android:layout_height="18dp"
-                        android:layout_marginLeft="21dp" />
+                        android:layout_marginLeft="21dp"
+                        android:background="@drawable/weizhi_32"
+                        android:layout_marginRight="5dp"
+                        />
 
 
                     <TextView
@@ -98,20 +102,24 @@
 
                 <TextView
                     android:id="@+id/tv_address"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="43dp"
                     android:layout_marginTop="10dp"
+                    android:singleLine="true"
+                    android:ellipsize="end"
                     android:text="• 河北省沧州市北山底村"
                     android:textColor="#333333"
                     android:textSize="16dp" />
 
                 <TextView
                     android:id="@+id/tv_address_two"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="43dp"
                     android:layout_marginTop="10dp"
+                    android:singleLine="true"
+                    android:ellipsize="end"
                     android:text=" • 河北省沧州市孟村自治县"
                     android:textColor="#333333"
                     android:textSize="16dp" />
@@ -121,12 +129,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="14dp"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="18dp"
                         android:layout_height="18dp"
-                        android:layout_marginLeft="21dp" />
+                        android:layout_marginLeft="21dp"
+                        android:background="@drawable/shijian_32"
+                        android:layout_marginRight="5dp"
+                        />
 
 
                     <TextView
@@ -152,12 +164,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="14dp"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="18dp"
                         android:layout_height="18dp"
-                        android:layout_marginLeft="21dp" />
+                        android:layout_marginLeft="21dp"
+                        android:background="@drawable/beizhu_32"
+                        android:layout_marginRight="5dp"
+                        />
 
 
                     <TextView
@@ -171,10 +187,12 @@
 
                 <TextView
                     android:id="@+id/tv_message"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="43dp"
                     android:layout_marginTop="10dp"
+                    android:maxLines="2"
+                    android:ellipsize="end"
                     android:text="最好能下午来，上午不在家。"
                     android:textColor="#333333"
                     android:textSize="16dp" />
@@ -183,12 +201,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="14dp"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="18dp"
                         android:layout_height="18dp"
-                        android:layout_marginLeft="21dp" />
+                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="21dp"
+                        android:background="@drawable/jiage_32"
+                        />
 
 
                     <TextView
@@ -287,6 +309,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="9dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
                 android:background="#ffffff"
                 android:orientation="vertical">
 
@@ -294,7 +318,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="18dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -310,14 +333,14 @@
                         android:layout_height="wrap_content"
                         android:text="2017-12-09  13:45:33 "
                         android:textColor="#333333"
-                        android:textSize="18dp" />
+                        android:textSize="16dp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="18dp"
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -333,16 +356,15 @@
                         android:layout_height="wrap_content"
                         android:text="17091800001（年月日+5位流水号"
                         android:textColor="#333333"
-                        android:textSize="18dp" />
+                        android:textSize="16dp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/ll_cancel_time"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="9dp"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="18dp"
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -358,7 +380,7 @@
                         android:layout_height="wrap_content"
                         android:text="2017-12-09  18:45:09"
                         android:textColor="#333333"
-                        android:textSize="18dp" />
+                        android:textSize="16dp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -368,6 +390,7 @@
                 android:layout_height="42dp"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
+                android:layout_marginBottom="10dp"
                 android:orientation="horizontal">
 
                 <TextView
