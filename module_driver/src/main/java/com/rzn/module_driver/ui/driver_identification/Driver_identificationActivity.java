@@ -122,15 +122,10 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
 
     private void initData() {
         if ("setting".equals(setting)) {
-
-
             LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
-
             Map<String, String> map = new HashMap<>();
             map.put("handlerId", loginResponseBean.getHandlerId());
             mPresenter.getDriverMessage(map);
-        } else {
-            return;
         }
     }
 
@@ -558,7 +553,6 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
     @Override
     public void getDriverMessageSuccess(DriverIdentBean bean) {
         if ("setting".equals(setting)) {
-
             handlerId = bean.getHandlerId();
             etName.setText(bean.getName());
             etIdent.setText(bean.getIdNo());
@@ -580,7 +574,8 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
 
             if (bean.getHandlerKindTypeArray().size() == 2) {
                 etWorkTab.setText(bean.getHandlerKindTypeArray().get(0).getKindName() + " " + bean.getHandlerKindTypeArray().get(0).getKindTypeName());
-                tv_work_tab2.setVisibility(View.VISIBLE);
+                ll_jobOrderType2.setVisibility(View.VISIBLE);
+                iv_addOrderType.setVisibility(View.INVISIBLE);
                 tv_work_tab2.setText(bean.getHandlerKindTypeArray().get(1).getKindName() + " " + bean.getHandlerKindTypeArray().get(1).getKindTypeName());
             } else if (bean.getHandlerKindTypeArray().size() == 1) {
                 etWorkTab.setText(bean.getHandlerKindTypeArray().get(0).getKindName() + " " + bean.getHandlerKindTypeArray().get(0).getKindTypeName());
