@@ -66,7 +66,12 @@ public class DriverListPresenter extends BasePresenterImpl<DriverListContract.Vi
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                // ToastUtils.showShortSafe("条目");
                 //跳转作业详情界面
-                mContext.startActivity(new Intent(mContext, JobdetailsActivity.class));
+
+                list.get(position).getId();
+                Intent intent=new Intent(mContext,JobdetailsActivity.class);
+                intent.putExtra("farmerTaskId", list.get(position).getId());
+                mContext.startActivity(intent);
+//                mContext.startActivity(new Intent(mContext, JobdetailsActivity.class));
             }
         });
 

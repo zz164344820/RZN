@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -41,6 +42,7 @@ public class FarmerDriverDetialActivity extends MVPBaseActivity<FarmerDriverDeti
     private TextView tvMessage;
     private TextView tvCommit;
     private ImageView ivCancel;
+    private TextView tvTypess;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -96,6 +98,8 @@ public class FarmerDriverDetialActivity extends MVPBaseActivity<FarmerDriverDeti
         tvCommit = (TextView) findViewById(R.id.tv_commit);
         headbackground = (ImageView) findViewById(R.id.headbackground);
         ivCancel = (ImageView) findViewById(R.id.iv_cancel);
+        tvTypess = (TextView) findViewById(R.id.tv_typess);
+//        tv_typess
 
         GlideUtils.loadImageRound(this, "http://p0.so.qhmsg.com/bdr/_240_/t01eccf86bc0d2cf28f.jpg", ivPhoto, 40);
         GlideUtils.GaussianBlur(this, "http://p0.so.qhmsg.com/bdr/_240_/t01eccf86bc0d2cf28f.jpg", headbackground, 8, 1);
@@ -115,9 +119,10 @@ public class FarmerDriverDetialActivity extends MVPBaseActivity<FarmerDriverDeti
         tvName.setText(driverDetialMessageBean.getName());
         tvContent.setText("从业" + driverDetialMessageBean.getYears() + "年" + "    " + driverDetialMessageBean.getBirthday().substring(2, 2) + "后");
         tvText.setText("从业" + driverDetialMessageBean.getYears() + "年神勇老司机" + ",神勇无敌!");
-        tvContentOne.setText("llllll");
-        tvContentTwo.setText("ssssss");
-        tvPrice.setText("元/亩");
+        tvContentOne.setText(driverDetialMessageBean.getJsonArrayKindType().get(0).getTypes());
+        tvContentTwo.setText(driverDetialMessageBean.getJsonArrayKindType().get(1).getTypes());
+//        tvTypess.setText(driverDetialMessageBean.get);//不知道是啥
+//        tvPrice.setText(driverDetialMessageBean.get"元/亩");
         tvTitle.setText("");
         if (driverDetialMessageBean.getJsonArrayTaskPlace().size() == 1) {
             tvAddressTwo.setVisibility(View.GONE);
