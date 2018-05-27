@@ -21,7 +21,7 @@ public class DriverIdentBean implements Serializable{
     private String createTime;//":"2018-03-21 17:11:38",
     private String endDate;//":"2018-03-20",
     private String handlerId;//":"40289f6c6247d1a4016247d400d40001",
-    private List<DriverTypeBean> handlerKindTypeArray;//"
+    private List<SelectWorkTypeBean> handlerKindTypeArray;//"
     private String icon;//":"http://localhost:80/farmHand/handler/downloadFile?fileName=default.jpg",
     private String idNo;//":"340403199011103456",
     private String isJoin;//":"1",
@@ -119,11 +119,11 @@ public class DriverIdentBean implements Serializable{
         this.handlerId = handlerId;
     }
 
-    public List<DriverTypeBean> getHandlerKindTypeArray() {
+    public List<SelectWorkTypeBean> getHandlerKindTypeArray() {
         return handlerKindTypeArray;
     }
 
-    public void setHandlerKindTypeArray(List<DriverTypeBean> handlerKindTypeArray) {
+    public void setHandlerKindTypeArray(List<SelectWorkTypeBean> handlerKindTypeArray) {
         this.handlerKindTypeArray = handlerKindTypeArray;
     }
 

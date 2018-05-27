@@ -576,9 +576,12 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
                 etWorkTab.setText(bean.getHandlerKindTypeArray().get(0).getKindName() + " " + bean.getHandlerKindTypeArray().get(0).getKindTypeName());
                 ll_jobOrderType2.setVisibility(View.VISIBLE);
                 iv_addOrderType.setVisibility(View.INVISIBLE);
+                workType1=bean.getHandlerKindTypeArray().get(0);
+                workType2=bean.getHandlerKindTypeArray().get(1);
                 tv_work_tab2.setText(bean.getHandlerKindTypeArray().get(1).getKindName() + " " + bean.getHandlerKindTypeArray().get(1).getKindTypeName());
             } else if (bean.getHandlerKindTypeArray().size() == 1) {
                 etWorkTab.setText(bean.getHandlerKindTypeArray().get(0).getKindName() + " " + bean.getHandlerKindTypeArray().get(0).getKindTypeName());
+                workType1=bean.getHandlerKindTypeArray().get(0);
             }
 
 
