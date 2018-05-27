@@ -195,7 +195,7 @@
                 <ImageView
                     android:layout_width="250px"
                     android:layout_height="220px"
-                    android:background="@color/darkgrey"
+                    android:background="@color/bg_color"
                     />
 
                 <com.zhy.autolayout.AutoLinearLayout
@@ -279,7 +279,7 @@
                 <ImageView
                     android:layout_width="250px"
                     android:layout_height="220px"
-                    android:background="@color/darkgrey"
+                    android:background="@color/bg_color"
                     />
 
                 <com.zhy.autolayout.AutoLinearLayout

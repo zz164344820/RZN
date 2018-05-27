@@ -54,10 +54,11 @@ public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View,
     private List<FarmerDriverMessageBean> list = new ArrayList<>();
     private FarmerListAdapter farmerListAdapter;
     BottomDialog bottomDialog;
-    String kindTypeId;
+    String kindTypeId="";
     Province province;//省
     County county;    //市
     City  city;       //县
+    int pager=0;
 
     public static FarmerListFragment newInstance() {
         return new FarmerListFragment();
@@ -81,7 +82,7 @@ public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View,
     private void initData() {
         LoginResponseBean loginResponseBean= (LoginResponseBean) FileSaveUtils.readObject("loginBean");
 
-        mPresenter.httpLoadDriverMessage("40288ad75c81124b015c8132bfe8000f", "1", "340403", "1666");
+        mPresenter.httpLoadDriverMessage(loginResponseBean.getUserId(), (++pager)+"", county==null?"":county.getId()+"", kindTypeId);
     }
 
     private void initLinistener() {
@@ -155,7 +156,8 @@ public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View,
                 kindTypeId = worTypeList.get(position).getTypeArray().get(typePosition).getKindId();
                 LoginResponseBean  loginResponseBean= (LoginResponseBean) FileSaveUtils.readObject("loginBean");
                 list.clear();
-                mPresenter.httpLoadDriverMessage(loginResponseBean.getUserId(), "1", "", kindTypeId);
+                pager=0;
+                mPresenter.httpLoadDriverMessage(loginResponseBean.getUserId(), (++pager)+"", "", kindTypeId);
             }
         });
         if (sendPopUpWindow.isShowing()) {
@@ -165,13 +167,15 @@ public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View,
     }
     @Override
     public void onLoadMore() {
-        mPresenter.httpLoadDriverMessage("40288ad75c81124b015c8132bfe8000f", "1", "340403", "1666");
+
+        mPresenter.httpLoadDriverMessage("40288ad75c81124b015c8132bfe8000f", (++pager)+"", county==null?"":county.getId()+"", kindTypeId);
     }
 
     @Override
     public void onRefresh() {
         list.clear();
-        mPresenter.httpLoadDriverMessage("40288ad75c81124b015c8132bfe8000f", "1", "340403", "1666");
+        pager=0;
+        mPresenter.httpLoadDriverMessage("40288ad75c81124b015c8132bfe8000f", (++pager)+"", county==null?"":county.getId()+"", kindTypeId);
     }
 
     /**
@@ -200,6 +204,7 @@ public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View,
         bottomDialog.dismiss();
         LoginResponseBean  loginResponseBean= (LoginResponseBean) FileSaveUtils.readObject("loginBean");
         list.clear();
-        mPresenter.httpLoadDriverMessage(loginResponseBean.getUserId(), "1", county.getId()+"", "");
+        pager=0;
+        mPresenter.httpLoadDriverMessage(loginResponseBean.getUserId(), (++pager)+"", county.getId()+"", "");
     }
 }
