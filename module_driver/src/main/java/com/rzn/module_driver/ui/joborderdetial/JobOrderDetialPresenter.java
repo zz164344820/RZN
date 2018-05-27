@@ -31,7 +31,7 @@ public class JobOrderDetialPresenter extends BasePresenterImpl<JobOrderDetialCon
 
         mView.showLoading(false, "");
         Map<String, String> map = new HashMap<>();
-        map.put("farmerTaskId", "farmerTaskId");
+        map.put("farmerTaskId", farmerTaskId);
         reqData(mContext, "farmHand/handler/taskInfo", map, 111);
     }
 

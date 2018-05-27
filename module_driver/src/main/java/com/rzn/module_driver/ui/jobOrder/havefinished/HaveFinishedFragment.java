@@ -84,7 +84,18 @@ public class HaveFinishedFragment extends MVPBaseFragment<HaveFinishedContract.V
         allOrderAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                startActivity(new Intent(mContext, JobOrderDetialActivity.class));
+                if ("farmer".equals(((MyjobOrderActivity) getActivity()).getLabel())) {
+                    Intent intent = new Intent(getContext(), JobOrderDetialActivity.class);
+                    intent.putExtra("flag", "farmer");
+                    intent.putExtra("farmerTaskId", mylist.get(position).getFarmerTaskId());
+                    startActivity(intent);
+                } else if ("driver".equals(((MyjobOrderActivity) getActivity()).getLabel())) {
+                    Intent intent = new Intent(getContext(), JobOrderDetialActivity.class);
+                    intent.putExtra("flag", "driver");
+                    intent.putExtra("farmerTaskId", mylist.get(position).getFarmerTaskId());
+                    startActivity(intent);
+                }
+//                startActivity(new Intent(mContext, JobOrderDetialActivity.class));
             }
         });
     }
