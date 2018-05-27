@@ -125,6 +125,6 @@ public class JobdetailsActivity extends MVPBaseActivity<JobdetailsContract.View,
 
     @Override
     public void getPostSuccess() {
-
+          finish();
     }
 }
