@@ -50,7 +50,9 @@ public class PostSuccessPopWindow extends PopupWindow {
             @Override
             public void onClick(View view) {
                 if (onPostClickListener != null) {
+                    dismiss();
                     onPostClickListener.onClick();
+
                 }
             }
         });
@@ -65,7 +67,7 @@ public class PostSuccessPopWindow extends PopupWindow {
         void onClick();
     }
 
-    private void setOnPostClickListener(OnPostClickListener onPostClickListener) {
+    public void setOnPostClickListener(OnPostClickListener onPostClickListener) {
         this.onPostClickListener = onPostClickListener;
     }
 }

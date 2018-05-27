@@ -18,6 +18,7 @@ public class FarmerListContract {
         void loadDriverMessageSuccessed(List<FarmerDriverMessageBean> list);
         void getWorkTypeSuccess(List<WorkTypeBean> list);
         void loadDriverMessageFailed();
+        void  recycleViewRestore();
     }
 
     interface Presenter extends BasePresenter<View> {

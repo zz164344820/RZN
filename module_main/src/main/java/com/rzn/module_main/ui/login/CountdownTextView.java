@@ -42,7 +42,7 @@ public class CountdownTextView extends AppCompatTextView {
     public void startCountdown(int seconds, CountdownCallBack callBack) {
         this.callBack = callBack;
         time = seconds;
-        setBackgroundColor(getResources().getColor(R.color.gray));
+        setBackgroundColor(getResources().getColor(R.color.darkgray));
         setText("再次获取("+time+")");
         handler = new Handler();
         handler.postDelayed(runnable, 1000);

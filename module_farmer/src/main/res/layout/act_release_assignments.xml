@@ -73,7 +73,7 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/shape_input_bg"
-                    android:hint="13598456828"
+                    android:hint="必填"
                     android:inputType="number"
                     android:maxLength="11"
                     android:paddingLeft="4dp"
@@ -336,7 +336,8 @@
                 android:layout_marginRight="10dp"
                 android:background="@drawable/shape_input_bg"
                 android:hint="请输入详细地址"
-                android:paddingLeft="4dp"
+                android:padding="4dp"
+                android:gravity="top"
                 android:textSize="16dp" />
             <!--作业时间-->
             <LinearLayout
@@ -360,7 +361,7 @@
                     android:layout_margin="10dp"
                     android:background="@drawable/shape_input_bg"
                     android:gravity="center_vertical"
-                    android:hint="2015-01-24"
+                    android:hint="开始时间"
                     android:paddingLeft="4dp" />
 
                 <TextView
@@ -377,7 +378,7 @@
                     android:layout_margin="10dp"
                     android:background="@drawable/shape_input_bg"
                     android:gravity="center_vertical"
-                    android:hint="必填"
+                    android:hint="结束时间"
                     android:paddingLeft="4dp" />
 
             </LinearLayout>
@@ -433,7 +434,8 @@
                 android:layout_marginRight="10dp"
                 android:background="@drawable/shape_input_bg"
                 android:hint="想对机手说什么"
-                android:paddingLeft="4dp"
+                android:gravity="top"
+                android:padding="4dp"
                 android:textSize="16dp" />
 
 

@@ -21,6 +21,8 @@ public class DriverListContract {
         //获取抢单列表失败
         void getListFailed();
 
+        void showPopWindow();
+
         DriverListAdapter setAdapter(List<DriverGrabOrderInfo> list);
 
         void  recycleViewRestore();
@@ -31,7 +33,7 @@ public class DriverListContract {
 
     interface Presenter extends BasePresenter<View> {
 
-
+        void isOrderReceiving(String type);
         void httpGetWorkType();
 
         /*获取抢单list*/

@@ -12,9 +12,11 @@ import com.rzn.commonbaselib.mvp.BasePresenterImpl;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.commonbaselib.utils.GsonUtils;
 import com.rzn.module_driver.ui.bean.DriverGrabOrderInfo;
+import com.rzn.module_driver.ui.bean.ReceivingOrder;
 import com.rzn.module_driver.ui.bean.WorkTypeBean;
 import com.rzn.module_driver.ui.jobdetails.JobdetailsActivity;
 import com.zyhealth.expertlib.bean.ResponseBean;
+import com.zyhealth.expertlib.utils.GlideUtils;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
@@ -32,13 +34,24 @@ public class DriverListPresenter extends BasePresenterImpl<DriverListContract.Vi
 
     DriverListAdapter driverListAdapter;
     List<DriverGrabOrderInfo> list  = new ArrayList<>();
+    LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+    boolean isReceivingOrder =false;
+
     @Override
     public void onCreate() {
         super.onCreate();
         /*在presenter中写apdater是因为数据源在这里*/
         setAdapter();
+    }
 
-        getDriverList(new HashMap<String, String>());
+    @Override
+    public void isOrderReceiving(String type) {
+        Map<String,String> map = new HashMap<>();
+        if(!TextUtils.isEmpty(loginResponseBean.getHandlerId())){
+            map.put("handlerId",loginResponseBean.getHandlerId());
+            map.put("isJoin",type);
+            reqData(mContext, "farmHand/handler/stopJoinToHandler", map, 665);
+        }
 
     }
 
@@ -50,7 +63,7 @@ public class DriverListPresenter extends BasePresenterImpl<DriverListContract.Vi
 
     @Override
     public void getDriverList(Map<String,String> map) {
-        LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+
         if(!TextUtils.isEmpty(loginResponseBean.getHandlerId())){
            mView.showLoading(false,"");
            map.put("handlerId",loginResponseBean.getHandlerId());
@@ -98,15 +111,30 @@ public class DriverListPresenter extends BasePresenterImpl<DriverListContract.Vi
                 List<DriverGrabOrderInfo> tempList = gson.fromJson(gson.toJson(response.getResult()),new TypeToken<List<DriverGrabOrderInfo>>(){}.getType());
                 list.addAll(tempList);
                 driverListAdapter.notifyDataSetChanged();
+                 mView.recycleViewRestore();
                 break;
             case  166:
-                // TODO: 2018/5/18 弹窗 
+                // TODO: 2018/5/18 弹窗
+                mView.showPopWindow();
                 break;
             case 222:
                 Type type2 = new TypeToken<List<WorkTypeBean>>(){}.getType();
                 List<WorkTypeBean> list2= gson.fromJson(gson.toJson(response.getResult()), type2);
                 mView.getWorkTypeSuccess(list2);
                 break;
+
         }
+    }
+
+    @Override
+    public void httpRequestErr(String response, int requestId) {
+        super.httpRequestErr(response, requestId);
+        mView.recycleViewRestore();
+    }
+
+    @Override
+    public void httpRequestFailure(ResponseBean response, int requestId) {
+        super.httpRequestFailure(response, requestId);
+        mView.recycleViewRestore();
     }
 }
