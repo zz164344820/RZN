@@ -1,6 +1,7 @@
 package com.rzn.module_main.ui.main.shopping;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,9 +12,15 @@ import android.view.ViewGroup;
 
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
 import com.rzn.module_main.R;
+import com.rzn.module_main.R2;
+import com.rzn.module_main.ui.mesagecenter.MessageCenterActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
 
 /**
  * MVPPlugin
@@ -22,6 +29,7 @@ import java.util.List;
 
 public class ShoppingFragment extends MVPBaseFragment<ShoppingContract.View, ShoppingPresenter> implements ShoppingContract.View {
 
+    Unbinder unbinder;
     private View rootView;
     private RecyclerView swipeTarget;
 
@@ -31,6 +39,7 @@ public class ShoppingFragment extends MVPBaseFragment<ShoppingContract.View, Sho
         rootView = inflater.inflate(R.layout.fragment_shop, container, false);
         initViews();
 //      initListener();
+        unbinder = ButterKnife.bind(this, rootView);
         return rootView;
     }
 
@@ -47,5 +56,16 @@ public class ShoppingFragment extends MVPBaseFragment<ShoppingContract.View, Sho
         ShoppingAdapter shoppingAdapter = new ShoppingAdapter(R.layout.item_shop, s);
         swipeTarget.setAdapter(shoppingAdapter);
 
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
+
+    @OnClick(R2.id.iv_message)
+    public void onViewClicked() {
+        startActivity(new Intent(getActivity(), MessageCenterActivity.class));
     }
 }

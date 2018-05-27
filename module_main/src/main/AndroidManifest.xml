@@ -29,6 +29,7 @@
         <activity android:name=".ui.personalinfo.PersonalInfoActivity" />
         <activity android:name=".ui.drivercenter.DriverCenterActivity" />
         <activity android:name=".ui.settingmode.SettingModeActivity" />
+        <activity android:name=".ui.mesagecenter.MessageCenterActivity" />
     </application>
 
 </manifest>

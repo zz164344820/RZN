@@ -1,6 +1,7 @@
 package com.rzn.module_main.ui.main.farmmachinery;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,17 +12,24 @@ import android.view.ViewGroup;
 
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
 import com.rzn.module_main.R;
+import com.rzn.module_main.R2;
+import com.rzn.module_main.ui.mesagecenter.MessageCenterActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
+
 /**
  * MVPPlugin
- *  邮箱 784787081@qq.com
+ * 邮箱 784787081@qq.com
  */
 
 public class FarmMachineryFragment extends MVPBaseFragment<FarmMachineryContract.View, FarmMachineryPresenter> implements FarmMachineryContract.View {
 
+    Unbinder unbinder;
     private View rootView;
     private RecyclerView rcWorkList;
 
@@ -30,6 +38,7 @@ public class FarmMachineryFragment extends MVPBaseFragment<FarmMachineryContract
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_farmer_driver, container, false);
         initViews();
+        unbinder = ButterKnife.bind(this, rootView);
         return rootView;
     }
 
@@ -47,5 +56,16 @@ public class FarmMachineryFragment extends MVPBaseFragment<FarmMachineryContract
         FarmMachineryAdapter farmMachineryAdapter = new FarmMachineryAdapter(R.layout.item_farm_machinery, s);
         rcWorkList.setAdapter(farmMachineryAdapter);
 
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
+
+    @OnClick(R2.id.iv_message)
+    public void onViewClicked() {
+        startActivity(new Intent(getActivity(), MessageCenterActivity.class));
     }
 }

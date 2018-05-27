@@ -1,6 +1,4 @@
-package com.rzn.commonbaselib.personalinfo;
-
-import android.content.Context;
+package com.rzn.module_main.ui.mesagecenter;
 
 import com.rzn.commonbaselib.mvp.BasePresenter;
 import com.rzn.commonbaselib.mvp.BaseView;
@@ -10,7 +8,7 @@ import com.rzn.commonbaselib.mvp.BaseView;
  *  邮箱 784787081@qq.com
  */
 
-public class PersonalInfoContract {
+public class MesageCenterContract {
     interface View extends BaseView {
         
     }

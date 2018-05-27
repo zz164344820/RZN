@@ -25,6 +25,7 @@ import com.rzn.module_main.R2;
 import com.rzn.module_main.ui.jobscreening.JobScreeningActivity;
 import com.rzn.module_main.ui.keepstation.KeepStationActivity;
 import com.rzn.module_main.ui.main.MainActivity;
+import com.rzn.module_main.ui.mesagecenter.MessageCenterActivity;
 import com.tmall.ultraviewpager.UltraViewPager;
 
 import java.util.ArrayList;
@@ -139,4 +140,11 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
     public void tv_main_nongjitong() {
         ((MainActivity) getActivity()).setCheckedPager(2, R.id.rb_nongjitong);
     }
+
+    @OnClick(R2.id.iv_message)
+    public void iv_message() {
+        startActivity(new Intent(getActivity(), MessageCenterActivity.class));
+    }
+
+
 }
