@@ -109,9 +109,11 @@ public class DriverListPresenter extends BasePresenterImpl<DriverListContract.Vi
                 List<DriverGrabOrderInfo> tempList = gson.fromJson(gson.toJson(response.getResult()),new TypeToken<List<DriverGrabOrderInfo>>(){}.getType());
                 list.addAll(tempList);
                 driverListAdapter.notifyDataSetChanged();
+                 mView.recycleViewRestore();
                 break;
             case  166:
-                // TODO: 2018/5/18 弹窗 
+                // TODO: 2018/5/18 弹窗
+                mView.showPopWindow();
                 break;
             case 222:
                 Type type2 = new TypeToken<List<WorkTypeBean>>(){}.getType();

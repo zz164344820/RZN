@@ -106,6 +106,7 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
     private void initLinistener() {
         swipeToLoadLayout.setOnLoadMoreListener(this);
         swipeToLoadLayout.setOnRefreshListener(this);
+        swipeToLoadLayout.setLoadMoreEnabled(false);
         tvStartGet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -221,6 +222,21 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
     }
 
     @Override
+    public void showPopWindow() {
+        PostSuccessPopWindow postSuccessPopWindow=new PostSuccessPopWindow(getActivity());
+        postSuccessPopWindow.setOnDismissListener(new PostSuccessPopWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+
+            }
+        });
+        if (postSuccessPopWindow.isShowing()) {
+            return;
+        }
+        postSuccessPopWindow.showAtLocation(tvStartGet, Gravity.CENTER, 0, 0);
+    }
+
+    @Override
     public DriverListAdapter setAdapter(List<DriverGrabOrderInfo> list) {
         this.list = list;
         swipeTarget.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -242,7 +258,9 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
 
     @Override
     public void onRefresh() {
-        recycleViewRestore();
+        list.clear();
+        Map<String, String> map = new HashMap<>();
+        mPresenter.getDriverList(map);
     }
 
 

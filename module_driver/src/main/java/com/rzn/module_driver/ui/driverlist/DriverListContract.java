@@ -21,6 +21,8 @@ public class DriverListContract {
         //获取抢单列表失败
         void getListFailed();
 
+        void showPopWindow();
+
         DriverListAdapter setAdapter(List<DriverGrabOrderInfo> list);
 
         void  recycleViewRestore();

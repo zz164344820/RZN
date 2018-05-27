@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     >
 
     <RelativeLayout
@@ -10,13 +9,15 @@
         android:layout_height="220dp"
         android:layout_centerInParent="true"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp">
+        android:layout_marginRight="20dp"
+        >
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="190dp"
             android:layout_alignParentBottom="true"
-            android:background="#ffffff">
+            android:background="@drawable/shape_radius"
+           >
 
             <TextView
                 android:id="@+id/tv_text"
@@ -37,11 +38,12 @@
 
             <TextView
                 android:id="@+id/tv_know"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:paddingBottom="15dp"
+                android:gravity="center_horizontal"
                 android:paddingTop="15dp"
                 android:text="知道了"
                 android:textColor="#ff70c63f"
