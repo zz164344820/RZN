@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.blankj.utilcode.util.PhoneUtils;
 import com.rzn.commonbaselib.bean.JobOrderDetialBean;
@@ -125,6 +126,7 @@ public class JobdetailsActivity extends MVPBaseActivity<JobdetailsContract.View,
 
     @Override
     public void getPostSuccess() {
-          finish();
+        finish();
+        Toast.makeText(this, "抢单成功！", Toast.LENGTH_SHORT).show();
     }
 }
