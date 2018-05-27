@@ -3,14 +3,18 @@ package com.rzn.module_driver.ui.joborderdetial;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.blankj.utilcode.util.PhoneUtils;
 import com.rzn.commonbaselib.bean.JobOrderDetialBean;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.module_driver.R;
+import com.rzn.module_driver.ui.driverlist.SelectMatchingPopWindow;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -46,6 +50,9 @@ public class JobOrderDetialActivity extends MVPBaseActivity<JobOrderDetialContra
     private String farmerTaskId;
     JobOrderDetialBean jobOrderDetialBean;
     private TextView tvT;
+    final SelectMatchingPopWindows[] window = new SelectMatchingPopWindows[1];
+    private LinearLayout llAll;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -85,7 +92,9 @@ public class JobOrderDetialActivity extends MVPBaseActivity<JobOrderDetialContra
                         bundle.putString("jobdetial", "jobdetial");
                         ARouter.getInstance().build("/farmer/sendwork").withBundle("bean", bundle).navigation();
                     } else if ("联系机手".equals(tvHadWork.getText().toString())) {
-
+                        if (!TextUtils.isEmpty(jobOrderDetialBean.getMobile())) {
+                            PhoneUtils.dial(jobOrderDetialBean.getMobile());
+                        }
                     }
                 } else if ("driver".equals(flag)) {
                     if ("完成作业".equals(tvHadWork.getText().toString())) {
@@ -110,11 +119,31 @@ public class JobOrderDetialActivity extends MVPBaseActivity<JobOrderDetialContra
                     }
                 } else if ("driver".equals(flag)) {
                     if ("更多".equals(tvMore.getText().toString())) {
-
+                        showSelectPic(window);
                     }
                 }
             }
         });
+    }
+
+    private void showSelectPic(final SelectMatchingPopWindows[] window) {
+        window[0] = new SelectMatchingPopWindows(this, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (v.getId() == R.id.tv_closeRange) {
+                    PhoneUtils.dial(jobOrderDetialBean.getMobile());
+                    window[0].dismiss();
+                } else if (v.getId() == R.id.tv_normal) {
+                    //取消订单
+                    Map<String, String> map = new HashMap<>();
+                    map.put("farmerTaskId", farmerTaskId);
+                    mPresenter.cancelPost(map);
+                    window[0].dismiss();
+                }
+            }
+        });
+
+        window[0].showAtLocation(llAll, Gravity.BOTTOM, 10, 10);
     }
 
 
@@ -132,6 +161,7 @@ public class JobOrderDetialActivity extends MVPBaseActivity<JobOrderDetialContra
         tvPost = (TextView) findViewById(R.id.tv_post);//单号
         tvCancelTime = (TextView) findViewById(R.id.tv_cancel_time);//取消时间
         tvT = (TextView) findViewById(R.id.tv_t);
+        llAll = (LinearLayout) findViewById(R.id.ll_all);
 
 
         tvDeletePost = (TextView) findViewById(R.id.tv_delete_post);

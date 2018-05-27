@@ -610,7 +610,6 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
                 ivCarPhotoTwo.setVisibility(View.VISIBLE);
             }
 
-
 //            ivPhotoCars.setVisibility(View.VISIBLE);
             onePath = bean.getCarPic1();
             twoPath = bean.getCarPic2();

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        >
+        <TextView
+            android:id="@+id/tv_closeRange"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="联系农户"
+            android:textColor="#333333"
+            android:textSize="18dp"
+            android:background="@color/white"
+            android:gravity="center"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#EFEFF4"/>
+        <TextView
+            android:id="@+id/tv_normal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="取消订单"
+            android:textColor="#333333"
+            android:textSize="18dp"
+            android:background="@color/white"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/cancel"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="取消"
+            android:textColor="#333333"
+            android:textSize="18dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/white"
+            android:gravity="center"
+            />
+
+    </LinearLayout>
+
+
+</RelativeLayout>
