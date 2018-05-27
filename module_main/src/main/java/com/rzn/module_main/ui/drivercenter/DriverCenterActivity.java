@@ -18,6 +18,7 @@ import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.module_main.R;
 import com.rzn.module_main.ui.setting.SettingActivity;
+import com.rzn.module_main.ui.settingmode.SettingModeActivity;
 import com.zyhealth.expertlib.utils.GlideUtils;
 
 import java.util.HashMap;
@@ -90,7 +91,7 @@ public class DriverCenterActivity extends MVPBaseActivity<DriverCenterContract.V
             @Override
             public void onClick(View view) {
 
-                startActivity(new Intent(DriverCenterActivity.this, SettingActivity.class));
+                startActivity(new Intent(DriverCenterActivity.this, SettingModeActivity.class));
             }
         });
         ivFinish.setOnClickListener(new View.OnClickListener() {

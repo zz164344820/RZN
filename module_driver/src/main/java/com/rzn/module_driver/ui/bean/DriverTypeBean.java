@@ -5,18 +5,18 @@ package com.rzn.module_driver.ui.bean;
  */
 
 public class DriverTypeBean {
-    private int isOrder;//":1,
+    private String isOrder;//":1,
     private String kindId;//;":"40289fab626a9fa101626aa12b0b0002",
     private String kindName;//":"玉米",
     private String kindTypeId;//":"1666",
     private String kindTypeName;//":"玉米烘干",
-    private int unitPrice;//":30.3
+    private String unitPrice;//":30.3
 
-    public int getIsOrder() {
+    public String  getIsOrder() {
         return isOrder;
     }
 
-    public void setIsOrder(int isOrder) {
+    public void setIsOrder(String  isOrder) {
         this.isOrder = isOrder;
     }
 
@@ -52,11 +52,11 @@ public class DriverTypeBean {
         this.kindTypeName = kindTypeName;
     }
 
-    public int getUnitPrice() {
+    public String  getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(int unitPrice) {
+    public void setUnitPrice(String  unitPrice) {
         this.unitPrice = unitPrice;
     }
 

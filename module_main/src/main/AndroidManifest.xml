@@ -28,7 +28,7 @@
         <activity android:name=".ui.keepstation.KeepStationActivity" />
         <activity android:name=".ui.personalinfo.PersonalInfoActivity" />
         <activity android:name=".ui.drivercenter.DriverCenterActivity" />
-
+        <activity android:name=".ui.settingmode.SettingModeActivity" />
     </application>
 
 </manifest>

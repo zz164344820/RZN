@@ -1,12 +1,15 @@
 package com.rzn.module_driver.ui.bean;
 
+import java.io.Serializable;
 import java.util.List;
+
+import mlxy.utils.S;
 
 /**
  * Created by 17662 on 2018/5/27.
  */
 
-public class DriverIdentBean {
+public class DriverIdentBean implements Serializable{
 
     private String belongs;//":"北京善天使合作社",
     private String birthday;//":"1990-11-12",
@@ -18,7 +21,7 @@ public class DriverIdentBean {
     private String createTime;//":"2018-03-21 17:11:38",
     private String endDate;//":"2018-03-20",
     private String handlerId;//":"40289f6c6247d1a4016247d400d40001",
-    private List<DriverIdentBean> handlerKindTypeArray;//"
+    private List<DriverTypeBean> handlerKindTypeArray;//"
     private String icon;//":"http://localhost:80/farmHand/handler/downloadFile?fileName=default.jpg",
     private String idNo;//":"340403199011103456",
     private String isJoin;//":"1",
@@ -116,11 +119,11 @@ public class DriverIdentBean {
         this.handlerId = handlerId;
     }
 
-    public List<DriverIdentBean> getHandlerKindTypeArray() {
+    public List<DriverTypeBean> getHandlerKindTypeArray() {
         return handlerKindTypeArray;
     }
 
-    public void setHandlerKindTypeArray(List<DriverIdentBean> handlerKindTypeArray) {
+    public void setHandlerKindTypeArray(List<DriverTypeBean> handlerKindTypeArray) {
         this.handlerKindTypeArray = handlerKindTypeArray;
     }
 

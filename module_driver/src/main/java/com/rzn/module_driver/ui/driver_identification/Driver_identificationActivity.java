@@ -44,6 +44,7 @@ import com.zyhealth.expertlib.bean.ResponseBean;
 import com.zyhealth.expertlib.net.GenericsCallback;
 import com.zyhealth.expertlib.net.JsonGenericsSerializator;
 import com.zyhealth.expertlib.net.OkHttpLoader;
+import com.zyhealth.expertlib.utils.GlideUtils;
 import com.zyhealth.expertlib.utils.MLog;
 
 import java.io.File;
@@ -72,18 +73,18 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
 
     private static final int IMAGE = 1;
 
-    private LinearLayout llRootView,ll_jobOrderType2;
+    private LinearLayout llRootView, ll_jobOrderType2;
     private EditText etName;
     private EditText etIdent;
     private TextView tvData;
     private EditText etPhone;
-    private TextView etWorkTab,tv_work_tab2;
+    private TextView etWorkTab, tv_work_tab2;
     private EditText etCarTab;
     private EditText etCarNumber;
     private EditText etFromHome;
     private EditText tv_year;
     private TextView tvCommit;
-    private ImageView ivPhotoCars,iv_addOrderType,iv_subtractOrderType;
+    private ImageView ivPhotoCars, iv_addOrderType, iv_subtractOrderType;
     private ImageView ivPhotoCar;
     private String fag;
     private TextView tvWorkTime;
@@ -103,7 +104,7 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
     SelectWorkTypeBean workType2;
     List<File> listFils = new ArrayList<>();
     private String setting;
-    int showMoreJobType=0;
+    int showMoreJobType = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -197,7 +198,7 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
             public void onClick(View view) {
                 ll_jobOrderType2.setVisibility(View.GONE);
                 iv_addOrderType.setVisibility(View.VISIBLE);
-                workType2=null;
+                workType2 = null;
                 tv_work_tab2.setText("");
             }
         });
@@ -205,14 +206,14 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
         tv_work_tab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showMoreJobType=1;
+                showMoreJobType = 1;
                 mPresenter.getJobTypes();
             }
         });
         etWorkTab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showMoreJobType=0;
+                showMoreJobType = 0;
                 mPresenter.getJobTypes();
             }
         });
@@ -230,27 +231,12 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
                     } else if (cbGril.isChecked()) {
                         flag = "2";
                     }
-
-                if (!TextUtils.isEmpty(etName.getText()) &&
-                        !TextUtils.isEmpty(etIdent.getText()) &&
-                        !TextUtils.isEmpty(tvData.getText()) &&
-                        !TextUtils.isEmpty(etPhone.getText()) &&
-                        !TextUtils.isEmpty(etWorkTab.getText()) &&
-                        !TextUtils.isEmpty(etCarTab.getText()) &&
-                        !TextUtils.isEmpty(etCarNumber.getText()) &&
-                        !TextUtils.isEmpty(etFromHome.getText()) &&
-                        !TextUtils.isEmpty(onePath) &&
-                        !TextUtils.isEmpty(threePath) &&
-                        !TextUtils.isEmpty(tvWorkTime.getText().toString()) &&
-                        !TextUtils.isEmpty(tvWorkTimeNow.getText().toString())
-                        ) {
-
-                    if(workType1==null){
+                    if (workType1 == null) {
                         ToastUtils.showShort("请选择作业类型");
                         return;
                     }
-                    tempList.add(workType2);
-                    if(workType1!=null){
+                    tempList.add(workType1);
+                    if (workType1 != null) {
                         tempList.add(workType2);
                     }
                     LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
@@ -279,9 +265,6 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
 
                 } else {
                     ToastUtils.showShort("请完善全部信息");
-                    //跳转用到的
-                    // startActivity(new Intent(Driver_identificationActivity.this, DriverMakeSureActivity.class));
-
                 }
             }
         });
@@ -332,9 +315,9 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
                 !TextUtils.isEmpty(etWorkTab.getText()) &&
                 !TextUtils.isEmpty(etCarTab.getText()) &&
                 !TextUtils.isEmpty(etCarNumber.getText()) &&
-                !TextUtils.isEmpty(etFromHome.getText())&&
-                !TextUtils.isEmpty(onePath)&&
-                !TextUtils.isEmpty(threePath)&&
+                !TextUtils.isEmpty(etFromHome.getText()) &&
+                !TextUtils.isEmpty(onePath) &&
+                !TextUtils.isEmpty(threePath) &&
                 !TextUtils.isEmpty(tvWorkTime.getText().toString()) &&
                 !TextUtils.isEmpty(tvWorkTimeNow.getText().toString());
     }
@@ -539,7 +522,7 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
             public void onClick(int position, int typePosition) {
 
 
-                if (showMoreJobType==0){
+                if (showMoreJobType == 0) {
                     etWorkTab.setText(list.get(position).getKindName() + "    " + list.get(position).getTypeArray().get(typePosition).getTypeName());
                     workType1 = new SelectWorkTypeBean();
                     workType1.setKindId(list.get(position).getKindId());
@@ -547,7 +530,7 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
                     workType1.setKindTypeId(list.get(position).getTypeArray().get(typePosition).getTypeId());
                     workType1.setKindTypeName(list.get(position).getTypeArray().get(typePosition).getTypeName());
                     workType1.setUnitPrice(list.get(position).getTypeArray().get(typePosition).getTypeUnitPrice());
-                }else {
+                } else {
                     tv_work_tab2.setText(list.get(position).getKindName() + "    " + list.get(position).getTypeArray().get(typePosition).getTypeName());
                     workType2 = new SelectWorkTypeBean();
                     workType2.setKindId(list.get(position).getKindId());
@@ -581,6 +564,30 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
             tvWorkTime.setText(bean.getStartDate());
             tvWorkTimeNow.setText(bean.getEndDate());
             tv_year.setText(bean.getYears());
+
+
+            if (bean.getHandlerKindTypeArray().size() == 2) {
+                etWorkTab.setText(bean.getHandlerKindTypeArray().get(0).getKindName() + " " + bean.getHandlerKindTypeArray().get(0).getKindTypeName());
+                tv_work_tab2.setVisibility(View.VISIBLE);
+                tv_work_tab2.setText(bean.getHandlerKindTypeArray().get(1).getKindName() + " " + bean.getHandlerKindTypeArray().get(1).getKindTypeName());
+            } else if (bean.getHandlerKindTypeArray().size() == 1) {
+                etWorkTab.setText(bean.getHandlerKindTypeArray().get(0).getKindName() + " " + bean.getHandlerKindTypeArray().get(0).getKindTypeName());
+            }
+
+
+            ivCarPhotoOne.setVisibility(View.VISIBLE);
+            ivCarPhotoTwo.setVisibility(View.VISIBLE);
+            ivPhotoCar.setVisibility(View.VISIBLE);
+            ivPhotoCars.setVisibility(View.VISIBLE);
+            onePath = bean.getCarPic1();
+            twoPath = bean.getCarPic2();
+            threePath = bean.getMachinePic1();
+            fourPath = bean.getMachinePic2();
+            GlideUtils.loadImageView(this, bean.getCarPic1(), ivPhotoCar);
+            GlideUtils.loadImageView(this, bean.getCarPic2(), ivPhotoCars);
+            GlideUtils.loadImageView(this, bean.getMachinePic1(), ivCarPhotoOne);
+            GlideUtils.loadImageView(this, bean.getMachinePic2(), ivCarPhotoTwo);
+
 
         }
 

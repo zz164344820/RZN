@@ -111,7 +111,9 @@ public class Driver_identificationPresenter extends BasePresenterImpl<Driver_ide
                 mView.showPopWindow_SelectJobTypes(list);
                 break;
             case 218:
+//                LoginResponseBean loginResponseBean = GsonUtils.gsonParseBean(gson, response.getResult(), LoginResponseBean.class);
                 DriverIdentBean driverIdentBean = GsonUtils.gsonParseBean(gson, response.getResult(), DriverIdentBean.class);
+//              gson.fromJson(response.getResult(),DriverIdentBean.class);
                 mView.getDriverMessageSuccess(driverIdentBean);
                 break;
         }
