@@ -104,9 +104,8 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/shape_input_bg"
-                    android:hint="必填"
                     android:paddingLeft="4dp"
-                    android:textSize="16dp" />
+                     >
 
 
                     <EditText
@@ -130,7 +129,7 @@
                         android:layout_centerVertical="true"
                         android:padding="10dp"
                         />
-                <!--</RelativeLayout>-->
+              </RelativeLayout>
 
 
 
