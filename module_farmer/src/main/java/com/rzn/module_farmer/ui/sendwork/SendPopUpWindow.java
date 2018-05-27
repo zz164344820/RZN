@@ -1,6 +1,7 @@
 package com.rzn.module_farmer.ui.sendwork;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.rzn.module_farmer.R;
@@ -17,6 +19,8 @@ import com.rzn.module_farmer.bean.WorkTypeObjBean;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import mlxy.utils.L;
 
 
 /**
@@ -36,8 +40,8 @@ public class SendPopUpWindow extends PopupWindow {
     private TextView tvSure;
     private TypeAdapter typeAdapter;
 
-    private int positions = 0;
-    private int typePosition = 0;
+    private int positions = -1;
+    private int typePosition = -1;
 
 
     public SendPopUpWindow(Context context, List<WorkTypeBean> list) {
@@ -74,6 +78,9 @@ public class SendPopUpWindow extends PopupWindow {
 
         tvCancel = (TextView) popUpWindow.findViewById(R.id.tv_cancel);
         tvSure = (TextView) popUpWindow.findViewById(R.id.tv_sure);
+        if (positions != -1 && typePosition != -1) {
+            tvSure.setTextColor(Color.parseColor("#333333"));
+        }
         //一级列表
         RecyclerView rvType = (RecyclerView) popUpWindow.findViewById(R.id.rv_type);
         rvType.setLayoutManager(new LinearLayoutManager(context));
@@ -106,11 +113,20 @@ public class SendPopUpWindow extends PopupWindow {
 //                typesAdapter.getPosition(position);
 //                typesAdapter.notifyDataSetChanged();
                 typePosition = position;
-
+                if (positions==-1){
+                    Toast.makeText(context,"请先选择上一级菜单", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 typeList.clear();
                 typesAdapter.getPost(list.get(positions).getTypeArray().get(position).getTypeName());
                 typeList.addAll(list.get(positions).getTypeArray());
                 typesAdapter.notifyDataSetChanged();
+
+
+                //判断设置字体颜色
+                if (positions != -1 && typePosition != -1) {
+                    tvSure.setTextColor(Color.parseColor("#333333"));
+                }
 
             }
         });
@@ -130,7 +146,13 @@ public class SendPopUpWindow extends PopupWindow {
             public void onClick(View view) {
                 //回调到主页
                 if (onClickListener != null) {
-                    onClickListener.onClick(positions, typePosition);
+                    if (positions != -1 && typePosition != -1) {
+                        onClickListener.onClick(positions, typePosition);
+                    } else {
+                        Toast.makeText(context,"请选择作业类型",Toast.LENGTH_LONG).show();
+                        return;
+                    }
+
                 }
                 dismiss();
             }
