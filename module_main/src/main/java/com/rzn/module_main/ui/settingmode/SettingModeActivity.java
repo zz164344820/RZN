@@ -22,10 +22,11 @@ public class SettingModeActivity extends MVPBaseActivity<SettingModeContract.Vie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_setting_mode);
         TextView tvMessage = (TextView) findViewById(R.id.tv_message);
+        setTitle("设置");
         tvMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ARouter.getInstance().build("/driver/driverident").withString("setting","setting").navigation();
+                ARouter.getInstance().build("/driver/driverident").withString("setting", "setting").navigation();
             }
         });
         mPresenter.onCreate();

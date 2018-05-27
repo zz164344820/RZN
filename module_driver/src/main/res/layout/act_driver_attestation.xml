@@ -83,7 +83,13 @@
                         android:textColor="#333333"
                         android:textSize="16dp" />
 
-                    <CheckBox
+                    <RadioGroup
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                    <RadioButton
                         android:id="@+id/cb_boy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -93,7 +99,10 @@
 
                     <ImageView
                         android:layout_width="15dp"
-                        android:layout_height="17.5dp" />
+                        android:layout_height="17.5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:src="@drawable/icon_nan" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -102,7 +111,7 @@
                         android:textColor="#333333"
                         android:textSize="16dp" />
 
-                    <CheckBox
+                    <RadioButton
                         android:id="@+id/cb_gril"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -112,7 +121,10 @@
 
                     <ImageView
                         android:layout_width="15dp"
-                        android:layout_height="17.5dp" />
+                        android:layout_height="17.5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:src="@drawable/icon_nv" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -120,6 +132,8 @@
                         android:text="(女)"
                         android:textColor="#333333"
                         android:textSize="16dp" />
+
+                    </RadioGroup>
                 </LinearLayout>
                 <!--省份证号-->
                 <LinearLayout
@@ -141,8 +155,8 @@
                         android:layout_width="266dp"
                         android:layout_height="36.5dp"
                         android:background="@drawable/shape_input_bg"
-                        android:hint="必填"
                         android:digits="0123456789zxcvbnmasdfghjklqwertyuiopZXCVBNMASDFGHJKLQWERTYUIOP"
+                        android:hint="必填"
                         android:paddingLeft="4dp"
                         android:textSize="16dp" />
                 </LinearLayout>
@@ -166,11 +180,11 @@
                         android:layout_width="266dp"
                         android:layout_height="36.5dp"
                         android:background="@drawable/shape_input_bg"
-                        android:hint="必填"
-                        android:singleLine="true"
-                        android:paddingLeft="4dp"
-                        android:textColor="#333333"
                         android:gravity="center_vertical"
+                        android:hint="必填"
+                        android:paddingLeft="4dp"
+                        android:singleLine="true"
+                        android:textColor="#333333"
                         android:textSize="16dp" />
                 </LinearLayout>
                 <!--联系电话-->
@@ -193,10 +207,10 @@
                         android:layout_width="266dp"
                         android:layout_height="36.5dp"
                         android:background="@drawable/shape_input_bg"
-                        android:hint="必填"
-                        android:maxLength="11"
-                        android:inputType="number"
                         android:digits="0123456789"
+                        android:hint="必填"
+                        android:inputType="number"
+                        android:maxLength="11"
                         android:paddingLeft="4dp"
                         android:textSize="16dp" />
                 </LinearLayout>
@@ -261,12 +275,11 @@
                         android:id="@+id/iv_addOrderType"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/add_job"
+                        android:paddingBottom="5dp"
                         android:paddingLeft="5dp"
                         android:paddingRight="10dp"
-                        android:paddingBottom="5dp"
                         android:paddingTop="5dp"
-                        />
+                        android:src="@drawable/add_job" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -274,8 +287,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="51.5dp"
                     android:gravity="center_vertical"
-                    android:visibility="gone"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="gone">
 
                     <TextView
                         android:layout_width="69dp"
@@ -283,8 +296,8 @@
                         android:layout_marginLeft="10dp"
                         android:text="作业类型:"
                         android:textColor="#333333"
-                        android:visibility="invisible"
-                        android:textSize="16dp" />
+                        android:textSize="16dp"
+                        android:visibility="invisible" />
 
 
                     <TextView
@@ -303,12 +316,11 @@
                         android:id="@+id/iv_subtractOrderType"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/subtract_job"
+                        android:paddingBottom="5dp"
                         android:paddingLeft="5dp"
                         android:paddingRight="10dp"
-                        android:paddingBottom="5dp"
                         android:paddingTop="5dp"
-                        />
+                        android:src="@drawable/subtract_job" />
                 </LinearLayout>
                 <!--从业时间-->
                 <LinearLayout
@@ -332,8 +344,8 @@
                         android:layout_margin="5dp"
                         android:background="@drawable/shape_input_bg"
                         android:gravity="center"
-                        android:paddingLeft="4dp"
                         android:hint="开始时间"
+                        android:paddingLeft="4dp"
                         android:textColor="#333333"
                         android:textSize="16dp" />
 
@@ -351,8 +363,8 @@
                         android:layout_height="37dp"
                         android:layout_margin="5dp"
                         android:background="@drawable/shape_input_bg"
-                        android:hint="结束时间"
                         android:gravity="center"
+                        android:hint="结束时间"
                         android:textColor="#333333"
                         android:textSize="16dp" />
 
@@ -370,8 +382,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="年"
                         android:layout_marginLeft="5dp"
+                        android:text="年"
                         android:textColor="#333333"
                         android:textSize="18dp" />
 
@@ -396,20 +408,19 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="点此上传驾照图片"
-                            android:textColor="@color/text_888"
-                            android:textSize="16sp"
+                            android:layout_centerInParent="true"
                             android:drawableTop="@drawable/iv_jiazhao"
                             android:gravity="center"
-                            android:layout_centerInParent="true"
-                            />
+                            android:text="点此上传驾照图片"
+                            android:textColor="@color/text_888"
+                            android:textSize="16sp" />
 
                         <ImageView
                             android:id="@+id/iv_photo_cars"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:visibility="invisible"
-                            android:background="@color/bg_color" />
+                            android:background="@color/bg_color"
+                            android:visibility="invisible" />
                     </RelativeLayout>
 
 
@@ -424,20 +435,19 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="点此上传驾照图片"
-                            android:textColor="@color/text_888"
-                            android:textSize="16sp"
+                            android:layout_centerInParent="true"
                             android:drawableTop="@drawable/iv_jiazhao"
                             android:gravity="center"
-                            android:layout_centerInParent="true"
-                            />
+                            android:text="点此上传驾照图片"
+                            android:textColor="@color/text_888"
+                            android:textSize="16sp" />
 
                         <ImageView
                             android:id="@+id/iv_photo_car"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:visibility="invisible"
-                            android:background="@color/bg_color" />
+                            android:background="@color/bg_color"
+                            android:visibility="invisible" />
 
 
                     </RelativeLayout>
@@ -562,20 +572,19 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="点此上传农机图片"
-                            android:textColor="@color/text_888"
-                            android:textSize="16sp"
+                            android:layout_centerInParent="true"
                             android:drawableTop="@drawable/iv_nongji"
                             android:gravity="center"
-                            android:layout_centerInParent="true"
-                            />
+                            android:text="点此上传农机图片"
+                            android:textColor="@color/text_888"
+                            android:textSize="16sp" />
 
                         <ImageView
                             android:id="@+id/iv_car_photo_one"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:visibility="invisible"
-                            android:background="@color/bg_color" />
+                            android:background="@color/bg_color"
+                            android:visibility="invisible" />
 
                     </RelativeLayout>
 
@@ -591,20 +600,19 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="点此上传农机图片"
-                            android:textColor="@color/text_888"
-                            android:textSize="16sp"
+                            android:layout_centerInParent="true"
                             android:drawableTop="@drawable/iv_nongji"
                             android:gravity="center"
-                            android:layout_centerInParent="true"
-                            />
+                            android:text="点此上传农机图片"
+                            android:textColor="@color/text_888"
+                            android:textSize="16sp" />
 
                         <ImageView
                             android:id="@+id/iv_car_photo_two"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:visibility="invisible"
-                            android:background="@color/bg_color" />
+                            android:background="@color/bg_color"
+                            android:visibility="invisible" />
 
                     </RelativeLayout>
                 </LinearLayout>
@@ -633,9 +641,9 @@
                 android:layout_width="341.5dp"
                 android:layout_height="41.5dp"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/shape_order_message_press"
-                android:layout_marginBottom="20dp"
                 android:gravity="center"
                 android:text="提交申请"
                 android:textColor="#ffffff"

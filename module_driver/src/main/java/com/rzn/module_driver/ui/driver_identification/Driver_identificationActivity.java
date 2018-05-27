@@ -20,6 +20,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -96,8 +97,8 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
     private String kindType;
     private String kindTypeId;
     private String unitPrice;
-    private CheckBox cbBoy;
-    private CheckBox cbGril;
+    private RadioButton cbBoy;
+    private RadioButton cbGril;
     private String flag;
     private WorkTypeBean workTypeBean;
     SelectWorkTypeBean workType1;
@@ -105,6 +106,7 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
     List<File> listFils = new ArrayList<>();
     private String setting;
     int showMoreJobType = 0;
+    String handlerId = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -238,14 +240,14 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
 //                    tempList.add(workType1);
 //                    if (workType1 != null) {
                     tempList.add(workType1);
-                    if(workType1!=null){
+                    if (workType1 != null) {
                         tempList.add(workType2);
                     }
                     LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
 
                     Map<String, String> map = new HashMap<>();
                     map.put("userId", loginResponseBean.getUserId());
-                    map.put("handlerId", "");
+                    map.put("handlerId", handlerId);
                     map.put("name", etName.getText().toString());
                     map.put("sex", flag);
                     map.put("birthday", tvData.getText().toString().trim());
@@ -387,8 +389,8 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
         ivCarPhotoTwo = (ImageView) findViewById(R.id.iv_car_photo_two);
         llRootView = (LinearLayout) findViewById(R.id.ll_rootView);
         //男女
-        cbBoy = (CheckBox) findViewById(R.id.cb_boy);
-        cbGril = (CheckBox) findViewById(R.id.cb_gril);
+        cbBoy = (RadioButton) findViewById(R.id.cb_boy);
+        cbGril = (RadioButton) findViewById(R.id.cb_gril);
 
 
 //        if ("setting".equals(setting)) {
@@ -525,7 +527,7 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
 
 
 //                if (showMoreJobType == 0) {
-                if (showMoreJobType==0){
+                if (showMoreJobType == 0) {
                     etWorkTab.setText(list.get(position).getKindName() + "    " + list.get(position).getTypeArray().get(typePosition).getTypeName());
                     workType1 = new SelectWorkTypeBean();
                     workType1.setKindId(list.get(position).getKindId());
@@ -556,17 +558,24 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
     @Override
     public void getDriverMessageSuccess(DriverIdentBean bean) {
         if ("setting".equals(setting)) {
+
+            handlerId = bean.getHandlerId();
             etName.setText(bean.getName());
             etIdent.setText(bean.getIdNo());
             tvData.setText(bean.getBirthday());
             etPhone.setText(bean.getMobile());
-//            etWorkTab.setText(bean.get);
             etCarTab.setText(bean.getCarType());
             etCarNumber.setText(bean.getCarNo());
             etFromHome.setText(bean.getBelongs());
             tvWorkTime.setText(bean.getStartDate());
             tvWorkTimeNow.setText(bean.getEndDate());
             tv_year.setText(bean.getYears());
+
+            if ("2".equals(bean.getSex())) {
+                cbGril.setChecked(true);
+            } else if ("1".equals(bean.getSex())) {
+                cbBoy.setChecked(true);
+            }
 
 
             if (bean.getHandlerKindTypeArray().size() == 2) {
@@ -578,10 +587,31 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
             }
 
 
-            ivCarPhotoOne.setVisibility(View.VISIBLE);
-            ivCarPhotoTwo.setVisibility(View.VISIBLE);
-            ivPhotoCar.setVisibility(View.VISIBLE);
-            ivPhotoCars.setVisibility(View.VISIBLE);
+            if (TextUtils.isEmpty(bean.getCarPic1())) {
+                ivPhotoCar.setVisibility(View.GONE);
+            } else {
+                ivPhotoCar.setVisibility(View.VISIBLE);
+            }
+            if (TextUtils.isEmpty(bean.getCarPic2())) {
+                ivPhotoCars.setVisibility(View.GONE);
+            } else {
+                ivPhotoCars.setVisibility(View.VISIBLE);
+            }
+
+
+            if (TextUtils.isEmpty(bean.getMachinePic1())) {
+                ivCarPhotoOne.setVisibility(View.GONE);
+            } else {
+                ivCarPhotoOne.setVisibility(View.VISIBLE);
+            }
+            if (TextUtils.isEmpty(bean.getMachinePic2())) {
+                ivCarPhotoTwo.setVisibility(View.GONE);
+            } else {
+                ivCarPhotoTwo.setVisibility(View.VISIBLE);
+            }
+
+
+//            ivPhotoCars.setVisibility(View.VISIBLE);
             onePath = bean.getCarPic1();
             twoPath = bean.getCarPic2();
             threePath = bean.getMachinePic1();
