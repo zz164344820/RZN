@@ -123,4 +123,16 @@ public class DriverListPresenter extends BasePresenterImpl<DriverListContract.Vi
 
         }
     }
+
+    @Override
+    public void httpRequestErr(String response, int requestId) {
+        super.httpRequestErr(response, requestId);
+        mView.recycleViewRestore();
+    }
+
+    @Override
+    public void httpRequestFailure(ResponseBean response, int requestId) {
+        super.httpRequestFailure(response, requestId);
+        mView.recycleViewRestore();
+    }
 }

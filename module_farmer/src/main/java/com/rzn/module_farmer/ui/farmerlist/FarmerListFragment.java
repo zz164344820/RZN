@@ -167,7 +167,6 @@ public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View,
     }
     @Override
     public void onLoadMore() {
-
         mPresenter.httpLoadDriverMessage(loginResponseBean.getUserId(), (++pager)+"", county==null?"":county.getId()+"", kindTypeId);
     }
 
@@ -194,6 +193,11 @@ public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View,
     @Override
     public void loadDriverMessageFailed() {
 
+    }
+
+    @Override
+    public void recycleViewRestore() {
+        LoadMoreUtils.recycleViewRestore(swipeToLoadLayout);
     }
 
     @Override
