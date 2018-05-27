@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.blankj.utilcode.util.AppUtils;
 import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.jaeger.library.StatusBarUtil;
 import com.rzn.commonbaselib.bean.LoginResponseBean;
@@ -43,7 +44,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     private LinearLayout llPhoneConcel;
     private LinearLayout llSetting;
     private ImageView tv_bianji, iv_photo, iv_background;
-    private TextView tv_Status ,tv_name;
+    private TextView tv_Status ,tv_name ,tv_VersionName;
 
     @Nullable
     @Override
@@ -117,6 +118,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         tv_name = (TextView) rootView.findViewById(R.id.tv_name);
         iv_photo = (ImageView) rootView.findViewById(R.id.iv_photo);
         iv_background = (ImageView) rootView.findViewById(R.id.iv_background);
+        tv_VersionName = (TextView) rootView.findViewById(R.id.tv_VersionName);
 
         GlideUtils.loadImageRound(getContext(),"http://www.fzlol.com/upimg/allimg/140408/1_1G0291243.jpg",iv_photo,40);
         GlideUtils.GaussianBlur(getContext(),"http://www.fzlol.com/upimg/allimg/140408/1_1G0291243.jpg",iv_background,8,1);
@@ -126,7 +128,10 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
             tv_Status.setText("未认证");
         }else{
             tv_Status.setText("已认证");
+            tv_Status.setTextColor(getResources().getColor(R.color.main_color));
         }
+
+        tv_VersionName.setText(AppUtils.getAppVersionName());
 
     }
 }

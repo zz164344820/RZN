@@ -29,6 +29,7 @@ import com.rzn.module_driver.ui.bean.DriverGrabOrderInfo;
 import com.rzn.module_driver.ui.bean.WorkTypeBean;
 import com.rzn.module_driver.ui.driver_identification.Driver_identificationActivity;
 import com.rzn.module_driver.ui.driver_identification.SendPopUpWindow;
+import com.rzn.module_driver.ui.drivermaksure.DriverMakeSureActivity;
 import com.rzn.module_driver.ui.driverordermessage.DriverOrderMessageActivity;
 import com.rzn.module_driver.ui.jobOrder.myjoborder.MyjobOrderActivity;
 import com.zhy.autolayout.AutoLinearLayout;
@@ -102,6 +103,7 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
         tvStartGet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 //判断是否认证机手
             LoginResponseBean  loginResponseBean= (LoginResponseBean) FileSaveUtils.readObject("loginBean");
                 if (!TextUtils.isEmpty(loginResponseBean.getHandlerId())) {
