@@ -235,8 +235,10 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
                         ToastUtils.showShort("请选择作业类型");
                         return;
                     }
+//                    tempList.add(workType1);
+//                    if (workType1 != null) {
                     tempList.add(workType1);
-                    if (workType1 != null) {
+                    if(workType1!=null){
                         tempList.add(workType2);
                     }
                     LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
@@ -522,7 +524,8 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
             public void onClick(int position, int typePosition) {
 
 
-                if (showMoreJobType == 0) {
+//                if (showMoreJobType == 0) {
+                if (showMoreJobType==0){
                     etWorkTab.setText(list.get(position).getKindName() + "    " + list.get(position).getTypeArray().get(typePosition).getTypeName());
                     workType1 = new SelectWorkTypeBean();
                     workType1.setKindId(list.get(position).getKindId());
