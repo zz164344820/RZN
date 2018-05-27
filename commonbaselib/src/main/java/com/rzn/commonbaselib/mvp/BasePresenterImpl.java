@@ -30,7 +30,6 @@ public  class BasePresenterImpl<V extends BaseView> implements BasePresenter<V>{
     @Override
     public void attachView(V view) {
         mView=view;
-
     }
 
     @Override

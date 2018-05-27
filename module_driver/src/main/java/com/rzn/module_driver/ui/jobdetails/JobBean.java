@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by 17662 on 2018/5/27.
  */
 
-public class JobBean implements Serializable {
+public class JobBean  {
     private String address;//": "通州区西后街301号",
     private String areaCode;//": "110112",
     private String areaName;//": "通州区",

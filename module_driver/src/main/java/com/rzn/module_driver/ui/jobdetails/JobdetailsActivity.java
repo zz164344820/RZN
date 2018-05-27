@@ -46,6 +46,7 @@ public class JobdetailsActivity extends MVPBaseActivity<JobdetailsContract.View,
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_driver_work_detial);
+        mPresenter.onCreate();
         farmerTaskId = getIntent().getStringExtra("farmerTaskId");
         initViews();
         initData();

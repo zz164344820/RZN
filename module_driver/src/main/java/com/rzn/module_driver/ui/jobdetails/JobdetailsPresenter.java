@@ -36,7 +36,6 @@ public class JobdetailsPresenter extends BasePresenterImpl<JobdetailsContract.Vi
                 mView.getPostSuccess();
                 break;
             case 222:
-//                GsonUtils.gsonParseBean(gson, response.getResult(), JobOrderDetialBean.class);
                 JobBean jobBean = GsonUtils.gsonParseBean(gson, response.getResult(), JobBean.class);
                 mView.getMessageSuccess(jobBean);
                 break;
