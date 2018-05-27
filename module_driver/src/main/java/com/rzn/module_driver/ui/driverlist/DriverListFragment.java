@@ -93,7 +93,9 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
     @Override
     public void onResume() {
         super.onResume();
+        list.clear();
         mPresenter.isOrderReceiving("1");
+        mPresenter.getDriverList(new HashMap<String, String>());
     }
 
     @Override
@@ -195,7 +197,7 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
             @Override
             public void onClick(int position, int typePosition) {
                 //获取作业类型
-                String kindTypeId = worTypeList.get(position).getTypeArray().get(typePosition).getKindId();
+                String kindTypeId = worTypeList.get(position).getTypeArray().get(typePosition).getTypeId();
                 list.clear();
                 Map<String, String> map = new HashMap<>();
                 map.put("filterKindType", kindTypeId);
@@ -224,10 +226,10 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
     @Override
     public void showPopWindow() {
         PostSuccessPopWindow postSuccessPopWindow=new PostSuccessPopWindow(getActivity());
-        postSuccessPopWindow.setOnDismissListener(new PostSuccessPopWindow.OnDismissListener() {
+        postSuccessPopWindow.setOnPostClickListener(new PostSuccessPopWindow.OnPostClickListener() {
             @Override
-            public void onDismiss() {
-
+            public void onClick() {
+                onRefresh();
             }
         });
         if (postSuccessPopWindow.isShowing()) {

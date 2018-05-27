@@ -5,8 +5,6 @@ package com.rzn.module_farmer.bean;
  */
 
 public class WorkTypeObjBean {
-
-
     private String kindId;
     private String typeId;
     private String typeName;

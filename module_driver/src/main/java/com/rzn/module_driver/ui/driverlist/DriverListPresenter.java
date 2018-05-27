@@ -42,9 +42,6 @@ public class DriverListPresenter extends BasePresenterImpl<DriverListContract.Vi
         super.onCreate();
         /*在presenter中写apdater是因为数据源在这里*/
         setAdapter();
-
-        getDriverList(new HashMap<String, String>());
-
     }
 
     @Override
