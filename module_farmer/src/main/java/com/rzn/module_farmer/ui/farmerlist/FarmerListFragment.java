@@ -175,7 +175,7 @@ public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View,
     public void onRefresh() {
         list.clear();
         pager=0;
-        mPresenter.httpLoadDriverMessage(loginResponseBean.getUserId(), (++pager)+"", county==null?"":county.getId()+"", kindTypeId);
+        mPresenter.httpLoadDriverMessage(loginResponseBean.getUserId(), (++pager)+"", "", "");
     }
 
     /**
