@@ -103,7 +103,6 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
     private WorkTypeBean workTypeBean;
     SelectWorkTypeBean workType1;
     SelectWorkTypeBean workType2;
-    List<File> listFils = new ArrayList<>();
     private String setting;
     int showMoreJobType = 0;
     String handlerId = "";
@@ -387,23 +386,6 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
         cbBoy = (RadioButton) findViewById(R.id.cb_boy);
         cbGril = (RadioButton) findViewById(R.id.cb_gril);
 
-
-//        if ("setting".equals(setting)) {
-//            etName.setText();
-//            etIdent.setText();
-//            tvData.setText();
-//            etPhone.setText();
-//            etWorkTab.setText();
-//            etCarTab.setText();
-//            etCarNumber.setText();
-//            etFromHome.setText();
-//            tvWorkTime.setText();
-//            tvWorkTimeNow.setText();
-//            tv_year.setText();
-//
-//        }
-
-
     }
 
     @Override
@@ -608,11 +590,10 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
                 ivCarPhotoTwo.setVisibility(View.VISIBLE);
             }
 
-//            ivPhotoCars.setVisibility(View.VISIBLE);
-            onePath = bean.getCarPic1();
-            twoPath = bean.getCarPic2();
-            threePath = bean.getMachinePic1();
-            fourPath = bean.getMachinePic2();
+            onePath = bean.getCarPic1FileName();
+            twoPath = bean.getCarPic2FileName();
+            threePath = bean.getMachinePic1FileName();
+            fourPath = bean.getMachinePic2FileName();
             GlideUtils.loadImageView(this, bean.getCarPic1(), ivPhotoCar);
             GlideUtils.loadImageView(this, bean.getCarPic2(), ivPhotoCars);
             GlideUtils.loadImageView(this, bean.getMachinePic1(), ivCarPhotoOne);
