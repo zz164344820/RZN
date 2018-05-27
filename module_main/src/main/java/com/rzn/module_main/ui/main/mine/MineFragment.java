@@ -131,7 +131,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
             tv_Status.setTextColor(getResources().getColor(R.color.main_color));
         }
 
-        tv_VersionName.setText(AppUtils.getAppVersionName());
+        tv_VersionName.setText("v "+AppUtils.getAppVersionName());
 
     }
 }
