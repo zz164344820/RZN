@@ -38,6 +38,43 @@ public class DriverIdentBean implements Serializable{
     private String updateTime;//":"2018-05-12 17:13:39",
     private String userId;//":"40288ad75c81124b015c8132bfe8006f",
     private String years;//":"10"
+    private  String  carPic1FileName;
+    private  String  carPic2FileName;
+    private  String  machinePic1FileName;
+    private  String  machinePic2FileName;
+
+
+    public String getCarPic1FileName() {
+        return carPic1FileName;
+    }
+
+    public void setCarPic1FileName(String carPic1FileName) {
+        this.carPic1FileName = carPic1FileName;
+    }
+
+    public String getCarPic2FileName() {
+        return carPic2FileName;
+    }
+
+    public void setCarPic2FileName(String carPic2FileName) {
+        this.carPic2FileName = carPic2FileName;
+    }
+
+    public String getMachinePic1FileName() {
+        return machinePic1FileName;
+    }
+
+    public void setMachinePic1FileName(String machinePic1FileName) {
+        this.machinePic1FileName = machinePic1FileName;
+    }
+
+    public String getMachinePic2FileName() {
+        return machinePic2FileName;
+    }
+
+    public void setMachinePic2FileName(String machinePic2FileName) {
+        this.machinePic2FileName = machinePic2FileName;
+    }
 
     public String getBelongs() {
         return belongs;
