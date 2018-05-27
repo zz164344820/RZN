@@ -201,17 +201,25 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
         rbOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tvOne.setVisibility(View.VISIBLE);
-                tvTwo.setVisibility(View.GONE);
-                tvOne.setText(orderList.get(0).getUnitPrice() + "元/亩");
+                if (rbOne.isChecked()) {
+                    tvOne.setVisibility(View.VISIBLE);
+                    tvOne.setText(orderList.get(0).getUnitPrice() + "元/亩");
+                } else {
+                    tvOne.setVisibility(View.GONE);
+                }
+
             }
         });
         rbTwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tvOne.setVisibility(View.GONE);
-                tvTwo.setVisibility(View.VISIBLE);
-                tvTwo.setText(orderList.get(1).getUnitPrice() + "元/亩");
+                if (rbTwo.isChecked()) {
+                    tvTwo.setVisibility(View.VISIBLE);
+                    tvTwo.setText(orderList.get(1).getUnitPrice() + "元/亩");
+                } else {
+                    rbTwo.setVisibility(View.GONE);
+                }
+
             }
         });
 

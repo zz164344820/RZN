@@ -19,7 +19,8 @@
             android:id="@+id/iv_photo"
             android:layout_width="42dp"
             android:layout_height="42dp"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/logo" />
 
         <TextView
             android:id="@+id/tv_name"
@@ -38,9 +39,9 @@
                 android:id="@+id/iv_phone"
                 android:layout_width="21dp"
                 android:layout_height="21dp"
-                android:src="@drawable/icon_call"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="25.5dp" />
+                android:layout_marginRight="25.5dp"
+                android:src="@drawable/icon_call" />
         </RelativeLayout>
     </LinearLayout>
 
@@ -109,11 +110,13 @@
             <ImageView
                 android:layout_width="18dp"
                 android:layout_height="18dp"
-                android:layout_marginLeft="10dp" />
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/icon_address" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:text="作业地点："
                 android:textColor="#333333"
                 android:textSize="18dp" />
@@ -140,11 +143,47 @@
             <ImageView
                 android:layout_width="18dp"
                 android:layout_height="18dp"
-                android:layout_marginLeft="10dp" />
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/icon_oclock" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="作业时间："
+                android:textColor="#333333"
+                android:textSize="18dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_work_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32.5dp"
+            android:layout_marginRight="32.5dp"
+            android:layout_marginTop="10dp"
+            android:text="2017-12-12 至 2017-12-13"
+            android:textColor="#333333"
+            android:textSize="16dp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/icon_book" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:text="补充说明："
                 android:textColor="#333333"
                 android:textSize="18dp" />

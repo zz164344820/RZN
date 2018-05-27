@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.PhoneUtils;
 import com.rzn.commonbaselib.bean.JobOrderDetialBean;
 import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
@@ -40,6 +41,8 @@ public class JobdetailsActivity extends MVPBaseActivity<JobdetailsContract.View,
     private ImageView ivPhone;
     private TextView tvTitleContent;
     private String farmerTaskId;
+    private String phone;
+    private TextView tvWorkTime;
 
 
     @Override
@@ -64,6 +67,12 @@ public class JobdetailsActivity extends MVPBaseActivity<JobdetailsContract.View,
      * 初始化监听
      */
     private void initListener() {
+        ivPhone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PhoneUtils.dial(phone);
+            }
+        });
         tvSure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -94,11 +103,12 @@ public class JobdetailsActivity extends MVPBaseActivity<JobdetailsContract.View,
         tvTye = (TextView) findViewById(R.id.tv_tye);
         ivPhone = (ImageView) findViewById(R.id.iv_phone);
         tvTitleContent = (TextView) findViewById(R.id.tv_title_content);
+        tvWorkTime = (TextView) findViewById(R.id.tv_work_time);
     }
 
     @Override
     public void getMessageSuccess(JobBean jobOrderDetialBeans) {
-
+        phone = jobOrderDetialBeans.getMobile();
         tvName.setText(jobOrderDetialBeans.getName());
         tvTye.setText(jobOrderDetialBeans.getTypes());
         tvMoney.setText(jobOrderDetialBeans.getTotalprice());
@@ -110,6 +120,7 @@ public class JobdetailsActivity extends MVPBaseActivity<JobdetailsContract.View,
         }
         tvWorkAddress.setText(jobOrderDetialBeans.getProvinceName() + jobOrderDetialBeans.getAreaName() + jobOrderDetialBeans.getCityName() + "");
         tvContent.setText(jobOrderDetialBeans.getRemark());
+        tvWorkTime.setText(jobOrderDetialBeans.getStartDate() + "至" + jobOrderDetialBeans.getEndDate());
     }
 
     @Override
