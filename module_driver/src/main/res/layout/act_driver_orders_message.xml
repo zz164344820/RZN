@@ -34,46 +34,72 @@
                 android:textColor="#333333"
                 android:textSize="18dp" />
 
-            <LinearLayout
-                android:orientation="vertical"
+            <RelativeLayout
                 android:id="@+id/rg_all"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <CheckBox
                     android:id="@+id/rb_one"
                     android:layout_width="171.5dp"
                     android:layout_height="36.5dp"
+                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/selector_driver_order_message"
                     android:button="@null"
-                    android:textColor="@drawable/text_write_black"
                     android:gravity="center"
-                    android:text="水稻-联合整地" />
+                    android:text="水稻-联合整地"
+                    android:textColor="@drawable/text_write_black" />
+
+                <TextView
+                    android:id="@+id/tv_one"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_toRightOf="@+id/rb_one"
+                    android:text="40元/亩"
+                    android:visibility="gone"
+                    android:textColor="#ffff5050"
+                    android:textSize="16dp" />
 
                 <CheckBox
                     android:id="@+id/rb_two"
                     android:layout_width="171.5dp"
                     android:layout_height="36.5dp"
+                    android:layout_below="@+id/rb_one"
+                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/selector_driver_order_message"
                     android:button="@null"
-                    android:textColor="@drawable/text_write_black"
                     android:gravity="center"
-                    android:text="小麦-联合整地" />
-
+                    android:text="小麦-联合整地"
+                    android:textColor="@drawable/text_write_black" />
+                <TextView
+                    android:id="@+id/tv_two"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_toRightOf="@+id/rb_two"
+                    android:layout_below="@+id/rb_one"
+                    android:text="40元/亩"
+                    android:textColor="#ffff5050"
+                    android:textSize="16dp" />
                 <CheckBox
                     android:id="@+id/rb_three"
                     android:layout_width="171.5dp"
                     android:layout_height="36.5dp"
+                    android:layout_below="@+id/rb_two"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/selector_driver_order_message"
                     android:button="@null"
-                    android:textColor="@drawable/text_write_black"
                     android:gravity="center"
-                    android:text="水稻-收割" />
-            </LinearLayout>
+                    android:text="水稻-收割"
+                    android:textColor="@drawable/text_write_black"
+                    android:visibility="gone" />
+            </RelativeLayout>
 
 
             <View
@@ -111,8 +137,8 @@
                 android:layout_marginLeft="34dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/shape_input_bg"
-                android:hint="必填"
                 android:gravity="center_vertical"
+                android:hint="必填"
                 android:paddingLeft="10dp" />
 
             <TextView
@@ -122,10 +148,10 @@
                 android:layout_marginLeft="34dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/shape_input_bg"
-                android:hint="选填"
-                android:visibility="gone"
                 android:gravity="center_vertical"
-                android:paddingLeft="10dp" />
+                android:hint="选填"
+                android:paddingLeft="10dp"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:id="@+id/ll_more_address"
@@ -183,8 +209,8 @@
                 <ImageView
                     android:layout_width="18dp"
                     android:layout_height="18dp"
-                    android:layout_marginLeft="10dp"
                     android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
                     android:src="@drawable/icon_oclock" />
 
                 <TextView
@@ -201,15 +227,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="9dp"
                 android:gravity="center_horizontal"
+                android:orientation="horizontal"
                 android:paddingLeft="33dp"
-                android:paddingRight="33dp"
-                android:orientation="horizontal">
+                android:paddingRight="33dp">
 
                 <TextView
                     android:id="@+id/tv_time_start"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="37dp"
+                    android:layout_weight="1"
                     android:background="@drawable/shape_input_bg"
                     android:gravity="center"
                     android:hint="开始时间" />
@@ -217,17 +243,17 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="至"
                     android:paddingLeft="7dp"
                     android:paddingRight="7dp"
+                    android:text="至"
                     android:textColor="#333333"
                     android:textSize="16dp" />
 
                 <TextView
                     android:id="@+id/tv_time_end"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="37dp"
+                    android:layout_weight="1"
                     android:background="@drawable/shape_input_bg"
                     android:gravity="center"
                     android:hint="结束时间" />
@@ -239,16 +265,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="9dp"
                 android:gravity="center_horizontal"
+                android:orientation="horizontal"
                 android:paddingLeft="33dp"
                 android:paddingRight="33dp"
-                android:visibility="gone"
-                android:orientation="horizontal">
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/tv_time_start2"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="37dp"
+                    android:layout_weight="1"
                     android:background="@drawable/shape_input_bg"
                     android:gravity="center"
                     android:hint="开始时间(选填)" />
@@ -256,27 +282,27 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="至"
                     android:paddingLeft="7dp"
                     android:paddingRight="7dp"
+                    android:text="至"
                     android:textColor="#333333"
                     android:textSize="16dp" />
 
                 <TextView
                     android:id="@+id/tv_time_end2"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="37dp"
+                    android:layout_weight="1"
                     android:background="@drawable/shape_input_bg"
                     android:gravity="center"
                     android:hint="结束时间（选填）" />
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_more_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:id="@+id/ll_more_time"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -289,9 +315,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
                     android:text="添加更多接单时间"
                     android:textColor="#333333"
-                    android:layout_marginLeft="3dp"
                     android:textSize="16dp" />
             </LinearLayout>
 
@@ -333,9 +359,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:text="补充说明："
                     android:textColor="#333333"
-                    android:layout_marginLeft="5dp"
                     android:textSize="18dp" />
             </LinearLayout>
 
@@ -345,23 +371,23 @@
                 android:layout_height="100.5dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
-                android:gravity="top"
-                android:padding="5dp"
-                android:textSize="16dp"
                 android:background="@drawable/shape_input_bg"
-                android:hint="想对机手说什么，不妨写在这里" />
+                android:gravity="top"
+                android:hint="想对机手说什么，不妨写在这里"
+                android:padding="5dp"
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/tv_start_post"
                 android:layout_width="341.5dp"
                 android:layout_height="42.5dp"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="20dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/driver_shape_background"
                 android:gravity="center"
                 android:text="开始接单"
                 android:textColor="#ffffff"
-                android:layout_marginBottom="20dp"
                 android:textSize="18dp" />
         </LinearLayout>
     </ScrollView>

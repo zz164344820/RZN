@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.ToastUtils;
@@ -50,23 +51,25 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
     private CheckBox rbOne;
     private CheckBox rbTwo;
     private CheckBox rbThree;
-    private TextView tv_address,tv_address2;
-    private LinearLayout llMoreAddress,ll_time2;
-    private TextView tvTimeStart,tvTimeStart2;
-    private TextView tvTimeEnd,tvTimeEnd2;
+    private TextView tv_address, tv_address2;
+    private LinearLayout llMoreAddress, ll_time2;
+    private TextView tvTimeStart, tvTimeStart2;
+    private TextView tvTimeEnd, tvTimeEnd2;
     private LinearLayout llMoreTime;
     private Calendar showDate = Calendar.getInstance();   //初始化时间选择器
     BottomDialog bottomDialog;
-    Province province,province2;
-    City city,city2;
-    County county,county2;
+    Province province, province2;
+    City city, city2;
+    County county, county2;
     private CheckBox cbWorkTime;
     private CheckBox cbWorkAres;
     private EditText etMessage;
-    private LinearLayout rgAll;
+    private RelativeLayout rgAll;
     private List<OrederInfo> orderList;
     List<OrederInfo> tempList = new ArrayList<>();//入参的作业类型集合
     private int num;
+    private TextView tvOne;
+    private TextView tvTwo;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -78,20 +81,21 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
 
     }
 
-   int  flag=0;
+    int flag = 0;
+
     private void initListener() {
 
         tv_address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                flag=0;
+                flag = 0;
                 bottomDialog.show();
             }
         });
         tv_address2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                flag=1;
+                flag = 1;
                 bottomDialog.show();
             }
         });
@@ -100,7 +104,7 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
             @Override
             public void onClick(View view) {
                 Map<String, String> map = new HashMap<>();
-                if(province==null ||city==null ||county==null){
+                if (province == null || city == null || county == null) {
                     ToastUtils.showShort("作业地址不能为空");
                     return;
                 }
@@ -116,17 +120,17 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
                 if (rbTwo.isChecked()) {
                     tempList.add(orderList.get(1));
                 }
-                if(tempList.size()==0){
+                if (tempList.size() == 0) {
                     ToastUtils.showShort("请选择作业类型");
                     return;
                 }
-                if(TextUtils.isEmpty(tvTimeStart.getText().toString())||TextUtils.isEmpty(tvTimeEnd.getText().toString())){
+                if (TextUtils.isEmpty(tvTimeStart.getText().toString()) || TextUtils.isEmpty(tvTimeEnd.getText().toString())) {
                     ToastUtils.showShort("作业开始时间或结束时间不能为空");
                     return;
-                }else if(!TextUtils.isEmpty(tvTimeStart2.getText().toString()) && TextUtils.isEmpty(tvTimeEnd2.getText().toString())){
+                } else if (!TextUtils.isEmpty(tvTimeStart2.getText().toString()) && TextUtils.isEmpty(tvTimeEnd2.getText().toString())) {
                     ToastUtils.showShort("选填结束时间不能为空");
                     return;
-                }else if(TextUtils.isEmpty(tvTimeStart2.getText().toString()) && !TextUtils.isEmpty(tvTimeEnd2.getText().toString())){
+                } else if (TextUtils.isEmpty(tvTimeStart2.getText().toString()) && !TextUtils.isEmpty(tvTimeEnd2.getText().toString())) {
                     ToastUtils.showShort("选填开始时间不能为空");
                     return;
                 }
@@ -194,6 +198,24 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
             }
         });
 
+        rbOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tvOne.setVisibility(View.VISIBLE);
+                tvTwo.setVisibility(View.GONE);
+                tvOne.setText(orderList.get(0).getUnitPrice() + "元/亩");
+            }
+        });
+        rbTwo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tvOne.setVisibility(View.GONE);
+                tvTwo.setVisibility(View.VISIBLE);
+                tvTwo.setText(orderList.get(1).getUnitPrice() + "元/亩");
+            }
+        });
+
+
     }
 
     private List<PlaceBean> setPlaceList() {
@@ -207,7 +229,7 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
         placeBean.setAreaName(county.getName());
         list.add(placeBean);
 
-        if(province2!=null && city2!=null && county2!=null){
+        if (province2 != null && city2 != null && county2 != null) {
             PlaceBean placeBean2 = new PlaceBean();
             placeBean2.setProvinceCode(province2.getId() + "");
             placeBean2.setProvinceName(province2.getName());
@@ -231,9 +253,9 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
                     tvTimeStart.setText(DateFormat.format("yyyy-MM-dd", showDate));
                 } else if (tab == 2) {
                     tvTimeEnd.setText(DateFormat.format("yyyy-MM-dd", showDate));
-                }else if(tab == 3){
+                } else if (tab == 3) {
                     tvTimeStart2.setText(DateFormat.format("yyyy-MM-dd", showDate));
-                }else if(tab == 4){
+                } else if (tab == 4) {
                     tvTimeEnd2.setText(DateFormat.format("yyyy-MM-dd", showDate));
                 }
             }
@@ -258,7 +280,9 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
         cbWorkTime = (CheckBox) findViewById(R.id.cb_work_time);
         cbWorkAres = (CheckBox) findViewById(R.id.cb_work_ares);
         etMessage = (EditText) findViewById(R.id.et_message);
-        rgAll = (LinearLayout) findViewById(R.id.rg_all);
+        rgAll = (RelativeLayout) findViewById(R.id.rg_all);
+        tvOne = (TextView) findViewById(R.id.tv_one);
+        tvTwo = (TextView) findViewById(R.id.tv_two);
 
 
         rbOne.setVisibility(View.GONE);
@@ -292,12 +316,12 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
 
     @Override
     public void onAddressSelected(Province province, City city, County county, Street street) {
-        if(flag==0){
+        if (flag == 0) {
             this.province = province;
             this.city = city;
             this.county = county;
             tv_address.setText(province.getName() + "  " + city.getName() + "  " + county.getName());
-        }else{
+        } else {
             this.province2 = province;
             this.city2 = city;
             this.county2 = county;
