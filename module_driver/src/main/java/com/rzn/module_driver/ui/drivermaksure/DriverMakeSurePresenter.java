@@ -12,6 +12,5 @@ public class DriverMakeSurePresenter extends BasePresenterImpl<DriverMakeSureCon
     @Override
     public void onCreate() {
         super.onCreate();
-        reqData(mContext,"Test/index",null,111);
     }
 }

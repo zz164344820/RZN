@@ -302,11 +302,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="客服热线：400 300 2234"
+        android:text="客服热线：175-1250-0100"
         android:textColor="#ff888888"
         android:textSize="14dp" />
 
     <TextView
+        android:id="@+id/tv_VersionName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"

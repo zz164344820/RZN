@@ -31,7 +31,16 @@
             android:gravity="center_horizontal"
             android:layout_marginTop="15dp"
             >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="在"
+                android:textSize="18dp"
+                android:textColor="#333333"
+                />
         <TextView
+            android:id="@+id/tv_DriverCenter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
