@@ -315,6 +315,7 @@
                 android:orientation="horizontal">
 
                 <RelativeLayout
+                    android:id="@+id/rl_wait"
                     android:layout_width="0dp"
                     android:layout_height="170dp"
                     android:layout_weight="1">
@@ -348,6 +349,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/rl_work"
                     android:layout_width="0dp"
                     android:layout_height="170dp"
                     android:layout_weight="1">

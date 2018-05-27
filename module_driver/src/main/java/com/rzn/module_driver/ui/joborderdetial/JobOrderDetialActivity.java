@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -164,6 +165,7 @@ public class JobOrderDetialActivity extends MVPBaseActivity<JobOrderDetialContra
         llAll = (LinearLayout) findViewById(R.id.ll_all);
 
 
+
         tvDeletePost = (TextView) findViewById(R.id.tv_delete_post);
         tvMore = (TextView) findViewById(R.id.tv_more);
         tvHadWork = (TextView) findViewById(R.id.tv_had_work);
@@ -223,9 +225,9 @@ public class JobOrderDetialActivity extends MVPBaseActivity<JobOrderDetialContra
             tvCancel.setText("已完成");
         }
 
-        tvAddress.setText("• "+jobOrderDetialBean.getProvinceName() + jobOrderDetialBean.getAreaName() + jobOrderDetialBean.getCityName() + "");
+        tvAddress.setText("• " + jobOrderDetialBean.getProvinceName() + jobOrderDetialBean.getAreaName() + jobOrderDetialBean.getCityName() + "");
 //        tvAddress.setText(jobOrderDetialBean.getAddress());
-        tvAddressTwo.setText("• "+jobOrderDetialBean.getTaskPlace());
+        tvAddressTwo.setText("• " + jobOrderDetialBean.getTaskPlace());
         tvTime.setText(jobOrderDetialBean.getStartDate() + "至" + jobOrderDetialBean.getEndDate());
         tvMessage.setText(jobOrderDetialBean.getRemark());
         tvPrice.setText(jobOrderDetialBean.getUnitPrice() + "元/亩");
@@ -277,9 +279,9 @@ public class JobOrderDetialActivity extends MVPBaseActivity<JobOrderDetialContra
                 llMu.setVisibility(View.VISIBLE);
                 tvMu.setText(jobOrderDetialBean.getAreas() + "亩");
             }
-            tvAddress.setText("• "+jobOrderDetialBean.getProvinceName() + jobOrderDetialBean.getAreaName() + jobOrderDetialBean.getCityName() + "");
+            tvAddress.setText("• " + jobOrderDetialBean.getProvinceName() + jobOrderDetialBean.getAreaName() + jobOrderDetialBean.getCityName() + "");
 //            tvAddress.setText(jobOrderDetialBean.getAddress());
-            tvAddressTwo.setText("• "+jobOrderDetialBean.getTaskPlace());
+            tvAddressTwo.setText("• " + jobOrderDetialBean.getTaskPlace());
             tvTime.setText(jobOrderDetialBean.getStartDate() + "至" + jobOrderDetialBean.getEndDate());
             tvMessage.setText(jobOrderDetialBean.getRemark());
             tvPrice.setText(jobOrderDetialBean.getUnitPrice() + "元/亩");

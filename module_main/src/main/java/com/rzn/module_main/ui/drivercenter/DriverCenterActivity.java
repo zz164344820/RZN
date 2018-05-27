@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
@@ -52,6 +53,8 @@ public class DriverCenterActivity extends MVPBaseActivity<DriverCenterContract.V
     DriverBean driverBean;
     private ImageView ivSetting;
     private ImageView ivFinish;
+    private RelativeLayout rlWait;
+    private RelativeLayout rlWork;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -101,6 +104,22 @@ public class DriverCenterActivity extends MVPBaseActivity<DriverCenterContract.V
             }
         });
 
+
+        rlWait.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ARouter.getInstance().build("/driver/myjobdetial").navigation();
+            }
+        });
+        rlWork.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ARouter.getInstance().build("/driver/myjobdetial").navigation();
+            }
+        });
+
+
+
     }
 
 
@@ -132,6 +151,9 @@ public class DriverCenterActivity extends MVPBaseActivity<DriverCenterContract.V
         ivSetting = (ImageView) findViewById(R.id.iv_setting);
         ivFinish = (ImageView) findViewById(R.id.iv_finish);
         iv_background = (ImageView) findViewById(R.id.iv_background);
+
+        rlWait = (RelativeLayout)findViewById(R.id.rl_wait);
+        rlWork = (RelativeLayout)findViewById(R.id.rl_work);
 
         GlideUtils.loadImageRound(this,"http://www.fzlol.com/upimg/allimg/140408/1_1G0291243.jpg",ivPhoto,40);
         GlideUtils.GaussianBlur(this,"http://www.fzlol.com/upimg/allimg/140408/1_1G0291243.jpg",iv_background,8,1);
