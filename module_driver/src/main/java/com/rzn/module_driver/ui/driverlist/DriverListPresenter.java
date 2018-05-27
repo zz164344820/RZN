@@ -35,7 +35,6 @@ public class DriverListPresenter extends BasePresenterImpl<DriverListContract.Vi
     DriverListAdapter driverListAdapter;
     List<DriverGrabOrderInfo> list  = new ArrayList<>();
     LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
-    boolean isReceivingOrder =false;
 
     @Override
     public void onCreate() {

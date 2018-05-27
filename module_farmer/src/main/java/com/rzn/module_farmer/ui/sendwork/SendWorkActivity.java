@@ -143,11 +143,10 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
                         !TextUtils.isEmpty(etHomeAddress.getText().toString().trim()) &&
                         !TextUtils.isEmpty(tvWorkTab.getText().toString().trim()) &&
                         !TextUtils.isEmpty(tvWorkAddress.getText().toString().trim()) &&
-                        !TextUtils.isEmpty(etDetialAddress.getText().toString().trim()) &&
                         !TextUtils.isEmpty(tvStartTime.getText().toString().trim()) &&
                         !TextUtils.isEmpty(tvToTime.getText().toString().trim()) &&
-                        !TextUtils.isEmpty(tvPrice.getText().toString().trim()) &&
-                        !TextUtils.isEmpty(etDetial.getText().toString().trim())) {
+                        !TextUtils.isEmpty(tvPrice.getText().toString().trim())
+                       ) {
                     mPresenter.httpSendWork(loginResponseBean.getUserId(), farmerTaskId, etPeople.getText().toString().trim(),
                             etPhone.getText().toString().trim(), etHomeAddress.getText().toString().trim()
                             , kind, kindType, kindTypeId, unitPrice, etWorkAreas.getText().toString().trim(), flag, etKuai.getText().toString().trim(), tvStartTime.getText().toString().trim(),
@@ -288,7 +287,9 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
     @Override
     public void sendSuccess(SendWorkBean sendWorkBean) {
         //发布订单成功
-        startActivity(new Intent(this, SendWorkSuccessActivity.class));
+        Intent intent=    new Intent(this, SendWorkSuccessActivity.class);
+        intent.putExtra("farmerTaskId",sendWorkBean.getFarmerTaskId());
+        startActivity(intent);
         finish();
     }
 

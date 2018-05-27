@@ -120,19 +120,21 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
                 if (rbTwo.isChecked()) {
                     tempList.add(orderList.get(1));
                 }
-                if (tempList.size() == 0) {
+                if (tempList.size() == 0 && !cbWorkAres.isChecked()) {
                     ToastUtils.showShort("请选择作业类型");
                     return;
                 }
-                if (TextUtils.isEmpty(tvTimeStart.getText().toString()) || TextUtils.isEmpty(tvTimeEnd.getText().toString())) {
-                    ToastUtils.showShort("作业开始时间或结束时间不能为空");
-                    return;
-                } else if (!TextUtils.isEmpty(tvTimeStart2.getText().toString()) && TextUtils.isEmpty(tvTimeEnd2.getText().toString())) {
-                    ToastUtils.showShort("选填结束时间不能为空");
-                    return;
-                } else if (TextUtils.isEmpty(tvTimeStart2.getText().toString()) && !TextUtils.isEmpty(tvTimeEnd2.getText().toString())) {
-                    ToastUtils.showShort("选填开始时间不能为空");
-                    return;
+                if(!cbWorkTime.isChecked()){
+                    if (TextUtils.isEmpty(tvTimeStart.getText().toString()) || TextUtils.isEmpty(tvTimeEnd.getText().toString())) {
+                        ToastUtils.showShort("作业开始时间或结束时间不能为空");
+                        return;
+                    } else if (!TextUtils.isEmpty(tvTimeStart2.getText().toString()) && TextUtils.isEmpty(tvTimeEnd2.getText().toString())) {
+                        ToastUtils.showShort("选填结束时间不能为空");
+                        return;
+                    } else if (TextUtils.isEmpty(tvTimeStart2.getText().toString()) && !TextUtils.isEmpty(tvTimeEnd2.getText().toString())) {
+                        ToastUtils.showShort("选填开始时间不能为空");
+                        return;
+                    }
                 }
                 map.put("kindTypeDetail", GsonParseUtils.GsonString(tempList));//作业类型数组
                 map.put("timeStart1", tvTimeStart.getText().toString());//開始时间

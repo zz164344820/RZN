@@ -10,6 +10,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,6 +52,7 @@ public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View,
     private RecyclerView swipeTarget;
     private SwipeToLoadLayout swipeToLoadLayout;
     private TextView tvStartGet;
+    public LinearLayout ll_top;
     private List<FarmerDriverMessageBean> list = new ArrayList<>();
     private FarmerListAdapter farmerListAdapter;
     BottomDialog bottomDialog;
@@ -104,6 +106,7 @@ public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View,
     //初始化view
     private void initViews() {
         tvStartGet = (TextView) rootView.findViewById(R.id.tv_start_get);
+        ll_top = (LinearLayout) rootView.findViewById(R.id.ll_top);
         swipeTarget = (RecyclerView) rootView.findViewById(R.id.swipe_target);
         swipeToLoadLayout = (SwipeToLoadLayout) rootView.findViewById(R.id.swipeToLoadLayout);
         swipeTarget.setLayoutManager(new LinearLayoutManager(getActivity()));
