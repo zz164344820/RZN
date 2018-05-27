@@ -25,7 +25,7 @@ import com.zyhealth.expertlib.utils.GlideUtils;
 
 public class FarmerDriverDetialActivity extends MVPBaseActivity<FarmerDriverDetialContract.View, FarmerDriverDetialPresenter> implements FarmerDriverDetialContract.View {
 
-    private ImageView ivPhoto,headbackground;
+    private ImageView ivPhoto, headbackground;
     private TextView tvName;
     private TextView tvContent;
     private TextView tvText;
@@ -40,6 +40,7 @@ public class FarmerDriverDetialActivity extends MVPBaseActivity<FarmerDriverDeti
     private TextView tvTime;
     private TextView tvMessage;
     private TextView tvCommit;
+    private ImageView ivCancel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,7 +59,7 @@ public class FarmerDriverDetialActivity extends MVPBaseActivity<FarmerDriverDeti
     }
 
     private void initData() {
-        String  driverId =  getIntent().getStringExtra("handlerId");
+        String driverId = getIntent().getStringExtra("handlerId");
         mPresenter.httpDriverMessage(driverId);
     }
 
@@ -67,6 +68,12 @@ public class FarmerDriverDetialActivity extends MVPBaseActivity<FarmerDriverDeti
             @Override
             public void onClick(View view) {
                 mPresenter.getFarmerOreder();
+            }
+        });
+        ivCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }
@@ -88,9 +95,10 @@ public class FarmerDriverDetialActivity extends MVPBaseActivity<FarmerDriverDeti
         tvMessage = (TextView) findViewById(R.id.tv_message);
         tvCommit = (TextView) findViewById(R.id.tv_commit);
         headbackground = (ImageView) findViewById(R.id.headbackground);
+        ivCancel = (ImageView) findViewById(R.id.iv_cancel);
 
-        GlideUtils.loadImageRound(this,"http://p0.so.qhmsg.com/bdr/_240_/t01eccf86bc0d2cf28f.jpg",ivPhoto,40);
-        GlideUtils.GaussianBlur(this,"http://p0.so.qhmsg.com/bdr/_240_/t01eccf86bc0d2cf28f.jpg",headbackground,8,1);
+        GlideUtils.loadImageRound(this, "http://p0.so.qhmsg.com/bdr/_240_/t01eccf86bc0d2cf28f.jpg", ivPhoto, 40);
+        GlideUtils.GaussianBlur(this, "http://p0.so.qhmsg.com/bdr/_240_/t01eccf86bc0d2cf28f.jpg", headbackground, 8, 1);
     }
 
     //获取机手信息成功
@@ -120,11 +128,10 @@ public class FarmerDriverDetialActivity extends MVPBaseActivity<FarmerDriverDeti
     }
 
 
-
     @Override
     public void appointmentSuccess() {
         //跳转到确认预约界面
-       // startActivity( new Intent(this ,));
+        // startActivity( new Intent(this ,));
     }
 
 
