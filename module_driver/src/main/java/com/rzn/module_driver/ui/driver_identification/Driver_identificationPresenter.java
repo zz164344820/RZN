@@ -1,6 +1,5 @@
 package com.rzn.module_driver.ui.driver_identification;
 
-import com.blankj.utilcode.util.ToastUtils;
 import com.google.gson.reflect.TypeToken;
 import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.BasePresenterImpl;
@@ -21,8 +20,6 @@ import java.util.List;
 import java.util.Map;
 
 import okhttp3.Call;
-
-import static com.rzn.commonbaselib.utils.GsonUtils.gsonParseList;
 
 /**
  * MVPPlugin
@@ -100,6 +97,11 @@ public class Driver_identificationPresenter extends BasePresenterImpl<Driver_ide
         super.httpRequestResult(response, requestId);
         switch (requestId) {
             case 111:
+                HandlerIdBean HandlerIdBean = GsonUtils.gsonParseBean(gson, response.getResult(), HandlerIdBean.class);
+                LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+                loginResponseBean.setHandlerId(HandlerIdBean.getHandlerId());
+                //将数据进行保存
+                FileSaveUtils.fileSaveObject(loginResponseBean, "loginBean");
                 mView.pushDriverMessageSuccess();
                 break;
             case 124:
