@@ -217,7 +217,7 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
                     tvTwo.setVisibility(View.VISIBLE);
                     tvTwo.setText(orderList.get(1).getUnitPrice() + "元/亩");
                 } else {
-                    rbTwo.setVisibility(View.GONE);
+                    tvTwo.setVisibility(View.GONE);
                 }
 
             }
