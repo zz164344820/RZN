@@ -246,7 +246,7 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
                     map.put("name", etName.getText().toString());
                     map.put("sex", flag);
                     map.put("birthday", tvData.getText().toString().trim());
-                    map.put("idNo", etCarNumber.getText().toString().trim());
+                    map.put("idNo", etIdent.getText().toString().trim());
                     map.put("mobile", etPhone.getText().toString().trim());
                     map.put("icon", "");
                     map.put("startDate", tvWorkTime.getText().toString().trim());
