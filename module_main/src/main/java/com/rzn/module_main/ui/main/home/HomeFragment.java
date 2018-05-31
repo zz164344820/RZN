@@ -24,8 +24,10 @@ import com.rzn.module_main.R;
 import com.rzn.module_main.R2;
 import com.rzn.module_main.ui.jobscreening.JobScreeningActivity;
 import com.rzn.module_main.ui.keepstation.KeepStationActivity;
+import com.rzn.module_main.ui.login.LoginActivity;
 import com.rzn.module_main.ui.main.MainActivity;
 import com.rzn.module_main.ui.mesagecenter.MessageCenterActivity;
+import com.rzn.module_main.ui.util.LoginUtil;
 import com.tmall.ultraviewpager.UltraViewPager;
 
 import java.util.ArrayList;
@@ -133,6 +135,10 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
 
     @OnClick(R2.id.tv_main_address)
     public void onViewClicked() {
+        if (!LoginUtil.getUserId()) {
+            mContext.startActivity(new Intent(mContext, LoginActivity.class));
+            return;
+        }
         startActivity(new Intent(getActivity(), JobScreeningActivity.class));
     }
 

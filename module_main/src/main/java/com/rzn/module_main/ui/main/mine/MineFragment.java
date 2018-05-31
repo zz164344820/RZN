@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.AppUtils;
+import com.blankj.utilcode.util.LogUtils;
 import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
@@ -46,6 +47,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     private LinearLayout llSetting;
     private ImageView tv_bianji, iv_photo, iv_background;
     private TextView tv_Status, tv_name, tv_VersionName;
+    private LoginResponseBean loginResponseBean;
 
     @Nullable
     @Override
@@ -122,9 +124,16 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         iv_background = (ImageView) rootView.findViewById(R.id.iv_background);
         tv_VersionName = (TextView) rootView.findViewById(R.id.tv_VersionName);
 
+
+    }
+
+    private void initData() {
         GlideUtils.loadImageRound(getContext(), "http://www.fzlol.com/upimg/allimg/140408/1_1G0291243.jpg", iv_photo, 40);
         GlideUtils.GaussianBlur(getContext(), "http://www.fzlol.com/upimg/allimg/140408/1_1G0291243.jpg", iv_background, 8, 1);
-        LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+//        LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+        if (loginResponseBean == null) {
+            return;
+        }
         tv_name.setText(loginResponseBean.getPhone());
         if (TextUtils.isEmpty(loginResponseBean.getHandlerId())) {
             tv_Status.setText("未认证");
@@ -134,6 +143,14 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         }
 
         tv_VersionName.setText("版本号：v " + AppUtils.getAppVersionName());
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+//        LogUtils.d("aaaaaaaaaa","this is onResume");initData
+        loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+        initData();
 
     }
 
@@ -142,6 +159,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         super.onDestroyView();
         unbinder.unbind();
     }
+
 
     @OnClick(R2.id.iv_message)
     public void onViewClicked() {

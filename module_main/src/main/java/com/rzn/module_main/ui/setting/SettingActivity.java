@@ -26,7 +26,8 @@ import cn.jpush.android.api.JPushInterface;
 
 public class SettingActivity extends MVPBaseActivity<SettingContract.View, SettingPresenter> implements SettingContract.View {
 
-    LoginResponseBean  loginResponseBean;
+    LoginResponseBean loginResponseBean;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,15 +43,15 @@ public class SettingActivity extends MVPBaseActivity<SettingContract.View, Setti
     @Override
     public void initView() {
         super.initView();
-        final TextView tv_messageStute = (TextView)findViewById(R.id.tv_messageStute);
-        CheckBox checkBox= (CheckBox)findViewById(R.id.cb_message);
-        boolean isOpen= SPUtils.getInstance().getBoolean("message",true);
+        final TextView tv_messageStute = (TextView) findViewById(R.id.tv_messageStute);
+        CheckBox checkBox = (CheckBox) findViewById(R.id.cb_message);
+        boolean isOpen = SPUtils.getInstance().getBoolean("message", true);
         checkBox.setChecked(isOpen);
-        loginResponseBean= (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+        loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
         findViewById(R.id.tv_upload).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Beta.checkUpgrade(true,false);
+                Beta.checkUpgrade(true, false);
             }
         });
 
@@ -63,19 +64,19 @@ public class SettingActivity extends MVPBaseActivity<SettingContract.View, Setti
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                 if(b){
-                     tv_messageStute.setText("接收消息推送");
-                     SPUtils.getInstance().put("message",true);
-                     if(loginResponseBean!=null){
-                         JPushInterface.setAlias(SettingActivity.this, 111, loginResponseBean.getUserId());
-                     }
+                if (b) {
+                    tv_messageStute.setText("接收消息推送");
+                    SPUtils.getInstance().put("message", true);
+                    if (loginResponseBean != null) {
+                        JPushInterface.setAlias(SettingActivity.this, 111, loginResponseBean.getUserId());
+                    }
 
-                 }else{
-                     tv_messageStute.setText("关闭消息推送");
-                     SPUtils.getInstance().put("message",false);
-                     JPushInterface.setAlias(SettingActivity.this, 111, "");
+                } else {
+                    tv_messageStute.setText("关闭消息推送");
+                    SPUtils.getInstance().put("message", false);
+                    JPushInterface.setAlias(SettingActivity.this, 111, "");
 
-                 }
+                }
             }
         });
 
@@ -83,12 +84,21 @@ public class SettingActivity extends MVPBaseActivity<SettingContract.View, Setti
 
 
     public void logOut() {
+        //將本地数据对象清空
+        clearObject();
+
         for (int i = 0, size = LibApplication.mActivityStack.size(); i < size; i++) {
-             if(!LibApplication.mActivityStack.get(i).getClass().getSimpleName().equals("LoginActivity")){
-                 LibApplication.mActivityStack.get(i).finish();
-             }
+            if (!LibApplication.mActivityStack.get(i).getClass().getSimpleName().equals("LoginActivity")) {
+                LibApplication.mActivityStack.get(i).finish();
+            }
         }
         JPushInterface.setAlias(SettingActivity.this, 111, "");
+        System.exit(0);
+    }
 
+    private void clearObject() {
+        LoginResponseBean responseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+        responseBean = null;
+        FileSaveUtils.fileSaveObject(responseBean, "loginBean");
     }
 }
