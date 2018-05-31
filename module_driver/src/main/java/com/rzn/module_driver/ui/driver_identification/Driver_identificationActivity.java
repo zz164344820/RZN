@@ -236,7 +236,7 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
 //                    tempList.add(workType1);
 //                    if (workType1 != null) {
                     tempList.add(workType1);
-                    if (workType1 != null) {
+                    if (workType2 != null) {
                         tempList.add(workType2);
                     }
                     LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
