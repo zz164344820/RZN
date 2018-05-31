@@ -138,7 +138,7 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
 
     @OnClick(R2.id.tv_main_nongjitong)
     public void tv_main_nongjitong() {
-        ((MainActivity) getActivity()).setCheckedPager(2, R.id.rb_nongjitong);
+        startActivity(new Intent(getActivity(), JobScreeningActivity.class));
     }
 
     @OnClick(R2.id.iv_message)
