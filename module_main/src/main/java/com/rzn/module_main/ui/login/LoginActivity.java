@@ -18,13 +18,9 @@ import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.module_main.R;
 import com.rzn.module_main.R2;
 import com.rzn.module_main.ui.main.MainActivity;
-import com.rzn.module_main.ui.setting.SettingActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
-import chihane.jdaddressselector.AddressUtils;
-import chihane.jdaddressselector.BottomDialog;
 import chihane.jdaddressselector.OnAddressSelectedListener;
 import chihane.jdaddressselector.model.City;
 import chihane.jdaddressselector.model.County;
@@ -60,6 +56,7 @@ public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPres
         cbAgree = (CheckBox) findViewById(R.id.cb_agree);
         ButterKnife.bind(this);
         mPresenter.onCreate();
+        JPushInterface.setAlias(this, 111, "123456");
 
 
     }

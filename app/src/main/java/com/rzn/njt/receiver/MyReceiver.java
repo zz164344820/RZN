@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.util.Log;
 
 
+import com.blankj.utilcode.util.ToastUtils;
+
+import org.json.JSONObject;
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -38,14 +41,45 @@ public class MyReceiver extends BroadcastReceiver {
         } else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent.getAction())) {
             Log.d(TAG, "接受到推送下来的通知");
 
-
         } else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {
             Log.d(TAG, "用户点击打开了通知");
-
+            openNotification(context,bundle);
         } else {
             Log.d(TAG, "Unhandled intent - " + intent.getAction());
         }
     }
 
 
+    private void openNotification(Context context, Bundle bundle){
+        String extras = bundle.getString(JPushInterface.EXTRA_EXTRA);
+        String myValue = "";
+        try {
+            JSONObject extrasJson = new JSONObject(extras);
+            myValue = extrasJson.optString("myKey");
+        } catch (Exception e) {
+            Log.w(TAG, "Unexpected: extras is not a valid json", e);
+            return;
+        }
+        if("1".equals(myValue)){
+            // TODO: 2018/6/2 认证提醒 跳转技手认证
+        }else if("2".equals(myValue)){
+            // TODO: 2018/6/2 接单提醒（接单，农户发布的作业有人接单了，跳转到具体页面）
+        }else if("3".equals(myValue)){
+            // TODO: 2018/6/2  预约提醒（预约，有农户预约技手，跳转到具体页面）
+        }else if("4".equals(myValue)){
+            // TODO: 2018/6/2  预约提醒（预约，取消提醒，跳转到具体页面）
+        }
+
+        /*if (TYPE_THIS.equals(myValue)) {
+            Intent mIntent = new Intent(context, ThisActivity.class);
+            mIntent.putExtras(bundle);
+            mIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(mIntent);
+        } else if (TYPE_ANOTHER.equals(myValue)){
+            Intent mIntent = new Intent(context, AnotherActivity.class);
+            mIntent.putExtras(bundle);
+            mIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(mIntent);
+        }*/
+    }
 }

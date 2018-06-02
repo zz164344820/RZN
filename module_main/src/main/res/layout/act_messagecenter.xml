@@ -8,6 +8,9 @@
 
     <include layout="@layout/topbar"/>
 
+
+  <include layout="@layout/fragment_twitter_recycler"/>
+<!--
     <LinearLayout
         android:id="@+id/ll_orderMessage"
         android:orientation="horizontal"
@@ -205,6 +208,6 @@
             android:background="@drawable/right_enter"
             />
 
-    </LinearLayout>
+    </LinearLayout>-->
 
 </LinearLayout>

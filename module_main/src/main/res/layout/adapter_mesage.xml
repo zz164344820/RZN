@@ -11,7 +11,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:orientation="horizontal"
-        android:background="@drawable/shape_over"
+        android:background="@drawable/mainlib_shape_over"
         android:gravity="center"
         >
 

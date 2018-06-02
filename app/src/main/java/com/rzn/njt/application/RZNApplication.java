@@ -6,6 +6,7 @@ import android.support.multidex.MultiDex;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.rzn.commonbaselib.applictaion.BaseApplication;
+import com.rzn.module_main.ui.login.LoginActivity;
 import com.rzn.njt.BuildConfig;
 import com.rzn.njt.R;
 import com.tencent.bugly.Bugly;
@@ -15,6 +16,7 @@ import com.zyhealth.expertlib.net.OkHttpLoader;
 import com.zyhealth.expertlib.utils.MLog;
 
 import cn.jpush.android.api.BasicPushNotificationBuilder;
+import cn.jpush.android.api.CustomPushNotificationBuilder;
 import cn.jpush.android.api.JPushInterface;
 
 /**
