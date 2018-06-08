@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.blankj.utilcode.util.PhoneUtils;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.module_driver.R;
@@ -17,7 +18,7 @@ import com.rzn.module_driver.ui.driver_identification.Driver_identificationActiv
  * MVPPlugin
  * 邮箱 784787081@qq.com
  */
-
+@Route(path = "/driver/makesure")
 public class DriverMakeSureActivity extends MVPBaseActivity<DriverMakeSureContract.View, DriverMakeSurePresenter> implements DriverMakeSureContract.View {
 
     private TextView tvCustomService,tv_DriverCenter;

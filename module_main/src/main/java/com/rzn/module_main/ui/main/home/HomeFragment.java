@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
+import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -19,7 +20,9 @@ import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.SizeUtils;
+import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
+import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.module_main.R;
 import com.rzn.module_main.R2;
 import com.rzn.module_main.ui.jobscreening.JobScreeningActivity;
@@ -37,6 +40,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import mlxy.utils.T;
 
 /**
  * MVPPlugin
@@ -53,6 +57,7 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
     private TextView tvMainWeixiuzhan;
     public AMapLocationClient mLocationClient = null;
     public AMapLocationClientOption mLocationOption = null;
+    private LoginResponseBean loginResponseBean;
 
     @Nullable
     @Override
@@ -105,9 +110,9 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
 
         ultraViewPager.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL);
         //UltraPagerAdapter 绑定子view到UltraViewPager
-        PagerAdapter adapter = new BannerPagerAdapter(getActivity(),list);
+        PagerAdapter adapter = new BannerPagerAdapter(getActivity(), list);
         ultraViewPager.setAdapter(adapter);
-         //内置indicator初始化
+        //内置indicator初始化
         ultraViewPager.initIndicator();
         //设置indicator样式
         ultraViewPager.getIndicator()
@@ -117,7 +122,7 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
                 .setRadius((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources().getDisplayMetrics()));
         //设置indicator对齐方式
         ultraViewPager.getIndicator().setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM);
-        ultraViewPager.getIndicator().setMargin(0,0,0, SizeUtils.dp2px(10));
+        ultraViewPager.getIndicator().setMargin(0, 0, 0, SizeUtils.dp2px(10));
         //构造indicator,绑定到UltraViewPager
         ultraViewPager.getIndicator().build();
         //设定页面循环播放
@@ -126,6 +131,11 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
         ultraViewPager.setAutoScroll(2000);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+    }
 
     @Override
     public void onDestroyView() {
@@ -144,12 +154,22 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
 
     @OnClick(R2.id.tv_main_nongjitong)
     public void tv_main_nongjitong() {
-        startActivity(new Intent(getActivity(), JobScreeningActivity.class));
+        if (loginResponseBean == null || TextUtils.isEmpty(loginResponseBean.getUserId())) {
+            startActivity(new Intent(getActivity(), LoginActivity.class));
+        } else {
+            startActivity(new Intent(getActivity(), JobScreeningActivity.class));
+        }
+
     }
 
     @OnClick(R2.id.iv_message)
     public void iv_message() {
-        startActivity(new Intent(getActivity(), MessageCenterActivity.class));
+        if (loginResponseBean == null || TextUtils.isEmpty(loginResponseBean.getUserId())) {
+            startActivity(new Intent(getActivity(), LoginActivity.class));
+        } else {
+            startActivity(new Intent(getActivity(), MessageCenterActivity.class));
+        }
+
     }
 
 

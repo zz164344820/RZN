@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.PhoneUtils;
 import com.rzn.commonbaselib.bean.JobOrderDetialBean;
@@ -27,7 +28,7 @@ import mlxy.utils.T;
  * MVPPlugin
  * 邮箱 784787081@qq.com
  */
-
+@Route(path = "/main/joborderdetial")
 public class JobOrderDetialActivity extends MVPBaseActivity<JobOrderDetialContract.View, JobOrderDetialPresenter> implements JobOrderDetialContract.View {
 
     private TextView tvCancel;

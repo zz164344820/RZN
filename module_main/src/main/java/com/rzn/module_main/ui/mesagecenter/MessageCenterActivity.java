@@ -57,6 +57,17 @@ public class MessageCenterActivity extends MVPBaseActivity<MesageCenterContract.
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                //todo 根据角标 判断具体跳转页面
+//                1、接单提醒（“您发布的作业需求有人接单啦！”）
+//                2、预约提醒（“有人请你作业，快去看看吧！”）
+//                3、订单取消提醒（“预约2017-11-02作业的‘水稻-联合整地’订单已取消”）
+//                4、机手认证审核进度通知（审核通过提示：“审核通过，您可以开始接单了！”
+//                审核未通过提示：“审核未通过，未通过原因：‘xxxxxxxx’”）
+//                以上4种提醒在发送极光的同时，保存到数据库当中，在消息中心界面展示这四种消息列表。点击跳转：
+//                接单提醒----->订单列表页面
+//                预约提醒----->订单列表页面
+//                订单取消----->订单列表页面
+//                机手认证----->机手认证页面
+
             }
         });
 

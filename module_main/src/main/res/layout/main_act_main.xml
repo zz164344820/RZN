@@ -1,37 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    
-   <com.rzn.commonbaselib.views.NosrollViewPager
-       android:id="@+id/viewpager"
-       android:layout_width="match_parent"
-       android:layout_height="0dp"
-       android:layout_weight="1"
-       />
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.rzn.commonbaselib.views.NosrollViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="#DDDDDD"
-        />
+        android:background="#DDDDDD" />
 
     <com.rzn.commonbaselib.views.AutoRadioGroup
         android:id="@+id/rg_bottom"
         android:layout_width="match_parent"
         android:layout_height="98px"
+        android:layout_alignParentBottom="true"
         android:background="@color/white"
         android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true"
-        >
+        android:orientation="horizontal">
 
 
         <RadioButton
             android:id="@+id/rb_homepage"
+            style="@style/main_bottom_select"
             android:drawableTop="@drawable/select_main_bottom_home"
-            android:text="首页"
-            style="@style/main_bottom_select" />
+            android:text="首页" />
 
 
         <RadioButton
@@ -44,7 +42,7 @@
             android:id="@+id/rb_nongjitong"
             style="@style/main_bottom_select"
             android:drawableTop="@drawable/select_main_bottom_nongjitong"
-            android:text="农机通" />
+            android:text="农技通" />
 
         <RadioButton
             android:id="@+id/rb_mine"
@@ -53,7 +51,6 @@
             android:text="我的" />
 
     </com.rzn.commonbaselib.views.AutoRadioGroup>
-    
 
 
 </com.zhy.autolayout.AutoLinearLayout>

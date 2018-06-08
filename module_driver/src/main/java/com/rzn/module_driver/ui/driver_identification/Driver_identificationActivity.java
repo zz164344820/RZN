@@ -51,6 +51,7 @@ import com.zyhealth.expertlib.utils.GlideUtils;
 import com.zyhealth.expertlib.utils.MLog;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -416,31 +417,59 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
     String fourPath;
 
     private void showImage(String imagePath) {
-        Bitmap bm = BitmapFactory.decodeFile(imagePath);
+//        Bitmap bm = BitmapFactory.decodeFile(imagePath);
+        Bitmap bm = PicturePressUtil.getimage(imagePath);
         if ("one".equals(fag)) {
             ivPhotoCars.setImageBitmap(bm);
             ivPhotoCars.setVisibility(View.VISIBLE);
             //onePath = imagePath;
-            uploadImage(new File(imagePath), 1, "1");
+            String one = saveBitmapToSDCard(bm, "one");
+            uploadImage(new File(one), 1, "1");
         } else if ("two".equals(fag)) {
             // twoPath = imagePath;
-            uploadImage(new File(imagePath), 2, "1");
+            String two = saveBitmapToSDCard(bm, "two");
+            uploadImage(new File(two), 2, "1");
             ivPhotoCar.setImageBitmap(bm);
             ivPhotoCar.setVisibility(View.VISIBLE);
         } else if ("three".equals(fag)) {
             // threePath = imagePath;
-            uploadImage(new File(imagePath), 3, "2");
+            String three = saveBitmapToSDCard(bm, "three");
+            uploadImage(new File(three), 3, "2");
             ivCarPhotoOne.setImageBitmap(bm);
             ivCarPhotoOne.setVisibility(View.VISIBLE);
         } else if ("four".equals(fag)) {
             // fourPath = imagePath;
-            uploadImage(new File(imagePath), 4, "2");
+            String four = saveBitmapToSDCard(bm, "four");
+            uploadImage(new File(four), 4, "2");
             ivCarPhotoTwo.setImageBitmap(bm);
             ivCarPhotoTwo.setVisibility(View.VISIBLE);
         }
 
     }
 
+    /**
+     * 保存bitmap到SD卡
+     *
+     * @param bitmap
+     * @param imagename
+     */
+    private String saveBitmapToSDCard(Bitmap bitmap, String imagename) {
+        File file = new File(this.getExternalCacheDir(), imagename + ".png");
+        //        String path = "/sdcard/" + "img-" + imagename + ".jpg";
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(file);
+            if (fos != null) {
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 80, fos);
+                fos.close();
+            }
+
+            return file.getAbsolutePath();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public void uploadImage(File file, final int pos, String type) {
 
@@ -560,12 +589,12 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
                 etWorkTab.setText(bean.getHandlerKindTypeArray().get(0).getKindName() + " " + bean.getHandlerKindTypeArray().get(0).getKindTypeName());
                 ll_jobOrderType2.setVisibility(View.VISIBLE);
                 iv_addOrderType.setVisibility(View.INVISIBLE);
-                workType1=bean.getHandlerKindTypeArray().get(0);
-                workType2=bean.getHandlerKindTypeArray().get(1);
+                workType1 = bean.getHandlerKindTypeArray().get(0);
+                workType2 = bean.getHandlerKindTypeArray().get(1);
                 tv_work_tab2.setText(bean.getHandlerKindTypeArray().get(1).getKindName() + " " + bean.getHandlerKindTypeArray().get(1).getKindTypeName());
             } else if (bean.getHandlerKindTypeArray().size() == 1) {
                 etWorkTab.setText(bean.getHandlerKindTypeArray().get(0).getKindName() + " " + bean.getHandlerKindTypeArray().get(0).getKindTypeName());
-                workType1=bean.getHandlerKindTypeArray().get(0);
+                workType1 = bean.getHandlerKindTypeArray().get(0);
             }
 
 

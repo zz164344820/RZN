@@ -6,13 +6,17 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
+import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.module_main.R;
 import com.rzn.module_main.R2;
+import com.rzn.module_main.ui.login.LoginActivity;
 import com.rzn.module_main.ui.mesagecenter.MessageCenterActivity;
 
 import java.util.ArrayList;
@@ -32,6 +36,7 @@ public class ShoppingFragment extends MVPBaseFragment<ShoppingContract.View, Sho
     Unbinder unbinder;
     private View rootView;
     private RecyclerView swipeTarget;
+    private LoginResponseBean loginResponseBean;
 
     @Nullable
     @Override
@@ -64,8 +69,20 @@ public class ShoppingFragment extends MVPBaseFragment<ShoppingContract.View, Sho
         unbinder.unbind();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+    }
+
     @OnClick(R2.id.iv_message)
     public void onViewClicked() {
-        startActivity(new Intent(getActivity(), MessageCenterActivity.class));
+        if (loginResponseBean == null || TextUtils.isEmpty(loginResponseBean.getUserId())) {
+            startActivity(new Intent(getActivity(), LoginActivity.class));
+        } else {
+            startActivity(new Intent(getActivity(), MessageCenterActivity.class));
+        }
+
+//        startActivity(new Intent(getActivity(), MessageCenterActivity.class));
     }
 }
