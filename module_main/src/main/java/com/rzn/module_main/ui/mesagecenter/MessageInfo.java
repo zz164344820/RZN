@@ -6,17 +6,13 @@ package com.rzn.module_main.ui.mesagecenter;
 
 public class MessageInfo {
     private String isread;
-    private String content;
-    private String type;
-    private String title;
+    private String msgContent;
+    private String msgType;
+    private String msgTitle;
+    private String userMsgId;
+    private String userId;
+    private String createTime;
 
-
-    public MessageInfo(String isread, String content, String type, String title) {
-        this.isread = isread;
-        this.content = content;
-        this.type = type;
-        this.title = title;
-    }
 
     public String getIsread() {
         return isread;
@@ -26,27 +22,51 @@ public class MessageInfo {
         this.isread = isread;
     }
 
-    public String getContent() {
-        return content;
+    public String getMsgContent() {
+        return msgContent;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setMsgContent(String msgContent) {
+        this.msgContent = msgContent;
     }
 
-    public String getType() {
-        return type;
+    public String getMsgType() {
+        return msgType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setMsgType(String msgType) {
+        this.msgType = msgType;
     }
 
-    public String getTitle() {
-        return title;
+    public String getMsgTitle() {
+        return msgTitle;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setMsgTitle(String msgTitle) {
+        this.msgTitle = msgTitle;
+    }
+
+    public String getUserMsgId() {
+        return userMsgId;
+    }
+
+    public void setUserMsgId(String userMsgId) {
+        this.userMsgId = userMsgId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
     }
 }

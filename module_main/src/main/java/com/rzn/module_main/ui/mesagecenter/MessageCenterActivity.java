@@ -45,10 +45,15 @@ public class MessageCenterActivity extends MVPBaseActivity<MesageCenterContract.
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        mPresenter.getMessageList();
+    }
+
+    @Override
     public void initView() {
         super.initView();
         setTitle("消息中心");
-        initData();//临时数据源，有接口以后删除
         swipeToLoadLayout.setRefreshEnabled(false);
         swipeTarget.setLayoutManager(new LinearLayoutManager(this));
         adapter=   new MessageAdapter(this,MessageInfoList);
@@ -56,6 +61,22 @@ public class MessageCenterActivity extends MVPBaseActivity<MesageCenterContract.
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                //1: 预约  2：取消  3：认证   4：抢单
+                if("0".equals(MessageInfoList.get(position).getIsread())){
+                    mPresenter.setRead(MessageInfoList.get(position).getUserMsgId());
+                }
+                String type = MessageInfoList.get(position).getMsgType();
+                if("1".equals(type)){
+                    //预约
+                }else if("2".equals(type)){
+                    //取消
+                }else if("3".equals(type)){
+                    //认证
+                }else if("4".equals(type)){
+                    //抢单
+                }
+
+
                //todo 根据角标 判断具体跳转页面
 //                1、接单提醒（“您发布的作业需求有人接单啦！”）
 //                2、预约提醒（“有人请你作业，快去看看吧！”）
@@ -73,13 +94,6 @@ public class MessageCenterActivity extends MVPBaseActivity<MesageCenterContract.
 
     }
 
-    private void initData() {
-        MessageInfoList.add(new MessageInfo("0","接单拉","1","预约一下"));
-        MessageInfoList.add(new MessageInfo("1","接单拉","2","预约一下"));
-        MessageInfoList.add(new MessageInfo("1","接单拉","4","预约一下"));
-        MessageInfoList.add(new MessageInfo("1","接单拉","3","预约一下"));
-        MessageInfoList.add(new MessageInfo("0","接单拉","3","预约一下"));
-    }
 
 
     @Override

@@ -18,5 +18,6 @@ public class MesageCenterContract {
 
     interface  Presenter extends BasePresenter<View> {
         void getMessageList();
+        void setRead(String msgId);
     }
 }

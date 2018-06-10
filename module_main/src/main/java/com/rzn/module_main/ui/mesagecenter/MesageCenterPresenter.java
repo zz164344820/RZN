@@ -22,17 +22,23 @@ public class MesageCenterPresenter extends BasePresenterImpl<MesageCenterContrac
     @Override
     public void onCreate() {
         super.onCreate();
-        getMessageList();
     }
 
     @Override
     public void getMessageList() {
        // todo 请求列表接口
-       LoginResponseBean  loginResponseBean= (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+        mView.showLoading(false,"");
+        LoginResponseBean  loginResponseBean= (LoginResponseBean) FileSaveUtils.readObject("loginBean");
         Map<String ,String> map = new HashMap<>();
         map.put("userId",loginResponseBean.getUserId());
-        map.put("pager",(++pager)+"");
-        reqData(mContext,"url",map,123);
+        reqData(mContext,"farmHand/user/queryUserMsg",map,123);
+    }
+
+    @Override
+    public void setRead(String msgId) {
+        Map<String ,String> map = new HashMap<>();
+        map.put("userMsgId",msgId);
+        reqData(mContext,"farmHand/user/updateUserMsgRead",map,133);
     }
 
     @Override
