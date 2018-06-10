@@ -61,7 +61,7 @@ public class FarmMachineryFragment extends MVPBaseFragment<FarmMachineryContract
     private void initViews() {
        wenZhangFragment   =   new WenZhangFragment();
        zixunFragment = new ZixunFragment();
-
+        getChildFragmentManager().beginTransaction().replace(R.id.ll_listConent,wenZhangFragment).commitAllowingStateLoss();
 
         rgGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
