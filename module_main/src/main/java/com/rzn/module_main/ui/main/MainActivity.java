@@ -81,15 +81,19 @@ public class MainActivity extends MVPBaseActivity<MainContract.View, MainPresent
 //            接单提醒（接单，农户发布的作业有人接单了，跳转到具体页面）
             //作业订单详情/main/joborderdetial"
             // TODO: 2018/6/8  JobOrderDetialActivity这个类需要得参数  flag = getIntent().getStringExtra("flag");  farmerTaskId = getIntent().getStringExtra("farmerTaskId");
-            ARouter.getInstance().build("/driver/joborderdetial").navigation();//审核中界面   todo 需要参数，需要通知传递过来
+//            ARouter.getInstance().build("/driver/joborderdetial").navigation();//审核中界面   todo 需要参数，需要通知传递过来
+            ARouter.getInstance().build("/driver/myjobdetial").navigation();
         } else if ("1".equals(value)) {
 //            预约提醒（预约，有农户预约技手，跳转到具体页面）
             // TODO: 2018/6/8  JobOrderDetialActivity这个类需要得参数  flag = getIntent().getStringExtra("flag");  farmerTaskId = getIntent().getStringExtra("farmerTaskId");
-            ARouter.getInstance().build("/driver/joborderdetial").navigation();//审核中界面    todo 需要参数，需要通知传递过来
+//            ARouter.getInstance().build("/driver/joborderdetial").navigation();//审核中界面    todo 需要参数，需要通知传递过来
+            ARouter.getInstance().build("/driver/myjobdetial").withString("type", "1").navigation();
         } else if ("2".equals(value)) {
 //            预约提醒（预约，取消提醒，跳转到具体页面）
             // TODO: 2018/6/8  JobOrderDetialActivity这个类需要得参数  flag = getIntent().getStringExtra("flag");  farmerTaskId = getIntent().getStringExtra("farmerTaskId");
-            ARouter.getInstance().build("/driver/joborderdetial").navigation();//审核中界面    todo 需要参数，需要通知传递过来
+//            ARouter.getInstance().build("/driver/joborderdetial").navigation();//审核中界面    todo 需要参数，需要通知传递过来
+            ARouter.getInstance().build("/driver/myjobdetial").navigation();
+
         }
     }
 
