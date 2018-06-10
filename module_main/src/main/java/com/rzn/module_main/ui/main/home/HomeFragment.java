@@ -21,6 +21,7 @@ import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.SizeUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
@@ -185,6 +186,14 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
     public void tv_wenzhang() {
         ((MainActivity) get_Context()).setCheckedPager(2, R.id.rb_nongjitong,1);
     }
+
+    @OnClick(R2.id.tv_main_wenzhuanjia)
+    public void tv_main_wenzhuanjia() {
+        ToastUtils.showShortSafe("功能暂未开通,敬请期待!");
+      //  ((MainActivity) get_Context()).setCheckedPager(2, R.id.rb_nongjitong,1);
+    }
+
+
 
 
     @OnClick(R2.id.iv_message)
