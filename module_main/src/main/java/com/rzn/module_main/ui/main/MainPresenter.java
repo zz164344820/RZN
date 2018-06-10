@@ -25,7 +25,7 @@ import java.util.List;
  */
 
 public class MainPresenter extends BasePresenterImpl<MainContract.View> implements MainContract.Presenter {
-    List<MVPBaseFragment> fragments = new ArrayList<>();
+   public List<MVPBaseFragment> fragments = new ArrayList<>();
     ViewPager viewPager;
 
     @Override

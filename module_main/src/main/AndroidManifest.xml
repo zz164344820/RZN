@@ -10,7 +10,6 @@
 
         <activity
             android:name=".ui.welcome.WelcomeActivity"
-            android:launchMode="singleTask"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,6 +35,8 @@
         <activity android:name=".ui.drivercenter.DriverCenterActivity" />
         <activity android:name=".ui.settingmode.SettingModeActivity" />
         <activity android:name=".ui.mesagecenter.MessageCenterActivity" />
+        <activity android:name=".ui.sellagriculturalgoods.SellAgriculturalGoodsActivity" />
+        <activity android:name=".ui.webview.WebViewActivity" />
     </application>
 
 </manifest>

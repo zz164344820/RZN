@@ -32,7 +32,7 @@ public class WelcomeActivity extends MVPBaseActivity<WelcomeContract.View, Welco
     }
 
     private void initData() {
-        new CountDownTimer(3 * 1000, 1000) {
+        new CountDownTimer(2 * 1000, 1000) {
 
             @Override
             public void onTick(long l) {

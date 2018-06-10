@@ -170,6 +170,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/tv_zixunMore"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="28px"
@@ -193,9 +194,10 @@
                 >
 
                 <ImageView
+                    android:id="@+id/iv_zixun"
                     android:layout_width="250px"
                     android:layout_height="220px"
-                    android:background="@color/bg_color"
+                    android:background="@drawable/iv_zxun"
                     />
 
                 <com.zhy.autolayout.AutoLinearLayout
@@ -205,26 +207,31 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/tv_zixunTitle"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="大力实施乡村振兴战略..."
+                        android:text="200名甘肃农机手组团提机 再踏三夏掘金路"
+                        android:singleLine="true"
                         android:textColor="@color/text_333"
                         android:textSize="36px" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/tv_zixunConent"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20px"
                         android:maxLines="3"
-                        android:text="1月15日，河北省农村工作会议在石家庄举行。会议强要坚持以习近平新时..."
+                        android:text="5月15日,“2018年雷沃谷神甘肃用户批量交机暨雷沃三夏全程智能服务启动仪式”在雷沃重工潍坊厂区举行。"
+                        android:ellipsize="end"
                         android:textColor="@color/text_333"
                         android:textSize="32px" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/tv_zixunTime"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20px"
-                        android:text="2018-01-18  12" />
+                        android:text="2018-05-26 10:08" />
 
                 </com.zhy.autolayout.AutoLinearLayout>
 
@@ -254,6 +261,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/tv_wenzhangMore"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="28px"
@@ -277,9 +285,10 @@
                 >
 
                 <ImageView
+                    android:id="@+id/tv_wenzhang"
                     android:layout_width="250px"
                     android:layout_height="220px"
-                    android:background="@color/bg_color"
+                    android:background="@drawable/iv_wenzhang"
                     />
 
                 <com.zhy.autolayout.AutoLinearLayout
@@ -291,8 +300,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="大力实施乡村振兴战略..."
+                        android:text="今年国家粮食最低价怎么收？咱们农民要注意啥？"
                         android:textColor="@color/text_333"
+                        android:singleLine="true"
                         android:textSize="36px" />
 
                     <TextView
@@ -300,7 +310,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20px"
                         android:maxLines="3"
-                        android:text="1月15日，河北省农村工作会议在石家庄举行。会议强要坚持以习近平新时..."
+                        android:ellipsize="end"
+                        android:text="5月19日国家发改委等6部门颁发了《小麦和稻谷最低收购价执行预案》，作为国家政策执行主体，中储粮总公司积极部署夏粮收购工作，让农民舒心卖粮、放心卖粮、满意卖粮。"
                         android:textColor="@color/text_333"
                         android:textSize="32px" />
 
@@ -308,7 +319,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20px"
-                        android:text="2018-01-18  12" />
+                        android:text="2018-05-31  11:12" />
 
                 </com.zhy.autolayout.AutoLinearLayout>
 

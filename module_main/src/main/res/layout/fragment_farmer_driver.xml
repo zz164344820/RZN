@@ -69,10 +69,10 @@
 
     </com.rzn.commonbaselib.views.AutoRadioGroup>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rc_work_List"
+
+    <FrameLayout
+        android:id="@+id/ll_listConent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none" />
+        android:layout_height="match_parent"/>
 
 </com.zhy.autolayout.AutoLinearLayout>

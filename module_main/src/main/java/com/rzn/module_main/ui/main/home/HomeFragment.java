@@ -12,6 +12,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.amap.api.location.AMapLocation;
@@ -30,8 +31,10 @@ import com.rzn.module_main.ui.keepstation.KeepStationActivity;
 import com.rzn.module_main.ui.login.LoginActivity;
 import com.rzn.module_main.ui.main.MainActivity;
 import com.rzn.module_main.ui.mesagecenter.MessageCenterActivity;
+import com.rzn.module_main.ui.sellagriculturalgoods.SellAgriculturalGoodsActivity;
 import com.rzn.module_main.ui.util.LoginUtil;
 import com.tmall.ultraviewpager.UltraViewPager;
+import com.zyhealth.expertlib.utils.GlideUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +43,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import mlxy.utils.T;
 
 /**
  * MVPPlugin
@@ -54,6 +56,10 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
     Unbinder unbinder;
     @BindView(R2.id.ultra_viewpager)
     UltraViewPager ultraViewPager;
+    @BindView(R2.id.iv_zixun)
+    ImageView ivZixun;
+    @BindView(R2.id.tv_wenzhang)
+    ImageView tvWenzhang;
     private TextView tvMainWeixiuzhan;
     public AMapLocationClient mLocationClient = null;
     public AMapLocationClientOption mLocationOption = null;
@@ -64,6 +70,7 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.main_fragment_home, container, false);
         unbinder = ButterKnife.bind(this, rootView);
+        mPresenter.onCreate();
         initViews();
         initListener();
         initLocation();
@@ -100,11 +107,14 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
 
     private void initViews() {
         List<String> list = new ArrayList<>();
-        list.add("http://p2.so.qhimgs1.com/bdr/_240_/t01d2878c11069776be.jpg");
-        list.add("http://p1.so.qhimgs1.com/bdr/_240_/t012f38ae2366358121.jpg");
-        list.add("http://p1.so.qhimgs1.com/bdr/_240_/t01278b9b22af792ca1.jpg");
-        list.add("http://p1.so.qhimgs1.com/bdr/_240_/t01b610395eca9633a1.jpg");
-        list.add("http://p3.so.qhimgs1.com/bdr/_240_/t01db972ee913fefa23.jpg");
+        list.add("http://pic.dbw.cn/0/09/25/08/9250842_112468.jpg");
+        list.add("http://www.nanjing.gov.cn/hdjl/weixin/201710/W020171010647707737249.jpg");
+        list.add("http://p4.so.qhmsg.com/bdr/_240_/t01d9ab0e953723b689.jpg");
+        list.add("http://pic.90sjimg.com/back_pic/qk/back_origin_pic/00/02/46/2fe8323073c593179f56cbf0f3fc705f.jpg");
+        list.add("http://p0.so.qhmsg.com/bdr/_240_/t0197ce49236cf12935.jpg");
+
+        GlideUtils.loadImageView(getActivity(),"https://mmbiz.qpic.cn/mmbiz_jpg/W3OkHlCc5AGC9H85eeGATLpGibS5qJl6vgFhp7OA4ezGxFu6XT41PsBM9ZOSkQ5IYJDUgFJKoxib2JKPorbbiaukA/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1",ivZixun);
+        GlideUtils.loadImageView(getActivity(),"http://p1.so.qhmsg.com/bdr/_240_/t015bced96590d4cbc6.jpg",tvWenzhang);
         tvMainWeixiuzhan = (TextView) rootView.findViewById(R.id.tv_main_weixiuzhan);
 
 
@@ -159,8 +169,23 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
         } else {
             startActivity(new Intent(getActivity(), JobScreeningActivity.class));
         }
-
     }
+
+    @OnClick(R2.id.tv_main_mainnonghuo)
+    public void tv_main_mainnonghuo() {
+        startActivity(new Intent(getActivity(), SellAgriculturalGoodsActivity.class));
+    }
+
+    @OnClick(R2.id.tv_zixunMore)
+    public void tv_zixunMore() {
+        ((MainActivity) get_Context()).setCheckedPager(2, R.id.rb_nongjitong,2);
+    }
+
+    @OnClick(R2.id.tv_wenzhangMore)
+    public void tv_wenzhang() {
+        ((MainActivity) get_Context()).setCheckedPager(2, R.id.rb_nongjitong,1);
+    }
+
 
     @OnClick(R2.id.iv_message)
     public void iv_message() {

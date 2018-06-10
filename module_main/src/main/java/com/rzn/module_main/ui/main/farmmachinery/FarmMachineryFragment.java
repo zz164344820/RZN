@@ -4,24 +4,26 @@ package com.rzn.module_main.ui.main.farmmachinery;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
+import com.rzn.commonbaselib.views.AutoRadioGroup;
 import com.rzn.module_main.R;
 import com.rzn.module_main.R2;
 import com.rzn.module_main.ui.login.LoginActivity;
+import com.rzn.module_main.ui.main.farmmachinery.wenzhang.WenZhangFragment;
+import com.rzn.module_main.ui.main.farmmachinery.zixun.ZixunFragment;
 import com.rzn.module_main.ui.mesagecenter.MessageCenterActivity;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
@@ -34,33 +36,59 @@ import butterknife.Unbinder;
 public class FarmMachineryFragment extends MVPBaseFragment<FarmMachineryContract.View, FarmMachineryPresenter> implements FarmMachineryContract.View {
 
     Unbinder unbinder;
+    @BindView(R2.id.rb_rarmer)
+    RadioButton rbRarmer;
+    @BindView(R2.id.rb_driver)
+    RadioButton rbDriver;
+    @BindView(R2.id.rgGroup)
+    AutoRadioGroup rgGroup;
+    @BindView(R2.id.ll_listConent)
+    FrameLayout llListConent;
     private View rootView;
-    private RecyclerView rcWorkList;
     private LoginResponseBean loginResponseBean;
+     WenZhangFragment  wenZhangFragment  ;
+     ZixunFragment zixunFragment;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_farmer_driver, container, false);
-        initViews();
         unbinder = ButterKnife.bind(this, rootView);
+        initViews();
         return rootView;
     }
 
     private void initViews() {
-        rcWorkList = (RecyclerView) rootView.findViewById(R.id.rc_work_List);
+       wenZhangFragment   =   new WenZhangFragment();
+       zixunFragment = new ZixunFragment();
 
 
-        rcWorkList.setLayoutManager(new LinearLayoutManager(getActivity()));
-        List<String> s = new ArrayList<>();
-        s.add("1");
-        s.add("1");
-        s.add("1");
-        s.add("1");
-        s.add("1");
-        FarmMachineryAdapter farmMachineryAdapter = new FarmMachineryAdapter(R.layout.item_farm_machinery, s);
-        rcWorkList.setAdapter(farmMachineryAdapter);
+        rgGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i==R.id.rb_rarmer){
+                    if(wenZhangFragment==null){
+                        wenZhangFragment = new WenZhangFragment();
+                    }
+                   getChildFragmentManager().beginTransaction().replace(R.id.ll_listConent,wenZhangFragment).commitAllowingStateLoss();
+                }else {
+                    if(zixunFragment==null){
+                        zixunFragment = new ZixunFragment();
+                    }
+                    getChildFragmentManager().beginTransaction().replace(R.id.ll_listConent,zixunFragment).commitAllowingStateLoss();
+                }
 
+            }
+        });
+
+    }
+
+    public void setCheckedTab(int type) {
+        if (type == 1) {
+            rgGroup.check(R.id.rb_rarmer);
+        } else {
+            rgGroup.check(R.id.rb_driver);
+        }
     }
 
     @Override

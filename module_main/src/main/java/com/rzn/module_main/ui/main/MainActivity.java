@@ -19,6 +19,7 @@ import com.rzn.commonbaselib.views.NosrollViewPager;
 import com.rzn.module_main.R;
 import com.rzn.module_main.R2;
 import com.rzn.module_main.ui.login.LoginActivity;
+import com.rzn.module_main.ui.main.farmmachinery.FarmMachineryFragment;
 import com.zyhealth.expertlib.LibApplication;
 import com.zyhealth.expertlib.utils.GlideUtils;
 import com.zyhealth.expertlib.utils.MLog;
@@ -90,9 +91,12 @@ public class MainActivity extends MVPBaseActivity<MainContract.View, MainPresent
         mPresenter.initRadioGroup(rgBottom);
     }
 
-    public void setCheckedPager(int checkIndex, int viewId) {
+    public void setCheckedPager(int checkIndex, int viewId ,int Type) {
         viewpager.setCurrentItem(checkIndex);
         rgBottom.check(viewId);
+        if(checkIndex==2){
+            ((FarmMachineryFragment)mPresenter.fragments.get(2)).setCheckedTab(Type);
+        }
     }
 
 
