@@ -28,7 +28,7 @@ import mlxy.utils.T;
  * MVPPlugin
  * 邮箱 784787081@qq.com
  */
-@Route(path = "/main/joborderdetial")
+@Route(path = "/driver/joborderdetial")
 public class JobOrderDetialActivity extends MVPBaseActivity<JobOrderDetialContract.View, JobOrderDetialPresenter> implements JobOrderDetialContract.View {
 
     private TextView tvCancel;
