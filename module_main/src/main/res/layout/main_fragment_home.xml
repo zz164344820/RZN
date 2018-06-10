@@ -197,6 +197,7 @@
                     android:id="@+id/iv_zixun"
                     android:layout_width="250px"
                     android:layout_height="220px"
+                    android:scaleType="centerCrop"
                     android:background="@drawable/iv_zxun"
                     />
 
@@ -288,6 +289,7 @@
                     android:id="@+id/tv_wenzhang"
                     android:layout_width="250px"
                     android:layout_height="220px"
+                    android:scaleType="centerCrop"
                     android:background="@drawable/iv_wenzhang"
                     />
 
