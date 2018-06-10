@@ -60,7 +60,4 @@ public class RZNApplication extends LibApplication {
         MultiDex.install(this);
     }
 
-
-
-
 }

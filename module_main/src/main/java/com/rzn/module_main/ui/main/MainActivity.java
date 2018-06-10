@@ -1,6 +1,7 @@
 package com.rzn.module_main.ui.main;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
@@ -49,35 +50,46 @@ public class MainActivity extends MVPBaseActivity<MainContract.View, MainPresent
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_act_main);
-        getJPush();
+        String value = getIntent().getStringExtra("value");
+        if(!TextUtils.isEmpty(value)){
+            getJPush(value);
+        }
         ButterKnife.bind(this);
         mPresenter.onCreate();
         AddressUtils.CreateDBData(this, "address.json");
     }
 
-    private void getJPush() {
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        String value = intent.getStringExtra("value");
+        if(!TextUtils.isEmpty(value)){
+            getJPush(value);
+        }
+    }
+
+    private void getJPush(String value) {
         LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
         if (loginResponseBean == null || TextUtils.isEmpty(loginResponseBean.getUserId())) {
             return;
         }
-        String value = getIntent().getStringExtra("value");
-        if ("1".equals(value)) {
+        //1: 预约  2：取消  3：认证   4：抢单
+        if ("3".equals(value)) {
             //  认证提醒 跳转技手认证
             ARouter.getInstance().build("/driver/makesure").navigation();//审核中界面
-        } else if ("2".equals(value)) {
+        } else if ("4".equals(value)) {
 //            接单提醒（接单，农户发布的作业有人接单了，跳转到具体页面）
             //作业订单详情/main/joborderdetial"
-
             // TODO: 2018/6/8  JobOrderDetialActivity这个类需要得参数  flag = getIntent().getStringExtra("flag");  farmerTaskId = getIntent().getStringExtra("farmerTaskId");
-            ARouter.getInstance().build("/main/joborderdetial").navigation();//审核中界面   todo 需要参数，需要通知传递过来
-        } else if ("3".equals(value)) {
+            ARouter.getInstance().build("/driver/joborderdetial").navigation();//审核中界面   todo 需要参数，需要通知传递过来
+        } else if ("1".equals(value)) {
 //            预约提醒（预约，有农户预约技手，跳转到具体页面）
             // TODO: 2018/6/8  JobOrderDetialActivity这个类需要得参数  flag = getIntent().getStringExtra("flag");  farmerTaskId = getIntent().getStringExtra("farmerTaskId");
-            ARouter.getInstance().build("/main/joborderdetial").navigation();//审核中界面    todo 需要参数，需要通知传递过来
-        } else if ("4".equals(value)) {
+            ARouter.getInstance().build("/driver/joborderdetial").navigation();//审核中界面    todo 需要参数，需要通知传递过来
+        } else if ("2".equals(value)) {
 //            预约提醒（预约，取消提醒，跳转到具体页面）
             // TODO: 2018/6/8  JobOrderDetialActivity这个类需要得参数  flag = getIntent().getStringExtra("flag");  farmerTaskId = getIntent().getStringExtra("farmerTaskId");
-            ARouter.getInstance().build("/main/joborderdetial").navigation();//审核中界面    todo 需要参数，需要通知传递过来
+            ARouter.getInstance().build("/driver/joborderdetial").navigation();//审核中界面    todo 需要参数，需要通知传递过来
         }
     }
 

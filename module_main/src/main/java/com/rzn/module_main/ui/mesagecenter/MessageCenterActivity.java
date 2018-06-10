@@ -103,6 +103,7 @@ public class MessageCenterActivity extends MVPBaseActivity<MesageCenterContract.
 
     @Override
     public void setData(List<MessageInfo> list) {
+        MessageInfoList.clear();
         MessageInfoList.addAll(list);
         adapter.notifyDataSetChanged();
         LoadMoreUtils.recycleViewRestore(swipeToLoadLayout);
@@ -110,6 +111,7 @@ public class MessageCenterActivity extends MVPBaseActivity<MesageCenterContract.
 
     @Override
     public void onLoadMore() {
-        mPresenter.getMessageList();
+        LoadMoreUtils.recycleViewRestore(swipeToLoadLayout);
+       // mPresenter.getMessageList();
     }
 }
