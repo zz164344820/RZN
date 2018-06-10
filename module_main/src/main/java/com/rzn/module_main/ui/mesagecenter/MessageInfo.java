@@ -5,7 +5,7 @@ package com.rzn.module_main.ui.mesagecenter;
  */
 
 public class MessageInfo {
-    private String isread;
+    private String isRead;
     private String msgContent;
     private String msgType;
     private String msgTitle;
@@ -15,11 +15,11 @@ public class MessageInfo {
 
 
     public String getIsread() {
-        return isread;
+        return isRead;
     }
 
     public void setIsread(String isread) {
-        this.isread = isread;
+        this.isRead = isread;
     }
 
     public String getMsgContent() {
