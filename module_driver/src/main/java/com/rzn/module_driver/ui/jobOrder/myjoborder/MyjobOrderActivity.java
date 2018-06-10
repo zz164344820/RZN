@@ -61,11 +61,32 @@ public class MyjobOrderActivity extends MVPBaseActivity<MyjobOrderContract.View,
 
         //初始化布局
         initViews();
+        //初始化数据
+        initData();
         //初始化fragment
 //        initFragment();
         initListener();
 
 
+    }
+
+    private void initData() {
+       String type= getIntent().getStringExtra("type");
+       if ("1".equals(type)){
+           flag = "driver";
+           tvFinish.setText("已完成");
+           viewOne.setVisibility(View.VISIBLE);
+           viewTwo.setVisibility(View.GONE);
+           viewThree.setVisibility(View.GONE);
+           tvAll.setTextColor(Color.parseColor("#fb9300"));
+           tvFinish.setTextColor(Color.parseColor("#333333"));
+           tvWork.setTextColor(Color.parseColor("#333333"));
+//                switchContentFragment(allOrderFragment);
+           transaction = manager.beginTransaction();
+
+           transaction.replace(R.id.rl_content, new AllOrderFragment());
+           transaction.commit();
+       }
     }
 
 

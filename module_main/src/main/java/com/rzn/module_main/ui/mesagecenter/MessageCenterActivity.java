@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -26,7 +27,7 @@ import butterknife.ButterKnife;
  * 邮箱 784787081@qq.com
  */
 
-public class MessageCenterActivity extends MVPBaseActivity<MesageCenterContract.View, MesageCenterPresenter> implements MesageCenterContract.View,OnLoadMoreListener{
+public class MessageCenterActivity extends MVPBaseActivity<MesageCenterContract.View, MesageCenterPresenter> implements MesageCenterContract.View, OnLoadMoreListener {
 
 
     @BindView(R2.id.swipe_target)
@@ -34,8 +35,9 @@ public class MessageCenterActivity extends MVPBaseActivity<MesageCenterContract.
     @BindView(R2.id.swipeToLoadLayout)
     SwipeToLoadLayout swipeToLoadLayout;
 
-    List<MessageInfo> MessageInfoList  = new ArrayList<>();
+    List<MessageInfo> MessageInfoList = new ArrayList<>();
     MessageAdapter adapter;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,28 +58,32 @@ public class MessageCenterActivity extends MVPBaseActivity<MesageCenterContract.
         setTitle("消息中心");
         swipeToLoadLayout.setRefreshEnabled(false);
         swipeTarget.setLayoutManager(new LinearLayoutManager(this));
-        adapter=   new MessageAdapter(this,MessageInfoList);
+        adapter = new MessageAdapter(this, MessageInfoList);
         swipeTarget.setAdapter(adapter);
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 //1: 预约  2：取消  3：认证   4：抢单
-                if("0".equals(MessageInfoList.get(position).getIsread())){
+                if ("0".equals(MessageInfoList.get(position).getIsread())) {
                     mPresenter.setRead(MessageInfoList.get(position).getUserMsgId());
                 }
                 String type = MessageInfoList.get(position).getMsgType();
-                if("1".equals(type)){
+                if ("1".equals(type)) {
                     //预约
-                }else if("2".equals(type)){
+                    ARouter.getInstance().build("/driver/myjobdetial").withString("type", "1").navigation();
+                } else if ("2".equals(type)) {
                     //取消
-                }else if("3".equals(type)){
+                    ARouter.getInstance().build("/driver/myjobdetial").navigation();
+                } else if ("3".equals(type)) {
                     //认证
-                }else if("4".equals(type)){
+                    ARouter.getInstance().build("/driver/makesure").navigation();//审核中界面
+                } else if ("4".equals(type)) {
                     //抢单
+                    ARouter.getInstance().build("/driver/myjobdetial").navigation();
                 }
 
 
-               //todo 根据角标 判断具体跳转页面
+                //todo 根据角标 判断具体跳转页面
 //                1、接单提醒（“您发布的作业需求有人接单啦！”）
 //                2、预约提醒（“有人请你作业，快去看看吧！”）
 //                3、订单取消提醒（“预约2017-11-02作业的‘水稻-联合整地’订单已取消”）
@@ -93,7 +99,6 @@ public class MessageCenterActivity extends MVPBaseActivity<MesageCenterContract.
         });
 
     }
-
 
 
     @Override

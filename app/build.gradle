@@ -82,7 +82,7 @@ dependencies {
     }
 
     /*特色的加载动画*/
-    annotationProcessor 'com.alibaba:arouter-compiler:1.1.4'
+//    annotationProcessor 'com.alibaba:arouter-compiler:1.1.4'
     if (!isModule.toBoolean()) {
         compile project(':module_main')
         compile project(':module_driver')
