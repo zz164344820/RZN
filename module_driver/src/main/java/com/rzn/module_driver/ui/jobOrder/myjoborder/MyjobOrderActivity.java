@@ -99,7 +99,8 @@ public class MyjobOrderActivity extends MVPBaseActivity<MyjobOrderContract.View,
 
         tvFinish.setText("待接单");
         String type = getIntent().getStringExtra("type");
-
+        manager = getSupportFragmentManager();
+        transaction = manager.beginTransaction();
 
         if ("1".equals(type)) {
             flag = "driver";
@@ -110,22 +111,13 @@ public class MyjobOrderActivity extends MVPBaseActivity<MyjobOrderContract.View,
             tvAll.setTextColor(Color.parseColor("#fb9300"));
             tvFinish.setTextColor(Color.parseColor("#333333"));
             tvWork.setTextColor(Color.parseColor("#333333"));
-//                switchContentFragment(allOrderFragment);
-            transaction = manager.beginTransaction();
 
             transaction.replace(R.id.rl_content, new AllOrderFragment());
             transaction.commit();
         }else{
-            manager = getSupportFragmentManager();
-            transaction = manager.beginTransaction();
             transaction.add(R.id.rl_content, new AllOrderFragment());
             transaction.commit();
         }
-
-
-
-
-
     }
 
     private void initListener() {
