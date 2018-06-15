@@ -134,6 +134,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/tv_look"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="28px"
@@ -184,6 +185,7 @@
 
 
             <com.zhy.autolayout.AutoLinearLayout
+                android:id="@+id/al_item_one"
                 android:layout_width="match_parent"
                 android:layout_height="280px"
                 android:paddingLeft="20px"
@@ -276,6 +278,7 @@
 
 
             <com.zhy.autolayout.AutoLinearLayout
+                android:id="@+id/al_item_two"
                 android:layout_width="match_parent"
                 android:layout_height="280px"
                 android:paddingLeft="20px"

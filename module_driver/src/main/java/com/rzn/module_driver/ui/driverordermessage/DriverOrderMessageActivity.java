@@ -70,6 +70,7 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
     private int num;
     private TextView tvOne;
     private TextView tvTwo;
+    private List<PlaceBean> areaslist;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -104,12 +105,21 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
             @Override
             public void onClick(View view) {
                 Map<String, String> map = new HashMap<>();
-                if (province == null || city == null || county == null) {
-                    ToastUtils.showShort("作业地址不能为空");
-                    return;
+                if (!cbWorkAres.isChecked()) {
+                    if (province == null || city == null || county == null) {
+                        ToastUtils.showShort("作业地址不能为空");
+                        return;
+                    }
                 }
-                List<PlaceBean> list = setPlaceList();
-                map.put("taskPlaceDetail", GsonParseUtils.GsonString(list));
+                if (cbWorkAres.isChecked()){
+                    areaslist = null;
+                    map.put("taskPlaceDetail", "");
+                }else {
+                   areaslist = setPlaceList();
+                    map.put("taskPlaceDetail", GsonParseUtils.GsonString(areaslist));
+                }
+
+
                 LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
                 map.put("handlerId", loginResponseBean.getHandlerId());//机手id
                 // map.put("handlerInfoId", "");//机手id详情
@@ -124,7 +134,7 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
                     ToastUtils.showShort("请选择作业类型");
                     return;
                 }
-                if(!cbWorkTime.isChecked()){
+                if (!cbWorkTime.isChecked()) {
                     if (TextUtils.isEmpty(tvTimeStart.getText().toString()) || TextUtils.isEmpty(tvTimeEnd.getText().toString())) {
                         ToastUtils.showShort("作业开始时间或结束时间不能为空");
                         return;

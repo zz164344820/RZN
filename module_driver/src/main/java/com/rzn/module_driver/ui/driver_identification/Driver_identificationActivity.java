@@ -346,7 +346,7 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
      * 初始化布局
      */
     private void initViews() {
-        setTitle("手机认证");
+        setTitle("机手认证");
         //姓名
         etName = (EditText) findViewById(R.id.et_name);
         //身份证号码

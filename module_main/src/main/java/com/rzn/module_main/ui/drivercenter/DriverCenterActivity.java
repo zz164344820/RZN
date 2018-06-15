@@ -187,7 +187,7 @@ public class DriverCenterActivity extends MVPBaseActivity<DriverCenterContract.V
 
         } else if ("1".equals(driverBean.getStatus())) {//审核中
             tvWei.setVisibility(View.VISIBLE);
-            tvWei.setText("手机认证审核中");
+            tvWei.setText("机手认证审核中");
             tvWei.setBackgroundResource(R.drawable.driver_shape_background);
         } else if ("2".equals(driverBean.getStatus())) {//审核拒绝
             tvWei.setVisibility(View.VISIBLE);

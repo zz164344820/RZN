@@ -45,7 +45,7 @@ public class AllOrderFragment extends MVPBaseFragment<AllOrderContract.View, All
         rootView = inflater.inflate(R.layout.fragment_all_order, container, false);
         mPresenter.onCreate();
         initViews();
-        initData();
+
 
         return rootView;
     }
@@ -118,6 +118,7 @@ public class AllOrderFragment extends MVPBaseFragment<AllOrderContract.View, All
     @Override
     public void onResume() {
         super.onResume();
+        initData();
 //        Log.d("fragment", "zhoule-------------------------------------");
     }
 
@@ -128,6 +129,7 @@ public class AllOrderFragment extends MVPBaseFragment<AllOrderContract.View, All
 
     @Override
     public void getListSuccess(List<MyWorkDetialBean> list) {
+        mylist.clear();
         mylist.addAll(list);
         allOrderAdapter.notifyDataSetChanged();
 

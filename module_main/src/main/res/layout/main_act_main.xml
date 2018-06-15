@@ -42,7 +42,7 @@
             android:id="@+id/rb_nongjitong"
             style="@style/main_bottom_select"
             android:drawableTop="@drawable/select_main_bottom_nongjitong"
-            android:text="农技通" />
+            android:text="农机通" />
 
         <RadioButton
             android:id="@+id/rb_mine"

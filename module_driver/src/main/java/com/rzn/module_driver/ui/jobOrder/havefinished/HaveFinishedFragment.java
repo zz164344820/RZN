@@ -42,7 +42,7 @@ public class HaveFinishedFragment extends MVPBaseFragment<HaveFinishedContract.V
         rootView = inflater.inflate(R.layout.fragment_all_order, container, false);
         mPresenter.onCreate();
         initViews();
-        initData();
+
 
         return rootView;
     }
@@ -103,12 +103,14 @@ public class HaveFinishedFragment extends MVPBaseFragment<HaveFinishedContract.V
     @Override
     public void onResume() {
         super.onResume();
+        initData();
 //        initData();
 //        Log.d("fragment", "zhoule-------------------------------------");
     }
 
     @Override
     public void getListSuccess(List<MyWorkDetialBean> list) {
+        mylist.clear();
         mylist.addAll(list);
         allOrderAdapter.notifyDataSetChanged();
     }

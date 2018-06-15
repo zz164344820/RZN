@@ -43,7 +43,7 @@ public class Await_jobFragment extends MVPBaseFragment<Await_jobContract.View, A
         rootView = inflater.inflate(R.layout.fragment_all_order, container, false);
         mPresenter.onCreate();
         initViews();
-        initData();
+
 
         return rootView;
 
@@ -106,12 +106,14 @@ public class Await_jobFragment extends MVPBaseFragment<Await_jobContract.View, A
     @Override
     public void onResume() {
         super.onResume();
+        initData();
 //        initData();
 //        Log.d("fragment", "zhoule-------------------------------------");
     }
 
     @Override
     public void getListSuccess(List<MyWorkDetialBean> list) {
+        mylist.clear();
         mylist.addAll(list);
         allOrderAdapter.notifyDataSetChanged();
     }
