@@ -50,16 +50,16 @@ public class ShoppingFragment extends MVPBaseFragment<ShoppingContract.View, Sho
 
     private void initViews() {
 
-        swipeTarget = (RecyclerView) rootView.findViewById(R.id.swipe_target);
-        swipeTarget.setLayoutManager(new LinearLayoutManager(getActivity()));
-        List<String> s = new ArrayList<>();
-        s.add("1");
-        s.add("1");
-        s.add("1");
-        s.add("1");
-        s.add("1");
-        ShoppingAdapter shoppingAdapter = new ShoppingAdapter(R.layout.item_shop, s);
-        swipeTarget.setAdapter(shoppingAdapter);
+//        swipeTarget = (RecyclerView) rootView.findViewById(R.id.swipe_target);
+//        swipeTarget.setLayoutManager(new LinearLayoutManager(getActivity()));
+//        List<String> s = new ArrayList<>();
+//        s.add("1");
+//        s.add("1");
+//        s.add("1");
+//        s.add("1");
+//        s.add("1");
+//        ShoppingAdapter shoppingAdapter = new ShoppingAdapter(R.layout.item_shop, s);
+//        swipeTarget.setAdapter(shoppingAdapter);
 
     }
 

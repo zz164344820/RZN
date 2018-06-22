@@ -157,8 +157,14 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
         tvLook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //消息中心節目
-                startActivity(new Intent(getActivity(), MessageCenterActivity.class));
+                // TODO: 2018/6/22
+                if (loginResponseBean == null || TextUtils.isEmpty(loginResponseBean.getUserId())) {
+                    startActivity(new Intent(getActivity(), LoginActivity.class));
+                } else {
+                    //消息中心節目
+                    startActivity(new Intent(getActivity(), MessageCenterActivity.class));                }
+
+
             }
         });
 

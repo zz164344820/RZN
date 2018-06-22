@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="88px"
-            android:text="农业商城"
+            android:text="农资商城"
             android:gravity="center"
             android:textSize="20sp"
             android:textColor="@color/white"
@@ -33,118 +33,123 @@
             android:src="@drawable/main_xiaoxi" />
 
     </com.zhy.autolayout.AutoRelativeLayout>
-
-
-
-    <com.zhy.autolayout.AutoLinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="100px"
-        android:background="@color/main_color"
-        android:gravity="center_vertical"
-        android:paddingLeft="30px"
-        android:paddingRight="30px">
-
-        <com.zhy.autolayout.AutoLinearLayout
-            android:layout_width="0dp"
-            android:layout_height="60px"
-            android:layout_marginLeft="30px"
-            android:layout_weight="1"
-            android:background="@drawable/main_white_30"
-            android:gravity="center_vertical"
-            android:layout_gravity="center"
-            >
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/main_search"
-                android:drawablePadding="14px"
-                android:paddingLeft="30px"
-                android:text="请输入商家名称，地址"
-                android:textColor="@color/text_888"
-                android:textSize="28px" />
-
-
-        </com.zhy.autolayout.AutoLinearLayout>
-
-
-    </com.zhy.autolayout.AutoLinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp"
-        android:background="#ffffff"
-        android:layout_marginBottom="10dp"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:gravity="center_horizontal"
-            >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="价格"
-                android:textColor="#333333"
-                android:textSize="18dp" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/gray_filtrate"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="4dp"
-                />
-
-        </LinearLayout>
-
-
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="#dddddd"
-            />
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:gravity="center_horizontal"
-            >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="最新上架"
-                android:textColor="#333333"
-                android:textSize="18dp" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/gray_filtrate"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="4dp"
-                />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/swipe_target"
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:overScrollMode="never"
-        android:paddingBottom="80dp" />
+        android:background="@drawable/iv_mainonghu"
+        />
+
+
+
+    <!--<com.zhy.autolayout.AutoLinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="100px"-->
+        <!--android:background="@color/main_color"-->
+        <!--android:gravity="center_vertical"-->
+        <!--android:paddingLeft="30px"-->
+        <!--android:paddingRight="30px">-->
+
+        <!--<com.zhy.autolayout.AutoLinearLayout-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="60px"-->
+            <!--android:layout_marginLeft="30px"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@drawable/main_white_30"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:layout_gravity="center"-->
+            <!--&gt;-->
+
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:drawableLeft="@drawable/main_search"-->
+                <!--android:drawablePadding="14px"-->
+                <!--android:paddingLeft="30px"-->
+                <!--android:text="请输入商家名称，地址"-->
+                <!--android:textColor="@color/text_888"-->
+                <!--android:textSize="28px" />-->
+
+
+        <!--</com.zhy.autolayout.AutoLinearLayout>-->
+
+
+    <!--</com.zhy.autolayout.AutoLinearLayout>-->
+
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:background="#ffffff"-->
+        <!--android:layout_marginBottom="10dp"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:gravity="center_horizontal"-->
+            <!--&gt;-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:gravity="center"-->
+                <!--android:text="价格"-->
+                <!--android:textColor="#333333"-->
+                <!--android:textSize="18dp" />-->
+
+            <!--<ImageView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:src="@drawable/gray_filtrate"-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--android:layout_marginLeft="4dp"-->
+                <!--/>-->
+
+        <!--</LinearLayout>-->
+
+
+        <!--<View-->
+            <!--android:layout_width="1dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="#dddddd"-->
+            <!--/>-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:gravity="center_horizontal"-->
+            <!--&gt;-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:gravity="center"-->
+                <!--android:text="最新上架"-->
+                <!--android:textColor="#333333"-->
+                <!--android:textSize="18dp" />-->
+
+            <!--<ImageView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:src="@drawable/gray_filtrate"-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--android:layout_marginLeft="4dp"-->
+                <!--/>-->
+
+        <!--</LinearLayout>-->
+
+    <!--</LinearLayout>-->
+
+    <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:id="@+id/swipe_target"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:clipToPadding="false"-->
+        <!--android:overScrollMode="never"-->
+        <!--android:paddingBottom="80dp" />-->
 </com.zhy.autolayout.AutoLinearLayout>
