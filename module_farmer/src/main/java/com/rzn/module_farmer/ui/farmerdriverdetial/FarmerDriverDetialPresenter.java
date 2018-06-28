@@ -41,7 +41,7 @@ public class FarmerDriverDetialPresenter extends BasePresenterImpl<FarmerDriverD
         Map<String, String> map = new HashMap<>();
         map.put("handlerId", handlerId);
         this.handlerId =handlerId;
-        reqData(mContext, "farmHand/handler/queryhandlerInfo", map, 222);
+        reqData(mContext, "/handler/queryhandlerInfo", map, 222);//farmHand/
     }
 
     @Override
@@ -49,7 +49,7 @@ public class FarmerDriverDetialPresenter extends BasePresenterImpl<FarmerDriverD
         Map<String ,String >  map = new HashMap<>();
         LoginResponseBean  bean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
         map.put("userId",bean.getUserId());
-        reqData(mContext, "farmHand/farmerTask/existTask",map,123);
+        reqData(mContext, "/farmerTask/existTask",map,123);//farmHand/
     }
 
 

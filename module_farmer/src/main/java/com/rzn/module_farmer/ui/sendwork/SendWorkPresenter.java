@@ -34,7 +34,7 @@ public class SendWorkPresenter extends BasePresenterImpl<SendWorkContract.View> 
     @Override
     public void httpGetWorkType() {
         mView.showLoading(false,"");
-        reqData(mContext, "farmHand/farmerTask/queryKind", null, 222);
+        reqData(mContext, "/farmerTask/queryKind", null, 222);//farmHand/
     }
 
     @Override
@@ -67,7 +67,7 @@ public class SendWorkPresenter extends BasePresenterImpl<SendWorkContract.View> 
         map.put("cityCode", city.getId()+"");
         map.put("areaName", county.getName());
         map.put("areaCode", county.getId()+"");
-        reqData(mContext, "farmHand/farmerTask/updateSaveTaskToF", map, 111);
+        reqData(mContext, "/farmerTask/updateSaveTaskToF", map, 111);//farmHand/
     }
 
     @Override

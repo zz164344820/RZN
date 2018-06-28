@@ -35,7 +35,7 @@ public class SendWorkSuccessPresenter extends BasePresenterImpl<SendWorkSuccessC
         mView.showLoading(false,"");
         Map<String,String> map = new HashMap<>();
         map.put("farmerTaskId",farmerTaskId);
-        reqData(mContext,"farmHand/farmerTask/recommendHandler",map,145);
+        reqData(mContext,"/farmerTask/recommendHandler",map,145);//farmHand/
 
     }
 

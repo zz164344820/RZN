@@ -21,7 +21,7 @@ public class DriverCenterPresenter extends BasePresenterImpl<DriverCenterContrac
 
     @Override
     public void getDriverData(Map<String, String> map) {
-        reqData(mContext, "farmHand/handler/queryHandlerCentre", map, 111);
+        reqData(mContext, "/handler/queryHandlerCentre", map, 111);//farmHand/
     }
 
     @Override

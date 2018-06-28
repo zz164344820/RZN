@@ -24,7 +24,7 @@ public class FarmerWorkDetialPresenter extends BasePresenterImpl<FarmerWorkDetia
     public void httpLoadData(String farmerTaskId) {
         Map<String, String> map = new HashMap<>();
         map.put("farmerTaskId", farmerTaskId);
-        reqData(mContext, "farmHand/farmerTask/farmerTaskInfo", map, 111);
+        reqData(mContext, "/farmerTask/farmerTaskInfo", map, 111);//farmHand/
 
     }
 

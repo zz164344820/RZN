@@ -24,7 +24,7 @@ public class HomePresenter extends BasePresenterImpl<HomeContract.View> implemen
     public void getMessage(Map<String, String> map) {
 //        Map<String ,String> map = new HashMap<>();
 //        map.put("userId",loginResponseBean.getUserId());
-        reqData(mContext, "farmHand/user/queryUserMsg", map, 123);
+        reqData(mContext, "/user/queryUserMsg", map, 123);//farmHand/
     }
 
 

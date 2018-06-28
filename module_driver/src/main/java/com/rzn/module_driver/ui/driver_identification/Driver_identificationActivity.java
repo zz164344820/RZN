@@ -478,7 +478,7 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
 
         OkHttpUtils.post()//
                 .addFile("file", file.getName(), file)//
-                .url(OkHttpLoader.BASEURL + "farmHand/handler/upFile")
+                .url(OkHttpLoader.BASEURL + "/handler/upFile")//farmHand/  todo
                 .params(bodyMap)//
                 .build()//
                 .execute(new GenericsCallback<ResponseBean>(new JsonGenericsSerializator()) {

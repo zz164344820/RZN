@@ -31,14 +31,14 @@ public class MesageCenterPresenter extends BasePresenterImpl<MesageCenterContrac
         LoginResponseBean  loginResponseBean= (LoginResponseBean) FileSaveUtils.readObject("loginBean");
         Map<String ,String> map = new HashMap<>();
         map.put("userId",loginResponseBean.getUserId());
-        reqData(mContext,"farmHand/user/queryUserMsg",map,123);
+        reqData(mContext,"/user/queryUserMsg",map,123);//farmHand/
     }
 
     @Override
     public void setRead(String msgId) {
         Map<String ,String> map = new HashMap<>();
         map.put("userMsgId",msgId);
-        reqData(mContext,"farmHand/user/updateUserMsgRead",map,133);
+        reqData(mContext,"/user/updateUserMsgRead",map,133);//farmHand/
     }
 
     @Override

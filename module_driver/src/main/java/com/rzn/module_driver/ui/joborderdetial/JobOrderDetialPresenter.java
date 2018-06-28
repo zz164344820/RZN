@@ -32,7 +32,7 @@ public class JobOrderDetialPresenter extends BasePresenterImpl<JobOrderDetialCon
         mView.showLoading(false, "");
         Map<String, String> map = new HashMap<>();
         map.put("farmerTaskId", farmerTaskId);
-        reqData(mContext, "farmHand/handler/taskInfo", map, 111);
+        reqData(mContext, "/handler/taskInfo", map, 111);//farmHand/
     }
 
     @Override
@@ -40,23 +40,23 @@ public class JobOrderDetialPresenter extends BasePresenterImpl<JobOrderDetialCon
         mView.showLoading(false, "");
         Map<String, String> map = new HashMap<>();
         map.put("farmerTaskId", farmerTaskId);
-        reqData(mContext, "farmHand/farmerTask/farmerTaskInfo", map, 222);
+        reqData(mContext, "/farmerTask/farmerTaskInfo", map, 222);//farmHand/
     }
 
     @Override
     public void cancelPost(Map<String, String> map) {
-        reqData(mContext, "farmHand/farmerTask/cancelTask", map, 567);
+        reqData(mContext, "/farmerTask/cancelTask", map, 567);//farmHand/
     }
 
     @Override
     public void finishWork(Map<String, String> map) {
 
-        reqData(mContext, "farmHand/handler/finishTask", map, 218);
+        reqData(mContext, "/handler/finishTask", map, 218);//farmHand/
     }
 
     @Override
     public void deletePost(Map<String, String> map) {
-        reqData(mContext, "farmHand/farmerTask/deleteTask", map, 518);
+        reqData(mContext, "/farmerTask/deleteTask", map, 518);//farmHand/
     }
 
     @Override

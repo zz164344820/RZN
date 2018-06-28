@@ -27,7 +27,7 @@ public class SelectAddressPresenter extends BasePresenterImpl<SelectAddressContr
         LoginResponseBean responseBean= (LoginResponseBean) FileSaveUtils.readObject("loginBean");
         map.put("userId",responseBean.getUserId());
         map.put("status","1");
-        reqData(mContext,"farmHand/farmerTask/farmerTaskList",map,111);
+        reqData(mContext,"/farmerTask/farmerTaskList",map,111);//farmHand/
     }
 
 
@@ -37,6 +37,6 @@ public class SelectAddressPresenter extends BasePresenterImpl<SelectAddressContr
         Map<String,String> map = new HashMap<>();
         map.put("farmerTaskId",farmerTaskId);
         map.put("handlerId",handlerId);
-        reqData(mContext,"farmHand/farmerTask/confirmAppoint",map,222);
+        reqData(mContext,"/farmerTask/confirmAppoint",map,222);//farmHand/
     }
 }

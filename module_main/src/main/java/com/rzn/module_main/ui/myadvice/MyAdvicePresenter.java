@@ -22,7 +22,7 @@ public class MyAdvicePresenter extends BasePresenterImpl<MyAdviceContract.View> 
     @Override
     public void commitInfo(String feedback, String contactWay) {
         Map<String,String> map = new HashMap<>();
-        reqData(mContext,"Test/index",map,111);
+//        reqData(mContext,"Test/index",map,111);
     }
 
     @Override

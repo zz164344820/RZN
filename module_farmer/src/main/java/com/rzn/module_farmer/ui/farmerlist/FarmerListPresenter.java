@@ -35,13 +35,13 @@ public class FarmerListPresenter extends BasePresenterImpl<FarmerListContract.Vi
         map.put("areaCode",areaCode);
         map.put("kindTypeId",kindTypeId);
         mView.showLoading(false,"");
-        reqData(mContext, "farmHand/farmerTask/handlerList", map, 111);
+        reqData(mContext, "/farmerTask/handlerList", map, 111);//farmHand/
     }
 
     @Override
     public void httpGetWorkType() {
         mView.showLoading(false,"");
-        reqData(mContext, "farmHand/farmerTask/queryKind", null, 222);
+        reqData(mContext, "/farmerTask/queryKind", null, 222);//farmHand/
     }
 
     @Override

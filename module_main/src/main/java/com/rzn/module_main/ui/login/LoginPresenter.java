@@ -35,7 +35,7 @@ public class LoginPresenter extends BasePresenterImpl<LoginContract.View> implem
         Map<String, String> map = new HashMap<>();
         map.put("code", code);
         map.put("phone", phone);
-        reqData(mContext, "farmHand/user/userRegister", map, 111);
+        reqData(mContext, "/user/userRegister", map, 111);//farmHand/
     }
 
     @Override
@@ -43,7 +43,7 @@ public class LoginPresenter extends BasePresenterImpl<LoginContract.View> implem
         mView.showLoading(false, "");
         Map<String, String> map = new HashMap<>();
         map.put("phone", phone);
-        reqData(mContext, "farmHand/user/getCode", map, 112);
+        reqData(mContext, "/user/getCode", map, 112);//farmHand/
     }
 
 

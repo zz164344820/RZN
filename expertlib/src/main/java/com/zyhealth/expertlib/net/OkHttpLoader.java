@@ -28,13 +28,13 @@ import okhttp3.MediaType;
  */
 public class OkHttpLoader {
     public static Gson gson = new Gson();
-    public static String BASEURL = "http://1724l9l212.iask.in/";//服务器的入口
+    public static String BASEURL = "http://47.98.62.7";//"http://www.rzn458.com";//"http://1724l9l212.iask.in/";//服务器的入口
 
     public static void changServer() {
         if ("production".equals(Constants.SERVER)) {
-            BASEURL = "http://1724l9l212.iask.in/";
+            BASEURL = "http://47.98.62.7";//"http://www.rzn458.com";//"http://1724l9l212.iask.in/";
         } else if ("develop".equals(Constants.SERVER)) {
-            BASEURL = "http://1724l9l212.iask.in/";
+            BASEURL = "http://47.98.62.7";// "http://www.rzn458.com";//"http://1724l9l212.iask.in/";
         }
     }
 
@@ -91,13 +91,13 @@ public class OkHttpLoader {
 */
 
         OkHttpUtils.post()//
-                .url(BASEURL + api )
+                .url(BASEURL + api)
                 .params(obj)//
                 .build()//
                 .execute(new GenericsCallback<ResponseBean>(new JsonGenericsSerializator()) {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-                        MLog.e("http", "请求的地址：" + BASEURL + api );
+                        MLog.e("http", "请求的地址：" + BASEURL + api);
                         MLog.e("http", "上传的参数：" + gson.toJson(obj));
                         MLog.e("http", "错误信息：" + e.getMessage());
                         requestListener.onFailure(e.getMessage());
@@ -105,7 +105,7 @@ public class OkHttpLoader {
 
                     @Override
                     public void onResponse(ResponseBean response, int id) {
-                        MLog.e("http", "请求的地址：" + BASEURL + api );
+                        MLog.e("http", "请求的地址：" + BASEURL + api);
                         MLog.e("http", "上传的参数：" + gson.toJson(obj));
                         MLog.e("http", "返回参数：" + gson.toJson(response));
                         requestListener.onSuccess(response);
@@ -114,25 +114,21 @@ public class OkHttpLoader {
     }
 
 
-
-
-
-
-    public static void downloade(String url ,String filePath,String fileName){
+    public static void downloade(String url, String filePath, String fileName) {
         OkHttpUtils//
                 .get()//
                 .url(url)//
                 .build()//
-                .execute(new FileCallBack(filePath,fileName)//
+                .execute(new FileCallBack(filePath, fileName)//
                 {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-                        MLog.e( "onError :" + e.getMessage());
+                        MLog.e("onError :" + e.getMessage());
                     }
 
                     @Override
                     public void onResponse(File response, int id) {
-                        MLog.e( "onResponse :" + response.getAbsolutePath());
+                        MLog.e("onResponse :" + response.getAbsolutePath());
                     }
                 });
     }

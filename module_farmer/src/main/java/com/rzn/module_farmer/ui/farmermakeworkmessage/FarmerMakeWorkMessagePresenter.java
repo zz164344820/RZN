@@ -24,7 +24,7 @@ public class FarmerMakeWorkMessagePresenter extends BasePresenterImpl<FarmerMake
         Map<String, String> map = new HashMap<>();
         map.put("farmerTaskId", farmerTaskId);
         map.put("handlerId", handlerId);
-        reqData(mContext, "farmHand/farmerTask/confirmAppoint", map, 111);
+        reqData(mContext, "/farmerTask/confirmAppoint", map, 111);//farmHand/
     }
 
 

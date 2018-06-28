@@ -42,7 +42,7 @@ public class Driver_identificationPresenter extends BasePresenterImpl<Driver_ide
     @Override
     public void getJobTypes() {
         mView.showLoading(false, "");
-        reqData(mContext, "farmHand/farmerTask/queryKind", null, 124);
+        reqData(mContext, "/farmerTask/queryKind", null, 124);//farmHand/
 
     }
 
@@ -61,7 +61,7 @@ public class Driver_identificationPresenter extends BasePresenterImpl<Driver_ide
             }
             OkHttpUtils.post()//
                     .addFile("file", files.get(i).getName(), files.get(i))//
-                    .url(OkHttpLoader.BASEURL + "farmHand/handler/upFile")
+                    .url(OkHttpLoader.BASEURL + "/handler/upFile")//farmHand/      todo
                     .params(bodyMap)//
                     .headers(headMap)//
                     .build()//
@@ -84,12 +84,12 @@ public class Driver_identificationPresenter extends BasePresenterImpl<Driver_ide
     @Override
     public void pushDriverMessage(final Map<String, String> map) {
         mView.showLoading(false, "");
-        reqData(mContext, "farmHand/handler/updateSaveHandler", map, 111);
+        reqData(mContext, "/handler/updateSaveHandler", map, 111);//farmHand/
     }
 
     @Override
     public void getDriverMessage(Map<String, String> map) {
-        reqData(mContext, "farmHand/handler/queryHandler", map, 218);
+        reqData(mContext, "/handler/queryHandler", map, 218);//farmHand/
     }
 
     @Override

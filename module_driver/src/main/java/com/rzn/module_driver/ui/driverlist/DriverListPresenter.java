@@ -49,7 +49,7 @@ public class DriverListPresenter extends BasePresenterImpl<DriverListContract.Vi
         if(!TextUtils.isEmpty(loginResponseBean.getHandlerId())){
             map.put("handlerId",loginResponseBean.getHandlerId());
             map.put("isJoin",type);
-            reqData(mContext, "farmHand/handler/stopJoinToHandler", map, 665);
+            reqData(mContext, "/handler/stopJoinToHandler", map, 665);//farmHand/
         }
 
     }
@@ -57,7 +57,7 @@ public class DriverListPresenter extends BasePresenterImpl<DriverListContract.Vi
     @Override
     public void httpGetWorkType() {
         mView.showLoading(false,"");
-        reqData(mContext, "farmHand/farmerTask/queryKind", null, 222);
+        reqData(mContext, "/farmerTask/queryKind", null, 222);//farmHand/
     }
 
     @Override
@@ -66,7 +66,7 @@ public class DriverListPresenter extends BasePresenterImpl<DriverListContract.Vi
         if(!TextUtils.isEmpty(loginResponseBean.getHandlerId())){
            mView.showLoading(false,"");
            map.put("handlerId",loginResponseBean.getHandlerId());
-           reqData(mContext,"farmHand/handler/recommendFarmerTask",map,122);
+           reqData(mContext,"/handler/recommendFarmerTask",map,122);//farmHand/
       }
     }
 
@@ -94,7 +94,7 @@ public class DriverListPresenter extends BasePresenterImpl<DriverListContract.Vi
                 LoginResponseBean  bean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
                 map.put("handlerId",bean.getHandlerId());
                 map.put("farmerTaskId",list.get(position).getId());
-                reqData(mContext,"farmHand/handler/grabTask",map ,166);
+                reqData(mContext,"/handler/grabTask",map ,166);//farmHand/
             }
         });
 

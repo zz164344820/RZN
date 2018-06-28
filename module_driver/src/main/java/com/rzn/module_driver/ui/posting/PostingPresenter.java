@@ -34,7 +34,7 @@ public class PostingPresenter extends BasePresenterImpl<PostingContract.View> im
         if (!TextUtils.isEmpty(loginResponseBean.getHandlerId())) {
             mView.showLoading(false, "");
             map.put("handlerId", loginResponseBean.getHandlerId());
-            reqData(mContext, "farmHand/handler/recommendFarmerTask", map, 122);
+            reqData(mContext, "/handler/recommendFarmerTask", map, 122);//farmHand/
         }
     }
 

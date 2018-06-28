@@ -23,13 +23,13 @@ public class HaveFinishedPresenter extends BasePresenterImpl<HaveFinishedContrac
     @Override
     public void getList(Map<String, String> map) {
         mView.showLoading(false, "");
-        reqData(mContext, "farmHand/handler/taskListToHandler", map, 111);
+        reqData(mContext, "/handler/taskListToHandler", map, 111);//farmHand/
     }
 
     @Override
     public void getFarmerListSuccess(Map<String, String> map) {
         mView.showLoading(false, "");
-        reqData(mContext, "farmHand/farmerTask/farmerTaskList", map, 222);
+        reqData(mContext, "/farmerTask/farmerTaskList", map, 222);//farmHand/
     }
 
     @Override

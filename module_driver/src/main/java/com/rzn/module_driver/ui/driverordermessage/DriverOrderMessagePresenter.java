@@ -37,13 +37,13 @@ public class DriverOrderMessagePresenter extends BasePresenterImpl<DriverOrderMe
         Map<String, String> map = new HashMap<>();
         LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
         map.put("handlerId", loginResponseBean.getHandlerId());
-        reqData(mContext, "farmHand/handler/queryKindTypeByHandlerId", map, 119);
+        reqData(mContext, "/handler/queryKindTypeByHandlerId", map, 119);//farmHand/
     }
 
     @Override
     public void supplementOrderInfo(Map<String, String> map) {
         mView.showLoading(false, "");
-        reqData(mContext, "farmHand/handler/updateSaveHandlerInfo", map, 111);
+        reqData(mContext, "/handler/updateSaveHandlerInfo", map, 111);//farmHand/
     }
 
 
