@@ -28,7 +28,7 @@ import okhttp3.MediaType;
  */
 public class OkHttpLoader {
     public static Gson gson = new Gson();
-    public static String BASEURL = "http://1724l9l212.iask.in/";//服务器的入口
+    public static String BASEURL = "http://47.98.62.7/";//服务器的入口
 
     public static void changServer() {
         if ("production".equals(Constants.SERVER)) {
