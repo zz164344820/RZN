@@ -1,8 +1,10 @@
 package com.rzn.module_main.ui.setting;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -13,6 +15,7 @@ import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.module_main.R;
+import com.rzn.module_main.ui.login.LoginActivity;
 import com.tencent.bugly.beta.Beta;
 import com.zyhealth.expertlib.LibApplication;
 
@@ -87,13 +90,9 @@ public class SettingActivity extends MVPBaseActivity<SettingContract.View, Setti
         //將本地数据对象清空
         clearObject();
 
-        for (int i = 0, size = LibApplication.mActivityStack.size(); i < size; i++) {
-            if (!LibApplication.mActivityStack.get(i).getClass().getSimpleName().equals("LoginActivity")) {
-                LibApplication.mActivityStack.get(i).finish();
-            }
-        }
+        startActivity(new Intent(this,LoginActivity.class));
+        LibApplication.instance.killAllActivity2("LoginActivity");
         JPushInterface.setAlias(SettingActivity.this, 111, "");
-        System.exit(0);
     }
 
     private void clearObject() {

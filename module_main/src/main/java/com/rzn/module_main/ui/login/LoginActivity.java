@@ -97,6 +97,7 @@ public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPres
     @Override
     public void loginSuccess() {
         startActivity(new Intent(this, MainActivity.class));
+        finish();
     }
 
     @Override

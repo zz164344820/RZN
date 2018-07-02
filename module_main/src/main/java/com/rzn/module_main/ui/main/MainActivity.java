@@ -62,6 +62,7 @@ public class MainActivity extends MVPBaseActivity<MainContract.View, MainPresent
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
+        rbHomepage.setChecked(true);
         String value = intent.getStringExtra("value");
         if(!TextUtils.isEmpty(value)){
             getJPush(value);
@@ -96,6 +97,8 @@ public class MainActivity extends MVPBaseActivity<MainContract.View, MainPresent
 
         }
     }
+
+
 
 
     @Override

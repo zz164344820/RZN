@@ -51,7 +51,7 @@ public class MainPresenter extends BasePresenterImpl<MainContract.View> implemen
     }
 
     @Override
-    public void initRadioGroup(RadioGroup rg) {
+    public void initRadioGroup(final RadioGroup rg) {
 
 
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -67,6 +67,7 @@ public class MainPresenter extends BasePresenterImpl<MainContract.View> implemen
                 } else if (i == R.id.rb_mine) {
                     if (!LoginUtil.getUserId()) {
                         mContext.startActivity(new Intent(mContext, LoginActivity.class));
+                        rg.check(R.id.rb_homepage);
                         return;
                     }
                     viewPager.setCurrentItem(3);

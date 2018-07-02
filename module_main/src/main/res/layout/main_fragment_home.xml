@@ -89,7 +89,7 @@
 
                 <TextView
                     android:id="@+id/tv_main_nongjitong"
-                    android:text="农技通"
+                    android:text="农机通"
                     android:drawableTop="@drawable/main_nongjitong"
                     style="@style/main_moduleTextStyle" />
                 <TextView
