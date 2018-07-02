@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
@@ -59,6 +60,7 @@ public class MessageCenterActivity extends MVPBaseActivity<MesageCenterContract.
         swipeToLoadLayout.setRefreshEnabled(false);
         swipeTarget.setLayoutManager(new LinearLayoutManager(this));
         adapter = new MessageAdapter(this, MessageInfoList);
+        adapter.setEmptyView(R.layout.act_message,(ViewGroup)swipeTarget.getParent());
         swipeTarget.setAdapter(adapter);
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
