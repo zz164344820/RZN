@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
@@ -88,12 +89,13 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
                     tvMainMessage.setText(lists.get(i).getMsgTitle() + "");
                     i++;
 //                    sendEmptyMessageDelayed(0,2000);
-                    handler.sendEmptyMessageDelayed(0,2000);
+                    handler.sendEmptyMessageDelayed(0, 2000);
                     break;
             }
         }
     };
     private TextView tvLook;
+    private TextView tvSearch;
 
     @Nullable
     @Override
@@ -127,6 +129,12 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
     }
 
     private void initListener() {
+        tvSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(mContext, "暂未开通该功能，请耐心等待。", Toast.LENGTH_SHORT).show();
+            }
+        });
         tvMainWeixiuzhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -162,7 +170,8 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
                     startActivity(new Intent(getActivity(), LoginActivity.class));
                 } else {
                     //消息中心節目
-                    startActivity(new Intent(getActivity(), MessageCenterActivity.class));                }
+                    startActivity(new Intent(getActivity(), MessageCenterActivity.class));
+                }
 
 
             }
@@ -175,6 +184,7 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
         alItemTwo = (AutoLinearLayout) rootView.findViewById(R.id.al_item_two);
         tvMainMessage = (TextView) rootView.findViewById(R.id.tv_main_mesage);
         tvLook = (TextView) rootView.findViewById(R.id.tv_look);
+        tvSearch = (TextView) rootView.findViewById(R.id.tv_search);
 
         List<String> list = new ArrayList<>();
         list.add("http://pic.dbw.cn/0/09/25/08/9250842_112468.jpg");
@@ -271,10 +281,8 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
     @OnClick(R2.id.tv_main_wenzhuanjia)
     public void tv_main_wenzhuanjia() {
         ToastUtils.showShortSafe("功能暂未开通,敬请期待!");
-      //  ((MainActivity) get_Context()).setCheckedPager(2, R.id.rb_nongjitong,1);
+        //  ((MainActivity) get_Context()).setCheckedPager(2, R.id.rb_nongjitong,1);
     }
-
-
 
 
     @OnClick(R2.id.iv_message)

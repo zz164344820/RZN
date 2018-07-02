@@ -103,8 +103,6 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/shape_input_bg"
-                    android:paddingLeft="4dp"
                      >
 
 
