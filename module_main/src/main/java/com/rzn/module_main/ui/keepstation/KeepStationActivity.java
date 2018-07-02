@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -37,17 +38,31 @@ public class KeepStationActivity extends MVPBaseActivity<KeepStationContract.Vie
     double LATITUDE_B = 32.335756;  //终点纬度
     double LONGTITUDE_B = 118.88462;  //终点经度
     private String address = "南京冠世机械设备有限公司农机维修站";
+    private TextView tvTextSearch;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_maintenance_station);
         initViews();
+        initLinstener();
         mPresenter.onCreate();
+
 //        showLoading(false,"");
     }
 
+    private void initLinstener() {
+        tvTextSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Toast.makeText(this,"暂未开通该功能",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "暂未开通该功能", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
     private void initViews() {
+        tvTextSearch = (TextView) findViewById(R.id.tv_text_search);
         setTitle("维修站");
         swipeTarget = (RecyclerView) findViewById(R.id.swipe_target);
         swipeTarget.setLayoutManager(new LinearLayoutManager(this));
