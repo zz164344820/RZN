@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.blankj.utilcode.util.ToastUtils;
 import com.rzn.commonbaselib.applictaion.BaseApplication;
 import com.rzn.module_main.ui.login.LoginActivity;
 import com.rzn.njt.BuildConfig;

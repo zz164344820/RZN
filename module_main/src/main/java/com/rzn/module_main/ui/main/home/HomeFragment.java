@@ -25,9 +25,12 @@ import com.amap.api.location.AMapLocationListener;
 import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.SizeUtils;
 import com.blankj.utilcode.util.ToastUtils;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
+import com.rzn.commonbaselib.utils.GsonUtils;
 import com.rzn.module_main.R;
 import com.rzn.module_main.R2;
 import com.rzn.module_main.ui.jobscreening.JobScreeningActivity;
@@ -41,7 +44,13 @@ import com.rzn.module_main.ui.util.LoginUtil;
 import com.rzn.module_main.ui.webview.WebViewActivity;
 import com.tmall.ultraviewpager.UltraViewPager;
 import com.zhy.autolayout.AutoLinearLayout;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
+import com.zyhealth.expertlib.bean.ResponseBean;
+import com.zyhealth.expertlib.net.GenericsCallback;
+import com.zyhealth.expertlib.net.JsonGenericsSerializator;
 import com.zyhealth.expertlib.utils.GlideUtils;
+import com.zyhealth.expertlib.utils.MLog;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -52,6 +61,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import okhttp3.Call;
 
 /**
  * MVPPlugin
@@ -77,6 +87,8 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
     private AutoLinearLayout alItemTwo;
     private TextView tvMainMessage;
     List<MessageInfo> lists = new ArrayList<>();
+    List<String> list = new ArrayList<>();
+
     int i = 0;
     final Handler handler = new Handler() {
         @Override
@@ -88,7 +100,6 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
                     }
                     tvMainMessage.setText(lists.get(i).getMsgTitle() + "");
                     i++;
-//                    sendEmptyMessageDelayed(0,2000);
                     handler.sendEmptyMessageDelayed(0, 2000);
                     break;
             }
@@ -121,11 +132,39 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
             public void onLocationChanged(AMapLocation aMapLocation) {
                 tvMainAddress.setText(aMapLocation.getDistrict());
                 SPUtils.getInstance().put("addressName", aMapLocation.getDistrict());
+                getWeater(aMapLocation.getLongitude()+","+aMapLocation.getLatitude());
             }
         });
         mLocationClient.setLocationOption(mLocationOption);
         //启动定位
         mLocationClient.startLocation();
+    }
+
+    private void getWeater(String location) {
+        String url = "https://free-api.heweather.com/s6/weather?";
+        OkHttpUtils
+                .get()
+                .url(url)
+                .addParams("location", location)
+                .addParams("key", "2eb9b628139a435684719fab15d1ebff")
+                .build()
+                .execute(new StringCallback()
+                {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        MLog.e(response);
+                        Gson gson = new Gson();
+                        WeaterList weaterList=  gson.fromJson(response,new TypeToken<WeaterList>(){}.getType());
+                        HeWeather6  heWeather6 =  weaterList.getHeWeather6().get(0);
+                        FileSaveUtils.fileSaveObject(heWeather6,"weater");
+                        ultraViewPager.getViewPager().getAdapter().notifyDataSetChanged();
+                    }
+                });
     }
 
     private void initListener() {
@@ -186,7 +225,7 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
         tvLook = (TextView) rootView.findViewById(R.id.tv_look);
         tvSearch = (TextView) rootView.findViewById(R.id.tv_search);
 
-        List<String> list = new ArrayList<>();
+
         list.add("http://pic.dbw.cn/0/09/25/08/9250842_112468.jpg");
         list.add("http://www.nanjing.gov.cn/hdjl/weixin/201710/W020171010647707737249.jpg");
         list.add("http://p4.so.qhmsg.com/bdr/_240_/t01d9ab0e953723b689.jpg");
@@ -218,7 +257,7 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
         //设定页面循环播放
         ultraViewPager.setInfiniteLoop(true);
         //设定页面自动切换  间隔2秒
-        ultraViewPager.setAutoScroll(2000);
+        ultraViewPager.setAutoScroll(4000);
     }
 
     @Override
@@ -310,12 +349,6 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
             }
         }
         if (lists.size() != 0) {
-//            handler.postDelayed(new Runnable() {
-//                @Override
-//                public void run() {
-//                    handler.sendEmptyMessage(0);
-//                }
-//            }, 1000);
             handler.sendEmptyMessage(0);
         } else {
             tvMainMessage.setText("暂无消息！");
