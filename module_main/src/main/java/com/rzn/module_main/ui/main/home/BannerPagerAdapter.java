@@ -26,8 +26,7 @@ public class BannerPagerAdapter  extends PagerAdapter{
     private List<String> list;
     private Context mContext;
     String date,date2;
-    HeWeather6 heWeather6;
-    public boolean isRefresh;
+    public HeWeather6 heWeather6;
 
     public BannerPagerAdapter(Context mContext,List<String> list) {
         this.list = list;
@@ -92,6 +91,10 @@ public class BannerPagerAdapter  extends PagerAdapter{
     @Override
     public int getItemPosition(Object object) {
         return POSITION_NONE;
+    }
+
+    public void setHeWeather6(HeWeather6 heWeather6){
+        this.heWeather6 =heWeather6;
     }
 
 

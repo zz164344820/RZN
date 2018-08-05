@@ -88,6 +88,7 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
     private TextView tvMainMessage;
     List<MessageInfo> lists = new ArrayList<>();
     List<String> list = new ArrayList<>();
+    BannerPagerAdapter adapter;
 
     int i = 0;
     final Handler handler = new Handler() {
@@ -162,7 +163,9 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
                         WeaterList weaterList=  gson.fromJson(response,new TypeToken<WeaterList>(){}.getType());
                         HeWeather6  heWeather6 =  weaterList.getHeWeather6().get(0);
                         FileSaveUtils.fileSaveObject(heWeather6,"weater");
-                        ultraViewPager.getViewPager().getAdapter().notifyDataSetChanged();
+                        adapter.setHeWeather6(null);
+                        adapter.notifyDataSetChanged();
+
                     }
                 });
     }
@@ -239,7 +242,7 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
 
         ultraViewPager.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL);
         //UltraPagerAdapter 绑定子view到UltraViewPager
-        PagerAdapter adapter = new BannerPagerAdapter(getActivity(), list);
+        adapter = new BannerPagerAdapter(getActivity(), list);
         ultraViewPager.setAdapter(adapter);
         //内置indicator初始化
         ultraViewPager.initIndicator();
