@@ -1,6 +1,7 @@
 package com.rzn.module_main.ui.main.home;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -28,6 +29,7 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.rzn.commonbaselib.bean.LoginResponseBean;
+import com.rzn.commonbaselib.listener.NoDoubleClickListener;
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.commonbaselib.utils.GsonUtils;
@@ -61,6 +63,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import chihane.jdaddressselector.BottomDialog;
+import chihane.jdaddressselector.OnAddressSelectedListener;
+import chihane.jdaddressselector.model.City;
+import chihane.jdaddressselector.model.County;
+import chihane.jdaddressselector.model.Province;
+import chihane.jdaddressselector.model.Street;
 import okhttp3.Call;
 
 /**
@@ -68,7 +76,7 @@ import okhttp3.Call;
  * 邮箱 784787081@qq.com
  */
 
-public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresenter> implements HomeContract.View {
+public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresenter> implements HomeContract.View ,OnAddressSelectedListener {
     View rootView;
     @BindView(R2.id.tv_main_address)
     TextView tvMainAddress;
@@ -89,6 +97,7 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
     List<MessageInfo> lists = new ArrayList<>();
     List<String> list = new ArrayList<>();
     BannerPagerAdapter adapter;
+    BottomDialog bottomDialog;
 
     int i = 0;
     final Handler handler = new Handler() {
@@ -153,7 +162,8 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
                 {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                        ultraViewPager.setAutoScroll(4000);
+                        ToastUtils.showShort("获取天气失败");
                     }
 
                     @Override
@@ -163,8 +173,17 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
                         WeaterList weaterList=  gson.fromJson(response,new TypeToken<WeaterList>(){}.getType());
                         HeWeather6  heWeather6 =  weaterList.getHeWeather6().get(0);
                         FileSaveUtils.fileSaveObject(heWeather6,"weater");
-                        adapter.setHeWeather6(null);
-                        adapter.notifyDataSetChanged();
+                        adapter = new BannerPagerAdapter(getActivity(), list, new NoDoubleClickListener() {
+                            @Override
+                            protected void onNoDoubleClick(View v) {
+                                ultraViewPager.setAutoScroll(1000000000);
+
+                                bottomDialog.show();
+                            }
+                        });
+
+                        ultraViewPager.setAdapter(adapter);
+                        ultraViewPager.setAutoScroll(4000);
 
                     }
                 });
@@ -228,6 +247,14 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
         tvLook = (TextView) rootView.findViewById(R.id.tv_look);
         tvSearch = (TextView) rootView.findViewById(R.id.tv_search);
 
+        bottomDialog = new BottomDialog(getActivity());
+        bottomDialog.setOnAddressSelectedListener(this);
+        bottomDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                ultraViewPager.setAutoScroll(4000);
+            }
+        });
 
         list.add("http://pic.dbw.cn/0/09/25/08/9250842_112468.jpg");
         list.add("http://www.nanjing.gov.cn/hdjl/weixin/201710/W020171010647707737249.jpg");
@@ -242,7 +269,15 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
 
         ultraViewPager.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL);
         //UltraPagerAdapter 绑定子view到UltraViewPager
-        adapter = new BannerPagerAdapter(getActivity(), list);
+        adapter = new BannerPagerAdapter(getActivity(), list, new NoDoubleClickListener() {
+            @Override
+            protected void onNoDoubleClick(View v) {
+                ultraViewPager.setAutoScroll(1000000000);
+
+                bottomDialog.show();
+            }
+        });
+
         ultraViewPager.setAdapter(adapter);
         //内置indicator初始化
         ultraViewPager.initIndicator();
@@ -261,6 +296,7 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
         ultraViewPager.setInfiniteLoop(true);
         //设定页面自动切换  间隔2秒
         ultraViewPager.setAutoScroll(4000);
+
     }
 
     @Override
@@ -359,4 +395,39 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
 
 
     }
+
+    @Override
+    public void onAddressSelected(Province province, City city, County county, Street street) {
+        bottomDialog.dismiss();
+        //请求和风天气
+            String url = "https://search.heweather.com/find?";
+            OkHttpUtils
+                    .get()
+                    .url(url)
+                    .addParams("location", city.getName())
+                    .addParams("key", "2eb9b628139a435684719fab15d1ebff")
+                    .addParams("number", "1")
+                    .build()
+                    .execute(new StringCallback()
+                    {
+                        @Override
+                        public void onError(Call call, Exception e, int id) {
+                            ultraViewPager.setAutoScroll(4000);
+                            ToastUtils.showShort("获取天气失败");
+
+                        }
+
+                        @Override
+                        public void onResponse(String response, int id) {
+                            MLog.e(response);
+                            Gson gson = new Gson();
+                            GetCityBean heWeather6= gson.fromJson(response,new TypeToken<GetCityBean>(){}.getType());
+                            String lat=   heWeather6.getHeWeather6().get(0).getBasic().get(0).getLat();
+                            String lon=  heWeather6.getHeWeather6().get(0).getBasic().get(0).getLon();
+                            getWeater(lon+","+lat);
+
+                        }
+                    });
+        }
+
 }

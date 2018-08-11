@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.rzn.commonbaselib.listener.NoDoubleClickListener;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.module_main.R;
 import com.zyhealth.expertlib.utils.GlideUtils;
@@ -27,10 +28,14 @@ public class BannerPagerAdapter  extends PagerAdapter{
     private Context mContext;
     String date,date2;
     public HeWeather6 heWeather6;
+    View.OnClickListener listener;
+    View view;
+    int position;
 
-    public BannerPagerAdapter(Context mContext,List<String> list) {
+    public BannerPagerAdapter(Context mContext,List<String> list,View.OnClickListener listener) {
         this.list = list;
         this.mContext =mContext;
+        this.listener =listener;
         int[] arrData= lunarUtils.getData();
         date=lunarUtils.getStringData("MM月dd日   ")+lunarUtils.getWeekByDateStr(arrData[0],arrData[1],arrData[2]);
         date2=lunarUtils.getTranslateLunarString(arrData[0],arrData[1],arrData[2]);
@@ -50,7 +55,7 @@ public class BannerPagerAdapter  extends PagerAdapter{
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         //布局处理代码
-        View view;
+       this.position =position;
         if(position==0){
             view = LayoutInflater.from(container.getContext()).inflate(R.layout.banner_weather, null);
             TextView  current_temp=(TextView) view.findViewById(R.id.current_temp);
@@ -61,6 +66,8 @@ public class BannerPagerAdapter  extends PagerAdapter{
             TextView  tv_dateSolar= (TextView) view.findViewById(R.id.tv_dateSolar);
             TextView  tv_dateLunar= (TextView) view.findViewById(R.id.tv_dateLunar);
             TextView  tv_season= (TextView) view.findViewById(R.id.tv_season);
+            TextView  tv_city= (TextView) view.findViewById(R.id.tv_city);
+            tv_city.setOnClickListener(listener);
             if(heWeather6==null){
                  heWeather6= (HeWeather6) FileSaveUtils.readObject("weater");
             }
@@ -73,6 +80,7 @@ public class BannerPagerAdapter  extends PagerAdapter{
                 tv_wind.setText("风向"+heWeather6.getNow().getWind_dir());
                 tv_rainfall.setText("降水量"+heWeather6.getNow().getPcpn()+"毫米");
                 tv_season.setText("紫外线强度指数:"+heWeather6.getDaily_forecast().get(0).getUv_index());
+                tv_city.setText(heWeather6.getBasic().getParent_city());
             }
             tv_dateSolar.setText(date);
             tv_dateLunar.setText(date2);
@@ -94,7 +102,43 @@ public class BannerPagerAdapter  extends PagerAdapter{
     }
 
     public void setHeWeather6(HeWeather6 heWeather6){
-        this.heWeather6 =heWeather6;
+        if(position==0 && view!=null){
+            try {
+                TextView current_temp = (TextView) view.findViewById(R.id.current_temp);
+                TextView tv_temp_range = (TextView) view.findViewById(R.id.tv_temp_range);
+                TextView tv_weater = (TextView) view.findViewById(R.id.tv_weater);
+                TextView tv_wind = (TextView) view.findViewById(R.id.tv_wind);
+                TextView tv_rainfall = (TextView) view.findViewById(R.id.tv_rainfall);
+                TextView tv_season = (TextView) view.findViewById(R.id.tv_season);
+                TextView tv_city = (TextView) view.findViewById(R.id.tv_city);
+                tv_city.setOnClickListener(listener);
+                if (heWeather6 == null) {
+                    heWeather6 = (HeWeather6) FileSaveUtils.readObject("weater");
+                }
+
+
+                if (heWeather6 != null) {
+                    current_temp.setText(heWeather6.getNow().getTmp() + "℃");
+                    tv_temp_range.setText(heWeather6.getDaily_forecast().get(0).getTmp_min() + "℃~" + heWeather6.getDaily_forecast().get(0).getTmp_max() + "℃");
+                    tv_weater.setText(heWeather6.getNow().getCond_txt());
+                    tv_wind.setText("风向" + heWeather6.getNow().getWind_dir());
+                    tv_rainfall.setText("降水量" + heWeather6.getNow().getPcpn() + "毫米");
+                    tv_season.setText("紫外线强度指数:" + heWeather6.getDaily_forecast().get(0).getUv_index());
+                    tv_city.setText(heWeather6.getBasic().getParent_city());
+                }
+            }catch (Exception e){
+
+            }
+        }
+
+    }
+
+
+    public void setCityName(String cityName){
+          if(position==0 && view!=null){
+            TextView tv_city= (TextView) view.findViewById(R.id.tv_city);
+            tv_city.setText(cityName);
+          }
     }
 
 

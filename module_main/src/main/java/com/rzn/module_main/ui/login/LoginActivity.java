@@ -57,8 +57,6 @@ public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPres
         ButterKnife.bind(this);
         mPresenter.onCreate();
         JPushInterface.setAlias(this, 111, "123456");
-
-
     }
 
     @Override
