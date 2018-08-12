@@ -48,7 +48,7 @@
                             android:layout_height="90dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:background="@drawable/logo" />
+                            android:src="@drawable/logo" />
 
                     </LinearLayout>
 
@@ -150,6 +150,7 @@
 
 
                 <ImageView
+                    android:id="@+id/iv_phone"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_alignParentRight="true"
@@ -199,7 +200,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/shape_order_message_no_press"
                         android:gravity="center"
-                        android:text="水稻-联合整地" />
+                        android:text="暂无" />
 
                     <TextView
                         android:id="@+id/tv_content_two"
@@ -210,7 +211,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/shape_order_message_no_press"
                         android:gravity="center"
-                        android:text="水稻-联合整地" />
+                        android:text="暂无" />
 
                 </LinearLayout>
 
@@ -263,18 +264,11 @@
                         android:id="@+id/tv_typess"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="水稻-联合整地:"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="暂无"
                         android:textColor="#333333"
                         android:textSize="16dp" />
-
-                    <TextView
-                        android:id="@+id/tv_price"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="55元/亩"
-                        android:textColor="#888888"
-                        android:textSize="16dp" />
-
 
                 </LinearLayout>
                 <View
@@ -330,7 +324,7 @@
                         android:layout_marginLeft="43dp"
                         android:layout_marginTop="10dp"
                         android:singleLine="true"
-                        android:text="• 河北省沧州市北山底村"
+                        android:text="• 暂无"
                         android:textColor="#333333"
                         android:textSize="16dp" />
 
@@ -341,7 +335,7 @@
                         android:layout_marginLeft="43dp"
                         android:layout_marginTop="10dp"
                         android:singleLine="true"
-                        android:text=" • 河北省沧州市孟村自治县"
+                        android:text=" • 暂无"
                         android:textColor="#333333"
                         android:textSize="16dp" />
 
