@@ -1,4 +1,4 @@
-package com.rzn.module_driver.ui.bean;
+package com.rzn.commonbaselib.bean;
 
 /**
  * Created by zz on 2018/5/24.

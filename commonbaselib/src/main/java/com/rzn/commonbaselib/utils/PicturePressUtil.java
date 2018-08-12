@@ -1,4 +1,4 @@
-package com.rzn.module_driver.ui.driver_identification;
+package com.rzn.commonbaselib.utils;
 
 import android.content.ContentResolver;
 import android.content.Context;

@@ -10,10 +10,12 @@ import com.rzn.commonbaselib.mvp.BaseView;
 
 public class PersonalInfoContract {
     interface View extends BaseView {
+        void setInfo(UserInfo userInfo);
         
     }
 
     interface  Presenter extends BasePresenter<View> {
+        void setUserInfo(UserInfo userInfo);
         
     }
 }
