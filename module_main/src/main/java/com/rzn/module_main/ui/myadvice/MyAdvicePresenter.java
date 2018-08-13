@@ -30,7 +30,7 @@ public class MyAdvicePresenter extends BasePresenterImpl<MyAdviceContract.View> 
         map.put("userId",bean.getUserId());
         map.put("phone",contactWay);
         map.put("content",feedback);
-        reqData(mContext,"boss/createIdea",map,111);
+        reqData(mContext,"/boss/createIdea",map,111);
     }
 
     @Override

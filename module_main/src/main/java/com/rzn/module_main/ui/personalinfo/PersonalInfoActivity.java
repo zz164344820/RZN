@@ -191,8 +191,8 @@ public class PersonalInfoActivity extends MVPBaseActivity<PersonalInfoContract.V
                     @Override
                     public void onResponse(ResponseBean response, int id) {
                         imagePath = GsonParseUtils.GsonToBean(response.getResult(), ImagePath.class);
-                        MLog.e(imagePath.getFileName());
-                        GlideUtils.loadImageView(PersonalInfoActivity.this,imagePath.getImgUrl(),iv_header);
+                        MLog.e(imagePath.getImgUrl());
+                        GlideUtils.loadImageRound(PersonalInfoActivity.this,imagePath.getImgUrl(),iv_header,40);
 
                     }
                 });

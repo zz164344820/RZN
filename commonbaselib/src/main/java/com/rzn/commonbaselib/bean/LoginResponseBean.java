@@ -19,6 +19,16 @@ public class LoginResponseBean implements Serializable{
     private String updateTime;
     private String userId;
     private String handlerId;
+    private String pic;
+
+
+    public String getPic() {
+        return pic == null ? "" : pic;
+    }
+
+    public void setPic(String pic) {
+        this.pic = pic;
+    }
 
     public String getHandlerId() {
         return handlerId;

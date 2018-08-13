@@ -128,12 +128,14 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     }
 
     private void initData() {
-        GlideUtils.loadImageRound(getContext(), "http://www.fzlol.com/upimg/allimg/140408/1_1G0291243.jpg", iv_photo, 40);
-        GlideUtils.GaussianBlur(getContext(), "http://www.fzlol.com/upimg/allimg/140408/1_1G0291243.jpg", iv_background, 8, 1);
-//        LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+
         if (loginResponseBean == null) {
+            GlideUtils.loadImageRound(getContext(),"http://pic17.nipic.com/20111025/2418289_151518025000_2.jpg", iv_photo, 40);
+            GlideUtils.GaussianBlur(getContext(), "http://pic17.nipic.com/20111025/2418289_151518025000_2.jpg", iv_background, 8, 1);
             return;
         }
+        GlideUtils.loadImageRound(getContext(), loginResponseBean.getPic(), iv_photo, 40);
+        GlideUtils.GaussianBlur(getContext(), loginResponseBean.getPic(), iv_background, 8, 1);
         tv_name.setText(loginResponseBean.getPhone());
         if (TextUtils.isEmpty(loginResponseBean.getHandlerId())) {
             tv_Status.setText("未认证");
