@@ -433,7 +433,7 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
      */
     @Override
     public void getHotWordSuccess(final List<InfoBean> list) {
-        if (list != null) {
+        if (list != null && list.size()>=1) {
             tvFarmerTitle.setText(list.get(0).getTitle());
             tvFarmerContent.setText(list.get(0).getContent());
             tvFarmerTime.setText(list.get(0).getCreateTime());
@@ -458,7 +458,7 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
      */
     @Override
     public void getFarmerWordSuccess(final List<InfoBean> list) {
-        if (list != null) {
+        if (list != null  && list.size()>=1) {
             tvZixunTitle.setText(list.get(0).getTitle());
             tvZixunContext.setText(list.get(0).getContent());
             tvZixuntime.setText(list.get(0).getCreateTime());
