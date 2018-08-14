@@ -304,6 +304,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_farmertitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="今年国家粮食最低价怎么收？咱们农民要注意啥？"
@@ -312,6 +313,7 @@
                         android:textSize="36px" />
 
                     <TextView
+                        android:id="@+id/tv_farmercontent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20px"
@@ -322,6 +324,7 @@
                         android:textSize="32px" />
 
                     <TextView
+                        android:id="@+id/tv_farmertime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20px"

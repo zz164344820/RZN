@@ -1,17 +1,66 @@
 package com.rzn.module_main.ui.keepstation;
 
 
+import com.google.gson.reflect.TypeToken;
+import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.BasePresenterImpl;
+import com.rzn.commonbaselib.utils.FileSaveUtils;
+import com.zyhealth.expertlib.bean.ResponseBean;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * MVPPlugin
- *  邮箱 784787081@qq.com
+ * 邮箱 784787081@qq.com
  */
 
-public class KeepStationPresenter extends BasePresenterImpl<KeepStationContract.View> implements KeepStationContract.Presenter{
+public class KeepStationPresenter extends BasePresenterImpl<KeepStationContract.View> implements KeepStationContract.Presenter {
     @Override
     public void onCreate() {
         super.onCreate();
 //        reqData(mContext,"Test/index",null,111);
+    }
+
+    @Override
+    public void getKeepData() {
+        mView.showLoading(false, "");
+        LoginResponseBean responseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+        Map<String, String> map = new HashMap<>();
+        map.put("userId", responseBean.getUserId());
+        map.put("page", "1");
+        map.put("name", "");
+        reqData(mContext, "/repair/queryRepair", map, 111);//farmHand/
+    }
+
+    @Override
+    public void httpRequestResult(ResponseBean response, int requestId) {
+        super.httpRequestResult(response, requestId);
+        switch (requestId) {
+            case 111:
+                Type type = new TypeToken<List<KeepStationBean>>(){}.getType();
+                List<KeepStationBean> list= gson.fromJson(gson.toJson(response.getResult()), type);
+                mView.getKeepDataSuccess(list);
+                break;
+        }
+    }
+
+    @Override
+    public void httpRequestErr(String response, int requestId) {
+        super.httpRequestErr(response, requestId);
+        if (requestId==111){
+            mView.getKeepDataFailed();
+        }
+    }
+
+    @Override
+    public void httpRequestFailure(ResponseBean response, int requestId) {
+        super.httpRequestFailure(response, requestId);
+        if (requestId==111){
+          mView.getKeepDataFailed();
+        }
+
     }
 }

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +38,7 @@ public class KeepStationActivity extends MVPBaseActivity<KeepStationContract.Vie
     double LONGTITUDE_B = 118.88462;  //终点经度
     private String address = "南京冠世机械设备有限公司农机维修站";
     private TextView tvTextSearch;
+    private List<KeepStationBean> list = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -66,32 +66,8 @@ public class KeepStationActivity extends MVPBaseActivity<KeepStationContract.Vie
         setTitle("维修站");
         swipeTarget = (RecyclerView) findViewById(R.id.swipe_target);
         swipeTarget.setLayoutManager(new LinearLayoutManager(this));
-        List<String> s = new ArrayList<>();
-        s.add("0");
-        s.add("1");
-        s.add("2");
-        KeepStationAdapter keepStationAdapter = new KeepStationAdapter(R.layout.item_maintenance_station, s);
-        swipeTarget.setAdapter(keepStationAdapter);
-        keepStationAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
-            @Override
-            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                if (0 == position) {
-                    LATITUDE_B = 32.335756;  //终点纬度
-                    LONGTITUDE_B = 118.88462;  //终点经度
-                    address = "南京冠世机械设备有限公司农机维修站";
-                } else if (1 == position) {
-//                    118.773717,31.867643
-                    LATITUDE_B = 31.867643;  //终点纬度
-                    LONGTITUDE_B = 118.773717;  //终点经度
-                    address = "农机配件";
-                } else if (2 == position) {
-                    LATITUDE_B = 32.335756;  //终点纬度
-                    LONGTITUDE_B = 118.88462;  //终点经度
-                    address = "南京冠世机械设备有限公司农机维修站-北门";
-                }
-                setUpGaodeAppByMine();
-            }
-        });
+        mPresenter.getKeepData();
+
     }
 
 
@@ -121,5 +97,25 @@ public class KeepStationActivity extends MVPBaseActivity<KeepStationContract.Vie
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void getKeepDataSuccess(final List<KeepStationBean> list) {
+        KeepStationAdapter keepStationAdapter = new KeepStationAdapter(R.layout.item_maintenance_station, list);
+        swipeTarget.setAdapter(keepStationAdapter);
+        keepStationAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                LATITUDE_B = Double.valueOf(list.get(position).getLatitude());//32.335756;  //终点纬度
+                LONGTITUDE_B = Double.valueOf(list.get(position).getLongitude());//118.88462;  //终点经度
+                address = list.get(position).getBusinessAddress();
+                setUpGaodeAppByMine();
+            }
+        });
+    }
+
+    @Override
+    public void getKeepDataFailed() {
+
     }
 }

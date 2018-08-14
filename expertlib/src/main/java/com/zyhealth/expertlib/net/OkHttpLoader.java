@@ -34,7 +34,7 @@ public class OkHttpLoader {
         if ("production".equals(Constants.SERVER)) {
             BASEURL = "http://47.98.62.7";//"http://www.rzn458.com";//"http://1724l9l212.iask.in/";
         } else if ("develop".equals(Constants.SERVER)) {
-            BASEURL = "http://47.98.62.7";// "http://www.rzn458.com";//"http://1724l9l212.iask.in/";
+            BASEURL = "http://173rd88727.iok.la:25050/farmHand";// "http://www.rzn458.com";//"http://1724l9l212.iask.in/";
         }
     }
 

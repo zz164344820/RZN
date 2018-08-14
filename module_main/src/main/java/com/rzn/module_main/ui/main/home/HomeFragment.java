@@ -39,6 +39,7 @@ import com.rzn.module_main.ui.jobscreening.JobScreeningActivity;
 import com.rzn.module_main.ui.keepstation.KeepStationActivity;
 import com.rzn.module_main.ui.login.LoginActivity;
 import com.rzn.module_main.ui.main.MainActivity;
+import com.rzn.module_main.ui.main.farmmachinery.InfoBean;
 import com.rzn.module_main.ui.mesagecenter.MessageCenterActivity;
 import com.rzn.module_main.ui.mesagecenter.MessageInfo;
 import com.rzn.module_main.ui.sellagriculturalgoods.SellAgriculturalGoodsActivity;
@@ -53,6 +54,8 @@ import com.zyhealth.expertlib.net.GenericsCallback;
 import com.zyhealth.expertlib.net.JsonGenericsSerializator;
 import com.zyhealth.expertlib.utils.GlideUtils;
 import com.zyhealth.expertlib.utils.MLog;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -69,6 +72,7 @@ import chihane.jdaddressselector.model.City;
 import chihane.jdaddressselector.model.County;
 import chihane.jdaddressselector.model.Province;
 import chihane.jdaddressselector.model.Street;
+import mlxy.utils.T;
 import okhttp3.Call;
 
 /**
@@ -76,7 +80,7 @@ import okhttp3.Call;
  * 邮箱 784787081@qq.com
  */
 
-public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresenter> implements HomeContract.View ,OnAddressSelectedListener {
+public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresenter> implements HomeContract.View, OnAddressSelectedListener {
     View rootView;
     @BindView(R2.id.tv_main_address)
     TextView tvMainAddress;
@@ -117,6 +121,14 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
     };
     private TextView tvLook;
     private TextView tvSearch;
+    private TextView tvZixunTitle;
+    private TextView tvZixunContext;
+    private TextView tvZixuntime;
+    private ImageView ivZixun1;
+    private TextView tvFarmerTitle;
+    private TextView tvFarmerContent;
+    private TextView tvFarmerTime;
+    private ImageView ivWenzhagn;
 
     @Nullable
     @Override
@@ -142,7 +154,7 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
             public void onLocationChanged(AMapLocation aMapLocation) {
                 tvMainAddress.setText(aMapLocation.getDistrict());
                 SPUtils.getInstance().put("addressName", aMapLocation.getDistrict());
-                getWeater(aMapLocation.getLongitude()+","+aMapLocation.getLatitude());
+                getWeater(aMapLocation.getLongitude() + "," + aMapLocation.getLatitude());
             }
         });
         mLocationClient.setLocationOption(mLocationOption);
@@ -158,8 +170,7 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
                 .addParams("location", location)
                 .addParams("key", "2eb9b628139a435684719fab15d1ebff")
                 .build()
-                .execute(new StringCallback()
-                {
+                .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
                         ultraViewPager.setAutoScroll(4000);
@@ -170,9 +181,10 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
                     public void onResponse(String response, int id) {
                         MLog.e(response);
                         Gson gson = new Gson();
-                        WeaterList weaterList=  gson.fromJson(response,new TypeToken<WeaterList>(){}.getType());
-                        HeWeather6  heWeather6 =  weaterList.getHeWeather6().get(0);
-                        FileSaveUtils.fileSaveObject(heWeather6,"weater");
+                        WeaterList weaterList = gson.fromJson(response, new TypeToken<WeaterList>() {
+                        }.getType());
+                        HeWeather6 heWeather6 = weaterList.getHeWeather6().get(0);
+                        FileSaveUtils.fileSaveObject(heWeather6, "weater");
                         adapter = new BannerPagerAdapter(getActivity(), list, new NoDoubleClickListener() {
                             @Override
                             protected void onNoDoubleClick(View v) {
@@ -199,30 +211,35 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
         tvMainWeixiuzhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(mContext, KeepStationActivity.class));
+                if (loginResponseBean == null || TextUtils.isEmpty(loginResponseBean.getUserId())) {
+                    startActivity(new Intent(getActivity(), LoginActivity.class));
+                } else {
+                    startActivity(new Intent(mContext, KeepStationActivity.class));
+
+                }
             }
         });
 
 
-        alItemOne.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), WebViewActivity.class);
-                intent.putExtra("url", "https://mp.weixin.qq.com/s/EG0tXoFHa_2nZpEwQjOJ2w");
-                intent.putExtra("title", "农业资讯");
-                startActivity(intent);
-            }
-        });
-        alItemTwo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                http://www.farmer.com.cn/xwpd/btxw/201805/t20180531_1380906.htm
-                Intent intent = new Intent(getContext(), WebViewActivity.class);
-                intent.putExtra("url", "http://www.farmer.com.cn/xwpd/btxw/201805/t20180531_1380906.htm");
-                intent.putExtra("title", "热门文章");
-                startActivity(intent);
-            }
-        });
+//        alItemOne.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(getContext(), WebViewActivity.class);
+//                intent.putExtra("url", "https://mp.weixin.qq.com/s/EG0tXoFHa_2nZpEwQjOJ2w");
+//                intent.putExtra("title", "农业资讯");
+//                startActivity(intent);
+//            }
+//        });
+//        alItemTwo.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+////                http://www.farmer.com.cn/xwpd/btxw/201805/t20180531_1380906.htm
+//                Intent intent = new Intent(getContext(), WebViewActivity.class);
+//                intent.putExtra("url", "http://www.farmer.com.cn/xwpd/btxw/201805/t20180531_1380906.htm");
+//                intent.putExtra("title", "热门文章");
+//                startActivity(intent);
+//            }
+//        });
         tvLook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -241,11 +258,24 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
     }
 
     private void initViews() {
+        mPresenter.getHotData();
+        mPresenter.getFarmerData();
         alItemOne = (AutoLinearLayout) rootView.findViewById(R.id.al_item_one);
         alItemTwo = (AutoLinearLayout) rootView.findViewById(R.id.al_item_two);
         tvMainMessage = (TextView) rootView.findViewById(R.id.tv_main_mesage);
         tvLook = (TextView) rootView.findViewById(R.id.tv_look);
         tvSearch = (TextView) rootView.findViewById(R.id.tv_search);
+        //todo
+        tvZixunTitle = (TextView) rootView.findViewById(R.id.tv_zixunTitle);//title
+        tvZixunContext = (TextView) rootView.findViewById(R.id.tv_zixunConent);//content
+        tvZixuntime = (TextView) rootView.findViewById(R.id.tv_zixunTime);//time
+        ivZixun1 = (ImageView) rootView.findViewById(R.id.iv_zixun);//image
+
+        tvFarmerTitle = (TextView) rootView.findViewById(R.id.tv_farmertitle);
+        tvFarmerContent = (TextView) rootView.findViewById(R.id.tv_farmercontent);
+        tvFarmerTime = (TextView) rootView.findViewById(R.id.tv_farmertime);
+        ivWenzhagn = (ImageView) rootView.findViewById(R.id.tv_wenzhang);
+
 
         bottomDialog = new BottomDialog(getActivity());
         bottomDialog.setOnAddressSelectedListener(this);
@@ -262,7 +292,7 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
         list.add("http://pic.90sjimg.com/back_pic/qk/back_origin_pic/00/02/46/2fe8323073c593179f56cbf0f3fc705f.jpg");
         list.add("http://p0.so.qhmsg.com/bdr/_240_/t0197ce49236cf12935.jpg");
 
-        GlideUtils.loadImageView(getActivity(), "https://mmbiz.qpic.cn/mmbiz_jpg/W3OkHlCc5AGC9H85eeGATLpGibS5qJl6vgFhp7OA4ezGxFu6XT41PsBM9ZOSkQ5IYJDUgFJKoxib2JKPorbbiaukA/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1", ivZixun);
+        GlideUtils.loadImageView(getActivity(), "https://mmbiz.qpic.cn/mmbiz_jpg/W3OkHlCc5AGC9H85eeGATLpGibS5qJl6vgFhp7OA4ezGxFu6XT41PsBM9ZOSkQ5IYJDUgFJKoxib2JKPorbbiaukA/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1", ivZixun1);
         GlideUtils.loadImageView(getActivity(), "http://p1.so.qhmsg.com/bdr/_240_/t015bced96590d4cbc6.jpg", tvWenzhang);
         tvMainWeixiuzhan = (TextView) rootView.findViewById(R.id.tv_main_weixiuzhan);
 
@@ -396,38 +426,87 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
 
     }
 
+    /**
+     * 热门文章
+     *
+     * @param list
+     */
+    @Override
+    public void getHotWordSuccess(final List<InfoBean> list) {
+        if (list != null) {
+            tvFarmerTitle.setText(list.get(0).getTitle());
+            tvFarmerContent.setText(list.get(0).getContent());
+            tvFarmerTime.setText(list.get(0).getCreateTime());
+            GlideUtils.loadImageView(mContext, list.get(0).getPic(), ivWenzhagn);// TODO: 2018/8/12 缺少图片url
+            alItemTwo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+//                http://www.farmer.com.cn/xwpd/btxw/201805/t20180531_1380906.htm
+                    Intent intent = new Intent(getContext(), WebViewActivity.class);
+                    intent.putExtra("url", list.get(0).getArticleUrl());
+                    intent.putExtra("title", "热门文章");
+                    startActivity(intent);
+                }
+            });
+        }
+    }
+
+    /**
+     * 农业资讯
+     *
+     * @param list
+     */
+    @Override
+    public void getFarmerWordSuccess(final List<InfoBean> list) {
+        if (list != null) {
+            tvZixunTitle.setText(list.get(0).getTitle());
+            tvZixunContext.setText(list.get(0).getContent());
+            tvZixuntime.setText(list.get(0).getCreateTime());
+            GlideUtils.loadImageView(mContext, list.get(0).getPic(), ivZixun1);// TODO: 2018/8/12 缺少图片url
+            alItemOne.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getContext(), WebViewActivity.class);
+                    intent.putExtra("url", list.get(0).getArticleUrl());
+                    intent.putExtra("title", "农业资讯");
+                    startActivity(intent);
+                }
+            });
+        }
+    }
+
     @Override
     public void onAddressSelected(Province province, City city, County county, Street street) {
         bottomDialog.dismiss();
         //请求和风天气
-            String url = "https://search.heweather.com/find?";
-            OkHttpUtils
-                    .get()
-                    .url(url)
-                    .addParams("location", city.getName())
-                    .addParams("key", "2eb9b628139a435684719fab15d1ebff")
-                    .addParams("number", "1")
-                    .build()
-                    .execute(new StringCallback()
-                    {
-                        @Override
-                        public void onError(Call call, Exception e, int id) {
-                            ultraViewPager.setAutoScroll(4000);
-                            ToastUtils.showShort("获取天气失败");
+        String url = "https://search.heweather.com/find?";
+        OkHttpUtils
+                .get()
+                .url(url)
+                .addParams("location", city.getName())
+                .addParams("key", "2eb9b628139a435684719fab15d1ebff")
+                .addParams("number", "1")
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        ultraViewPager.setAutoScroll(4000);
+                        ToastUtils.showShort("获取天气失败");
 
-                        }
+                    }
 
-                        @Override
-                        public void onResponse(String response, int id) {
-                            MLog.e(response);
-                            Gson gson = new Gson();
-                            GetCityBean heWeather6= gson.fromJson(response,new TypeToken<GetCityBean>(){}.getType());
-                            String lat=   heWeather6.getHeWeather6().get(0).getBasic().get(0).getLat();
-                            String lon=  heWeather6.getHeWeather6().get(0).getBasic().get(0).getLon();
-                            getWeater(lon+","+lat);
+                    @Override
+                    public void onResponse(String response, int id) {
+                        MLog.e(response);
+                        Gson gson = new Gson();
+                        GetCityBean heWeather6 = gson.fromJson(response, new TypeToken<GetCityBean>() {
+                        }.getType());
+                        String lat = heWeather6.getHeWeather6().get(0).getBasic().get(0).getLat();
+                        String lon = heWeather6.getHeWeather6().get(0).getBasic().get(0).getLon();
+                        getWeater(lon + "," + lat);
 
-                        }
-                    });
-        }
+                    }
+                });
+    }
 
 }
