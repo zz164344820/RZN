@@ -11,6 +11,7 @@ import com.rzn.commonbaselib.mvp.BaseView;
 public class PersonalInfoContract {
     interface View extends BaseView {
         void setInfo(UserInfo userInfo);
+        void savePic();
         
     }
 

@@ -13,7 +13,10 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blankj.utilcode.util.EncodeUtils;
 import com.rzn.commonbaselib.bean.ImagePath;
+import com.rzn.commonbaselib.bean.LoginResponseBean;
+import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.commonbaselib.utils.GsonParseUtils;
 import com.rzn.commonbaselib.utils.PicturePressUtil;
 import com.rzn.commonbaselib.utils.SelectStatePopWindow;
@@ -83,7 +86,7 @@ public class PersonalInfoActivity extends MVPBaseActivity<PersonalInfoContract.V
                 if(userInfo!=null){
                     userInfo.setName(ed_name.getText().toString().trim());
                     if(imagePath!=null){
-                        userInfo.setPic(imagePath.getImgUrl());
+                        userInfo.setPic(imagePath.getFileName());
                     }
                    if(rg_sex.getCheckedRadioButtonId()==R.id.cb_boy) {
                        userInfo.setSex("1");
@@ -101,11 +104,20 @@ public class PersonalInfoActivity extends MVPBaseActivity<PersonalInfoContract.V
     public void setInfo(UserInfo userInfo) {
         this.userInfo =userInfo;
         ed_name.setText(userInfo.getName());
-        GlideUtils.loadImageView(this,userInfo.getPic(),iv_header);
+        GlideUtils.loadImageRound(this, EncodeUtils.urlDecode(userInfo.getPic()),iv_header,60);
         if("0".equals(userInfo.getSex())){
             rg_sex.check(R.id.cb_gril);
         }else{
             rg_sex.check(R.id.cb_boy);
+        }
+    }
+
+    @Override
+    public void savePic() {
+        if(imagePath!=null){
+            LoginResponseBean bean= (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+            bean.setPic(imagePath.getImgUrl());
+            FileSaveUtils.fileSaveObject(bean,"loginBean");
         }
     }
 
@@ -192,7 +204,7 @@ public class PersonalInfoActivity extends MVPBaseActivity<PersonalInfoContract.V
                     public void onResponse(ResponseBean response, int id) {
                         imagePath = GsonParseUtils.GsonToBean(response.getResult(), ImagePath.class);
                         MLog.e(imagePath.getImgUrl());
-                        GlideUtils.loadImageRound(PersonalInfoActivity.this,imagePath.getImgUrl(),iv_header,40);
+                        GlideUtils.loadImageRound(PersonalInfoActivity.this, EncodeUtils.urlDecode(imagePath.getImgUrl()),iv_header,40);
 
                     }
                 });

@@ -36,6 +36,7 @@ public class PersonalInfoPresenter extends BasePresenterImpl<PersonalInfoContrac
                 break;
             case  130:
                 ToastUtils.showShort("信息修改成功");
+                mView.savePic();
                 mContext.finish();
                 break;
                 default:
@@ -54,6 +55,6 @@ public class PersonalInfoPresenter extends BasePresenterImpl<PersonalInfoContrac
         map.put("sex",userInfo.getSex());
         map.put("pic",userInfo.getPic());
         mView.showLoading(false,"");
-        reqData(mContext,"/user/updataUser",map,130);
+        reqData(mContext,"/user/updateUser",map,130);
     }
 }

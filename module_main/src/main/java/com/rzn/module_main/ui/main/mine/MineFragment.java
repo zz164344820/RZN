@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.AppUtils;
+import com.blankj.utilcode.util.EncodeUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
@@ -27,6 +28,7 @@ import com.rzn.module_main.ui.myadvice.MyAdviceActivity;
 import com.rzn.module_main.ui.personalinfo.PersonalInfoActivity;
 import com.rzn.module_main.ui.setting.SettingActivity;
 import com.zyhealth.expertlib.utils.GlideUtils;
+import com.zyhealth.expertlib.utils.MLog;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -130,12 +132,14 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     private void initData() {
 
         if (loginResponseBean == null) {
-            GlideUtils.loadImageRound(getContext(),"http://pic17.nipic.com/20111025/2418289_151518025000_2.jpg", iv_photo, 40);
-            GlideUtils.GaussianBlur(getContext(), "http://pic17.nipic.com/20111025/2418289_151518025000_2.jpg", iv_background, 8, 1);
+            GlideUtils.loadImageRound(getContext(),"http://img1.3lian.com/gif/more/11/201211/b5442c2bcfbfac31066a747c2c5a0d03.jpg", iv_photo, 60);
+            GlideUtils.GaussianBlur(getContext(), "http://img1.3lian.com/gif/more/11/201211/b5442c2bcfbfac31066a747c2c5a0d03.jpg", iv_background, 8, 1);
             return;
         }
-        GlideUtils.loadImageRound(getContext(), loginResponseBean.getPic(), iv_photo, 40);
-        GlideUtils.GaussianBlur(getContext(), loginResponseBean.getPic(), iv_background, 8, 1);
+        GlideUtils.loadImageRound(getContext(), EncodeUtils.urlDecode(loginResponseBean.getPic()) , iv_photo, 40);
+        GlideUtils.GaussianBlur(getContext(),  EncodeUtils.urlDecode(loginResponseBean.getPic()), iv_background, 20, 1);
+
+        MLog.e(EncodeUtils.urlDecode(loginResponseBean.getPic()));
         tv_name.setText(loginResponseBean.getPhone());
         if (TextUtils.isEmpty(loginResponseBean.getHandlerId())) {
             tv_Status.setText("未认证");
