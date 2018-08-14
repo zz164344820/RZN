@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff1f4f5"
@@ -15,6 +16,7 @@
         android:gravity="center_vertical">
 
         <TextView
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -28,10 +30,11 @@
             android:layout_weight="1" />
 
         <ImageView
+            android:id="@+id/iv_header"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginRight="10dp"
-            android:background="@drawable/logo" />
+            android:src="@drawable/logo" />
 
     </LinearLayout>
 
@@ -47,24 +50,25 @@
         android:gravity="center_vertical">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="3"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:text="昵称"
             android:textColor="#ff333333"
             android:textSize="18dp" />
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
 
-        <TextView
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/ed_name"
+            android:layout_width="0dp"
+            android:layout_weight="3"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
             android:text="韩梅梅"
+            android:gravity="right"
             android:textColor="#ff333333"
+            android:background="@null"
             android:textSize="18dp" />
 
     </LinearLayout>
@@ -100,6 +104,7 @@
             android:orientation="horizontal">
 
             <RadioGroup
+                android:id="@+id/rg_sex"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -151,45 +156,6 @@
 
             </RadioGroup>
         </LinearLayout>
-        <!--<CheckBox-->
-            <!--android:id="@+id/cb_boy"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginLeft="10px"-->
-            <!--android:background="@null"-->
-            <!--android:button="@drawable/button_checked" />-->
-
-        <!--<ImageView-->
-            <!--android:layout_width="15dp"-->
-            <!--android:layout_height="17.5dp"-->
-            <!--android:src="@drawable/icon_sex_boy" />-->
-
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="(男)"-->
-            <!--android:textColor="#333333"-->
-            <!--android:textSize="16dp" />-->
-
-        <!--<CheckBox-->
-            <!--android:id="@+id/cb_gril"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginLeft="10px"-->
-            <!--android:background="@null"-->
-            <!--android:button="@drawable/button_checked" />-->
-
-        <!--<ImageView-->
-            <!--android:layout_width="15dp"-->
-            <!--android:layout_height="17.5dp"-->
-            <!--android:src="@drawable/icon_sex_gril" />-->
-
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="(女)"-->
-            <!--android:textColor="#333333"-->
-            <!--android:textSize="16dp" />-->
 
     </LinearLayout>
 

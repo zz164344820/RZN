@@ -36,8 +36,34 @@ public class DriverDetialMessageBean {
     private String updateTimeInfo;//": "2018-03-28 11:47:07",
     private String userId;//": "40288ad75c81124b015c8132bfe8006f",
     private String years;//": "10" //从业年限
+    private String birthdayAfter;//10后
     private List<KindTypeBean> JsonArrayKindType;
     private List<TaskPlaceBean> JsonArrayTaskPlace;
+
+
+    public String getEndDateInfo1() {
+        return endDateInfo1;
+    }
+
+    public void setEndDateInfo1(String endDateInfo1) {
+        this.endDateInfo1 = endDateInfo1;
+    }
+
+    public String getStartDateInfo1() {
+        return startDateInfo1;
+    }
+
+    public void setStartDateInfo1(String startDateInfo1) {
+        this.startDateInfo1 = startDateInfo1;
+    }
+
+    public String getBirthdayAfter() {
+        return birthdayAfter;
+    }
+
+    public void setBirthdayAfter(String birthdayAfter) {
+        this.birthdayAfter = birthdayAfter;
+    }
 
     public String getAnytim() {
         return anytim;
