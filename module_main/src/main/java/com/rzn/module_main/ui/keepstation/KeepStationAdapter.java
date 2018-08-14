@@ -1,5 +1,7 @@
 package com.rzn.module_main.ui.keepstation;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Toast;
@@ -22,13 +24,18 @@ public class KeepStationAdapter extends BaseQuickAdapter<KeepStationBean, BaseVi
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, KeepStationBean item) {
+    protected void convert(BaseViewHolder helper, final KeepStationBean item) {
         helper.addOnClickListener(R.id.ll_go_there);
 //        helper.addOnClickListener(R.id.tv_call);
         helper.setOnClickListener(R.id.tv_call, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(mContext, "暂无联系电话", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                Uri data = Uri.parse("tel:" + item.getTel());
+                intent.setData(data);
+                mContext.startActivity(intent);
+
+//                Toast.makeText(mContext, "暂无联系电话", Toast.LENGTH_LONG).show();
             }
         });
 
