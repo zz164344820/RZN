@@ -67,7 +67,9 @@ public class DriverListPresenter extends BasePresenterImpl<DriverListContract.Vi
            mView.showLoading(false,"");
            map.put("handlerId",loginResponseBean.getHandlerId());
            reqData(mContext,"/handler/recommendFarmerTask",map,122);//farmHand/
-      }
+      }else{
+            mView.recycleViewRestore();
+        }
     }
 
     private void setAdapter() {

@@ -15,7 +15,9 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.PhoneUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.rzn.commonbaselib.bean.JobOrderDetialBean;
+import com.rzn.commonbaselib.listener.ConfirmationCallBack;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
+import com.rzn.commonbaselib.utils.RZNUtils;
 import com.rzn.module_driver.R;
 import com.rzn.module_driver.ui.driverlist.SelectMatchingPopWindow;
 
@@ -103,11 +105,22 @@ public class JobOrderDetialActivity extends MVPBaseActivity<JobOrderDetialContra
                     }
                 } else if ("driver".equals(flag)) {
                     if ("完成作业".equals(tvHadWork.getText().toString())) {
-                        Map<String, String> map = new HashMap<>();
-                        map.put("farmerTaskId", farmerTaskId);
-                        map.put("realAreas", jobOrderDetialBean.getAreas().toString());
-                        map.put("realTotalprice", jobOrderDetialBean.getTotalprice().toString());
-                        mPresenter.finishWork(map);
+                        RZNUtils.popupDialog_Confirm(JobOrderDetialActivity.this, "确认已完成作业?", "取消", "确定", new ConfirmationCallBack() {
+                            @Override
+                            public void cancel() {
+
+                            }
+
+                            @Override
+                            public void confirm() {
+                                Map<String, String> map = new HashMap<>();
+                                map.put("farmerTaskId", farmerTaskId);
+                                map.put("realAreas", jobOrderDetialBean.getAreas().toString());
+                                map.put("realTotalprice", jobOrderDetialBean.getTotalprice().toString());
+                                mPresenter.finishWork(map);
+                            }
+                        });
+
                     }
                 }
             }
