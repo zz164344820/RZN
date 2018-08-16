@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="34dp"
-            android:text="我的-手机中心"
+            android:text="我的-机手中心"
             android:textColor="#70c63f"
             android:textSize="18dp"
             />

@@ -46,7 +46,6 @@ public class OkHttpLoader {
         map.put("phone_model", DeviceUtils.getModel());
         map.put("app_version", AppUtils.getAppVersionName());
         map.put("network_type", NetworkUtils.getNetworkType().name());
-        map.put("device_type", "android");
         OkHttpUtils.postString()
                 .url(BASEURL + api)
                 .headers(map)
