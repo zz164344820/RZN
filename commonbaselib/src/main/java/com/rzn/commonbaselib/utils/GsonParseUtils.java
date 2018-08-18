@@ -93,8 +93,8 @@ public class GsonParseUtils {
                     }.getType());
         }
         return list;
-    }
 
+    }
     /**
      * json字符串转成map的
      *
