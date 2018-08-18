@@ -28,4 +28,9 @@
         <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
     </style>
 
+
+    <style name="showDialog" >
+        <item name="@android:windowEnterAnimation">@anim/dialog_enter</item>
+    </style>
+
 </resources>

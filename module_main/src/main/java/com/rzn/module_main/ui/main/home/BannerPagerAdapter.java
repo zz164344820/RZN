@@ -37,7 +37,7 @@ public class BannerPagerAdapter  extends PagerAdapter{
         this.mContext =mContext;
         this.listener =listener;
         int[] arrData= lunarUtils.getData();
-        date=lunarUtils.getStringData("MM月dd日   ")+lunarUtils.getWeekByDateStr(arrData[0],arrData[1],arrData[2]);
+        date=lunarUtils.getStringData("MM月dd日   ")+lunarUtils.StringData();
         date2=lunarUtils.getTranslateLunarString(arrData[0],arrData[1],arrData[2]);
         date2="农历"+date2.substring(5,date2.length());
     }

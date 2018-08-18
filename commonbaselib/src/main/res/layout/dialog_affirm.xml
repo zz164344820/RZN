@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    
+    <LinearLayout
+        android:layout_width="280dp"
+        android:layout_height="160dp"
+        android:orientation="vertical"
+        android:background="@drawable/dialog_round_white"
+        >
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textSize="15dp"
+            android:textColor="#333333"
+            android:lineSpacingExtra="3dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:text="发送给患者"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:background="#EFEFF4"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp">
+
+            <TextView
+                android:id="@+id/tv_cancle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="取消"
+                android:gravity="center"
+                android:textColor="#333333"
+                android:textSize="15dp"
+                />
+
+
+            <View
+                android:id="@+id/line"
+                android:layout_width="0.8dp"
+                android:layout_height="match_parent"
+                android:background="#EFEFF4"
+                />
+            <TextView
+                android:id="@+id/tv_confirm"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="确认"
+                android:textColor="@color/main_color"
+                android:textSize="15dp"
+                android:gravity="center"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.TimeZone;
 
 /**
  * 工具类，通过查表法实现公农历互转
@@ -367,41 +368,28 @@ public class LunarUtils {
         return result;
     }
 
-    /**
-     * 获取阳历日期是星期几
-     */
-    public String getWeekByDateStr(int year,int month,int day) {
-        String week="";
-        int x = -1;
-        try
-        {
-            Calendar cal = Calendar.getInstance();
-            cal.set(year, month, day);
-            x = (cal.get(Calendar.DAY_OF_WEEK) + 6) % 7;
-            if(x==0)
-            {
-                x = 7;
-            }
-        }catch(Exception e) {}
-
-        if(x==0){
-            week="星期日";
-        }else if(x==1){
-            week="星期一";
-        }else if(x==2){
-            week="星期二";
-        }else if(x==3){
-            week="星期三";
-        }else if(x==4){
-            week="星期四";
-        }else if(x==5){
-            week="星期五";
-        }else if(x==6){
-            week="星期六";
+    public  String StringData(){
+        final Calendar c = Calendar.getInstance();
+        c.setTimeZone(TimeZone.getTimeZone("GMT+8:00"));
+       String  mWay = String.valueOf(c.get(Calendar.DAY_OF_WEEK));
+        if("1".equals(mWay)){
+            mWay ="日";
+        }else if("2".equals(mWay)){
+            mWay ="一";
+        }else if("3".equals(mWay)){
+            mWay ="二";
+        }else if("4".equals(mWay)){
+            mWay ="三";
+        }else if("5".equals(mWay)){
+            mWay ="四";
+        }else if("6".equals(mWay)){
+            mWay ="五";
+        }else if("7".equals(mWay)){
+            mWay ="六";
         }
-
-        return week;
+        return "星期"+mWay;
     }
+
 
     /**
      * 判断阳历year年是否为闰年

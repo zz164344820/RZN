@@ -136,8 +136,8 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
             GlideUtils.GaussianBlur(getContext(), "http://img1.3lian.com/gif/more/11/201211/b5442c2bcfbfac31066a747c2c5a0d03.jpg", iv_background, 8, 1);
             return;
         }
-        GlideUtils.loadImageRound(getContext(), EncodeUtils.urlDecode(loginResponseBean.getPic()) , iv_photo, 60);
-        GlideUtils.GaussianBlur(getContext(),  EncodeUtils.urlDecode(loginResponseBean.getPic()), iv_background, 20, 1);
+        GlideUtils.loadImageRound(getContext(), EncodeUtils.urlDecode(loginResponseBean.getPic()) , iv_photo, 80);
+        GlideUtils.GaussianBlur(getContext(),  EncodeUtils.urlDecode(loginResponseBean.getPic()), iv_background, 10, 1);
 
         MLog.e(EncodeUtils.urlDecode(loginResponseBean.getPic()));
         tv_name.setText(loginResponseBean.getPhone());

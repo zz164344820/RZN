@@ -12,7 +12,7 @@ public class DriverBean {
     private String level;
     private String name;
     private String sex;
-    private String status;
+    private String status;//状态0禁用1审核中2审核拒绝3审核通过
 
     public String getAddAreas() {
         return addAreas;
