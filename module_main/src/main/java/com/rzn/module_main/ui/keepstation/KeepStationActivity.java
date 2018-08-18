@@ -86,7 +86,9 @@ public class KeepStationActivity extends MVPBaseActivity<KeepStationContract.Vie
      */
     void setUpGaodeAppByMine() {
         try {
-            Intent intent = Intent.getIntent("androidamap://route?sourceApplication=softname&sname=我的位置&dlat=" + LATITUDE_B + "&dlon=" + LONGTITUDE_B + "&dname=" + address + "&dev=0&m=0&t=1");
+            Intent intent = Intent.getIntent("androidamap://navi?sourceApplication=appname&poiname=fangheng&lat=" + LATITUDE_B + "&lon=" + LONGTITUDE_B + "&dev=1&style=2");
+
+//            Intent intent = Intent.getIntent("androidamap://route?sourceApplication=softname&sname=我的位置&dlat=" + LATITUDE_B + "&dlon=" + LONGTITUDE_B + "&dname=" + address + "&dev=0&m=0&t=1");
             if (isInstallByread("com.autonavi.minimap")) {
                 startActivity(intent);
 //                Log.e(TAG, "高德地图客户端已经安装") ;
