@@ -22,7 +22,6 @@ public class MinePresenter extends BasePresenterImpl<MineContract.View> implemen
     @Override
     public void onCreate() {
         super.onCreate();
-
         getDriverData();
     }
 
@@ -30,7 +29,7 @@ public class MinePresenter extends BasePresenterImpl<MineContract.View> implemen
     @Override
     public void getDriverData() {
         LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
-        if (TextUtils.isEmpty(loginResponseBean.getHandlerId())) {
+        if (loginResponseBean==null ||TextUtils.isEmpty(loginResponseBean.getHandlerId())) {
             return;
         }
         Map<String, String> map = new HashMap<>();
