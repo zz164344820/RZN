@@ -63,11 +63,13 @@
                 android:layout_height="wrap_content"
                 android:text="农用机械 "
                 android:textColor="#888888"
+                android:ellipsize="end"
+                android:singleLine="true"
                 android:textSize="16dp" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="match_parent"l
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
@@ -86,6 +88,8 @@
                 android:layout_height="wrap_content"
                 android:text="农用机械、各类轿车、吊车、各类... "
                 android:textColor="#888888"
+                android:ellipsize="end"
+                android:singleLine="true"
                 android:textSize="16dp" />
         </LinearLayout>
 
