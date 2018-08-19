@@ -58,9 +58,10 @@
                 android:textSize="16dp" />
 
             <TextView
+                android:id="@+id/tv_fanwei"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="农用机械、各类轿车、吊车、各类... "
+                android:text="农用机械 "
                 android:textColor="#888888"
                 android:textSize="16dp" />
         </LinearLayout>
@@ -80,6 +81,7 @@
                 android:textSize="16dp" />
 
             <TextView
+                android:id="@+id/tv_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="农用机械、各类轿车、吊车、各类... "

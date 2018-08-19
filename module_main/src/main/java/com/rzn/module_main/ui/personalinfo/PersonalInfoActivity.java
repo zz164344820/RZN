@@ -83,17 +83,19 @@ public class PersonalInfoActivity extends MVPBaseActivity<PersonalInfoContract.V
      tv_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Map<String,String> map = new HashMap<>();
+                map.put("userId",userInfo.getUserId());
                 if(userInfo!=null){
-                    userInfo.setName(ed_name.getText().toString().trim());
+                    map.put("name",ed_name.getText().toString().trim());
                     if(imagePath!=null){
-                        userInfo.setPic(imagePath.getFileName());
+                        map.put("pic",imagePath.getFileName());
                     }
                    if(rg_sex.getCheckedRadioButtonId()==R.id.cb_boy) {
-                       userInfo.setSex("1");
+                       map.put("sex","1");
                    }else{
-                       userInfo.setSex("0");
+                       map.put("sex","0");
                    }
-                    mPresenter.setUserInfo(userInfo);
+                    mPresenter.setUserInfo(map);
                 }
 
             }

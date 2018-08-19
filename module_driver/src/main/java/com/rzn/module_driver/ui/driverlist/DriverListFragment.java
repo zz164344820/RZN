@@ -63,11 +63,11 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
     RecyclerView swipeTarget;
     @BindView(R2.id.swipeToLoadLayout)
     SwipeToLoadLayout swipeToLoadLayout;
-    @BindView(R.id.tv_jobScreeningType)
+    @BindView(R2.id.tv_jobScreeningType)
     TextView tvJobScreeningType;
-    @BindView(R.id.tv_address)
+    @BindView(R2.id.tv_address)
     TextView tvAddress;
-    @BindView(R.id.tv_sort)
+    @BindView(R2.id.tv_sort)
     TextView tvSort;
     private TextView tvStartGet;
     private DriverListAdapter driverListAdapter;
@@ -208,7 +208,11 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
                 Map<String, String> map = new HashMap<>();
                 map.put("filterKindType", kindTypeId);
                 mPresenter.getDriverList(map);
-                tvJobScreeningType.setText(worTypeList.get(position).getKindName()+"-"+worTypeList.get(position).getTypeArray().get(typePosition).getTypeName());
+                String orderType = worTypeList.get(position).getKindName()+"-"+worTypeList.get(position).getTypeArray().get(typePosition).getTypeName();
+                if(orderType.length()>5){
+                    orderType=orderType.substring(0,5)+"...";
+                }
+                tvJobScreeningType.setText(orderType);
             }
         });
         if (sendPopUpWindow.isShowing()) {
@@ -283,7 +287,11 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
         Map<String, String> map = new HashMap<>();
         map.put("filterTaskPlace", county.getId() + "");
         mPresenter.getDriverList(map);
-        tvAddress.setText(county.getName());
+        String countyName = county.name;
+        if(countyName.length()>4){
+            countyName=countyName.substring(0,4)+"...";
+        }
+        tvAddress.setText(countyName);
     }
 
     private void showSelectPic(final SelectMatchingPopWindow[] window) {
@@ -294,7 +302,7 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
                 if (v.getId() == R.id.tv_closeRange) {
                     window[0].dismiss();
                     map.put("recently", "1");
-                    tvSort.setText("最近距离匹配");
+                    tvSort.setText("最近距离...");
                 } else if (v.getId() == R.id.tv_normal) {
                     window[0].dismiss();
                     map.put("recently", "0");

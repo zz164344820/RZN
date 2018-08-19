@@ -169,7 +169,12 @@ public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View,
                 list.clear();
                 pager=0;
                 mPresenter.httpLoadDriverMessage(loginResponseBean.getUserId(), (++pager)+"", "", kindTypeId);
-                tv_orderType.setText(worTypeList.get(position).getKindName()+"-"+worTypeList.get(position).getTypeArray().get(typePosition).getTypeName());
+
+                String orderType = worTypeList.get(position).getKindName()+"-"+worTypeList.get(position).getTypeArray().get(typePosition).getTypeName();
+                if(orderType.length()>5){
+                    orderType=orderType.substring(0,5)+"...";
+                }
+                tv_orderType.setText(orderType);
             }
         });
         if (sendPopUpWindow.isShowing()) {
@@ -222,6 +227,10 @@ public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View,
         list.clear();
         pager=0;
         mPresenter.httpLoadDriverMessage(loginResponseBean.getUserId(), (++pager)+"", county.getId()+"", "");
-        tv_orderArea.setText(county.getName());
+        String countyName = county.getName();
+        if(countyName.length()>4){
+            countyName=countyName.substring(0,4)+"...";
+        }
+        tv_orderArea.setText(countyName);
     }
 }

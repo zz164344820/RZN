@@ -48,12 +48,7 @@ public class PersonalInfoPresenter extends BasePresenterImpl<PersonalInfoContrac
 
 
     @Override
-    public void setUserInfo(UserInfo userInfo) {
-        Map<String,String> map = new HashMap<>();
-        map.put("userId",userInfo.getUserId());
-        map.put("name",userInfo.getName());
-        map.put("sex",userInfo.getSex());
-        map.put("pic",userInfo.getPic());
+    public void setUserInfo(Map map ) {
         mView.showLoading(false,"");
         reqData(mContext,"/user/updateUser",map,130);
     }
