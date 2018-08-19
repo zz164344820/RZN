@@ -29,6 +29,8 @@
                 android:drawableRight="@drawable/driver_pulldown_black"
                 android:gravity="center"
                 android:text="作业类型"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:textColor="@color/text_333"
                 android:textSize="36px" />
 
@@ -58,6 +60,8 @@
                 android:drawableRight="@drawable/driver_pulldown_black"
                 android:gravity="center"
                 android:text="作业地区"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:textColor="@color/text_333"
                 android:textSize="36px" />
 

@@ -22,6 +22,7 @@ import com.rzn.commonbaselib.mvp.MVPBaseFragment;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.module_main.R;
 import com.rzn.module_main.R2;
+import com.rzn.module_main.ui.drivercenter.DriverBean;
 import com.rzn.module_main.ui.drivercenter.DriverCenterActivity;
 import com.rzn.module_main.ui.mesagecenter.MessageCenterActivity;
 import com.rzn.module_main.ui.myadvice.MyAdviceActivity;
@@ -125,9 +126,18 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         iv_photo = (ImageView) rootView.findViewById(R.id.iv_photo);
         iv_background = (ImageView) rootView.findViewById(R.id.iv_background);
         tv_VersionName = (TextView) rootView.findViewById(R.id.tv_VersionName);
-
-
     }
+
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            mPresenter.getDriverData();
+        }
+    }
+
+
 
     private void initData() {
 
@@ -141,12 +151,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
 
         MLog.e(EncodeUtils.urlDecode(loginResponseBean.getPic()));
         tv_name.setText(loginResponseBean.getPhone());
-        if (TextUtils.isEmpty(loginResponseBean.getHandlerId())) {
-            tv_Status.setText("未认证");
-        } else {
-            tv_Status.setText("已认证");
-            tv_Status.setTextColor(getResources().getColor(R.color.main_color));
-        }
+
 
         tv_VersionName.setText("版本号：v " + AppUtils.getAppVersionName());
     }
@@ -170,5 +175,19 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     @OnClick(R2.id.iv_message)
     public void onViewClicked() {
         startActivity(new Intent(getActivity(), MessageCenterActivity.class));
+    }
+
+    @Override
+    public void getDataSuccess(DriverBean driverBean) {
+       if("0".equals(driverBean.getStatus())){
+           tv_Status.setText("已禁用");
+       }else if ("1".equals(driverBean.getStatus())) {
+            tv_Status.setText("审核中");
+        } else  if ("2".equals(driverBean.getStatus())){
+            tv_Status.setText("未认证");
+        }else if("3".equals(driverBean.getStatus())){
+            tv_Status.setText("已认证");
+            tv_Status.setTextColor(getResources().getColor(R.color.main_color));
+        }
     }
 }

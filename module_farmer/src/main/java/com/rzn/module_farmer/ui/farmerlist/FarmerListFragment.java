@@ -52,7 +52,7 @@ public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View,
     private View rootView;
     private RecyclerView swipeTarget;
     private SwipeToLoadLayout swipeToLoadLayout;
-    private TextView tvStartGet;
+    private TextView tvStartGet ,tv_orderArea,tv_orderType;
     public LinearLayout ll_top;
     private List<FarmerDriverMessageBean> list = new ArrayList<>();
     private FarmerListAdapter farmerListAdapter;
@@ -108,6 +108,8 @@ public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View,
     private void initViews() {
         tvStartGet = (TextView) rootView.findViewById(R.id.tv_start_get);
         ll_top = (LinearLayout) rootView.findViewById(R.id.ll_top);
+        tv_orderArea = (TextView) rootView.findViewById(R.id.tv_orderArea);
+        tv_orderType = (TextView) rootView.findViewById(R.id.tv_orderType);
         swipeTarget = (RecyclerView) rootView.findViewById(R.id.swipe_target);
         swipeToLoadLayout = (SwipeToLoadLayout) rootView.findViewById(R.id.swipeToLoadLayout);
         swipeTarget.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -167,6 +169,7 @@ public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View,
                 list.clear();
                 pager=0;
                 mPresenter.httpLoadDriverMessage(loginResponseBean.getUserId(), (++pager)+"", "", kindTypeId);
+                tv_orderType.setText(worTypeList.get(position).getKindName()+"-"+worTypeList.get(position).getTypeArray().get(typePosition).getTypeName());
             }
         });
         if (sendPopUpWindow.isShowing()) {
@@ -219,5 +222,6 @@ public class FarmerListFragment extends MVPBaseFragment<FarmerListContract.View,
         list.clear();
         pager=0;
         mPresenter.httpLoadDriverMessage(loginResponseBean.getUserId(), (++pager)+"", county.getId()+"", "");
+        tv_orderArea.setText(county.getName());
     }
 }
