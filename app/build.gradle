@@ -28,11 +28,6 @@ android {
     }
 
 
-    lintOptions {
-        abortOnError false
-    }
-
-
     signingConfigs {
         release {
             storeFile file('../app/keystore.jks')
