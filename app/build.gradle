@@ -27,6 +27,12 @@ android {
         }
     }
 
+
+    lintOptions {
+        abortOnError false
+    }
+
+
     signingConfigs {
         release {
             storeFile file('../app/keystore.jks')
@@ -72,6 +78,7 @@ allprojects {
 }
 
 
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -92,4 +99,6 @@ dependencies {
     } else {
         compile project(':commonbaselib')
     }
+
 }
+
