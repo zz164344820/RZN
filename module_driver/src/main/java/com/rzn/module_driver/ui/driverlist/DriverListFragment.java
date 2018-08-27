@@ -63,6 +63,12 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
     RecyclerView swipeTarget;
     @BindView(R2.id.swipeToLoadLayout)
     SwipeToLoadLayout swipeToLoadLayout;
+    @BindView(R2.id.tv_jobScreeningType)
+    TextView tvJobScreeningType;
+    @BindView(R2.id.tv_address)
+    TextView tvAddress;
+    @BindView(R2.id.tv_sort)
+    TextView tvSort;
     private TextView tvStartGet;
     private DriverListAdapter driverListAdapter;
     Unbinder unbinder;
@@ -124,7 +130,7 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
                         startActivity(new Intent(mContext, DriverOrderMessageActivity.class));
                     } else if (isReceivingOrder == 2) {
                         //停止接单
-                        showLoading(false,"");
+                        showLoading(false, "");
                         mPresenter.isOrderReceiving("0");
                     }
 
@@ -166,7 +172,7 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
         if (requestId == 665) {
             ReceivingOrder receivingOrder = GsonUtils.gsonParseBean(new Gson(), response.getResult(), ReceivingOrder.class);
             if (TextUtils.isEmpty(receivingOrder.getHandlerInfoId())) {
-                if("停止接单".equals(tvStartGet.getText().toString())){
+                if ("停止接单".equals(tvStartGet.getText().toString())) {
                     ToastUtils.showShortSafe("已停止接单!");
                     tvStartGet.setText("开始接单");
                 }
@@ -202,6 +208,11 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
                 Map<String, String> map = new HashMap<>();
                 map.put("filterKindType", kindTypeId);
                 mPresenter.getDriverList(map);
+                String orderType = worTypeList.get(position).getKindName()+"-"+worTypeList.get(position).getTypeArray().get(typePosition).getTypeName();
+                if(orderType.length()>5){
+                    orderType=orderType.substring(0,5)+"...";
+                }
+                tvJobScreeningType.setText(orderType);
             }
         });
         if (sendPopUpWindow.isShowing()) {
@@ -225,7 +236,7 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
 
     @Override
     public void showPopWindow() {
-        PostSuccessPopWindow postSuccessPopWindow=new PostSuccessPopWindow(getActivity());
+        PostSuccessPopWindow postSuccessPopWindow = new PostSuccessPopWindow(getActivity());
         postSuccessPopWindow.setOnPostClickListener(new PostSuccessPopWindow.OnPostClickListener() {
             @Override
             public void onClick() {
@@ -276,6 +287,11 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
         Map<String, String> map = new HashMap<>();
         map.put("filterTaskPlace", county.getId() + "");
         mPresenter.getDriverList(map);
+        String countyName = county.name;
+        if(countyName.length()>4){
+            countyName=countyName.substring(0,4)+"...";
+        }
+        tvAddress.setText(countyName);
     }
 
     private void showSelectPic(final SelectMatchingPopWindow[] window) {
@@ -286,9 +302,11 @@ public class DriverListFragment extends MVPBaseFragment<DriverListContract.View,
                 if (v.getId() == R.id.tv_closeRange) {
                     window[0].dismiss();
                     map.put("recently", "1");
+                    tvSort.setText("最近距离...");
                 } else if (v.getId() == R.id.tv_normal) {
                     window[0].dismiss();
                     map.put("recently", "0");
+                    tvSort.setText("正常匹配");
                 }
                 list.clear();
                 mPresenter.getDriverList(map);

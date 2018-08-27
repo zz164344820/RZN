@@ -22,12 +22,14 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/tv_jobScreeningType"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:drawablePadding="7px"
                 android:drawableRight="@drawable/driver_pulldown_black"
                 android:gravity="center"
                 android:text="作业类型"
+                android:maxLines="1"
                 android:textColor="@color/text_333"
                 android:textSize="36px" />
 
@@ -50,12 +52,14 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/tv_address"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:drawablePadding="7px"
                 android:drawableRight="@drawable/driver_pulldown_black"
                 android:gravity="center"
                 android:text="作业地区"
+                android:maxLines="1"
                 android:textColor="@color/text_333"
                 android:textSize="36px" />
 
@@ -76,12 +80,14 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/tv_sort"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:drawablePadding="7px"
                 android:drawableRight="@drawable/driver_pulldown_black"
                 android:gravity="center"
                 android:text="智能排序"
+                android:maxLines="1"
                 android:textColor="@color/text_333"
                 android:textSize="36px" />
 
