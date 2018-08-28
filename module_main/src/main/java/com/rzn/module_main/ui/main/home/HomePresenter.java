@@ -5,6 +5,7 @@ import com.rzn.commonbaselib.mvp.BasePresenterImpl;
 import com.rzn.module_main.ui.main.farmmachinery.InfoBean;
 import com.rzn.module_main.ui.mesagecenter.MessageInfo;
 import com.zyhealth.expertlib.bean.ResponseBean;
+import com.zyhealth.expertlib.utils.MLog;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
@@ -26,6 +27,7 @@ public class HomePresenter extends BasePresenterImpl<HomeContract.View> implemen
     public void getMessage(Map<String, String> map) {
 //        Map<String ,String> map = new HashMap<>();
 //        map.put("userId",loginResponseBean.getUserId());
+        MLog.e("执行了一次");
         reqData(mContext, "/user/queryUserMsg", map, 123);//farmHand/
     }
 

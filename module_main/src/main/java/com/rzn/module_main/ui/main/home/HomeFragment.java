@@ -109,12 +109,17 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 0:
-                    if (lists.size() < i + 1) {
-                        i = 0;
+                    try {
+                        if(i>lists.size()){
+                            i=0;
+                        }
+                        tvMainMessage.setText(lists.get(i).getMsgTitle() + "");
+                        i++;
+                        handler.sendEmptyMessageDelayed(0, 2000);
+                    }catch (Exception e){
+                       MLog.e("异常");
                     }
-                    tvMainMessage.setText(lists.get(i).getMsgTitle() + "");
-                    i++;
-                    handler.sendEmptyMessageDelayed(0, 2000);
+
                     break;
             }
         }
