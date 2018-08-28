@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'maven'
 
 android {
     compileSdkVersion 25
@@ -17,6 +16,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 
@@ -26,6 +26,5 @@ dependencies {
     compile 'com.google.code.gson:gson:2.4'
     compile 'com.github.chihane:AndroidUtils:1.0.10'
     compile 'org.litepal.android:core:1.6.1'
-
 }
 
