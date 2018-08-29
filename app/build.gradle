@@ -27,6 +27,11 @@ android {
         }
     }
 
+    useLibrary 'org.apache.http.legacy'
+    lintOptions {
+        abortOnError false
+    }
+
 
     signingConfigs {
         release {
