@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '25.0.2'
+    compileSdkVersion 26
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.rzn.njt"
         minSdkVersion 17
@@ -25,12 +25,6 @@ android {
                 arguments = [ moduleName : project.getName() ]
             }
         }
-    }
-
-
-    useLibrary 'org.apache.http.legacy'
-    lintOptions {
-        abortOnError false
     }
 
 
@@ -98,6 +92,8 @@ dependencies {
     } else {
         compile project(':commonbaselib')
     }
+
+
 
 }
 

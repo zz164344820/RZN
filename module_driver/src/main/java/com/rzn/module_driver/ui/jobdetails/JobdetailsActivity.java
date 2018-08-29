@@ -119,7 +119,7 @@ public class JobdetailsActivity extends MVPBaseActivity<JobdetailsContract.View,
         } else if ("2".equals(jobOrderDetialBeans.getFlag())) {
             tvTitleContent.setText(jobOrderDetialBeans.getAreas() + "亩/" + "零星分散" + jobOrderDetialBeans.getFlagNum() + "块");
         }
-        tvWorkAddress.setText(jobOrderDetialBeans.getProvinceName() + jobOrderDetialBeans.getAreaName() + jobOrderDetialBeans.getCityName() + "");
+        tvWorkAddress.setText(jobOrderDetialBeans.getProvinceName()  + jobOrderDetialBeans.getCityName()+ jobOrderDetialBeans.getAreaName() + "");
         tvContent.setText(jobOrderDetialBeans.getRemark());
         tvWorkTime.setText(jobOrderDetialBeans.getStartDate() + "至" + jobOrderDetialBeans.getEndDate());
     }

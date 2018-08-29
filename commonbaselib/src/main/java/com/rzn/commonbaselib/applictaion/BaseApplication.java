@@ -6,7 +6,6 @@ import com.zyhealth.expertlib.LibApplication;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.jpush.android.api.JPushInterface;
 
 /**
  * 要想使用BaseApplication，必须在组件中实现自己的Application，并且继承BaseApplication；

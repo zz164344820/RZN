@@ -42,7 +42,7 @@ public class AllOrderAdapter extends BaseQuickAdapter<MyWorkDetialBean, BaseView
             helper.setText(R.id.tv_name_area, item.getAreas() + "亩/" + "零星分散/" + item.getFlagNum() + "块");
         }
 
-        helper.setText(R.id.tv_adress, item.getProvinceName() + item.getAreaName() + item.getCityName() + "");
+        helper.setText(R.id.tv_adress, item.getProvinceName()  + item.getCityName()+ item.getAreaName() + "");
         helper.setText(R.id.tv_time, item.getStartDate() + "至" + item.getEndDate());
         helper.setText(R.id.tv_num, item.getAreas() + "亩");
         helper.setText(R.id.tv_true_money, item.getTotalprice() + "元");

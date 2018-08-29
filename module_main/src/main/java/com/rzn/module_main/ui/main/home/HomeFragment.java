@@ -45,6 +45,7 @@ import com.rzn.module_main.ui.mesagecenter.MessageInfo;
 import com.rzn.module_main.ui.sellagriculturalgoods.SellAgriculturalGoodsActivity;
 import com.rzn.module_main.ui.util.LoginUtil;
 import com.rzn.module_main.ui.webview.WebViewActivity;
+import com.sunfusheng.marqueeview.MarqueeView;
 import com.tmall.ultraviewpager.UltraViewPager;
 import com.zhy.autolayout.AutoLinearLayout;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -98,27 +99,12 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
     private AutoLinearLayout alItemOne;
     private AutoLinearLayout alItemTwo;
     private TextView tvMainMessage;
-    List<MessageInfo> lists = new ArrayList<>();
+    List<String> lists = new ArrayList<>();
     List<String> list = new ArrayList<>();
     BannerPagerAdapter adapter;
     BottomDialog bottomDialog;
 
-    int i = 0;
-    final Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case 0:
-                    if (lists.size() < i + 1) {
-                        i = 0;
-                    }
-                    tvMainMessage.setText(lists.get(i).getMsgTitle() + "");
-                    i++;
-                    handler.sendEmptyMessageDelayed(0, 2000);
-                    break;
-            }
-        }
-    };
+
     private TextView tvLook;
     private TextView tvSearch;
     private TextView tvZixunTitle;
@@ -129,6 +115,7 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
     private TextView tvFarmerContent;
     private TextView tvFarmerTime;
     private ImageView ivWenzhagn;
+    private MarqueeView marqueeView;
 
     @Nullable
     @Override
@@ -221,25 +208,6 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
         });
 
 
-//        alItemOne.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getContext(), WebViewActivity.class);
-//                intent.putExtra("url", "https://mp.weixin.qq.com/s/EG0tXoFHa_2nZpEwQjOJ2w");
-//                intent.putExtra("title", "农业资讯");
-//                startActivity(intent);
-//            }
-//        });
-//        alItemTwo.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-////                http://www.farmer.com.cn/xwpd/btxw/201805/t20180531_1380906.htm
-//                Intent intent = new Intent(getContext(), WebViewActivity.class);
-//                intent.putExtra("url", "http://www.farmer.com.cn/xwpd/btxw/201805/t20180531_1380906.htm");
-//                intent.putExtra("title", "热门文章");
-//                startActivity(intent);
-//            }
-//        });
         tvLook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -275,6 +243,7 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
         tvFarmerContent = (TextView) rootView.findViewById(R.id.tv_farmercontent);
         tvFarmerTime = (TextView) rootView.findViewById(R.id.tv_farmertime);
         ivWenzhagn = (ImageView) rootView.findViewById(R.id.tv_wenzhang);
+        marqueeView = (MarqueeView) rootView.findViewById(R.id.marqueeView);
 
 
         bottomDialog = new BottomDialog(getActivity());
@@ -338,6 +307,10 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
 
     private void initData() {
         if (loginResponseBean != null && !TextUtils.isEmpty(loginResponseBean.getUserId())) {
+            if(lists.size()==0){
+                tvMainMessage.setText("暂无消息！");
+            }
+
             Map<String, String> map = new HashMap<>();
             map.put("userId", loginResponseBean.getUserId());
             mPresenter.getMessage(map);
@@ -350,7 +323,7 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
-        handler.removeCallbacksAndMessages(null);
+        marqueeView.stopFlipping();
     }
 
     @OnClick(R2.id.tv_main_address)
@@ -404,6 +377,12 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
     }
 
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        marqueeView.startFlipping();
+    }
+
     /**
      * 獲取消息信息成功
      *
@@ -411,16 +390,18 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
      */
     @Override
     public void getMessageSuccess(List<MessageInfo> list) {
-        lists.clear();
+        tvMainMessage.setText("");
         for (int j = 0; j < list.size(); j++) {
             if ("0".equals(list.get(j).getIsread())) {
-                lists.add(list.get(j));
+                if(!lists.contains(list.get(j).getMsgContent())){
+                    lists.add(list.get(j).getMsgContent());
+                }
+
             }
         }
         if (lists.size() != 0) {
-            handler.sendEmptyMessage(0);
-        } else {
-            tvMainMessage.setText("暂无消息！");
+            marqueeView.startWithList(lists);
+
         }
 
 

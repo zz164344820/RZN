@@ -150,6 +150,7 @@
             android:layout_height="wrap_content"
             android:button="@drawable/button_checked"
             android:background="@null"
+            android:checked="true"
             android:layout_marginLeft="10px"
             />
         <TextView

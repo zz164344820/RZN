@@ -270,6 +270,7 @@
                     android:id="@+id/et_kuai"
                     android:layout_width="40dp"
                     android:layout_height="37dp"
+                    android:inputType="number"
                     android:background="@drawable/shape_input_bg" />
 
                 <TextView

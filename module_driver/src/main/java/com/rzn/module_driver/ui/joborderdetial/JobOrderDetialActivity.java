@@ -242,7 +242,7 @@ public class JobOrderDetialActivity extends MVPBaseActivity<JobOrderDetialContra
             tvCancel.setText("已完成");
         }
 
-        tvAddress.setText("• " + jobOrderDetialBean.getProvinceName() + jobOrderDetialBean.getAreaName() + jobOrderDetialBean.getCityName() + "");
+        tvAddress.setText("• " + jobOrderDetialBean.getProvinceName()  + jobOrderDetialBean.getCityName() + jobOrderDetialBean.getAreaName()+ "");
 //        tvAddress.setText(jobOrderDetialBean.getAddress());
         tvAddressTwo.setText("• " + jobOrderDetialBean.getTaskPlace());
         tvTime.setText(jobOrderDetialBean.getStartDate() + "至" + jobOrderDetialBean.getEndDate());
@@ -296,7 +296,7 @@ public class JobOrderDetialActivity extends MVPBaseActivity<JobOrderDetialContra
                 llMu.setVisibility(View.VISIBLE);
                 tvMu.setText(jobOrderDetialBean.getAreas() + "亩");
             }
-            tvAddress.setText("• " + jobOrderDetialBean.getProvinceName() + jobOrderDetialBean.getAreaName() + jobOrderDetialBean.getCityName() + "");
+            tvAddress.setText("• " + jobOrderDetialBean.getProvinceName() + jobOrderDetialBean.getCityName() + jobOrderDetialBean.getAreaName() + "");
 //            tvAddress.setText(jobOrderDetialBean.getAddress());
             tvAddressTwo.setText("• " + jobOrderDetialBean.getTaskPlace());
             tvTime.setText(jobOrderDetialBean.getStartDate() + "至" + jobOrderDetialBean.getEndDate());

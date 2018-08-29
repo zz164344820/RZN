@@ -268,7 +268,7 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
             county.setCity_id(Integer.valueOf(jobOrderDetialBean.getAreaCode()));
             county.setName(jobOrderDetialBean.getAreaName());
             etWorkAreas.setText(jobOrderDetialBean.getAreas());
-            tvWorkAddress.setText(jobOrderDetialBean.getProvinceName() + " " + jobOrderDetialBean.getAreaName() + " " + jobOrderDetialBean.getCityName());
+            tvWorkAddress.setText(jobOrderDetialBean.getProvinceName() + jobOrderDetialBean.getCityName()+ jobOrderDetialBean.getAreaName());
             etDetialAddress.setText(jobOrderDetialBean.getTaskPlace());
             tvStartTime.setText(jobOrderDetialBean.getStartDate());
             tvToTime.setText(jobOrderDetialBean.getEndDate());

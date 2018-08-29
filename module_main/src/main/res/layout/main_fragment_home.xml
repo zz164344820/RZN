@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_color"
-    >
+    android:background="@color/bg_color">
 
     <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="match_parent"
@@ -124,15 +124,28 @@
 
                 <TextView
                     android:id="@+id/tv_main_mesage"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="技手张大千接手了您的邀请"
                     android:drawableLeft="@drawable/main_guangbo"
                     android:drawablePadding="19px"
+                    android:text=""
                     android:textSize="28px"
                     android:textColor="#333333"
                     />
+
+                <com.sunfusheng.marqueeview.MarqueeView
+                    android:id="@+id/marqueeView"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    app:mvAnimDuration="1000"
+                    app:mvDirection="bottom_to_top"
+                    app:mvInterval="5000"
+                    app:mvTextColor="#333333"
+                    app:mvTextSize="14sp"
+                    app:mvSingleLine="true"/>
+
+
 
                 <TextView
                     android:id="@+id/tv_look"
