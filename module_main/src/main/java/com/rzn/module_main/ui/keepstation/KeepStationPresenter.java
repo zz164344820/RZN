@@ -21,17 +21,16 @@ public class KeepStationPresenter extends BasePresenterImpl<KeepStationContract.
     @Override
     public void onCreate() {
         super.onCreate();
-//        reqData(mContext,"Test/index",null,111);
     }
 
     @Override
-    public void getKeepData() {
+    public void getKeepData(String searchStr) {
         mView.showLoading(false, "");
         LoginResponseBean responseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
         Map<String, String> map = new HashMap<>();
         map.put("userId", responseBean.getUserId());
         map.put("page", "1");
-        map.put("name", "");
+        map.put("name", searchStr);
         reqData(mContext, "/repair/queryRepair", map, 111);//farmHand/
     }
 

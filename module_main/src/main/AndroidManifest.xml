@@ -26,16 +26,52 @@
         <activity android:name=".ui.login.LoginActivity" />
         <activity
             android:name=".ui.jobscreening.JobScreeningActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|stateAlwaysHidden"
             android:launchMode="singleTask" />
-        <activity android:name=".ui.myadvice.MyAdviceActivity" />
-        <activity android:name=".ui.driverhome.DriverHomeActivity" />
+
+        <activity android:name=".ui.myadvice.MyAdviceActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|stateAlwaysHidden"
+            />
+        <activity android:name=".ui.driverhome.DriverHomeActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|stateAlwaysHidden"
+            />
         <activity android:name=".ui.setting.SettingActivity" />
-        <activity android:name=".ui.keepstation.KeepStationActivity" />
-        <activity android:name=".ui.personalinfo.PersonalInfoActivity" />
-        <activity android:name=".ui.drivercenter.DriverCenterActivity" />
-        <activity android:name=".ui.settingmode.SettingModeActivity" />
-        <activity android:name=".ui.mesagecenter.MessageCenterActivity" />
-        <activity android:name=".ui.sellagriculturalgoods.SellAgriculturalGoodsActivity" />
+        <activity android:name=".ui.keepstation.KeepStationActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|stateAlwaysHidden"
+            />
+        <activity android:name=".ui.personalinfo.PersonalInfoActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|stateAlwaysHidden"
+            />
+        <activity android:name=".ui.drivercenter.DriverCenterActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|stateAlwaysHidden"
+            />
+        <activity android:name=".ui.settingmode.SettingModeActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|stateAlwaysHidden"
+            />
+        <activity android:name=".ui.mesagecenter.MessageCenterActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|stateAlwaysHidden"
+            />
+        <activity android:name=".ui.sellagriculturalgoods.SellAgriculturalGoodsActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|stateAlwaysHidden"
+            />
         <activity android:name=".ui.webview.WebViewActivity" />
     </application>
 

@@ -1,18 +1,23 @@
 package com.rzn.module_main.ui.keepstation;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.module_main.R;
+import com.zyhealth.expertlib.utils.MLog;
 
 import java.io.File;
 import java.net.URISyntaxException;
@@ -29,16 +34,11 @@ public class KeepStationActivity extends MVPBaseActivity<KeepStationContract.Vie
 
     private RecyclerView swipeTarget;
 
-//    118.88462,32.335756
 
-    private static final double LATITUDE_A = 28.1903;  //起点纬度
-    private static final double LONGTITUDE_A = 113.031738;  //起点经度
 
     double LATITUDE_B = 32.335756;  //终点纬度
     double LONGTITUDE_B = 118.88462;  //终点经度
-    private String address = "南京冠世机械设备有限公司农机维修站";
-    private TextView tvTextSearch;
-    private List<KeepStationBean> list = new ArrayList<>();
+    private EditText ed_text_search;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,28 +48,25 @@ public class KeepStationActivity extends MVPBaseActivity<KeepStationContract.Vie
         initLinstener();
         mPresenter.onCreate();
 
-//        showLoading(false,"");
     }
 
     private void initLinstener() {
-        tvTextSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Toast.makeText(this,"暂未开通该功能",Toast.LENGTH_SHORT).show();
-                Toast.makeText(getApplicationContext(), "暂未开通该功能", Toast.LENGTH_LONG).show();
-            }
-        });
+        ed_text_search.setOnKeyListener(onKey);
     }
 
     private void initViews() {
-        tvTextSearch = (TextView) findViewById(R.id.tv_text_search);
+        ed_text_search = (EditText) findViewById(R.id.ed_text_search);
         setTitle("维修站");
         swipeTarget = (RecyclerView) findViewById(R.id.swipe_target);
         swipeTarget.setLayoutManager(new LinearLayoutManager(this));
-        mPresenter.getKeepData();
-
+        mPresenter.getKeepData("");
     }
 
+    @Override
+    public void complete_enter() {
+       // super.complete_enter();
+        mPresenter.getKeepData(ed_text_search.getText().toString().trim());
+    }
 
     /**
      * 判断是否安装目标应用
@@ -110,7 +107,6 @@ public class KeepStationActivity extends MVPBaseActivity<KeepStationContract.Vie
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 LATITUDE_B = Double.valueOf(list.get(position).getLatitude());//32.335756;  //终点纬度
                 LONGTITUDE_B = Double.valueOf(list.get(position).getLongitude());//118.88462;  //终点经度
-                address = list.get(position).getBusinessAddress();
                 setUpGaodeAppByMine();
             }
         });
@@ -120,4 +116,6 @@ public class KeepStationActivity extends MVPBaseActivity<KeepStationContract.Vie
     public void getKeepDataFailed() {
 
     }
+
+
 }

@@ -19,6 +19,6 @@ public class KeepStationContract {
     }
 
     interface Presenter extends BasePresenter<View> {
-        void getKeepData();
+        void getKeepData(String searchStr);
     }
 }

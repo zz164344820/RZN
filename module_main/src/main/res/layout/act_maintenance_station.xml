@@ -22,14 +22,16 @@
             android:background="@drawable/main_white_30"
             android:gravity="center_vertical">
 
-            <TextView
-                android:id="@+id/tv_text_search"
+            <EditText
+                android:id="@+id/ed_text_search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/main_search"
                 android:drawablePadding="14px"
                 android:paddingLeft="30px"
-                android:text="请输入商家名称，地址"
+                android:hint="请输入商家名称，地址"
+                android:imeOptions="actionSearch"
+                android:background="@null"
                 android:textColor="@color/text_888"
                 android:textSize="28px" />
 

@@ -124,7 +124,7 @@ public class MVPBaseActivity<V extends BaseView, T extends BasePresenterImpl<V>>
         @Override
         public boolean onKey(View v, int keyCode, KeyEvent event) {
 
-            if (keyCode == KeyEvent.KEYCODE_ENTER) {
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
 
                 InputMethodManager imm = (InputMethodManager) v.getContext()
                         .getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -134,6 +134,7 @@ public class MVPBaseActivity<V extends BaseView, T extends BasePresenterImpl<V>>
                     imm.hideSoftInputFromWindow(v.getApplicationWindowToken(),
                             0);
                     complete_enter();
+                    MLog.e("");
                 }
                 return true;
             }
@@ -142,7 +143,7 @@ public class MVPBaseActivity<V extends BaseView, T extends BasePresenterImpl<V>>
 
     };
 
-    protected void complete_enter() {
+    public void complete_enter() {
         View view = getWindow().peekDecorView();
         if (view != null) {
             InputMethodManager inputmanger = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);

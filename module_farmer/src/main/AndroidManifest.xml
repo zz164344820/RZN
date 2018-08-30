@@ -7,10 +7,26 @@
         android:label="@string/app_name"
         android:supportsRtl="true">
 
-        <activity android:name=".ui.sendwork.SendWorkActivity" />
-        <activity android:name=".ui.farmerdriverdetial.FarmerDriverDetialActivity" />
-        <activity android:name=".ui.sendworksuccess.SendWorkSuccessActivity" />
-        <activity android:name=".ui.selectaddress.SelectAddressActivity" />
+        <activity android:name=".ui.sendwork.SendWorkActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|stateAlwaysHidden"
+            />
+        <activity android:name=".ui.farmerdriverdetial.FarmerDriverDetialActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|stateAlwaysHidden"
+            />
+        <activity android:name=".ui.sendworksuccess.SendWorkSuccessActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|stateAlwaysHidden"
+            />
+        <activity android:name=".ui.selectaddress.SelectAddressActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|stateAlwaysHidden"
+            />
     </application>
 
 </manifest>

@@ -9,13 +9,41 @@
         android:supportsRtl="true">
 
 
-        <activity android:name=".ui.jobOrder.myjoborder.MyjobOrderActivity" />
-        <activity android:name=".ui.driver_identification.Driver_identificationActivity" />
-        <activity android:name=".ui.jobdetails.JobdetailsActivity" />
-        <activity android:name=".ui.drivermaksure.DriverMakeSureActivity" />
-        <activity android:name=".ui.joborderdetial.JobOrderDetialActivity" />
-        <activity android:name=".ui.driverordermessage.DriverOrderMessageActivity" />
-        <activity android:name=".ui.posting.PostingActivity" />
+        <activity android:name=".ui.jobOrder.myjoborder.MyjobOrderActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|stateAlwaysHidden"
+            />
+        <activity android:name=".ui.driver_identification.Driver_identificationActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|stateAlwaysHidden"
+            />
+        <activity android:name=".ui.jobdetails.JobdetailsActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|stateAlwaysHidden"
+            />
+        <activity android:name=".ui.drivermaksure.DriverMakeSureActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|stateAlwaysHidden"
+            />
+        <activity android:name=".ui.joborderdetial.JobOrderDetialActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|stateAlwaysHidden"
+            />
+        <activity android:name=".ui.driverordermessage.DriverOrderMessageActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|stateAlwaysHidden"
+            />
+        <activity android:name=".ui.posting.PostingActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|stateAlwaysHidden"
+            />
 
 
     </application>
