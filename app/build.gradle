@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    compileSdkVersion 25
+    buildToolsVersion '25.0.2'
     defaultConfig {
         applicationId "com.rzn.njt"
         minSdkVersion 17
@@ -89,7 +89,6 @@ dependencies {
         transitive = true
     }
     /*特色的加载动画*/
-//    annotationProcessor 'com.alibaba:arouter-compiler:1.1.4'
     if (!isModule.toBoolean()) {
         compile project(':module_main')
         compile project(':module_driver')
