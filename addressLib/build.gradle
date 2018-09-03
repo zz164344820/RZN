@@ -22,7 +22,7 @@ android {
 
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:25.+'
+    compile 'com.android.support:appcompat-v7:25.4.0'
     compile 'com.google.code.gson:gson:2.4'
     compile 'com.github.chihane:AndroidUtils:1.0.10'
     compile 'org.litepal.android:core:1.6.1'
