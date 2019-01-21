@@ -69,11 +69,16 @@ public class BannerPagerAdapter  extends PagerAdapter{
             TextView  tv_city= (TextView) view.findViewById(R.id.tv_city);
             tv_city.setOnClickListener(listener);
             if(heWeather6==null){
-                 heWeather6= (HeWeather6) FileSaveUtils.readObject("weater");
+                try{
+                    heWeather6= (HeWeather6) FileSaveUtils.readObject("weater");
+                }catch (Exception e){
+                    heWeather6 =null;
+                }
+
             }
 
 
-            if(heWeather6!=null){
+            if(heWeather6!=null && heWeather6.getNow()!=null){
                 current_temp.setText(heWeather6.getNow().getTmp()+"℃");
                 tv_temp_range.setText(heWeather6.getDaily_forecast().get(0).getTmp_min()+"℃~"+heWeather6.getDaily_forecast().get(0).getTmp_max()+"℃");
                 tv_weater.setText(heWeather6.getNow().getCond_txt());

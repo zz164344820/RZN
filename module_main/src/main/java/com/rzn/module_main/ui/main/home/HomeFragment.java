@@ -1,6 +1,7 @@
 package com.rzn.module_main.ui.main.home;
 
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -46,10 +47,12 @@ import com.rzn.module_main.ui.sellagriculturalgoods.SellAgriculturalGoodsActivit
 import com.rzn.module_main.ui.util.LoginUtil;
 import com.rzn.module_main.ui.webview.WebViewActivity;
 import com.sunfusheng.marqueeview.MarqueeView;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.tmall.ultraviewpager.UltraViewPager;
 import com.zhy.autolayout.AutoLinearLayout;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
+import com.zyhealth.expertlib.Constants;
 import com.zyhealth.expertlib.bean.ResponseBean;
 import com.zyhealth.expertlib.net.GenericsCallback;
 import com.zyhealth.expertlib.net.JsonGenericsSerializator;
@@ -60,8 +63,10 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -129,7 +134,10 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
         return rootView;
     }
 
+
+
     private void initLocation() {
+
         //声明AMapLocationClient类对象
         mLocationClient = new AMapLocationClient(getActivity());
         //初始化AMapLocationClientOption对象
@@ -139,9 +147,12 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
         mLocationClient.setLocationListener(new AMapLocationListener() {
             @Override
             public void onLocationChanged(AMapLocation aMapLocation) {
-                tvMainAddress.setText(aMapLocation.getDistrict());
-                SPUtils.getInstance().put("addressName", aMapLocation.getDistrict());
-                getWeater(aMapLocation.getLongitude() + "," + aMapLocation.getLatitude());
+                if(aMapLocation.getLongitude()!=0.0){
+                    tvMainAddress.setText(aMapLocation.getDistrict());
+                    SPUtils.getInstance().put("addressName", aMapLocation.getDistrict());
+
+                    getWeater(aMapLocation.getLongitude() + "," + aMapLocation.getLatitude());
+                }
             }
         });
         mLocationClient.setLocationOption(mLocationOption);

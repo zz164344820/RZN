@@ -143,7 +143,7 @@ public class HeWeather6  implements Serializable{
         private String wind_spd;
 
         public String getFl() {
-            return fl;
+            return fl == null ? "" : fl;
         }
 
         public void setFl(String fl) {
@@ -151,7 +151,7 @@ public class HeWeather6  implements Serializable{
         }
 
         public String getTmp() {
-            return tmp;
+            return tmp == null ? "" : tmp;
         }
 
         public void setTmp(String tmp) {
@@ -159,7 +159,7 @@ public class HeWeather6  implements Serializable{
         }
 
         public String getCond_code() {
-            return cond_code;
+            return cond_code == null ? "" : cond_code;
         }
 
         public void setCond_code(String cond_code) {
@@ -167,7 +167,7 @@ public class HeWeather6  implements Serializable{
         }
 
         public String getCond_txt() {
-            return cond_txt;
+            return cond_txt == null ? "" : cond_txt;
         }
 
         public void setCond_txt(String cond_txt) {
@@ -175,7 +175,7 @@ public class HeWeather6  implements Serializable{
         }
 
         public String getHum() {
-            return hum;
+            return hum == null ? "" : hum;
         }
 
         public void setHum(String hum) {
@@ -183,7 +183,7 @@ public class HeWeather6  implements Serializable{
         }
 
         public String getPcpn() {
-            return pcpn;
+            return pcpn == null ? "" : pcpn;
         }
 
         public void setPcpn(String pcpn) {
@@ -191,7 +191,7 @@ public class HeWeather6  implements Serializable{
         }
 
         public String getPres() {
-            return pres;
+            return pres == null ? "" : pres;
         }
 
         public void setPres(String pres) {
@@ -199,7 +199,7 @@ public class HeWeather6  implements Serializable{
         }
 
         public String getVis() {
-            return vis;
+            return vis == null ? "" : vis;
         }
 
         public void setVis(String vis) {
@@ -207,7 +207,7 @@ public class HeWeather6  implements Serializable{
         }
 
         public String getCloud() {
-            return cloud;
+            return cloud == null ? "" : cloud;
         }
 
         public void setCloud(String cloud) {
@@ -215,7 +215,7 @@ public class HeWeather6  implements Serializable{
         }
 
         public String getWind_deg() {
-            return wind_deg;
+            return wind_deg == null ? "" : wind_deg;
         }
 
         public void setWind_deg(String wind_deg) {
@@ -223,7 +223,7 @@ public class HeWeather6  implements Serializable{
         }
 
         public String getWind_dir() {
-            return wind_dir;
+            return wind_dir == null ? "" : wind_dir;
         }
 
         public void setWind_dir(String wind_dir) {
@@ -231,7 +231,7 @@ public class HeWeather6  implements Serializable{
         }
 
         public String getWind_sc() {
-            return wind_sc;
+            return wind_sc == null ? "" : wind_sc;
         }
 
         public void setWind_sc(String wind_sc) {
@@ -239,7 +239,7 @@ public class HeWeather6  implements Serializable{
         }
 
         public String getWind_spd() {
-            return wind_spd;
+            return wind_spd == null ? "" : wind_spd;
         }
 
         public void setWind_spd(String wind_spd) {
@@ -266,124 +266,141 @@ public class HeWeather6  implements Serializable{
         private String wind_dir;
         private String wind_sc;
         private String wind_spd;
+
+        public String getCond_code_d() {
+            return cond_code_d == null ? "" : cond_code_d;
+        }
+
         public void setCond_code_d(String cond_code_d) {
             this.cond_code_d = cond_code_d;
         }
-        public String getCond_code_d() {
-            return cond_code_d;
+
+        public String getCond_code_n() {
+            return cond_code_n == null ? "" : cond_code_n;
         }
 
         public void setCond_code_n(String cond_code_n) {
             this.cond_code_n = cond_code_n;
         }
-        public String getCond_code_n() {
-            return cond_code_n;
+
+        public String getCond_txt_d() {
+            return cond_txt_d == null ? "" : cond_txt_d;
         }
 
         public void setCond_txt_d(String cond_txt_d) {
             this.cond_txt_d = cond_txt_d;
         }
-        public String getCond_txt_d() {
-            return cond_txt_d;
+
+        public String getCond_txt_n() {
+            return cond_txt_n == null ? "" : cond_txt_n;
         }
 
         public void setCond_txt_n(String cond_txt_n) {
             this.cond_txt_n = cond_txt_n;
         }
-        public String getCond_txt_n() {
-            return cond_txt_n;
+
+        public Date getDate() {
+            return date;
         }
 
         public void setDate(Date date) {
             this.date = date;
         }
-        public Date getDate() {
-            return date;
+
+        public String getHum() {
+            return hum == null ? "" : hum;
         }
 
         public void setHum(String hum) {
             this.hum = hum;
         }
-        public String getHum() {
-            return hum;
+
+        public String getPcpn() {
+            return pcpn == null ? "" : pcpn;
         }
 
         public void setPcpn(String pcpn) {
             this.pcpn = pcpn;
         }
-        public String getPcpn() {
-            return pcpn;
+
+        public String getPop() {
+            return pop == null ? "" : pop;
         }
 
         public void setPop(String pop) {
             this.pop = pop;
         }
-        public String getPop() {
-            return pop;
+
+        public String getPres() {
+            return pres == null ? "" : pres;
         }
 
         public void setPres(String pres) {
             this.pres = pres;
         }
-        public String getPres() {
-            return pres;
+
+        public String getTmp_max() {
+            return tmp_max == null ? "" : tmp_max;
         }
 
         public void setTmp_max(String tmp_max) {
             this.tmp_max = tmp_max;
         }
-        public String getTmp_max() {
-            return tmp_max;
+
+        public String getTmp_min() {
+            return tmp_min == null ? "" : tmp_min;
         }
 
         public void setTmp_min(String tmp_min) {
             this.tmp_min = tmp_min;
         }
-        public String getTmp_min() {
-            return tmp_min;
+
+        public String getUv_index() {
+            return uv_index == null ? "" : uv_index;
         }
 
         public void setUv_index(String uv_index) {
             this.uv_index = uv_index;
         }
-        public String getUv_index() {
-            return uv_index;
+
+        public String getVis() {
+            return vis == null ? "" : vis;
         }
 
         public void setVis(String vis) {
             this.vis = vis;
         }
-        public String getVis() {
-            return vis;
+
+        public String getWind_deg() {
+            return wind_deg == null ? "" : wind_deg;
         }
 
         public void setWind_deg(String wind_deg) {
             this.wind_deg = wind_deg;
         }
-        public String getWind_deg() {
-            return wind_deg;
+
+        public String getWind_dir() {
+            return wind_dir == null ? "" : wind_dir;
         }
 
         public void setWind_dir(String wind_dir) {
             this.wind_dir = wind_dir;
         }
-        public String getWind_dir() {
-            return wind_dir;
+
+        public String getWind_sc() {
+            return wind_sc == null ? "" : wind_sc;
         }
 
         public void setWind_sc(String wind_sc) {
             this.wind_sc = wind_sc;
         }
-        public String getWind_sc() {
-            return wind_sc;
+
+        public String getWind_spd() {
+            return wind_spd == null ? "" : wind_spd;
         }
 
         public void setWind_spd(String wind_spd) {
             this.wind_spd = wind_spd;
         }
-        public String getWind_spd() {
-            return wind_spd;
-        }
-
     }
 }
