@@ -93,7 +93,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
                     ARouter.getInstance().build("/driver/driverident").navigation();
                     return;
                 }
-                startActivity(new Intent(mContext, DriverCenterActivity.class));//DriverHomeActivity
+                startActivity(new Intent(mContext, DriverCenterActivity.class));//KeepStationDetialActivity
 
             }
         });

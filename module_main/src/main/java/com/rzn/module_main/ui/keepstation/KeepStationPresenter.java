@@ -24,13 +24,15 @@ public class KeepStationPresenter extends BasePresenterImpl<KeepStationContract.
     }
 
     @Override
-    public void getKeepData(String searchStr) {
+    public void getKeepData(String searchStr, String longitude, String latitude) {
         mView.showLoading(false, "");
         LoginResponseBean responseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
         Map<String, String> map = new HashMap<>();
         map.put("userId", responseBean.getUserId());
         map.put("page", "1");
         map.put("name", searchStr);
+        map.put("longitude", longitude);//longitude机手所在经度
+        map.put("latitude", latitude);//latitude机手所在维度
         reqData(mContext, "/repair/queryRepair", map, 111);//farmHand/
     }
 
@@ -39,8 +41,9 @@ public class KeepStationPresenter extends BasePresenterImpl<KeepStationContract.
         super.httpRequestResult(response, requestId);
         switch (requestId) {
             case 111:
-                Type type = new TypeToken<List<KeepStationBean>>(){}.getType();
-                List<KeepStationBean> list= gson.fromJson(gson.toJson(response.getResult()), type);
+                Type type = new TypeToken<List<KeepStationBean>>() {
+                }.getType();
+                List<KeepStationBean> list = gson.fromJson(gson.toJson(response.getResult()), type);
                 mView.getKeepDataSuccess(list);
                 break;
         }
@@ -49,7 +52,7 @@ public class KeepStationPresenter extends BasePresenterImpl<KeepStationContract.
     @Override
     public void httpRequestErr(String response, int requestId) {
         super.httpRequestErr(response, requestId);
-        if (requestId==111){
+        if (requestId == 111) {
             mView.getKeepDataFailed();
         }
     }
@@ -57,8 +60,8 @@ public class KeepStationPresenter extends BasePresenterImpl<KeepStationContract.
     @Override
     public void httpRequestFailure(ResponseBean response, int requestId) {
         super.httpRequestFailure(response, requestId);
-        if (requestId==111){
-          mView.getKeepDataFailed();
+        if (requestId == 111) {
+            mView.getKeepDataFailed();
         }
 
     }

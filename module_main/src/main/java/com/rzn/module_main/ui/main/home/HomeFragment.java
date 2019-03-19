@@ -135,7 +135,6 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
     }
 
 
-
     private void initLocation() {
 
         //声明AMapLocationClient类对象
@@ -147,7 +146,7 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
         mLocationClient.setLocationListener(new AMapLocationListener() {
             @Override
             public void onLocationChanged(AMapLocation aMapLocation) {
-                if(aMapLocation.getLongitude()!=0.0){
+                if (aMapLocation.getLongitude() != 0.0) {
                     tvMainAddress.setText(aMapLocation.getDistrict());
                     SPUtils.getInstance().put("addressName", aMapLocation.getDistrict());
 
@@ -213,7 +212,6 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
                     startActivity(new Intent(getActivity(), LoginActivity.class));
                 } else {
                     startActivity(new Intent(mContext, KeepStationActivity.class));
-
                 }
             }
         });
@@ -318,7 +316,7 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
 
     private void initData() {
         if (loginResponseBean != null && !TextUtils.isEmpty(loginResponseBean.getUserId())) {
-            if(lists.size()==0){
+            if (lists.size() == 0) {
                 tvMainMessage.setText("暂无消息！");
             }
 
@@ -404,7 +402,7 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
         tvMainMessage.setText("");
         for (int j = 0; j < list.size(); j++) {
             if ("0".equals(list.get(j).getIsread())) {
-                if(!lists.contains(list.get(j).getMsgContent())){
+                if (!lists.contains(list.get(j).getMsgContent())) {
                     lists.add(list.get(j).getMsgContent());
                 }
 
@@ -425,7 +423,7 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
      */
     @Override
     public void getHotWordSuccess(final List<InfoBean> list) {
-        if (list != null && list.size()>=1) {
+        if (list != null && list.size() >= 1) {
             tvFarmerTitle.setText(list.get(0).getTitle());
             tvFarmerContent.setText(list.get(0).getContent());
             tvFarmerTime.setText(list.get(0).getCreateTime());
@@ -450,7 +448,7 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
      */
     @Override
     public void getFarmerWordSuccess(final List<InfoBean> list) {
-        if (list != null  && list.size()>=1) {
+        if (list != null && list.size() >= 1) {
             tvZixunTitle.setText(list.get(0).getTitle());
             tvZixunContext.setText(list.get(0).getContent());
             tvZixuntime.setText(list.get(0).getCreateTime());

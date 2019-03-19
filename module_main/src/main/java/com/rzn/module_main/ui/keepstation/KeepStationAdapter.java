@@ -5,11 +5,13 @@ import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.rzn.module_main.R;
+import com.zyhealth.expertlib.utils.GlideUtils;
 
 import java.util.List;
 
@@ -43,6 +45,8 @@ public class KeepStationAdapter extends BaseQuickAdapter<KeepStationBean, BaseVi
 
             }
         });
+
+        GlideUtils.loadImageView(mContext,item.getFactoryPic1() , (ImageView) helper.getView(R.id.iv_photo));
 
         helper.setText(R.id.tv_title, item.getFactoryName());
     }
