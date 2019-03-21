@@ -1,14 +1,18 @@
 package com.rzn.module_main.ui.keepstationdetial;
 
 
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.blankj.utilcode.util.SizeUtils;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
@@ -17,6 +21,8 @@ import com.rzn.module_main.ui.keepstationdetial.bean.StationDetialBean;
 import com.tmall.ultraviewpager.UltraViewPager;
 import com.zyhealth.expertlib.utils.GlideUtils;
 
+import java.io.File;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -56,6 +62,11 @@ public class KeepStationDetialActivity extends MVPBaseActivity<KeepStationDetial
     private String repairId;
     private ImageView ivPhoto;
     private UltraViewPager ultraViewPager;
+    private ImageView ivQuzheli;
+    String LATITUDE_B = "";//32.335756;  //终点纬度
+    String LONGTITUDE_B = "";//118.88462;  //终点经度
+    String phone = "";
+    private TextView tvPhone;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -80,9 +91,53 @@ public class KeepStationDetialActivity extends MVPBaseActivity<KeepStationDetial
         tvLianxi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                if (!TextUtils.isEmpty(phone)) {
+                    Intent intent = new Intent(Intent.ACTION_DIAL);
+                    Uri data = Uri.parse("tel:" + phone);
+                    intent.setData(data);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(KeepStationDetialActivity.this, "暂无联系电话", Toast.LENGTH_LONG).show();
+                }
             }
         });
+
+        ivQuzheli.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setUpGaodeAppByMine();
+            }
+        });
+    }
+
+    /**
+     * 我的位置BY高德
+     */
+    void setUpGaodeAppByMine() {
+        try {
+            Intent intent = Intent.getIntent("androidamap://navi?sourceApplication=appname&poiname=fangheng&lat=" + LATITUDE_B + "&lon=" + LONGTITUDE_B + "&dev=1&style=2");
+
+//            Intent intent = Intent.getIntent("androidamap://route?sourceApplication=softname&sname=我的位置&dlat=" + LATITUDE_B + "&dlon=" + LONGTITUDE_B + "&dname=" + address + "&dev=0&m=0&t=1");
+            if (isInstallByread("com.autonavi.minimap")) {
+                startActivity(intent);
+//                Log.e(TAG, "高德地图客户端已经安装") ;
+            } else {
+                Toast.makeText(this, "请先安装高德地图App", Toast.LENGTH_LONG).show();
+//                Log.e(TAG, "没有安装高德地图客户端") ;
+            }
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 判断是否安装目标应用
+     *
+     * @param packageName 目标应用安装后的包名
+     * @return 是否已安装目标应用
+     */
+    private boolean isInstallByread(String packageName) {
+        return new File("/data/data/" + packageName).exists();
     }
 
     private void initViews() {
@@ -90,12 +145,14 @@ public class KeepStationDetialActivity extends MVPBaseActivity<KeepStationDetial
 
         repairId = getIntent().getStringExtra("repairId");
         setTitle("商家照片");
+        ivQuzheli = findViewById(R.id.iv_quzheli);
         tvStationName = (TextView) findViewById(R.id.tv_station_name);
         tvJingyingFanwei = (TextView) findViewById(R.id.tv_jingying_fanwei);
         tvShagnjiaDizhi = (TextView) findViewById(R.id.tv_shagnjia_dizhi);
         tvYingyeshijian = (TextView) findViewById(R.id.tv_yingyeshijian);
         tvLianxiFangshi = (TextView) findViewById(R.id.tv_lianxi_fangshi);
         tvLianxi = (TextView) findViewById(R.id.tv_lianxi);
+        tvPhone = findViewById(R.id.tv_phone);
         ivPhoto = findViewById(R.id.iv_photo);
 
         ultraViewPager = findViewById(R.id.ultra_viewpager);
@@ -130,18 +187,42 @@ public class KeepStationDetialActivity extends MVPBaseActivity<KeepStationDetial
 //        private String tel;//":"0554-4444444", //座机
 //        private String workTimeEnd;//":"2017-06-18", //营业结束时间
 //        private String workTimeStart;//":"2017-06-17" //营业开始时间
-
+        phone = stationDetialBean.getTel();
+        LATITUDE_B = stationDetialBean.getLatitude();
+        LONGTITUDE_B = stationDetialBean.getLongitude();
 
         tvStationName.setText(stationDetialBean.getFactoryName());
         tvJingyingFanwei.setText("经营范围：" + stationDetialBean.getRepairScope());
         tvShagnjiaDizhi.setText("商家地址：" + stationDetialBean.getBusinessAddress());
         tvYingyeshijian.setText("营业时间：" + stationDetialBean.getWorkTimeStart() + "-" + stationDetialBean.getWorkTimeEnd());
-        tvLianxiFangshi.setText("联系方式：" + stationDetialBean.getTel());
-
+        tvLianxiFangshi.setText(stationDetialBean.getTel() + "");
+        tvPhone.setText(stationDetialBean.getPhone() + "");
 //        GlideUtils.loadImageView(this, stationDetialBean.getFactoryPic1(), ivPhoto);
-        List<String> list = new ArrayList<>();
-        list.add(stationDetialBean.getFactoryPic1());
-        KeepViewPagerAdapter keepViewPagerAdapter = new KeepViewPagerAdapter(list,this);
+//        List<String> list = new ArrayList<>();
+//        if (!TextUtils.isEmpty(stationDetialBean.getFactoryPic1())) {
+//            list.add(stationDetialBean.getFactoryPic1());
+//        }
+//        if (!TextUtils.isEmpty(stationDetialBean.getFactoryPic2())) {
+//            list.add(stationDetialBean.getFactoryPic2());
+//        }
+//        if (!TextUtils.isEmpty(stationDetialBean.getFactoryPic3())) {
+//            list.add(stationDetialBean.getFactoryPic3());
+//        }
+//        if (!TextUtils.isEmpty(stationDetialBean.getFactoryPic4())) {
+//            list.add(stationDetialBean.getFactoryPic4());
+//        }
+//        if (!TextUtils.isEmpty(stationDetialBean.getFactoryPic5())) {
+//            list.add(stationDetialBean.getFactoryPic5());
+//        }
+//        if (!TextUtils.isEmpty(stationDetialBean.getFactoryPic6())) {
+//            list.add(stationDetialBean.getFactoryPic6());
+//        }
+
+        if (stationDetialBean.getFactoryPicList() == null) {
+            return;
+        }
+
+        KeepViewPagerAdapter keepViewPagerAdapter = new KeepViewPagerAdapter(stationDetialBean.getFactoryPicList(), this);
         ultraViewPager.setAdapter(keepViewPagerAdapter);
         //内置indicator初始化
         ultraViewPager.initIndicator();

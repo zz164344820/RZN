@@ -85,7 +85,7 @@ public class BannerPagerAdapter  extends PagerAdapter{
                 tv_wind.setText("风向"+heWeather6.getNow().getWind_dir());
                 tv_rainfall.setText("降水量"+heWeather6.getNow().getPcpn()+"毫米");
                 tv_season.setText("紫外线强度指数:"+heWeather6.getDaily_forecast().get(0).getUv_index());
-                tv_city.setText(heWeather6.getBasic().getParent_city());
+                tv_city.setText(heWeather6.getBasic().getParent_city());   
             }
             tv_dateSolar.setText(date);
             tv_dateLunar.setText(date2);

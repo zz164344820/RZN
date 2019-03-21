@@ -26,7 +26,7 @@
                 <com.tmall.ultraviewpager.UltraViewPager
                     android:id="@+id/ultra_viewpager"
                     android:layout_width="match_parent"
-                    android:layout_height="300px"
+                    android:layout_height="200dp"
                     android:layout_centerInParent="true"
                     android:background="@android:color/darker_gray" />
 
@@ -61,12 +61,15 @@
                     android:layout_height="1dp"
                     android:layout_weight="1" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="15dp"
-                    android:text="到这去" />
+             <ImageView
+                 android:id="@+id/iv_quzheli"
+                 android:layout_width="90dp"
+                 android:layout_height="25dp"
+                 android:scaleType="centerCrop"
+                 android:layout_gravity="center_vertical"
+                 android:layout_marginRight="15dp"
+                 android:src="@drawable/icon_quzheli"
+                 />
 
             </LinearLayout>
 
@@ -115,18 +118,50 @@
                     android:text="营业时间：9:00-10:00"
                     android:textColor="#333333"
                     android:textSize="18dp" />
-
-                <TextView
-                    android:id="@+id/tv_lianxi_fangshi"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
+                    android:orientation="horizontal"
                     android:layout_marginTop="20dp"
-                    android:text="联系方式：清河镇武门村口西行50m路东"
+                    >
+                    <!--android:id="@+id/tv_lianxi_fangshi"-->
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.4"
+                    android:layout_marginLeft="15dp"
+                    android:text="联系方式："
                     android:textColor="#333333"
                     android:textSize="18dp" />
 
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        >
+                        <TextView
+                            android:id="@+id/tv_lianxi_fangshi"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="024-2522552"
+                            android:textColor="#333333"
+                            android:textSize="18dp" />
+                        <TextView
+                            android:id="@+id/tv_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="13521425"
+                            android:layout_marginTop="5dp"
+                            android:textColor="#333333"
+                            android:textSize="18dp" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
             </LinearLayout>
 
 
