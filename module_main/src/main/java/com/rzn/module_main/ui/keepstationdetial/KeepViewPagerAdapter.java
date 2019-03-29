@@ -46,7 +46,7 @@ public class KeepViewPagerAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         view = LayoutInflater.from(container.getContext()).inflate(R.layout.item_banner, null);
         ImageView imageView = (ImageView) view.findViewById(R.id.banner);
-        GlideUtils.loadImageView(context, list.get(position), imageView);
+        GlideUtils.loadImageView(context, list.get(position), imageView,R.drawable.ic_pit);
         container.addView(view);
         return view;
     }

@@ -46,7 +46,7 @@ public class KeepStationAdapter extends BaseQuickAdapter<KeepStationBean, BaseVi
             }
         });
 
-        GlideUtils.loadImageView(mContext,item.getFactoryPic1() , (ImageView) helper.getView(R.id.iv_photo));
+        GlideUtils.loadImageView(mContext,item.getFactoryPic1() , (ImageView) helper.getView(R.id.iv_photo),R.drawable.ic_pit);
 
         helper.setText(R.id.tv_title, item.getFactoryName());
     }
