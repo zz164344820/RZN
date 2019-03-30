@@ -1,5 +1,7 @@
 package com.rzn.module_main.ui.keepstation;
 
+import mlxy.utils.S;
+
 /**
  * Created by 17662 on 2018/8/12.
  */
@@ -12,13 +14,22 @@ public class KeepStationBean {
     private String factoryPic1;//图片
     private String homeTel;//":"", //维修站家庭联系方式
     private String latitude;//":"98.32835", //维度
-    private String linkman;//":"胡君宝1", //联系人名称
+    private String linkman;//":"胡君宝1",//联系人名称
+    private String  distance;
     private String longitude;//":"103.124235", //经度
     private String phone;//":"18063005664", //联系人手机号
     private String repairId;//":"1234567891234567890987654120",//维修站Id
     private String repairScope;////;":"农用机械、各类轿车、吊车、各类大客车，农用机械、各类轿车、吊车、各类大电子设备", //维修范围
     private String tel;//":"0554-4444444" //座机
 
+
+    public String getDistance() {
+        return distance == null ? "" : distance;
+    }
+
+    public void setDistance(String distance) {
+        this.distance = distance;
+    }
 
     public String getFactoryPic1() {
         return factoryPic1;
