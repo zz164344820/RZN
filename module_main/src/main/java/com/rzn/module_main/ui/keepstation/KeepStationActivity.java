@@ -18,8 +18,12 @@ import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
+import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
+import com.aspsine.swipetoloadlayout.OnRefreshListener;
+import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.blankj.utilcode.util.SPUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.lonch.zyhealth.loadmorelibrary.LoadMoreUtils;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.module_main.R;
 import com.rzn.module_main.ui.keepstationdetial.KeepStationDetialActivity;
@@ -36,11 +40,11 @@ import java.util.List;
  * 邮箱 784787081@qq.com
  */
 
-public class KeepStationActivity extends MVPBaseActivity<KeepStationContract.View, KeepStationPresenter> implements KeepStationContract.View {
+public class KeepStationActivity extends MVPBaseActivity<KeepStationContract.View, KeepStationPresenter> implements KeepStationContract.View ,OnRefreshListener,OnLoadMoreListener{
 
     private RecyclerView swipeTarget;
 
-
+    SwipeToLoadLayout  swipeToLoadLayout;
     double LATITUDE_B = 32.335756;  //终点纬度
     double LONGTITUDE_B = 118.88462;  //终点经度
     private EditText ed_text_search;
@@ -48,7 +52,10 @@ public class KeepStationActivity extends MVPBaseActivity<KeepStationContract.Vie
     public AMapLocationClientOption mLocationOption = null;
     private String longitude = "";
     private String latitude = "";
+    int  pager=1;
+    AMapLocation mapLocation;
     private KeepStationAdapter keepStationAdapter;
+    List<KeepStationBean> keepStationBeanList = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,13 +80,14 @@ public class KeepStationActivity extends MVPBaseActivity<KeepStationContract.Vie
             @Override
             public void onLocationChanged(AMapLocation aMapLocation) {
                 if (aMapLocation.getLongitude() != 0.0) {
+                     mapLocation =aMapLocation;
 //                    tvMainAddress.setText(aMapLocation.getDistrict());
 //                    SPUtils.getInstance().put("addressName", aMapLocation.getDistrict());
 
 //                    getWeater(aMapLocation.getLongitude() + "," + aMapLocation.getLatitude());
                     longitude = aMapLocation.getLongitude() + "";
                     latitude = aMapLocation.getLatitude() + "";
-                    mPresenter.getKeepData("", longitude, latitude);
+                    mPresenter.getKeepData("", longitude, latitude,pager);
 
                 }
             }
@@ -94,6 +102,10 @@ public class KeepStationActivity extends MVPBaseActivity<KeepStationContract.Vie
     }
 
     private void initViews() {
+
+        swipeToLoadLayout= findViewById(R.id.swipeToLoadLayout);
+        swipeToLoadLayout.setOnLoadMoreListener(this);
+        swipeToLoadLayout.setOnRefreshListener(this);
         ed_text_search = (EditText) findViewById(R.id.ed_text_search);
         setTitle("维修站");
         swipeTarget = (RecyclerView) findViewById(R.id.swipe_target);
@@ -104,7 +116,8 @@ public class KeepStationActivity extends MVPBaseActivity<KeepStationContract.Vie
     @Override
     public void complete_enter() {
         // super.complete_enter();
-        mPresenter.getKeepData(ed_text_search.getText().toString().trim(), longitude, latitude);
+         pager=1;
+        loadData();
     }
 
     /**
@@ -139,7 +152,12 @@ public class KeepStationActivity extends MVPBaseActivity<KeepStationContract.Vie
 
     @Override
     public void getKeepDataSuccess(final List<KeepStationBean> list) {
-        keepStationAdapter = new KeepStationAdapter(R.layout.item_maintenance_station, list);
+        if(pager==1){
+            keepStationBeanList.clear();
+        }
+        keepStationBeanList.addAll(list);
+        LoadMoreUtils.recycleViewRestore(swipeToLoadLayout);
+        keepStationAdapter = new KeepStationAdapter(R.layout.item_maintenance_station, keepStationBeanList);
         swipeTarget.setAdapter(keepStationAdapter);
         keepStationAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
@@ -161,8 +179,34 @@ public class KeepStationActivity extends MVPBaseActivity<KeepStationContract.Vie
 
     @Override
     public void getKeepDataFailed() {
+        LoadMoreUtils.recycleViewRestore(swipeToLoadLayout);
 
     }
 
 
+    @Override
+    public void onLoadMore() {
+        if (mapLocation!=null&&mapLocation.getLongitude() != 0.0) {
+            pager++;
+            loadData();
+        }else{
+            LoadMoreUtils.recycleViewRestore(swipeToLoadLayout);
+        }
+
+    }
+
+    private void loadData() {
+        mPresenter.getKeepData(ed_text_search.getText().toString().trim(), longitude, latitude,pager);
+    }
+
+    @Override
+    public void onRefresh() {
+        if (mapLocation!=null&&mapLocation.getLongitude() != 0.0) {
+            pager =1;
+            loadData();
+        }else{
+            LoadMoreUtils.recycleViewRestore(swipeToLoadLayout);
+        }
+
+    }
 }
