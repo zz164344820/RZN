@@ -45,7 +45,10 @@ public class KeepStationPresenter extends BasePresenterImpl<KeepStationContract.
                 Type type = new TypeToken<List<KeepStationBean>>() {
                 }.getType();
                 List<KeepStationBean> list = gson.fromJson(gson.toJson(response.getResult()), type);
-                mView.getKeepDataSuccess(list);
+                if(list!=null){
+                    mView.getKeepDataSuccess(list);
+                }
+
                 break;
         }
     }

@@ -110,7 +110,8 @@ public class KeepStationActivity extends MVPBaseActivity<KeepStationContract.Vie
         setTitle("维修站");
         swipeTarget = (RecyclerView) findViewById(R.id.swipe_target);
         swipeTarget.setLayoutManager(new LinearLayoutManager(this));
-//        mPresenter.getKeepData("", longitude, latitude);
+        keepStationAdapter = new KeepStationAdapter(R.layout.item_maintenance_station, keepStationBeanList);
+        swipeTarget.setAdapter(keepStationAdapter);
     }
 
     @Override
@@ -157,13 +158,13 @@ public class KeepStationActivity extends MVPBaseActivity<KeepStationContract.Vie
         }
         keepStationBeanList.addAll(list);
         LoadMoreUtils.recycleViewRestore(swipeToLoadLayout);
-        keepStationAdapter = new KeepStationAdapter(R.layout.item_maintenance_station, keepStationBeanList);
-        swipeTarget.setAdapter(keepStationAdapter);
+
+        keepStationAdapter.notifyDataSetChanged();
         keepStationAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                LATITUDE_B = Double.valueOf(list.get(position).getLatitude());//32.335756;  //终点纬度
-                LONGTITUDE_B = Double.valueOf(list.get(position).getLongitude());//118.88462;  //终点经度
+                LATITUDE_B = Double.valueOf(keepStationBeanList.get(position).getLatitude());//32.335756;  //终点纬度
+                LONGTITUDE_B = Double.valueOf(keepStationBeanList.get(position).getLongitude());//118.88462;  //终点经度
                 setUpGaodeAppByMine();
             }
         });
@@ -171,7 +172,7 @@ public class KeepStationActivity extends MVPBaseActivity<KeepStationContract.Vie
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 Intent intent = new Intent(KeepStationActivity.this, KeepStationDetialActivity.class);
-                intent.putExtra("repairId", list.get(position).getRepairId());
+                intent.putExtra("repairId", keepStationBeanList.get(position).getRepairId());
                 startActivity(intent);
             }
         });
@@ -179,6 +180,7 @@ public class KeepStationActivity extends MVPBaseActivity<KeepStationContract.Vie
 
     @Override
     public void getKeepDataFailed() {
+        pager--;
         LoadMoreUtils.recycleViewRestore(swipeToLoadLayout);
 
     }
