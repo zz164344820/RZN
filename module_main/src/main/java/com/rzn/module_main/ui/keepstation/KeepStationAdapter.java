@@ -31,6 +31,7 @@ public class KeepStationAdapter extends BaseQuickAdapter<KeepStationBean, BaseVi
         helper.addOnClickListener(R.id.ll_go_there);
         helper.setText(R.id.tv_fanwei,item.getRepairScope());
         helper.setText(R.id.tv_address,item.getBusinessAddress());
+        helper.setText(R.id.distance,item.getDistance()+"km");
         helper.setOnClickListener(R.id.tv_call, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,7 +47,7 @@ public class KeepStationAdapter extends BaseQuickAdapter<KeepStationBean, BaseVi
             }
         });
 
-        GlideUtils.loadImageView(mContext,item.getFactoryPic1() , (ImageView) helper.getView(R.id.iv_photo));
+        GlideUtils.loadImageView(mContext,item.getFactoryPic1() , (ImageView) helper.getView(R.id.iv_photo),R.drawable.ic_pit);
 
         helper.setText(R.id.tv_title, item.getFactoryName());
     }

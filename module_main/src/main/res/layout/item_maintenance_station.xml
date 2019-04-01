@@ -35,28 +35,30 @@
 
                     <TextView
                         android:id="@+id/tv_title"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="12dp"
-                        android:text="建伟修理厂"
+                        android:text="修理厂"
+                        android:singleLine="true"
+                        android:ellipsize="end"
                         android:textColor="#333333"
                         android:textSize="18dp" />
 
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="1px"
-                        android:layout_weight="1" />
+
 
                     <TextView
+                        android:id="@+id/distance"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_marginTop="12dp"
-                        android:text="880m"
+                        android:text="0km"
                         android:textColor="@color/text_888"
                         android:textSize="16dp"
-                        android:visibility="gone" />
+                         />
                 </LinearLayout>
 
                 <LinearLayout

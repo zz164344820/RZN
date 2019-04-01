@@ -19,6 +19,6 @@ public class KeepStationContract {
     }
 
     interface Presenter extends BasePresenter<View> {
-        void getKeepData(String searchStr, String longitude, String latitude);
+        void getKeepData(String searchStr, String longitude, String latitude ,int pager);
     }
 }

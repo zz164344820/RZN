@@ -2,6 +2,7 @@ package com.rzn.module_main.ui.keepstation;
 
 
 import com.google.gson.reflect.TypeToken;
+import com.lonch.zyhealth.loadmorelibrary.LoadMoreUtils;
 import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.BasePresenterImpl;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
@@ -24,12 +25,12 @@ public class KeepStationPresenter extends BasePresenterImpl<KeepStationContract.
     }
 
     @Override
-    public void getKeepData(String searchStr, String longitude, String latitude) {
+    public void getKeepData(String searchStr, String longitude, String latitude ,int pager) {
         mView.showLoading(false, "");
         LoginResponseBean responseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
         Map<String, String> map = new HashMap<>();
         map.put("userId", responseBean.getUserId());
-        map.put("page", "1");
+        map.put("page", pager+"");
         map.put("name", searchStr);
         map.put("longitude", longitude);//longitude机手所在经度
         map.put("latitude", latitude);//latitude机手所在维度

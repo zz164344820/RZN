@@ -7,8 +7,8 @@ android {
         applicationId "com.rzn.njt"
         minSdkVersion 17
         targetSdkVersion 22
-        versionCode 4
-        versionName "1.3"
+        versionCode 7
+        versionName "1.5"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
