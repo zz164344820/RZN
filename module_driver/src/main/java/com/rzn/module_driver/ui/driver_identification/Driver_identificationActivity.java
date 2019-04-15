@@ -138,8 +138,14 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
                 showDate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                 if (tab == 1) {
                     tvWorkTime.setText(DateFormat.format("yyyy-MM", showDate));
-                    int startTime= Integer.parseInt(tvWorkTime.getText().toString().trim().split("-")[0]);
-                    int endTime=  Integer.parseInt(tvWorkTimeNow.getText().toString().trim().split("-")[0])  ;
+                    int startTime=0;
+                    int endTime=0;
+                    try {
+                        startTime= Integer.parseInt(tvWorkTime.getText().toString().trim().split("-")[0]);
+                        endTime=  Integer.parseInt(tvWorkTimeNow.getText().toString().trim().split("-")[0]);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                     if(endTime>=startTime){
                         tv_year.setText((endTime-startTime)+"");
                     }else{
@@ -148,8 +154,14 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
 
                 } else if (tab == 2) {
                     tvWorkTimeNow.setText(DateFormat.format("yyyy-MM", showDate));
-                    int startTime= Integer.parseInt(tvWorkTime.getText().toString().trim().split("-")[0]);
-                    int endTime=  Integer.parseInt(tvWorkTimeNow.getText().toString().trim().split("-")[0])  ;
+                    int startTime=0;
+                    int endTime=0;
+                    try {
+                         startTime= Integer.parseInt(tvWorkTime.getText().toString().trim().split("-")[0]);
+                         endTime=  Integer.parseInt(tvWorkTimeNow.getText().toString().trim().split("-")[0])  ;
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                     if(endTime>=startTime){
                         tv_year.setText((endTime-startTime)+"");
                     }else{

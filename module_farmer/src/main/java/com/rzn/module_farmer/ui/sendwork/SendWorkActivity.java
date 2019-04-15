@@ -311,6 +311,7 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
                 kindTypeId = list.get(position).getTypeArray().get(typePosition).getTypeId();
                 unitPrice = list.get(position).getTypeArray().get(typePosition).getTypeUnitPrice();
                 tvWorkTab.setText(list.get(position).getKindName() + "    " + list.get(position).getTypeArray().get(typePosition).getTypeName());
+
             }
         });
         if (sendPopUpWindow.isShowing()) {
