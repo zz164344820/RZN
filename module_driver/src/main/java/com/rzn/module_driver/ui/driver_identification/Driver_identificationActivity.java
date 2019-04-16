@@ -431,10 +431,10 @@ public class Driver_identificationActivity extends MVPBaseActivity<Driver_identi
         }
     }
 
-    String onePath;
-    String twoPath;
-    String threePath;
-    String fourPath;
+    String onePath="";
+    String twoPath="";
+    String threePath="";
+    String fourPath="";
 
     private void showImage(String imagePath) {
 //        Bitmap bm = BitmapFactory.decodeFile(imagePath);
