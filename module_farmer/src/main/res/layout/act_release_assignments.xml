@@ -201,6 +201,7 @@
                     android:layout_marginTop="10dp"
                     android:background="@drawable/shape_input_bg"
                     android:gravity="center_vertical"
+                    android:inputType="number"
                     android:hint="必填"
                     android:paddingLeft="4dp"
                     android:textSize="16dp" />
@@ -408,7 +409,7 @@
                 <!--android:gravity="center_vertical"-->
                 <!--android:hint="必填"-->
                 <!--android:textSize="16dp" />-->
-                <EditText
+                <TextView
                     android:id="@+id/tv_price"
                     android:layout_width="match_parent"
                     android:layout_height="37dp"

@@ -5,7 +5,9 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.text.format.DateFormat;
 import android.view.Gravity;
 import android.view.View;
@@ -63,7 +65,7 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
     private EditText etDetialAddress;
     private TextView tvStartTime;
     private TextView tvToTime;
-    private EditText tvPrice;
+    private TextView tvPrice;
     private EditText etDetial;
     private TextView tvConfim;
     private Calendar showDate = Calendar.getInstance();
@@ -102,9 +104,6 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
             jobOrderDetialBean = (JobOrderDetialBean) bean.getSerializable("jobOrderDetialBean");
         }
 
-//        if (jobOrderDetialBean != null) {
-//            Toast.makeText(this, "asdfaasdfadsg", Toast.LENGTH_LONG).show();
-//        }
         mPresenter.onCreate();
         if ("jobdetial".equals(key)) {
             setTitle("修改作业需求");
@@ -233,7 +232,7 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
         etDetialAddress = (EditText) findViewById(R.id.et_detial_address);//详细地址
         tvStartTime = (TextView) findViewById(R.id.tv_start_time);//作业开始时间
         tvToTime = (TextView) findViewById(R.id.tv_to_time);//作业结束时间
-        tvPrice = (EditText) findViewById(R.id.tv_price);//作业价格
+        tvPrice = (TextView) findViewById(R.id.tv_price);//作业价格
         etDetial = (EditText) findViewById(R.id.et_detial);//想对机手说些什么
         tvConfim = (TextView) findViewById(R.id.tv_confim);//确认发布
         iv_address = (ImageView) findViewById(R.id.iv_address);//定位
@@ -277,8 +276,40 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
             etKuai.setText(jobOrderDetialBean.getFlagNum());
             farmerTaskId = jobOrderDetialBean.getFarmerTaskId();
             tvConfim.setText("保存");
+
         }
 
+        etWorkAreas.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                calculatePrice();
+            }
+        });
+
+    }
+
+    private void calculatePrice() {
+        try {
+            String  work =  etWorkAreas.getText().toString().trim();
+            if(!TextUtils.isEmpty(work)){
+                Double  workareas = Double.parseDouble(work);
+                if(workareas!=0){
+                    tvPrice.setText(workareas * Double.parseDouble(unitPrice)+"");
+                }
+            }
+        }catch (Exception e){
+            tvPrice.setText("--");
+        }
     }
 
     /**
@@ -311,6 +342,8 @@ public class SendWorkActivity extends MVPBaseActivity<SendWorkContract.View, Sen
                 kindTypeId = list.get(position).getTypeArray().get(typePosition).getTypeId();
                 unitPrice = list.get(position).getTypeArray().get(typePosition).getTypeUnitPrice();
                 tvWorkTab.setText(list.get(position).getKindName() + "    " + list.get(position).getTypeArray().get(typePosition).getTypeName());
+
+                calculatePrice();
 
             }
         });
