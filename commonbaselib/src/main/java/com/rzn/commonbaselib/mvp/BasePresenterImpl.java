@@ -1,16 +1,13 @@
 package com.rzn.commonbaselib.mvp;
 
-import android.app.Activity;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
-
 import com.google.gson.Gson;
 import com.zyhealth.expertlib.bean.ReqBean;
 import com.zyhealth.expertlib.bean.ResponseBean;
 import com.zyhealth.expertlib.net.HttpRequestListener;
 import com.zyhealth.expertlib.net.OkHttpLoader;
 import com.zyhealth.expertlib.utils.MLog;
-
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
