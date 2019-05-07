@@ -47,13 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
-        <com.zhy.view.flowlayout.TagFlowLayout
-            android:id="@+id/id_flowlayout"
-            zhy:max_select="-1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="20dp">
-        </com.zhy.view.flowlayout.TagFlowLayout>
+
 
 
     </FrameLayout>
