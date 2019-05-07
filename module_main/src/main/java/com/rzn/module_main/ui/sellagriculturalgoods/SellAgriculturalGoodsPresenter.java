@@ -1,9 +1,9 @@
 package com.rzn.module_main.ui.sellagriculturalgoods;
 
 
-import android.support.v4.app.Fragment;
 
 import com.rzn.commonbaselib.mvp.BasePresenterImpl;
+import com.rzn.module_main.ui.sellagriculturalgoods.commoditylist.CommodityListFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;

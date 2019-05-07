@@ -4,15 +4,9 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
-import android.view.Gravity;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.rzn.module_main.ui.main.MainActivity;
+import com.rzn.module_main.ui.sellagriculturalgoods.commoditylist.CommodityListFragment;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

@@ -1,16 +1,13 @@
 package com.rzn.module_main.ui.sellagriculturalgoods;
 
 
-import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.view.View;
 
 import com.rzn.module_main.R;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
+import com.rzn.module_main.ui.sellagriculturalgoods.commoditylist.CommodityListFragment;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
 import net.lucode.hackware.magicindicator.ViewPagerHelper;
