@@ -2,10 +2,15 @@
 <com.zhy.view.flowlayout.TagFlowLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:zhy="http://schemas.android.com/apk/res-auto"
     android:id="@+id/id_flowlayout"
-    zhy:max_select="-1"
+    zhy:max_select="1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="20dp">
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:paddingLeft="14dp"
+    android:paddingRight="14dp"
+    android:layout_gravity="center_horizontal"
+    android:layout_centerHorizontal="true"
+    android:background="@color/white"
+    />
 
-
-</com.zhy.view.flowlayout.TagFlowLayout>
