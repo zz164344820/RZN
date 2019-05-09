@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/bg_color"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/topbar"/>
+
+
+     <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_gravity="center_horizontal"
+         android:text="当前手机号码"
+         android:layout_marginTop="35dp"
+         android:textColor="@color/text_333"
+         android:textSize="18dp"
+         />
+
+    <TextView
+        android:id="@+id/tv_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="18810050366"
+        android:layout_marginTop="8dp"
+        android:textSize="18dp"
+        android:textColor="@color/text_333"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="35dp"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        >
+
+
+        <EditText
+            android:id="@+id/ed_authCode"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:hint="请输入您收到的验证码"
+            android:textSize="16dp"
+            android:background="@null"
+            android:inputType="phone"
+            android:paddingLeft="15dp"
+            android:maxLength="8"
+            android:textColor="@color/text_888"
+
+            />
+
+
+        <com.rzn.module_main.ui.login.CountdownTextView
+            android:id="@+id/tv_getAuthCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/main_color"
+            android:text="获取验证码"
+            android:padding="10dp"
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:gravity="center"
+            />
+
+
+
+    </LinearLayout>
+
+    <android.support.v7.widget.CardView
+        app:cardCornerRadius="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="15dp"
+        >
+
+        <Button
+            android:id="@+id/bt_affirm"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/main_color"
+            android:text="确认"
+            android:textSize="18dp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            />
+
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

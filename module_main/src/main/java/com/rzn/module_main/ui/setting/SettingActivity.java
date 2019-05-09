@@ -11,11 +11,13 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.SPUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.module_main.R;
 import com.rzn.module_main.ui.login.LoginActivity;
+import com.rzn.module_main.ui.main.mine.payment_pwd.findpayment_pwd.VerifyMessageActivity;
 import com.tencent.bugly.beta.Beta;
 import com.zyhealth.expertlib.LibApplication;
 
@@ -46,6 +48,20 @@ public class SettingActivity extends MVPBaseActivity<SettingContract.View, Setti
     @Override
     public void initView() {
         super.initView();
+        findViewById(R.id.ll_ChangePaymentPassword).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ToastUtils.showShort("修改支付密码");
+            }
+        });
+        findViewById(R.id.ll_FindPaymentPassword).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View vew) {
+                startActivity(new Intent(SettingActivity.this, VerifyMessageActivity.class));
+            }
+        });
+
+
         final TextView tv_messageStute = (TextView) findViewById(R.id.tv_messageStute);
         CheckBox checkBox = (CheckBox) findViewById(R.id.cb_message);
         boolean isOpen = SPUtils.getInstance().getBoolean("message", true);

@@ -51,6 +51,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     private ImageView tv_bianji, iv_photo, iv_background;
     private TextView tv_Status, tv_name, tv_VersionName;
     private LoginResponseBean loginResponseBean;
+    private LinearLayout ll_my_wallet;
 
     @Nullable
     @Override
@@ -71,6 +72,12 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
             }
         });
 
+        ll_my_wallet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(mContext, "我是钱包", Toast.LENGTH_LONG).show();
+            }
+        });
 
         llMyCollection.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +85,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
                 Toast.makeText(mContext, "暂未开通", Toast.LENGTH_LONG).show();
             }
         });
+
         llMyWork.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -126,6 +134,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         iv_photo = (ImageView) rootView.findViewById(R.id.iv_photo);
         iv_background = (ImageView) rootView.findViewById(R.id.iv_background);
         tv_VersionName = (TextView) rootView.findViewById(R.id.tv_VersionName);
+        ll_my_wallet = (LinearLayout) rootView.findViewById(R.id.ll_my_wallet);
     }
 
 
