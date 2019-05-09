@@ -1,6 +1,7 @@
 package com.rzn.module_main.ui.main.mine.payment_pwd.findpayment_pwd;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.ConditionVariable;
 import android.support.annotation.Nullable;
@@ -17,6 +18,7 @@ import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.commonbaselib.views.CountdownTextView;
 import com.rzn.module_main.R;
+import com.rzn.module_main.ui.main.MainActivity;
 
 import org.w3c.dom.Text;
 
@@ -24,6 +26,10 @@ import org.w3c.dom.Text;
 /**
  * MVPPlugin
  *  邮箱 784787081@qq.com
+ *
+ *
+ *  todo
+ *   需要替换接口地址
  */
 
 public class VerifyMessageActivity extends MVPBaseActivity<VerifyMessageContract.View, VerifyMessagePresenter> implements VerifyMessageContract.View {
@@ -45,12 +51,12 @@ public class VerifyMessageActivity extends MVPBaseActivity<VerifyMessageContract
     public void initView() {
         super.initView();
         final LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
-        showPhone(loginResponseBean);
 
          setTitle("找回支付密码");
          tv_phone =(TextView) findViewById(R.id.tv_phone);
          ed_authCode =(EditText) findViewById(R.id.ed_authCode);
          tv_getAuthCode = (CountdownTextView)findViewById(R.id.tv_getAuthCode);
+        showPhone(loginResponseBean);
 
          findViewById(R.id.bt_affirm).setOnClickListener(new View.OnClickListener() {
              @Override
@@ -79,4 +85,40 @@ public class VerifyMessageActivity extends MVPBaseActivity<VerifyMessageContract
 
 
     }
+
+
+
+    @Override
+    public void restoreTextView() {
+        tv_getAuthCode.setText("再次获取");
+        tv_getAuthCode.setBackgroundColor(getResources().getColor(R.color.main_color));
+        tv_getAuthCode.setClickable(true);
+    }
+
+    @Override
+    public void restoreClickTextView() {
+        tv_getAuthCode.setBackgroundColor(getResources().getColor(R.color.main_color));
+        tv_getAuthCode.setClickable(true);
+    }
+
+    @Override
+    public void startRun() {
+        tv_getAuthCode.startCountdown(60, new com.rzn.module_main.ui.login.CountdownTextView.CountdownCallBack() {
+            @Override
+            public void countdownFinsh() {
+                tv_getAuthCode.setText("再次获取");
+                tv_getAuthCode.setBackgroundColor(getResources().getColor(R.color.main_color));
+                tv_getAuthCode.setClickable(true);
+            }
+        });
+    }
+
+    /**
+     * 登录成功回调
+     */
+    @Override
+    public void loginSuccess() {
+
+    }
+
 }

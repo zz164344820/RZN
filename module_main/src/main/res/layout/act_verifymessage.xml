@@ -58,7 +58,7 @@
             />
 
 
-        <com.rzn.module_main.ui.login.CountdownTextView
+        <com.rzn.commonbaselib.views.CountdownTextView
             android:id="@+id/tv_getAuthCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
