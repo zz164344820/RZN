@@ -15,7 +15,7 @@ public class CommodityListContract {
      }
 
      interface  Presenter extends BasePresenter<View> {
-
+        void  getCommodityList(String text);
      }
 
 }
