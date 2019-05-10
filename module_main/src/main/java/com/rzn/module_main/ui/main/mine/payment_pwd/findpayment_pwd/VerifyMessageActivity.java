@@ -11,16 +11,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.blankj.utilcode.util.PhoneUtils;
-import com.blankj.utilcode.util.ToastUtils;
 import com.rzn.commonbaselib.bean.LoginResponseBean;
+import com.rzn.commonbaselib.listener.CountdownCallBack;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.commonbaselib.views.CountdownTextView;
 import com.rzn.module_main.R;
-import com.rzn.module_main.ui.main.MainActivity;
-
-import org.w3c.dom.Text;
 
 
 /**
@@ -103,7 +99,7 @@ public class VerifyMessageActivity extends MVPBaseActivity<VerifyMessageContract
 
     @Override
     public void startRun() {
-        tv_getAuthCode.startCountdown(60, new com.rzn.module_main.ui.login.CountdownTextView.CountdownCallBack() {
+        tv_getAuthCode.startCountdown(60, new CountdownCallBack() {
             @Override
             public void countdownFinsh() {
                 tv_getAuthCode.setText("再次获取");

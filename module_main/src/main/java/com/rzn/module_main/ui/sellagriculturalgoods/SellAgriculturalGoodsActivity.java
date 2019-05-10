@@ -9,6 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.zhouwei.library.CustomPopWindow;
@@ -35,11 +37,12 @@ import java.util.List;
 public class SellAgriculturalGoodsActivity extends MVPBaseActivity<SellAgriculturalGoodsContract.View, SellAgriculturalGoodsPresenter> implements SellAgriculturalGoodsContract.View {
     MagicIndicator tabLayout;
     ViewPager viewPager;
-   TagFlowLayout id_flowlayout;
-    TextView tv_classify;
+    TagFlowLayout id_flowlayout;
+    ImageView iv_classify;
     CustomPopWindow mCustomPopWindow;
     View line_gray;
-
+    EditText ed_search;
+    ArrayList<CommodityListFragment> fragmentList;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,13 +56,16 @@ public class SellAgriculturalGoodsActivity extends MVPBaseActivity<SellAgricultu
         setTitle("卖农货");
         tabLayout=(MagicIndicator)findViewById(R.id.viewpagertab);
         viewPager=(ViewPager)findViewById(R.id.viewPager);
-        tv_classify=(TextView)findViewById(R.id.tv_classify);
+        iv_classify=(ImageView)findViewById(R.id.iv_classify);
         line_gray=(View)findViewById(R.id.line_gray);
+        ed_search=(EditText)findViewById(R.id.ed_search);
+        initLinstener();
     }
 
 
     @Override
     public void setViewPager(List<String> list, ArrayList<CommodityListFragment> fragmentList) {
+        this.fragmentList =fragmentList;
         final LayoutInflater mInflater = LayoutInflater.from(this);
         viewPager.setAdapter(new CommodityPageAdapter(getSupportFragmentManager(),fragmentList));
         CommonNavigator commonNavigator = new CommonNavigator(this);
@@ -67,13 +73,31 @@ public class SellAgriculturalGoodsActivity extends MVPBaseActivity<SellAgricultu
         tabLayout.setNavigator(commonNavigator);
         ViewPagerHelper.bind(tabLayout, viewPager);
         setPopWindow(list, mInflater);
+
     }
 
+    private void initLinstener() {
+        ed_search.setOnKeyListener(onKey);
+    }
 
+    public  String getquery(){
+        return ed_search.getText().toString().trim();
+    }
+
+    public  int getType(){
+        return viewPager.getCurrentItem();
+    }
+
+    @Override
+    public void complete_enter() {
+        // super.complete_enter();
+        int currentItem = viewPager.getCurrentItem();
+        fragmentList.get(currentItem).onRefresh(currentItem,ed_search.getText().toString().trim());
+    }
 
     private void setPopWindow(final List<String> list, final LayoutInflater mInflater) {
         id_flowlayout= (TagFlowLayout)mInflater.inflate(R.layout.goodsclassift_popwindow,null);
-        tv_classify.setOnClickListener(new View.OnClickListener() {
+        iv_classify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                      mCustomPopWindow= new CustomPopWindow.PopupWindowBuilder(SellAgriculturalGoodsActivity.this)

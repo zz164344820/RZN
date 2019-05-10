@@ -44,8 +44,8 @@ public class CommodityAdapter extends CommonNavigatorAdapter {
     @Override
     public IPagerTitleView getTitleView(Context context, final int index) {
         SimplePagerTitleView simplePagerTitleView = new SimplePagerTitleView(context);
-
         simplePagerTitleView.setText(list.get(index));
+        simplePagerTitleView.setTextSize(18);
         simplePagerTitleView.setNormalColor(Color.parseColor("#333333"));
         simplePagerTitleView.setSelectedColor(Color.parseColor("#70C63F"));
         simplePagerTitleView.setOnClickListener(new View.OnClickListener() {

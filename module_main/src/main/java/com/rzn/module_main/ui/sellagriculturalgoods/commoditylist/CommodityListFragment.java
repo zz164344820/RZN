@@ -10,8 +10,14 @@ import android.widget.TextView;
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
+import com.lonch.zyhealth.loadmorelibrary.LoadMoreUtils;
 import com.rzn.commonbaselib.mvp.MVPBaseFragment;
 import com.rzn.module_main.R;
+import com.rzn.module_main.ui.sellagriculturalgoods.SellAgriculturalGoodsActivity;
+import com.zyhealth.expertlib.utils.MLog;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 致医健康 MVPPlugin
@@ -23,8 +29,11 @@ public class CommodityListFragment extends MVPBaseFragment<CommodityListContract
     private String mTitle;
     RecyclerView recyclerView;
     SwipeToLoadLayout swipeToLoadLayout;
+    List<CommodityListBean> commodityList = new ArrayList<>();
+    int pager=0;
 
     public static CommodityListFragment getInstance(String title) {
+
         CommodityListFragment sf = new CommodityListFragment();
         sf.mTitle = title;
         return sf;
@@ -36,6 +45,7 @@ public class CommodityListFragment extends MVPBaseFragment<CommodityListContract
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_commoditlist, container, false);
         mPresenter.onCreate();
+        MLog.e(mTitle);
         return rootView;
     }
 
@@ -44,17 +54,45 @@ public class CommodityListFragment extends MVPBaseFragment<CommodityListContract
         super.initView();
         recyclerView=(RecyclerView) rootView.findViewById(R.id.swipe_target);
         swipeToLoadLayout=(SwipeToLoadLayout) rootView.findViewById(R.id.swipeToLoadLayout);
+        setAdapter();
         swipeToLoadLayout.setOnRefreshListener(this);
         swipeToLoadLayout.setOnLoadMoreListener(this);
     }
 
-    @Override
-    public void onLoadMore() {
+    private void setAdapter() {
+        recyclerView.setAdapter(new ClassifyAdapter(R.layout.classifyadapter,commodityList));
 
     }
 
     @Override
-    public void onRefresh() {
+    public void onLoadMore() {
+        SellAgriculturalGoodsActivity activity=(SellAgriculturalGoodsActivity) getActivity();
+        mPresenter.getCommodityList((++pager)+"",activity.getType(),activity.getquery());
+    }
 
+    @Override
+    public void onRefresh() {
+      commodityList.clear();
+      pager=0;
+      SellAgriculturalGoodsActivity activity=(SellAgriculturalGoodsActivity) getActivity();
+      mPresenter.getCommodityList((++pager)+"",activity.getType(),activity.getquery());
+    }
+
+    public void onRefresh(int type,String name ) {
+        pager=0;
+        commodityList.clear();
+        mPresenter.getCommodityList((++pager)+"",type,name);
+    }
+
+    @Override
+    public void refreshList(List<CommodityListBean> list) {
+        commodityList.addAll(list);
+        recyclerView.getAdapter().notifyItemInserted(commodityList.size()-list.size());
+        recycleViewRestore();
+    }
+
+    @Override
+    public void recycleViewRestore() {
+        LoadMoreUtils.recycleViewRestore(swipeToLoadLayout);
     }
 }
