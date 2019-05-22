@@ -4,6 +4,8 @@ package com.rzn.module_driver.ui.joborderdetial;
 import com.rzn.commonbaselib.bean.JobOrderDetialBean;
 import com.rzn.commonbaselib.mvp.BasePresenter;
 import com.rzn.commonbaselib.mvp.BaseView;
+import com.rzn.module_driver.ui.joborderdetial.bean.ZhifubaoBean;
+import com.rzn.module_driver.ui.wxapi.WechatPrePayInfoEntity;
 
 import java.util.Map;
 
@@ -24,6 +26,16 @@ public class JobOrderDetialContract {
 
         void deletePostSuccess();
 
+
+        void getZhiFuPaySuccess(ZhifubaoBean zhifubaoBean);
+
+        void getZhiFuPayFailed();
+
+
+        void getWeixinPaySucccess(WechatPrePayInfoEntity wechatPrePayInfoEntity);
+
+        void getWeixinPayFailed();
+
     }
 
     interface Presenter extends BasePresenter<View> {
@@ -36,6 +48,13 @@ public class JobOrderDetialContract {
         void finishWork(Map<String, String> map);
 
         void deletePost(Map<String, String> map);
+
+
+        //获取支付宝得串
+        void getZhiFuPay(Map<String, String> map);
+
+        //微信
+        void getWeixinPay(Map<String, String> map);
 
     }
 }

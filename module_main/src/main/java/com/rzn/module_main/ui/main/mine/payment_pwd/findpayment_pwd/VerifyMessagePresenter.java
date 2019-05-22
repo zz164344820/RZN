@@ -22,7 +22,7 @@ public class VerifyMessagePresenter extends BasePresenterImpl<VerifyMessageContr
     @Override
     public void onCreate() {
         super.onCreate();
-        reqData(mContext,"Test/index",null,111);
+
     }
 
     @Override
@@ -31,6 +31,11 @@ public class VerifyMessagePresenter extends BasePresenterImpl<VerifyMessageContr
         Map<String, String> map = new HashMap<>();
         map.put("phone", phone);
         reqData(mContext, "/user/getCode", map, 112);//farmHand/
+    }
+
+    @Override
+    public void nextData(Map<String, String> map) {
+        reqData(mContext,"/user/checkUserPhone",map,111);
     }
 
 

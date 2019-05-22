@@ -26,6 +26,7 @@ import com.rzn.module_main.ui.drivercenter.DriverBean;
 import com.rzn.module_main.ui.drivercenter.DriverCenterActivity;
 import com.rzn.module_main.ui.mesagecenter.MessageCenterActivity;
 import com.rzn.module_main.ui.myadvice.MyAdviceActivity;
+import com.rzn.module_main.ui.mywallet.MyWalletActivity;
 import com.rzn.module_main.ui.personalinfo.PersonalInfoActivity;
 import com.rzn.module_main.ui.setting.SettingActivity;
 import com.zyhealth.expertlib.utils.GlideUtils;
@@ -75,6 +76,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         ll_my_wallet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(new Intent(mContext, MyWalletActivity.class));
                 Toast.makeText(mContext, "我是钱包", Toast.LENGTH_LONG).show();
             }
         });
@@ -147,16 +149,15 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     }
 
 
-
     private void initData() {
 
         if (loginResponseBean == null) {
-            GlideUtils.loadImageRound(getContext(),"http://img1.3lian.com/gif/more/11/201211/b5442c2bcfbfac31066a747c2c5a0d03.jpg", iv_photo, 60);
+            GlideUtils.loadImageRound(getContext(), "http://img1.3lian.com/gif/more/11/201211/b5442c2bcfbfac31066a747c2c5a0d03.jpg", iv_photo, 60);
             GlideUtils.GaussianBlur(getContext(), "http://img1.3lian.com/gif/more/11/201211/b5442c2bcfbfac31066a747c2c5a0d03.jpg", iv_background, 8, 1);
             return;
         }
-        GlideUtils.loadImageRound(getContext(), EncodeUtils.urlDecode(loginResponseBean.getPic()) , iv_photo, 80);
-        GlideUtils.GaussianBlur(getContext(),  EncodeUtils.urlDecode(loginResponseBean.getPic()), iv_background, 10, 1);
+        GlideUtils.loadImageRound(getContext(), EncodeUtils.urlDecode(loginResponseBean.getPic()), iv_photo, 80);
+        GlideUtils.GaussianBlur(getContext(), EncodeUtils.urlDecode(loginResponseBean.getPic()), iv_background, 10, 1);
 
         MLog.e(EncodeUtils.urlDecode(loginResponseBean.getPic()));
         tv_name.setText(loginResponseBean.getPhone());
@@ -188,13 +189,13 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
 
     @Override
     public void getDataSuccess(DriverBean driverBean) {
-       if("0".equals(driverBean.getStatus())){
-           tv_Status.setText("已禁用");
-       }else if ("1".equals(driverBean.getStatus())) {
+        if ("0".equals(driverBean.getStatus())) {
+            tv_Status.setText("已禁用");
+        } else if ("1".equals(driverBean.getStatus())) {
             tv_Status.setText("审核中");
-        } else  if ("2".equals(driverBean.getStatus())){
+        } else if ("2".equals(driverBean.getStatus())) {
             tv_Status.setText("未认证");
-        }else if("3".equals(driverBean.getStatus())){
+        } else if ("3".equals(driverBean.getStatus())) {
             tv_Status.setText("已认证");
             tv_Status.setTextColor(getResources().getColor(R.color.main_color));
         }

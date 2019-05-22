@@ -22,7 +22,7 @@ public class AllOrderAdapter extends BaseQuickAdapter<MyWorkDetialBean, BaseView
 
     @Override
     protected void convert(BaseViewHolder helper, MyWorkDetialBean item) {
-//        private String status;//":"1", //订单状态 1: 待接单  2:  待作业  3:已取消  4:已完成
+//        private String status;//":"1", //订单状态 1: 待接单  2:  待作业  3:已取消  4:已完成  5:机手(取消)  6：待支付'
 //        private String flag;//":"2", //地块分布 1集中连片 2零星分散
 //        private String flagNum;//":"", //当是零星分散时的分散快数
         helper.setText(R.id.tv_title, item.getTypes());
@@ -34,6 +34,10 @@ public class AllOrderAdapter extends BaseQuickAdapter<MyWorkDetialBean, BaseView
             helper.setText(R.id.tv_lable, "已取消");
         } else if ("4".equals(item.getStatus())) {
             helper.setText(R.id.tv_lable, "已完成");
+        } else if ("5".equals(item.getStatus())) {
+            helper.setText(R.id.tv_lable, "手机（取消）");
+        } else if ("6".equals(item.getStatus())) {
+            helper.setText(R.id.tv_lable, "待支付");
         }
 
         if ("1".equals(item.getFlag())) {
@@ -42,7 +46,7 @@ public class AllOrderAdapter extends BaseQuickAdapter<MyWorkDetialBean, BaseView
             helper.setText(R.id.tv_name_area, item.getAreas() + "亩/" + "零星分散/" + item.getFlagNum() + "块");
         }
 
-        helper.setText(R.id.tv_adress, item.getProvinceName()  + item.getCityName()+ item.getAreaName() + "");
+        helper.setText(R.id.tv_adress, item.getProvinceName() + item.getCityName() + item.getAreaName() + "");
         helper.setText(R.id.tv_time, item.getStartDate() + "至" + item.getEndDate());
         helper.setText(R.id.tv_num, item.getAreas() + "亩");
         helper.setText(R.id.tv_true_money, item.getTotalprice() + "元");

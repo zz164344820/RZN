@@ -4,6 +4,8 @@ package com.rzn.module_driver.ui.joborderdetial;
 import com.rzn.commonbaselib.bean.JobOrderDetialBean;
 import com.rzn.commonbaselib.mvp.BasePresenterImpl;
 import com.rzn.commonbaselib.utils.GsonUtils;
+import com.rzn.module_driver.ui.joborderdetial.bean.ZhifubaoBean;
+import com.rzn.module_driver.ui.wxapi.WechatPrePayInfoEntity;
 import com.zyhealth.expertlib.bean.ResponseBean;
 
 import java.util.HashMap;
@@ -60,6 +62,19 @@ public class JobOrderDetialPresenter extends BasePresenterImpl<JobOrderDetialCon
     }
 
     @Override
+    public void getZhiFuPay(Map<String, String> map) {
+
+
+        reqData(mContext, "/Alipay/appPayRequest", map, 1111111111);
+    }
+
+    @Override
+    public void getWeixinPay(Map<String, String> map) {
+//        http://173rd88727.iok.la/farmHand/weChatPay/appWeChatPayRequest
+        reqData(mContext, "/weChatPay/appWeChatPayRequest", map, 1234567);
+    }
+
+    @Override
     public void httpRequestResult(ResponseBean response, int requestId) {
         super.httpRequestResult(response, requestId);
         switch (requestId) {
@@ -87,6 +102,20 @@ public class JobOrderDetialPresenter extends BasePresenterImpl<JobOrderDetialCon
             case 518:
                 mView.deletePostSuccess();
                 break;
+
+            case 1111111111:
+                ZhifubaoBean zhifubaoBean = GsonUtils.gsonParseBean(gson, response.getResult(), ZhifubaoBean.class);
+                mView.getZhiFuPaySuccess(zhifubaoBean);
+                break;
+
+
+            case 1234567:
+                WechatPrePayInfoEntity wechatPrePayInfoEntity = GsonUtils.gsonParseBean(gson, response.getResult(), WechatPrePayInfoEntity.class);
+
+                mView.getWeixinPaySucccess(wechatPrePayInfoEntity);
+                break;
+
+
         }
     }
 }

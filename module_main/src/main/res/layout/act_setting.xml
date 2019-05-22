@@ -8,7 +8,6 @@
     <include layout="@layout/topbar" />
 
 
-
     <LinearLayout
         android:id="@+id/ll_ChangePaymentPassword"
         android:layout_width="match_parent"
@@ -22,7 +21,8 @@
             android:layout_width="14dp"
             android:layout_height="16dp"
             android:layout_marginLeft="12dp"
-            android:src="@drawable/icon_my_post" />
+            android:src="@drawable/icon_my_post"
+            android:visibility="gone" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -41,8 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="12dp"
-            android:background="@drawable/right_enter"
-            />
+            android:background="@drawable/right_enter" />
     </LinearLayout>
 
     <View
@@ -62,7 +61,8 @@
             android:layout_width="14dp"
             android:layout_height="16dp"
             android:layout_marginLeft="12dp"
-            android:src="@drawable/icon_my_post" />
+            android:src="@drawable/icon_my_post"
+            android:visibility="gone" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -81,8 +81,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="12dp"
-            android:background="@drawable/right_enter"
-            />
+            android:background="@drawable/right_enter" />
     </LinearLayout>
 
     <LinearLayout
@@ -118,11 +117,10 @@
             android:id="@+id/cb_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:button="@drawable/messagewarn"
-            android:background="@null"
             android:layout_marginRight="10dp"
-            android:checked="true"
-            />
+            android:background="@null"
+            android:button="@drawable/messagewarn"
+            android:checked="true" />
 
     </LinearLayout>
 
@@ -141,11 +139,11 @@
             android:id="@+id/tv_upload"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableRight="@drawable/shengji"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:text="版本更新"
             android:textColor="#ff333333"
-            android:drawableRight="@drawable/shengji"
             android:textSize="18dp" />
 
         <View

@@ -18,7 +18,7 @@ public class CommodityListPresenter extends BasePresenterImpl<CommodityListContr
     @Override
     public void onCreate() {
         super.onCreate();
-        getCommodityList("0",0,"");
+        getCommodityList("1",0,"");
 
     }
 

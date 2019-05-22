@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewManager;
 import android.view.WindowManager;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -20,6 +21,7 @@ import com.rzn.module_driver.R;
 import com.rzn.module_driver.ui.jobOrder.allorder.AllOrderFragment;
 import com.rzn.module_driver.ui.jobOrder.await_job.Await_jobFragment;
 import com.rzn.module_driver.ui.jobOrder.havefinished.HaveFinishedFragment;
+import com.rzn.module_driver.ui.jobOrder.myjoborder.wait_pay.Await_PayFragment;
 import com.zhy.autolayout.AutoFrameLayout;
 
 import mlxy.utils.T;
@@ -51,6 +53,9 @@ public class MyjobOrderActivity extends MVPBaseActivity<MyjobOrderContract.View,
     private View viewOne;
     private View viewTwo;
     private View viewThree;
+    private View viewFour;
+    private TextView tvPay;
+    private RelativeLayout rlDai;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -77,11 +82,14 @@ public class MyjobOrderActivity extends MVPBaseActivity<MyjobOrderContract.View,
 
     private void initViews() {
         setTitle("我的作业订单");
+
+        rlDai = (RelativeLayout) findViewById(R.id.rl_dai);
+        rlDai.setVisibility(View.VISIBLE);
         rlContent = (AutoFrameLayout) findViewById(R.id.rl_content);
         tvAll = (TextView) findViewById(R.id.tv_all);
         tvWork = (TextView) findViewById(R.id.tv_work);
         tvFinish = (TextView) findViewById(R.id.tv_finish);
-
+        tvPay = (TextView) findViewById(R.id.tv_pay);
 
         rbRamer = (RadioButton) findViewById(R.id.rb_rarmer);
         rbDriver = (RadioButton) findViewById(R.id.rb_driver);
@@ -93,9 +101,13 @@ public class MyjobOrderActivity extends MVPBaseActivity<MyjobOrderContract.View,
         viewOne = findViewById(R.id.view_one);
         viewTwo = findViewById(R.id.view_two);
         viewThree = findViewById(R.id.view_three);
+        viewFour = findViewById(R.id.view_four);
+
         viewOne.setVisibility(View.VISIBLE);
         viewTwo.setVisibility(View.GONE);
         viewThree.setVisibility(View.GONE);
+        viewFour.setVisibility(View.GONE);
+
 
         tvFinish.setText("待接单");
         String type = getIntent().getStringExtra("type");
@@ -108,13 +120,16 @@ public class MyjobOrderActivity extends MVPBaseActivity<MyjobOrderContract.View,
             viewOne.setVisibility(View.VISIBLE);
             viewTwo.setVisibility(View.GONE);
             viewThree.setVisibility(View.GONE);
+            viewFour.setVisibility(View.GONE);
+
             tvAll.setTextColor(Color.parseColor("#fb9300"));
             tvFinish.setTextColor(Color.parseColor("#333333"));
             tvWork.setTextColor(Color.parseColor("#333333"));
+            tvPay.setTextColor(Color.parseColor("#333333"));
 
             transaction.replace(R.id.rl_content, new AllOrderFragment());
             transaction.commit();
-        }else{
+        } else {
             transaction.add(R.id.rl_content, new AllOrderFragment());
             transaction.commit();
         }
@@ -128,9 +143,12 @@ public class MyjobOrderActivity extends MVPBaseActivity<MyjobOrderContract.View,
                 viewOne.setVisibility(View.VISIBLE);
                 viewTwo.setVisibility(View.GONE);
                 viewThree.setVisibility(View.GONE);
+                viewFour.setVisibility(View.GONE);
+
                 tvAll.setTextColor(Color.parseColor("#fb9300"));
                 tvFinish.setTextColor(Color.parseColor("#333333"));
                 tvWork.setTextColor(Color.parseColor("#333333"));
+                tvPay.setTextColor(Color.parseColor("#333333"));
 //                switchContentFragment(allOrderFragment);
                 transaction = manager.beginTransaction();
                 transaction.replace(R.id.rl_content, new AllOrderFragment());
@@ -144,9 +162,11 @@ public class MyjobOrderActivity extends MVPBaseActivity<MyjobOrderContract.View,
                 viewOne.setVisibility(View.GONE);
                 viewTwo.setVisibility(View.VISIBLE);
                 viewThree.setVisibility(View.GONE);
+                viewFour.setVisibility(View.GONE);
                 tvAll.setTextColor(Color.parseColor("#333333"));
                 tvFinish.setTextColor(Color.parseColor("#333333"));
                 tvWork.setTextColor(Color.parseColor("#fb9300"));
+                tvPay.setTextColor(Color.parseColor("#333333"));
                 transaction = manager.beginTransaction();
 
                 transaction.replace(R.id.rl_content, new Await_jobFragment());
@@ -160,9 +180,11 @@ public class MyjobOrderActivity extends MVPBaseActivity<MyjobOrderContract.View,
                 viewOne.setVisibility(View.GONE);
                 viewTwo.setVisibility(View.GONE);
                 viewThree.setVisibility(View.VISIBLE);
+                viewFour.setVisibility(View.GONE);
                 tvAll.setTextColor(Color.parseColor("#333333"));
                 tvFinish.setTextColor(Color.parseColor("#fb9300"));
                 tvWork.setTextColor(Color.parseColor("#333333"));
+                tvPay.setTextColor(Color.parseColor("#333333"));
                 transaction = manager.beginTransaction();
 
                 transaction.replace(R.id.rl_content, new HaveFinishedFragment());
@@ -170,6 +192,26 @@ public class MyjobOrderActivity extends MVPBaseActivity<MyjobOrderContract.View,
 //                switchContentFragment(haveFinishedFragment);
             }
         });
+
+
+        tvPay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewOne.setVisibility(View.GONE);
+                viewTwo.setVisibility(View.GONE);
+                viewThree.setVisibility(View.GONE);
+                viewFour.setVisibility(View.VISIBLE);
+                tvAll.setTextColor(Color.parseColor("#333333"));
+                tvFinish.setTextColor(Color.parseColor("#333333"));
+                tvWork.setTextColor(Color.parseColor("#333333"));
+                tvPay.setTextColor(Color.parseColor("#fb9300"));
+                transaction = manager.beginTransaction();
+
+                transaction.replace(R.id.rl_content, new Await_PayFragment());
+                transaction.commit();
+            }
+        });
+
 
         rbDriver.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -179,6 +221,7 @@ public class MyjobOrderActivity extends MVPBaseActivity<MyjobOrderContract.View,
                 viewOne.setVisibility(View.VISIBLE);
                 viewTwo.setVisibility(View.GONE);
                 viewThree.setVisibility(View.GONE);
+                rlDai.setVisibility(View.GONE);
                 tvAll.setTextColor(Color.parseColor("#fb9300"));
                 tvFinish.setTextColor(Color.parseColor("#333333"));
                 tvWork.setTextColor(Color.parseColor("#333333"));
@@ -198,6 +241,7 @@ public class MyjobOrderActivity extends MVPBaseActivity<MyjobOrderContract.View,
                 viewOne.setVisibility(View.VISIBLE);
                 viewTwo.setVisibility(View.GONE);
                 viewThree.setVisibility(View.GONE);
+                rlDai.setVisibility(View.VISIBLE);
                 tvAll.setTextColor(Color.parseColor("#fb9300"));
                 tvFinish.setTextColor(Color.parseColor("#333333"));
                 tvWork.setTextColor(Color.parseColor("#333333"));
@@ -223,7 +267,7 @@ public class MyjobOrderActivity extends MVPBaseActivity<MyjobOrderContract.View,
 ////        MVPBaseFragment fragment=    com.rzn.commonbaselib.applictaion.ViewManager.getInstance().getFragment(0);
 //
 //        haveFinishedFragment = new HaveFinishedFragment();
-//        awaitJobFragment = new Await_jobFragment();
+//        awaitJobFragment = new Await_PayFragment();
 //        allOrderFragment = new AllOrderFragment();
 //
 //        switchContentFragment(allOrderFragment);

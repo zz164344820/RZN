@@ -40,6 +40,45 @@ public class JobOrderDetialBean implements Serializable {
     private String kindId;
     private String kindType;
 
+
+    private String payPrice;//”:”108.5”,//实际付款金额
+    private String payTime;//”:”2018-05-12 18:00:53”,//支付时间
+    private String paymentType;//”:1,//支付方式：1：支付宝 2：微信
+    private String discountAmount;//”:1,//优惠金额
+
+
+    public String getPayPrice() {
+        return payPrice;
+    }
+
+    public void setPayPrice(String payPrice) {
+        this.payPrice = payPrice;
+    }
+
+    public String getPayTime() {
+        return payTime;
+    }
+
+    public void setPayTime(String payTime) {
+        this.payTime = payTime;
+    }
+
+    public String getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(String paymentType) {
+        this.paymentType = paymentType;
+    }
+
+    public String getDiscountAmount() {
+        return discountAmount;
+    }
+
+    public void setDiscountAmount(String discountAmount) {
+        this.discountAmount = discountAmount;
+    }
+
     public String getKindType() {
         return kindType;
     }
@@ -47,8 +86,6 @@ public class JobOrderDetialBean implements Serializable {
     public void setKindType(String kindType) {
         this.kindType = kindType;
     }
-
-
 
 
     public String getKind() {

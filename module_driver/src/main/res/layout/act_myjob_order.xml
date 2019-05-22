@@ -123,6 +123,31 @@
                 android:visibility="gone" />
         </RelativeLayout>
 
+        <RelativeLayout
+            android:id="@+id/rl_dai"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_pay"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="待支付"
+                android:textColor="@drawable/selector_word_color"
+                android:textSize="18dp" />
+
+            <View
+                android:id="@+id/view_four"
+                android:layout_width="50dp"
+                android:layout_height="2dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:background="#fb9300"
+                android:visibility="gone" />
+        </RelativeLayout>
+
     </LinearLayout>
 
     <com.zhy.autolayout.AutoFrameLayout

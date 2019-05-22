@@ -7,7 +7,7 @@ import java.io.Serializable;
  * Description:  登录成功返回bean实体
  */
 
-public class LoginResponseBean implements Serializable{
+public class LoginResponseBean implements Serializable {
 
     private String createTime;
     private String loginTime;
@@ -20,7 +20,15 @@ public class LoginResponseBean implements Serializable{
     private String userId;
     private String handlerId;
     private String pic;
+    private String fundId;
 
+    public String getFundId() {
+        return fundId;
+    }
+
+    public void setFundId(String fundId) {
+        this.fundId = fundId;
+    }
 
     public String getPic() {
         return pic == null ? "" : pic;

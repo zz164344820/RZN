@@ -30,7 +30,7 @@ public class CommodityListFragment extends MVPBaseFragment<CommodityListContract
     RecyclerView recyclerView;
     SwipeToLoadLayout swipeToLoadLayout;
     List<CommodityListBean> commodityList = new ArrayList<>();
-    int pager=0;
+    int pager=1;
 
     public static CommodityListFragment getInstance(String title) {
 
@@ -73,13 +73,13 @@ public class CommodityListFragment extends MVPBaseFragment<CommodityListContract
     @Override
     public void onRefresh() {
       commodityList.clear();
-      pager=0;
+      pager=1;
       SellAgriculturalGoodsActivity activity=(SellAgriculturalGoodsActivity) getActivity();
       mPresenter.getCommodityList((++pager)+"",activity.getType(),activity.getquery());
     }
 
     public void onRefresh(int type,String name ) {
-        pager=0;
+        pager=1;
         commodityList.clear();
         mPresenter.getCommodityList((++pager)+"",type,name);
     }
@@ -88,6 +88,7 @@ public class CommodityListFragment extends MVPBaseFragment<CommodityListContract
     public void refreshList(List<CommodityListBean> list) {
         commodityList.addAll(list);
         recyclerView.getAdapter().notifyItemInserted(commodityList.size()-list.size());
+//        recyclerView.getAdapter().notifyDataSetChanged();
         recycleViewRestore();
     }
 

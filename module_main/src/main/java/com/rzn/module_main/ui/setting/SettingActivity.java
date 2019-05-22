@@ -18,8 +18,13 @@ import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.module_main.R;
 import com.rzn.module_main.ui.login.LoginActivity;
 import com.rzn.module_main.ui.main.mine.payment_pwd.findpayment_pwd.VerifyMessageActivity;
+import com.rzn.module_main.ui.modiffypassword.modiffypwd.ModiffyPasswordActivity;
+import com.rzn.module_main.ui.setting.bean.SettingPasswordBean;
 import com.tencent.bugly.beta.Beta;
 import com.zyhealth.expertlib.LibApplication;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -51,7 +56,15 @@ public class SettingActivity extends MVPBaseActivity<SettingContract.View, Setti
         findViewById(R.id.ll_ChangePaymentPassword).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ToastUtils.showShort("修改支付密码");
+
+                //请求网络判断是否有初始密码
+
+                Map<String, String> map = new HashMap<>();
+                map.put("fundId", loginResponseBean.getFundId());
+                mPresenter.getIsPasswordData(map);
+
+//                startActivity(new Intent(SettingActivity.this, SelectBankCardActivity.class));
+//                ToastUtils.showShort("修改支付密码");
             }
         });
         findViewById(R.id.ll_FindPaymentPassword).setOnClickListener(new View.OnClickListener() {
@@ -106,7 +119,7 @@ public class SettingActivity extends MVPBaseActivity<SettingContract.View, Setti
         //將本地数据对象清空
         clearObject();
 
-        startActivity(new Intent(this,LoginActivity.class));
+        startActivity(new Intent(this, LoginActivity.class));
         LibApplication.instance.killAllActivity2("LoginActivity");
         JPushInterface.setAlias(SettingActivity.this, 111, "");
     }
@@ -115,5 +128,22 @@ public class SettingActivity extends MVPBaseActivity<SettingContract.View, Setti
         LoginResponseBean responseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
         responseBean = null;
         FileSaveUtils.fileSaveObject(responseBean, "loginBean");
+    }
+
+    @Override
+    public void getIsPasswordDataSuccess(SettingPasswordBean settingPasswordBean) {
+        if (settingPasswordBean != null) {
+            if (settingPasswordBean.isSet()) {
+                // true 已设置密码 ,falst 未设置密码
+                startActivity(new Intent(SettingActivity.this, ModiffyPasswordActivity.class));
+            } else {
+                startActivity(new Intent(SettingActivity.this, VerifyMessageActivity.class));
+            }
+        }
+    }
+
+    @Override
+    public void getIsPasswordDataFailed() {
+
     }
 }
