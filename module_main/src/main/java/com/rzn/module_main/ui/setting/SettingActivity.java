@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.SPUtils;
@@ -53,6 +54,10 @@ public class SettingActivity extends MVPBaseActivity<SettingContract.View, Setti
     @Override
     public void initView() {
         super.initView();
+
+//        LinearLayout llPassword = (LinearLayout) findViewById(R.id.ll_password);
+//        if ()
+
         findViewById(R.id.ll_ChangePaymentPassword).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

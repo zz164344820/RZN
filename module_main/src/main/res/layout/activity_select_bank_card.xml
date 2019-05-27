@@ -3,6 +3,12 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <include layout="@layout/topbar" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/swipe_target"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:overScrollMode="never"/>
 
-    <include layout="@layout/fragment_twitter_recycler"/>
+    <!--<include layout="@layout/fragment_twitter_recycler"/>-->
 </LinearLayout>

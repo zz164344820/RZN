@@ -103,7 +103,7 @@ public class BankCardActivity extends MVPBaseActivity<BankCardContract.View, Ban
 
 
         RecyclerView swipeTarget = findViewById(R.id.swipe_target);//swipe_target
-        SwipeToLoadLayout swipeToLoadLayout = findViewById(R.id.swipeToLoadLayout);
+//        SwipeToLoadLayout swipeToLoadLayout = findViewById(R.id.swipeToLoadLayout);
         swipeTarget.setLayoutManager(new LinearLayoutManager(this));
 
 

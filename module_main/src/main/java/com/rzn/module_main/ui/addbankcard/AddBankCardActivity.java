@@ -73,7 +73,7 @@ public class AddBankCardActivity extends MVPBaseActivity<AddBankCardContract.Vie
                 map.put("bankName", etBank.getText().toString().trim());
                 map.put("branchBankName", etZhiBank.getText().toString().trim());
                 map.put("bankCard", etBankCard.getText().toString().trim());
-                if (!TextUtils.isEmpty(bankMessageBean.getUserInfoId())) {
+                if (bankMessageBean != null && !TextUtils.isEmpty(bankMessageBean.getUserInfoId())) {
                     map.put("userInfoId", bankMessageBean.getUserInfoId());
                 }
                 mPresenter.addBankCardData(map);

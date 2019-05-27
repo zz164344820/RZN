@@ -152,8 +152,8 @@ public class ModiffyPasswordActivity extends MVPBaseActivity<ModiffyPasswordCont
 
             // 跳转界面到修改密码
 
-            Toast.makeText(this, "" + etCodeOne.getText().toString() + etCodeTwo.getText().toString() + etCodeThree.getText().toString() + etCodeFour.getText().toString()
-                    + etCodeFive.getText().toString() + etCodeSix.getText().toString(), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "" + etCodeOne.getText().toString() + etCodeTwo.getText().toString() + etCodeThree.getText().toString() + etCodeFour.getText().toString()
+//                    + etCodeFive.getText().toString() + etCodeSix.getText().toString(), Toast.LENGTH_SHORT).show();
 
             String pwd = "" + etCodeOne.getText().toString() + etCodeTwo.getText().toString() + etCodeThree.getText().toString() + etCodeFour.getText().toString()
                     + etCodeFive.getText().toString() + etCodeSix.getText().toString();

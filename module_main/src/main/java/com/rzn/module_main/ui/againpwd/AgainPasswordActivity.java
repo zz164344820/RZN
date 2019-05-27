@@ -154,8 +154,8 @@ public class AgainPasswordActivity extends MVPBaseActivity<AgainPasswordContract
 
             // 跳转界面到修改密码
 
-            Toast.makeText(this, "" + etCodeOne.getText().toString() + etCodeTwo.getText().toString() + etCodeThree.getText().toString() + etCodeFour.getText().toString()
-                    + etCodeFive.getText().toString() + etCodeSix.getText().toString(), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "" + etCodeOne.getText().toString() + etCodeTwo.getText().toString() + etCodeThree.getText().toString() + etCodeFour.getText().toString()
+//                    + etCodeFive.getText().toString() + etCodeSix.getText().toString(), Toast.LENGTH_SHORT).show();
 
 
 //            请求接口判断支付密码是否正确

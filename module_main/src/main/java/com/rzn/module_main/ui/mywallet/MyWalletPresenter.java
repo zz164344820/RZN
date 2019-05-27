@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import com.rzn.commonbaselib.mvp.BasePresenterImpl;
 import com.rzn.module_main.ui.mywallet.bean.MyWalletBean;
 import com.rzn.module_main.ui.personalinfo.UserInfo;
+import com.rzn.module_main.ui.setting.bean.SettingPasswordBean;
 import com.zyhealth.expertlib.bean.ResponseBean;
 
 import java.util.Map;
@@ -29,6 +30,11 @@ public class MyWalletPresenter extends BasePresenterImpl<MyWalletContract.View> 
     }
 
     @Override
+    public void getIsPasswordData(Map<String, String> map) {
+        reqData(mContext, "/fund/isSetPayPassword", map, 1313);
+    }
+
+    @Override
     public void httpRequestResult(ResponseBean response, int requestId) {
         super.httpRequestResult(response, requestId);
         switch (requestId) {
@@ -36,6 +42,11 @@ public class MyWalletPresenter extends BasePresenterImpl<MyWalletContract.View> 
                 MyWalletBean myWalletBean = gson.fromJson(gson.toJson(response.getResult()), new TypeToken<MyWalletBean>() {
                 }.getType());
                 mView.getWalletDetialSuccess(myWalletBean);
+                break;
+            case 1313:
+                SettingPasswordBean settingPasswordBean = gson.fromJson(gson.toJson(response.getResult()), new TypeToken<SettingPasswordBean>() {
+                }.getType());
+                mView.getIsPasswordDataSuccess(settingPasswordBean);
                 break;
         }
     }

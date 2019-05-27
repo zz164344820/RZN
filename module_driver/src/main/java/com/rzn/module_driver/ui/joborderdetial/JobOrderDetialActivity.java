@@ -148,7 +148,7 @@ public class JobOrderDetialActivity extends MVPBaseActivity<JobOrderDetialContra
                                     @Override
                                     public void onClick(String paytype) {
 
-                                        if (Integer.valueOf(paytype) < Integer.valueOf(jobOrderDetialBean.getAreas().toString())) {
+                                        if (Integer.valueOf(paytype) <(int)Double.parseDouble(jobOrderDetialBean.getAreas().toString())) {//int i = (int)Double.parseDouble(str);// Integer.valueOf(jobOrderDetialBean.getAreas().toString())
                                             Map<String, String> map = new HashMap<>();
                                             map.put("farmerTaskId", farmerTaskId);
                                             map.put("realAreas", paytype);//jobOrderDetialBean.getAreas().toString()

@@ -21,10 +21,14 @@ import com.rzn.module_main.R;
 import com.rzn.module_main.ui.applygetmoney.ApplyGetMoneyActivity;
 import com.rzn.module_main.ui.bankcard.BankCardActivity;
 import com.rzn.module_main.ui.getmoneydetial.GetMoneyDetialActivity;
+import com.rzn.module_main.ui.main.mine.payment_pwd.findpayment_pwd.VerifyMessageActivity;
+import com.rzn.module_main.ui.modiffypassword.modiffypwd.ModiffyPasswordActivity;
 import com.rzn.module_main.ui.moneydetial.MoneyDetialActivity;
 import com.rzn.module_main.ui.moneydetial.MoneyDetialAdapter;
 import com.rzn.module_main.ui.mywallet.bean.MyWalletBean;
 import com.rzn.module_main.ui.personalinfo.UserInfo;
+import com.rzn.module_main.ui.setting.SettingActivity;
+import com.rzn.module_main.ui.setting.bean.SettingPasswordBean;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -48,6 +52,7 @@ public class MyWalletActivity extends MVPBaseActivity<MyWalletContract.View, MyW
     private TextView tvTixian;
     private TextView tvLeft;
     private MyWalletBean walletBean;
+    private LoginResponseBean loginResponseBean;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -78,10 +83,18 @@ public class MyWalletActivity extends MVPBaseActivity<MyWalletContract.View, MyW
         llApplyMoney.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //请求网络判断是否有初始密码
+
+                Map<String, String> map = new HashMap<>();
+                map.put("fundId", loginResponseBean.getFundId());
+                mPresenter.getIsPasswordData(map);
+
+
                 //跳转申请提现
-                Intent intent = new Intent(MyWalletActivity.this, ApplyGetMoneyActivity.class);
-                intent.putExtra("walletBean", walletBean);
-                startActivity(intent);
+//                Intent intent = new Intent(MyWalletActivity.this, ApplyGetMoneyActivity.class);
+//                intent.putExtra("walletBean", walletBean);
+//                startActivity(intent);
             }
         });
         llBankCard.setOnClickListener(new View.OnClickListener() {
@@ -121,7 +134,7 @@ public class MyWalletActivity extends MVPBaseActivity<MyWalletContract.View, MyW
 
     private void initViews() {
 
-
+        loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
         llApplyMoney = (LinearLayout) findViewById(R.id.ll_apply_money);
         llBankCard = (LinearLayout) findViewById(R.id.ll_bank_card);
 
@@ -157,6 +170,27 @@ public class MyWalletActivity extends MVPBaseActivity<MyWalletContract.View, MyW
 
     @Override
     public void getWalletDetialFailed() {
+
+    }
+
+    @Override
+    public void getIsPasswordDataSuccess(SettingPasswordBean settingPasswordBean) {
+        if (settingPasswordBean != null) {
+            if (settingPasswordBean.isSet()) {
+                // true 已设置密码 ,falst 未设置密码
+//                startActivity(new Intent(MyWalletActivity.this, ModiffyPasswordActivity.class));
+                Intent intent = new Intent(MyWalletActivity.this, ApplyGetMoneyActivity.class);
+                intent.putExtra("walletBean", walletBean);
+                startActivity(intent);
+            } else {
+
+                startActivity(new Intent(MyWalletActivity.this, VerifyMessageActivity.class));
+            }
+        }
+    }
+
+    @Override
+    public void getIsPasswordDataFailed() {
 
     }
 }
