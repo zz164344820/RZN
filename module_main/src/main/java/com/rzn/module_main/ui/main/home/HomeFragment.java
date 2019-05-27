@@ -45,6 +45,7 @@ import com.rzn.module_main.ui.mesagecenter.MessageCenterActivity;
 import com.rzn.module_main.ui.mesagecenter.MessageInfo;
 import com.rzn.module_main.ui.sellagriculturalgoods.SellAgriculturalGoodsActivity;
 import com.rzn.module_main.ui.util.LoginUtil;
+import com.rzn.module_main.ui.weather.WeatherActivity;
 import com.rzn.module_main.ui.webview.WebViewActivity;
 import com.sunfusheng.marqueeview.MarqueeView;
 import com.tbruyelle.rxpermissions2.RxPermissions;
@@ -208,6 +209,7 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
         tvMainWeixiuzhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 if (loginResponseBean == null || TextUtils.isEmpty(loginResponseBean.getUserId())) {
                     startActivity(new Intent(getActivity(), LoginActivity.class));
                 } else {

@@ -20,6 +20,7 @@ import cn.jpush.android.api.BasicPushNotificationBuilder;
 import cn.jpush.android.api.CustomPushNotificationBuilder;
 import cn.jpush.android.api.JPushInterface;
 
+
 /**
  * Created by zz on 2018/1/12.
  */
@@ -35,6 +36,7 @@ public class RZNApplication extends LibApplication {
         initArouter();
         initJPush();
         initBugly();
+
     }
 
     private void initBugly() {

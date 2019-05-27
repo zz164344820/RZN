@@ -137,6 +137,13 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         iv_background = (ImageView) rootView.findViewById(R.id.iv_background);
         tv_VersionName = (TextView) rootView.findViewById(R.id.tv_VersionName);
         ll_my_wallet = (LinearLayout) rootView.findViewById(R.id.ll_my_wallet);
+        if (loginResponseBean!=null){
+            if (TextUtils.isEmpty(loginResponseBean.getFundId())) {
+                ll_my_wallet.setVisibility(View.GONE);
+            }else {
+                ll_my_wallet.setVisibility(View.VISIBLE);
+            }
+        }
     }
 
 

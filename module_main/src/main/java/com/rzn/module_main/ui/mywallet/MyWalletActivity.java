@@ -178,7 +178,7 @@ public class MyWalletActivity extends MVPBaseActivity<MyWalletContract.View, MyW
         if (settingPasswordBean != null) {
             if (settingPasswordBean.isSet()) {
                 // true 已设置密码 ,falst 未设置密码
-//                startActivity(new Intent(MyWalletActivity.this, ModiffyPasswordActivity.class));
+//                startActivity(new Intent(MyWalletActivity.this, WeatherActivity.class));
                 Intent intent = new Intent(MyWalletActivity.this, ApplyGetMoneyActivity.class);
                 intent.putExtra("walletBean", walletBean);
                 startActivity(intent);
