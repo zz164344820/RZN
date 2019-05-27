@@ -67,7 +67,7 @@ public class CommodityListFragment extends MVPBaseFragment<CommodityListContract
     }
 
     private void setAdapter() {
-        classifyAdapter =new ClassifyAdapter(R.layout.classifyadapter,commodityList);
+        classifyAdapter =new ClassifyAdapter(getActivity(),R.layout.classifyadapter,commodityList);
         recyclerView.setAdapter(classifyAdapter);
         classifyAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
@@ -104,12 +104,7 @@ public class CommodityListFragment extends MVPBaseFragment<CommodityListContract
     public void refreshList(List<CommodityListBean> list) {
 
         commodityList.addAll(list);
-        try {
-           classifyAdapter.notifyDataSetChanged();
-
-        }catch (Exception e){
-            MLog.e(e.getMessage());
-        }
+        classifyAdapter.notifyDataSetChanged();
         recycleViewRestore();
     }
 

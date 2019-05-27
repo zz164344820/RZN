@@ -4,10 +4,12 @@ package com.rzn.module_main.ui.setting;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.SPUtils;
@@ -27,6 +29,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import cn.jpush.android.api.JPushInterface;
+import mlxy.utils.L;
 
 
 /**
@@ -48,11 +51,16 @@ public class SettingActivity extends MVPBaseActivity<SettingContract.View, Setti
 
     private void initViews() {
         setTitle("设置");
+
     }
 
     @Override
     public void initView() {
         super.initView();
+
+//        LinearLayout llPassword = (LinearLayout) findViewById(R.id.ll_password);
+//        if ()
+
         findViewById(R.id.ll_ChangePaymentPassword).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,7 +119,12 @@ public class SettingActivity extends MVPBaseActivity<SettingContract.View, Setti
                 }
             }
         });
-
+        LinearLayout llPassword =(LinearLayout) findViewById(R.id.ll_password);
+        if (TextUtils.isEmpty(loginResponseBean.getFundId())) {
+            llPassword.setVisibility(View.GONE);
+        } else {
+            llPassword.setVisibility(View.VISIBLE);
+        }
     }
 
 

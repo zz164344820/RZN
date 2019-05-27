@@ -147,6 +147,11 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden|stateAlwaysHidden" />
         <activity
+            android:name=".ui.weather.WeatherActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|stateAlwaysHidden" />
+        <activity
             android:name=".ui.sellagriculturalgoods.goodsinfo.GoodsInfoActitiy"
             android:configChanges="keyboard|keyboardHidden|orientation"
             android:screenOrientation="portrait"

@@ -71,4 +71,5 @@ dependencies {
     compile 'com.sunfusheng:marqueeview:1.3.3'
     compile 'com.github.lzjin:AlipayPassDialog:1.1'
     compile 'com.github.wangfeng19930909:DragFloatingActionButton:1.0.1'
+    compile files('libs/Plugin_SDK_Android_V2.1.jar')
 }

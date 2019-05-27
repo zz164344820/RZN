@@ -24,6 +24,7 @@ import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.module_main.R;
 import com.rzn.module_main.ui.applygetmoney.bean.BankListBean;
 import com.rzn.module_main.ui.applygetmoney.bean.BankMessageBean;
+import com.rzn.module_main.ui.main.mine.payment_pwd.findpayment_pwd.VerifyMessageActivity;
 import com.rzn.module_main.ui.mywallet.bean.MyWalletBean;
 import com.rzn.module_main.ui.selectbankcard.SelectBankCardActivity;
 
@@ -125,7 +126,7 @@ public class ApplyGetMoneyActivity extends MVPBaseActivity<ApplyGetMoneyContract
         tvBankName = (TextView) findViewById(R.id.tv_bank_name);
         tvAllGet = (TextView) findViewById(R.id.tv_all_get);
         etMoney = (EditText) findViewById(R.id.et_money);
-        tvUseMoney.setText(myWalletBean.getBalance());
+        tvUseMoney.setText("可提现金额：" + myWalletBean.getBalance());
     }
 
 
@@ -172,6 +173,10 @@ public class ApplyGetMoneyActivity extends MVPBaseActivity<ApplyGetMoneyContract
                     @Override
 
                     public void onPayForget() {
+
+
+                        startActivity(new Intent(ApplyGetMoneyActivity.this, VerifyMessageActivity.class));
+
 
                         dialog.dismiss();
 
