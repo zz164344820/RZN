@@ -4,11 +4,34 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.rzn.commonbaselib.views.NosrollViewPager
-        android:id="@+id/viewpager"
+
+    <com.zhy.autolayout.AutoFrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        >
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+             />
+
+
+        <com.barnettwong.dragfloatactionbuttonlibrary.view.DragFloatActionButton
+            android:id="@+id/action_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="bottom|right"
+            android:clickable="true"
+            android:src="@drawable/kefu" />
+
+
+    </com.zhy.autolayout.AutoFrameLayout>
+
+
 
     <View
         android:layout_width="match_parent"

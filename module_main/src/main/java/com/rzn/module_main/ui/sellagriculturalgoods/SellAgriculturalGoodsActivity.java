@@ -90,7 +90,6 @@ public class SellAgriculturalGoodsActivity extends MVPBaseActivity<SellAgricultu
 
     @Override
     public void complete_enter() {
-        // super.complete_enter();
         int currentItem = viewPager.getCurrentItem();
         fragmentList.get(currentItem).onRefresh(currentItem,ed_search.getText().toString().trim());
     }

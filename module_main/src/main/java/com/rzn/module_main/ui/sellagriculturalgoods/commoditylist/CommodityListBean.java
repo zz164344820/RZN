@@ -14,14 +14,15 @@ public class CommodityListBean {
     String goodsId; //商品id
     String isOnLine; //是否在线：  0 ： 下架  1：上架
     String updateTime; //更新时间
-//	"createSysUserName": "gordo",
-//            "createTime": "2019-05-08 21:07:05",
-//            "dealer": "君宝经销商",
-//            "goodsBreedType": 1.0,
-//            "goodsId": "40289c486a978b21016a978dfa000000",
-//            "goodsName": "金丝黄菊水果",
-//            "isOnLine": 0.0,
-//            "updateTime": "2019-05-08 21:07:05"
+    String url;
+
+    public String getUrl() {
+        return url == null ? "" : url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public String getCreateSysUserName() {
         return createSysUserName == null ? "" : createSysUserName;

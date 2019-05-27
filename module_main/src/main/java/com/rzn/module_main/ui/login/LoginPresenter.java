@@ -8,7 +8,9 @@ import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.BasePresenterImpl;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.commonbaselib.utils.GsonUtils;
+import com.rzn.module_main.ui.main.MainActivity;
 import com.rzn.module_main.ui.setting.SettingActivity;
+import com.v5kf.client.lib.V5ClientConfig;
 import com.zyhealth.expertlib.bean.ResponseBean;
 import com.zyhealth.expertlib.utils.GlideUtils;
 import com.zyhealth.expertlib.utils.MLog;
@@ -58,6 +60,8 @@ public class LoginPresenter extends BasePresenterImpl<LoginContract.View> implem
                 FileSaveUtils.fileSaveObject(loginResponseBean, "loginBean");
                 JPushInterface.setAlias(mContext, 111, loginResponseBean.getUserId());
                 //登录成功回调
+
+                setV5Info(loginResponseBean);
                 mView.loginSuccess();
                 break;
             case 112:
@@ -66,6 +70,15 @@ public class LoginPresenter extends BasePresenterImpl<LoginContract.View> implem
                 break;
         }
 
+    }
+
+    private void setV5Info(LoginResponseBean loginResponseBean) {
+        V5ClientConfig.getInstance(mContext).shouldUpdateUserInfo();
+        V5ClientConfig config = V5ClientConfig.getInstance(mContext);
+
+        config.setNickname(loginResponseBean.getFarmerName());
+
+        config.setAvatar(loginResponseBean.getPic());
     }
 
     @Override

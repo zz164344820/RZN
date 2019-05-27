@@ -4,6 +4,7 @@ package com.rzn.module_main.ui.sellagriculturalgoods.commoditylist;
 import com.rzn.commonbaselib.mvp.BasePresenterImpl;
 import com.zyhealth.expertlib.bean.ResponseBean;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

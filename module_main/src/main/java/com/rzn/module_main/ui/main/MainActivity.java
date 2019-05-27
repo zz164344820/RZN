@@ -16,19 +16,16 @@ import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.commonbaselib.views.AutoRadioGroup;
-import com.rzn.commonbaselib.views.NosrollViewPager;
 import com.rzn.module_main.R;
 import com.rzn.module_main.R2;
-import com.rzn.module_main.ui.login.LoginActivity;
 import com.rzn.module_main.ui.main.farmmachinery.FarmMachineryFragment;
+import com.v5kf.client.lib.V5ClientAgent;
 import com.zyhealth.expertlib.LibApplication;
-import com.zyhealth.expertlib.utils.GlideUtils;
-import com.zyhealth.expertlib.utils.MLog;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import chihane.jdaddressselector.AddressUtils;
-import chihane.jdaddressselector.BottomDialog;
 
 
 /**
@@ -43,7 +40,7 @@ public class MainActivity extends MVPBaseActivity<MainContract.View, MainPresent
     @BindView(R2.id.rg_bottom)
     AutoRadioGroup rgBottom;
     @BindView(R2.id.viewpager)
-    NosrollViewPager viewpager;
+    ViewPager viewpager;
     private long lastTime = 0; //记录上次点击的时间
 
     @Override
@@ -51,7 +48,7 @@ public class MainActivity extends MVPBaseActivity<MainContract.View, MainPresent
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_act_main);
         String value = getIntent().getStringExtra("value");
-        if(!TextUtils.isEmpty(value)){
+        if (!TextUtils.isEmpty(value)) {
             getJPush(value);
         }
         ButterKnife.bind(this);
@@ -64,7 +61,7 @@ public class MainActivity extends MVPBaseActivity<MainContract.View, MainPresent
         super.onNewIntent(intent);
         rbHomepage.setChecked(true);
         String value = intent.getStringExtra("value");
-        if(!TextUtils.isEmpty(value)){
+        if (!TextUtils.isEmpty(value)) {
             getJPush(value);
         }
     }
@@ -99,8 +96,6 @@ public class MainActivity extends MVPBaseActivity<MainContract.View, MainPresent
     }
 
 
-
-
     @Override
     public void initView() {
         super.initView();
@@ -110,13 +105,15 @@ public class MainActivity extends MVPBaseActivity<MainContract.View, MainPresent
         mPresenter.initRadioGroup(rgBottom);
     }
 
-    public void setCheckedPager(int checkIndex, int viewId ,int Type) {
+    public void setCheckedPager(int checkIndex, int viewId, int Type) {
         viewpager.setCurrentItem(checkIndex);
         rgBottom.check(viewId);
-        if(checkIndex==2){
-            ((FarmMachineryFragment)mPresenter.fragments.get(2)).setCheckedTab(Type);
+        if (checkIndex == 2) {
+            ((FarmMachineryFragment) mPresenter.fragments.get(2)).setCheckedTab(Type);
         }
     }
+
+
 
 
     @Override
@@ -136,4 +133,8 @@ public class MainActivity extends MVPBaseActivity<MainContract.View, MainPresent
     }
 
 
+    @OnClick(R2.id.action_button)
+    public void onViewClicked() {
+        V5ClientAgent.getInstance().startV5ChatActivity(getApplicationContext());
+    }
 }

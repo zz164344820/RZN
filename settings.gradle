@@ -1,1 +1,1 @@
-include ':app', ':expertlib', ':loadmorelibrary', ':module_main', ':commonbaselib', ':module_farmer', ':module_driver','addressLib'
+include ':app', ':expertlib', ':loadmorelibrary', ':module_main', ':commonbaselib', ':module_farmer', ':module_driver', 'addressLib', ':V5ClientLibrary'
