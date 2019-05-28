@@ -148,14 +148,23 @@ public class JobOrderDetialActivity extends MVPBaseActivity<JobOrderDetialContra
                                     @Override
                                     public void onClick(String paytype) {
 
-                                        if (Integer.valueOf(paytype) <(int)Double.parseDouble(jobOrderDetialBean.getAreas().toString())) {//int i = (int)Double.parseDouble(str);// Integer.valueOf(jobOrderDetialBean.getAreas().toString())
+                                        if (Double.parseDouble(jobOrderDetialBean.getAreas().toString()) >= Double.valueOf(paytype) && Integer.valueOf(paytype) > 0) {//int i = (int)Double.parseDouble(str);// Integer.valueOf(jobOrderDetialBean.getAreas().toString())
                                             Map<String, String> map = new HashMap<>();
                                             map.put("farmerTaskId", farmerTaskId);
                                             map.put("realAreas", paytype);//jobOrderDetialBean.getAreas().toString()
-                                            map.put("realTotalprice", jobOrderDetialBean.getTotalprice().toString());
+
+                                            if (TextUtils.isEmpty(jobOrderDetialBean.getUnitPrice())) {
+                                                Toast.makeText(JobOrderDetialActivity.this, "订单异常，找不到订单实际价格！", Toast.LENGTH_SHORT).show();
+                                                return;
+                                            }
+                                            if (TextUtils.isEmpty(paytype)) {
+                                                Toast.makeText(JobOrderDetialActivity.this, "请输入实际作业亩数！", Toast.LENGTH_SHORT).show();
+                                                return;
+                                            }
+                                            map.put("realTotalprice", String.valueOf((Double.valueOf(paytype) * Double.parseDouble(jobOrderDetialBean.getUnitPrice().toString()))));//jobOrderDetialBean.getTotalprice().toString()
                                             mPresenter.finishWork(map);
                                         } else {
-                                            Toast.makeText(JobOrderDetialActivity.this, "输入亩数超过了农户需要作业亩数，请核实后正确填写！",Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(JobOrderDetialActivity.this, "输入亩数超过了农户需要作业亩数，请核实后正确填写！", Toast.LENGTH_SHORT).show();
                                         }
 
 
