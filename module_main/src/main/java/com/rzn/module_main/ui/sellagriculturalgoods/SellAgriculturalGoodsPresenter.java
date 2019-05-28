@@ -28,10 +28,9 @@ public class SellAgriculturalGoodsPresenter extends BasePresenterImpl<SellAgricu
        List<String> list = Arrays.asList(mTitles);
        ArrayList<CommodityListFragment> listFragment = new ArrayList();
 
-        for (String title : mTitles) {
-            listFragment.add(CommodityListFragment.getInstance(title));
-        }
-
+       for(int i =0;i<mTitles.length;i++){
+           listFragment.add(CommodityListFragment.getInstance(mTitles[i],i,mView.getquery()));
+       }
         mView.setViewPager(list,listFragment);
     }
 }

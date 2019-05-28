@@ -16,12 +16,7 @@ import java.util.Map;
 public class CommodityListPresenter extends BasePresenterImpl<CommodityListContract.View> implements CommodityListContract.Presenter{
 
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        getCommodityList("1",0,"");
 
-    }
 
     @Override
     public void getCommodityList(String page,int type ,String name ) {

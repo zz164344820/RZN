@@ -36,13 +36,21 @@ public class CommodityListFragment extends MVPBaseFragment<CommodityListContract
     RecyclerView recyclerView;
     SwipeToLoadLayout swipeToLoadLayout;
     List<CommodityListBean> commodityList = new ArrayList<>();
-    int pager=1;
+    int pager=0;
     ClassifyAdapter  classifyAdapter;
-    public static CommodityListFragment getInstance(String title) {
+    int type;
+    String query="";
+    public static CommodityListFragment getInstance(String title,int type,String query) {
 
         CommodityListFragment sf = new CommodityListFragment();
         sf.mTitle = title;
+        sf.type =type;
+        sf.query =query;
         return sf;
+    }
+
+    public String getQuery(){
+        return query;
     }
 
 
@@ -64,6 +72,9 @@ public class CommodityListFragment extends MVPBaseFragment<CommodityListContract
         setAdapter();
         swipeToLoadLayout.setOnRefreshListener(this);
         swipeToLoadLayout.setOnLoadMoreListener(this);
+        SellAgriculturalGoodsActivity activity=(SellAgriculturalGoodsActivity) getActivity();
+        activity.setQuery(query);
+        mPresenter.getCommodityList((++pager)+"",type,query);
     }
 
     private void setAdapter() {
@@ -73,7 +84,7 @@ public class CommodityListFragment extends MVPBaseFragment<CommodityListContract
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 Intent intent = new Intent(getActivity(),GoodsInfoActitiy.class);
-                intent.putExtra("url",commodityList.get(position).getUrl());
+                //intent.putExtra("url",commodityList.get(position).getUrl());
                 startActivity(intent);
             }
         });
@@ -83,20 +94,23 @@ public class CommodityListFragment extends MVPBaseFragment<CommodityListContract
     @Override
     public void onLoadMore() {
         SellAgriculturalGoodsActivity activity=(SellAgriculturalGoodsActivity) getActivity();
+        query=activity.getquery();
         mPresenter.getCommodityList((++pager)+"",activity.getType(),activity.getquery());
     }
 
     @Override
     public void onRefresh() {
       commodityList.clear();
-      pager=1;
+      pager=0;
       SellAgriculturalGoodsActivity activity=(SellAgriculturalGoodsActivity) getActivity();
-      mPresenter.getCommodityList((++pager)+"",activity.getType(),activity.getquery());
+        query=activity.getquery();
+        mPresenter.getCommodityList((++pager)+"",activity.getType(),activity.getquery());
     }
 
     public void onRefresh(int type,String name ) {
-        pager=1;
+        pager=0;
         commodityList.clear();
+        query=name;
         mPresenter.getCommodityList((++pager)+"",type,name);
     }
 
@@ -112,4 +126,7 @@ public class CommodityListFragment extends MVPBaseFragment<CommodityListContract
     public void recycleViewRestore() {
         LoadMoreUtils.recycleViewRestore(swipeToLoadLayout);
     }
+
+
+
 }

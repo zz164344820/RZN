@@ -29,7 +29,7 @@ public class ClassifyAdapter extends BaseQuickAdapter<CommodityListBean,BaseView
         helper.setText(R.id.supplier,"采购商："+item.getDealer());
         helper.setText(R.id.name,item.getGoodsName());
         ImageView imageView= helper.getView(R.id.image);
-        GlideUtils.loadImageView(context,item.getUrl(),imageView);
+        GlideUtils.loadImageView(context,item.getGoodsPic1(),imageView);
 
 
     }

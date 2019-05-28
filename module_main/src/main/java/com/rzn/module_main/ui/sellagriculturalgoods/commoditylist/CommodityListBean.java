@@ -14,14 +14,14 @@ public class CommodityListBean {
     String goodsId; //商品id
     String isOnLine; //是否在线：  0 ： 下架  1：上架
     String updateTime; //更新时间
-    String url;
+    String goodsPic1;
 
-    public String getUrl() {
-        return url == null ? "" : url;
+    public String getGoodsPic1() {
+        return goodsPic1 == null ? "" : goodsPic1;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setGoodsPic1(String goodsPic1) {
+        this.goodsPic1 = goodsPic1;
     }
 
     public String getCreateSysUserName() {

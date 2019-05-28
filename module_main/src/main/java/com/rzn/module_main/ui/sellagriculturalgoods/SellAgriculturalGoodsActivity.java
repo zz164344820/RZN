@@ -2,7 +2,9 @@ package com.rzn.module_main.ui.sellagriculturalgoods;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -63,8 +65,14 @@ public class SellAgriculturalGoodsActivity extends MVPBaseActivity<SellAgricultu
     }
 
 
+
+   public void setQuery(String query){
+        ed_search.setText(query);
+    }
+
+
     @Override
-    public void setViewPager(List<String> list, ArrayList<CommodityListFragment> fragmentList) {
+    public void setViewPager(List<String> list, final ArrayList<CommodityListFragment> fragmentList) {
         this.fragmentList =fragmentList;
         final LayoutInflater mInflater = LayoutInflater.from(this);
         viewPager.setAdapter(new CommodityPageAdapter(getSupportFragmentManager(),fragmentList));
@@ -73,7 +81,22 @@ public class SellAgriculturalGoodsActivity extends MVPBaseActivity<SellAgricultu
         tabLayout.setNavigator(commonNavigator);
         ViewPagerHelper.bind(tabLayout, viewPager);
         setPopWindow(list, mInflater);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                ed_search.setText(fragmentList.get(position).getQuery());
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     private void initLinstener() {
@@ -124,7 +147,7 @@ public class SellAgriculturalGoodsActivity extends MVPBaseActivity<SellAgricultu
         id_flowlayout.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
             @Override
             public boolean onTagClick(View view, int position, FlowLayout parent) {
-                tabLayout.onPageSelected(position);
+                viewPager.setCurrentItem(position);
                 return false;
             }
         });

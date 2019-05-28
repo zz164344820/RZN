@@ -17,6 +17,7 @@ public class SellAgriculturalGoodsContract {
     interface View extends BaseView {
 
        void setViewPager(List<String> list,ArrayList<CommodityListFragment> fragmentList);
+       String getquery();
         
     }
 
