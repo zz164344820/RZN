@@ -24,7 +24,7 @@ public class SellAgriculturalGoodsPresenter extends BasePresenterImpl<SellAgricu
     }
 
     private void initData() {
-       String[] mTitles = {"全 部", "水 果", "蔬 菜","粮 油" ,"其 他"};
+       String[] mTitles = {" 全部 ", " 水果 ", " 蔬菜 "," 粮油 " ," 其他 "};
        List<String> list = Arrays.asList(mTitles);
        ArrayList<CommodityListFragment> listFragment = new ArrayList();
 
