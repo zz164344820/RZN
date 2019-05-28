@@ -1,5 +1,7 @@
 package com.rzn.module_main.ui.sellagriculturalgoods.commoditylist;
 
+import mlxy.utils.S;
+
 /**
  * Created by zz on 2019/5/10.
  */
@@ -15,6 +17,15 @@ public class CommodityListBean {
     String isOnLine; //是否在线：  0 ： 下架  1：上架
     String updateTime; //更新时间
     String goodsPic1;
+    String url;
+
+    public String getUrl() {
+        return url == null ? "" : url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public String getGoodsPic1() {
         return goodsPic1 == null ? "" : goodsPic1;

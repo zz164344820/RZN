@@ -84,7 +84,7 @@ public class CommodityListFragment extends MVPBaseFragment<CommodityListContract
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 Intent intent = new Intent(getActivity(),GoodsInfoActitiy.class);
-                //intent.putExtra("url",commodityList.get(position).getUrl());
+                intent.putExtra("url",commodityList.get(position).getUrl());
                 startActivity(intent);
             }
         });
