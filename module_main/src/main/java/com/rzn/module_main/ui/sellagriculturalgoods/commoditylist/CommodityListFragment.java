@@ -80,6 +80,7 @@ public class CommodityListFragment extends MVPBaseFragment<CommodityListContract
     private void setAdapter() {
         classifyAdapter =new ClassifyAdapter(getActivity(),R.layout.classifyadapter,commodityList);
         recyclerView.setAdapter(classifyAdapter);
+        classifyAdapter.setEmptyView(R.layout.emptygoods,(ViewGroup)swipeToLoadLayout.getParent());
         classifyAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
