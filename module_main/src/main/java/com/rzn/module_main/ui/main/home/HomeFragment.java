@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,6 +59,7 @@ import com.zyhealth.expertlib.bean.ResponseBean;
 import com.zyhealth.expertlib.net.GenericsCallback;
 import com.zyhealth.expertlib.net.JsonGenericsSerializator;
 import com.zyhealth.expertlib.utils.GlideUtils;
+import com.zyhealth.expertlib.utils.LunarUtils;
 import com.zyhealth.expertlib.utils.MLog;
 
 import org.w3c.dom.Text;
@@ -122,6 +124,14 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
     private TextView tvFarmerTime;
     private ImageView ivWenzhagn;
     private MarqueeView marqueeView;
+    private HeWeather6 heWeather6;
+    private TextView tvWeahter;
+    private TextView tvWater;
+    private TextView tvNowDu;
+    private TextView tvDu;
+    private TextView tvDayTime;
+    private TextView tvDay;
+    private LinearLayout llWeather;
 
     @Nullable
     @Override
@@ -234,11 +244,34 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
             }
         });
 
+
+        llWeather.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, WebViewActivity.class);
+                intent.putExtra("url", "https://apip.weatherdt.com/h5.html?id=0BP7ncOTFr");
+                intent.putExtra("title","天气情况" );
+                mContext.startActivity(intent);
+            }
+        });
+
     }
 
     private void initViews() {
         mPresenter.getHotData();
         mPresenter.getFarmerData();
+
+        // TODO: 2019/5/28  天气预报
+
+        tvWeahter = (TextView) rootView.findViewById(R.id.tv_weather);
+        tvWater = (TextView) rootView.findViewById(R.id.tv_water);
+        tvNowDu = (TextView) rootView.findViewById(R.id.tv_now_du);
+        tvDu = (TextView) rootView.findViewById(R.id.tv_du);
+        tvDayTime = (TextView) rootView.findViewById(R.id.tv_day_time);
+        tvDay = (TextView) rootView.findViewById(R.id.tv_day);
+        llWeather = (LinearLayout) rootView.findViewById(R.id.ll_weather_new);
+        initWeather();
+
         alItemOne = (AutoLinearLayout) rootView.findViewById(R.id.al_item_one);
         alItemTwo = (AutoLinearLayout) rootView.findViewById(R.id.al_item_two);
         tvMainMessage = (TextView) rootView.findViewById(R.id.tv_main_mesage);
@@ -306,6 +339,47 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
         ultraViewPager.setInfiniteLoop(true);
         //设定页面自动切换  间隔2秒
         ultraViewPager.setAutoScroll(4000);
+
+    }
+
+    private void initWeather() {
+        String date, date2;
+        LunarUtils lunarUtils = new LunarUtils();
+        int[] arrData = lunarUtils.getData();
+        date = lunarUtils.getStringData("MM月dd日   ");//+ lunarUtils.StringData()
+        date2 = lunarUtils.getTranslateLunarString(arrData[0], arrData[1], arrData[2]);
+        date2 = "农历" + date2.substring(5, date2.length());
+
+        if (heWeather6 == null) {
+            try {
+                heWeather6 = (HeWeather6) FileSaveUtils.readObject("weater");
+            } catch (Exception e) {
+                heWeather6 = null;
+            }
+
+        }
+
+
+//        tvWeahter = (TextView) rootView.findViewById(R.id.tv_weather);
+//        tvWater = (TextView) rootView.findViewById(R.id.tv_water);
+//        tvNowDu = (TextView) rootView.findViewById(R.id.tv_now_du);
+//        tvDu = (TextView) rootView.findViewById(R.id.tv_du);
+//        tvDayTime = (TextView) rootView.findViewById(R.id.tv_day_time);
+//        tvDay = (TextView) rootView.findViewById(R.id.tv_day);
+
+
+        if (heWeather6 != null && heWeather6.getNow() != null) {
+            tvNowDu.setText(heWeather6.getNow().getTmp());//+ "℃"
+            tvDu.setText(heWeather6.getDaily_forecast().get(0).getTmp_min() + "℃~" + heWeather6.getDaily_forecast().get(0).getTmp_max() + "℃");
+            tvWeahter.setText(heWeather6.getNow().getCond_txt());
+//            tv_wind.setText("风向" + heWeather6.getNow().getWind_dir());
+            tvWater.setText("降水量" + heWeather6.getNow().getPcpn() + "毫米");
+//            tv_season.setText("紫外线强度指数:" + heWeather6.getDaily_forecast().get(0).getUv_index());
+//            tv_city.setText(heWeather6.getBasic().getParent_city());
+        }
+        tvDayTime.setText(date);
+        tvDay.setText(date2);
+
 
     }
 
