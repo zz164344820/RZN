@@ -300,7 +300,6 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
         });
 
         list.add("http://pic.dbw.cn/0/09/25/08/9250842_112468.jpg");
-        list.add("http://www.nanjing.gov.cn/hdjl/weixin/201710/W020171010647707737249.jpg");
         list.add("http://p4.so.qhmsg.com/bdr/_240_/t01d9ab0e953723b689.jpg");
         list.add("http://pic.90sjimg.com/back_pic/qk/back_origin_pic/00/02/46/2fe8323073c593179f56cbf0f3fc705f.jpg");
         list.add("http://p0.so.qhmsg.com/bdr/_240_/t0197ce49236cf12935.jpg");

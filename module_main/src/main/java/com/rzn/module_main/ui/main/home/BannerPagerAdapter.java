@@ -60,8 +60,11 @@ public class BannerPagerAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         //布局处理代码
         this.position = position;
-        if (position == 0) {
-            view = LayoutInflater.from(container.getContext()).inflate(R.layout.banner_weather, null);
+        view = LayoutInflater.from(container.getContext()).inflate(R.layout.item_banner, null);
+        ImageView imageView = (ImageView) view.findViewById(R.id.banner);
+        GlideUtils.loadImageView(mContext, list.get(position), imageView);
+        /*if (position == 0) {
+           view = LayoutInflater.from(container.getContext()).inflate(R.layout.banner_weather, null);
             TextView current_temp = (TextView) view.findViewById(R.id.current_temp);
             TextView tv_temp_range = (TextView) view.findViewById(R.id.tv_temp_range);
             TextView tv_weater = (TextView) view.findViewById(R.id.tv_weater);
@@ -116,7 +119,7 @@ public class BannerPagerAdapter extends PagerAdapter {
             view = LayoutInflater.from(container.getContext()).inflate(R.layout.item_banner, null);
             ImageView imageView = (ImageView) view.findViewById(R.id.banner);
             GlideUtils.loadImageView(mContext, list.get(position), imageView);
-        }
+        }*/
         container.addView(view);
 
         return view;
