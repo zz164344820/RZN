@@ -58,9 +58,6 @@ public class SettingActivity extends MVPBaseActivity<SettingContract.View, Setti
     public void initView() {
         super.initView();
 
-//        LinearLayout llPassword = (LinearLayout) findViewById(R.id.ll_password);
-//        if ()
-
         findViewById(R.id.ll_ChangePaymentPassword).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -110,7 +107,6 @@ public class SettingActivity extends MVPBaseActivity<SettingContract.View, Setti
                     if (loginResponseBean != null) {
                         JPushInterface.setAlias(SettingActivity.this, 111, loginResponseBean.getUserId());
                     }
-
                 } else {
                     tv_messageStute.setText("关闭消息推送");
                     SPUtils.getInstance().put("message", false);

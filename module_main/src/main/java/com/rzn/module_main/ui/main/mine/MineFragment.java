@@ -77,7 +77,6 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(mContext, MyWalletActivity.class));
-                Toast.makeText(mContext, "我是钱包", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -137,13 +136,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         iv_background = (ImageView) rootView.findViewById(R.id.iv_background);
         tv_VersionName = (TextView) rootView.findViewById(R.id.tv_VersionName);
         ll_my_wallet = (LinearLayout) rootView.findViewById(R.id.ll_my_wallet);
-        if (loginResponseBean!=null){
-            if (TextUtils.isEmpty(loginResponseBean.getFundId())) {
-                ll_my_wallet.setVisibility(View.GONE);
-            }else {
-                ll_my_wallet.setVisibility(View.VISIBLE);
-            }
-        }
+
     }
 
 
@@ -178,6 +171,13 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         super.onResume();
 //        LogUtils.d("aaaaaaaaaa","this is onResume");initData
         loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+        if (loginResponseBean!=null){
+            if (TextUtils.isEmpty(loginResponseBean.getFundId())) {
+                ll_my_wallet.setVisibility(View.GONE);
+            }else {
+                ll_my_wallet.setVisibility(View.VISIBLE);
+            }
+        }
         initData();
 
     }
