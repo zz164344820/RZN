@@ -42,6 +42,7 @@ import com.rzn.module_main.ui.keepstation.KeepStationActivity;
 import com.rzn.module_main.ui.login.LoginActivity;
 import com.rzn.module_main.ui.main.MainActivity;
 import com.rzn.module_main.ui.main.farmmachinery.InfoBean;
+import com.rzn.module_main.ui.main.searcharticle.SearchArticleActivity;
 import com.rzn.module_main.ui.mesagecenter.MessageCenterActivity;
 import com.rzn.module_main.ui.mesagecenter.MessageInfo;
 import com.rzn.module_main.ui.sellagriculturalgoods.SellAgriculturalGoodsActivity;
@@ -213,7 +214,8 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
         tvSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(mContext, "暂未开通该功能，请耐心等待。", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getActivity(), SearchArticleActivity.class));
+//                Toast.makeText(mContext, "暂未开通该功能，请耐心等待。", Toast.LENGTH_SHORT).show();
             }
         });
         tvMainWeixiuzhan.setOnClickListener(new View.OnClickListener() {
@@ -250,7 +252,7 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, WebViewActivity.class);
                 intent.putExtra("url", "https://apip.weatherdt.com/h5.html?id=0BP7ncOTFr");
-                intent.putExtra("title","天气情况" );
+                intent.putExtra("title", "天气情况");
                 mContext.startActivity(intent);
             }
         });

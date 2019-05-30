@@ -156,6 +156,11 @@
             android:configChanges="keyboard|keyboardHidden|orientation"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden|stateAlwaysHidden" />
+        <activity
+            android:name=".ui.main.searcharticle.SearchArticleActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|stateAlwaysHidden" />
 
     </application>
 

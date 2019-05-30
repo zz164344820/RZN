@@ -93,7 +93,7 @@ public class BannerPagerAdapter extends PagerAdapter {
                     mContext.startActivity(intent);
 //                    url= getIntent().getStringExtra("url");
 //                    title= getIntent().getStringExtra("title");
-//                    mContext.startActivity(new Intent(mContext, WeatherActivity.class));
+//                    mContext.startActivity(new Intent(mContext, SearchArticleActivity.class));
 //                    Intent intent= new Intent();
 //                    intent.setAction("android.intent.action.VIEW");
 //                    Uri content_url = Uri.parse("https://apip.weatherdt.com/h5.html?id=0BP7ncOTFr");
