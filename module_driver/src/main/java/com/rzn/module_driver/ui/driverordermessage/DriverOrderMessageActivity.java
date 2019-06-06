@@ -321,12 +321,12 @@ public class DriverOrderMessageActivity extends MVPBaseActivity<DriverOrderMessa
         MLog.e(list.size() + "--------");
         if (list.size() == 1) {
             rbOne.setVisibility(View.VISIBLE);
-            rbOne.setText(list.get(0).getKindName());
+            rbOne.setText(list.get(0).getKindName()+"-"+list.get(0).getKindTypeName());
         } else if (list.size() == 2) {
             rbOne.setVisibility(View.VISIBLE);
             rbTwo.setVisibility(View.VISIBLE);
-            rbOne.setText(list.get(0).getKindName());
-            rbTwo.setText(list.get(1).getKindName());
+            rbOne.setText(list.get(0).getKindName()+"-"+list.get(0).getKindTypeName());
+            rbTwo.setText(list.get(1).getKindName()+"-"+list.get(1).getKindTypeName());
         } else {
             rbOne.setVisibility(View.GONE);
             rbTwo.setVisibility(View.GONE);

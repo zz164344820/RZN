@@ -1,10 +1,12 @@
 package com.rzn.module_main.ui.main.searcharticle;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -12,11 +14,13 @@ import android.widget.Toast;
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.lonch.zyhealth.loadmorelibrary.LoadMoreUtils;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.module_main.R;
 import com.rzn.module_main.ui.main.farmmachinery.FarmMachineryAdapter;
 import com.rzn.module_main.ui.main.farmmachinery.InfoBean;
+import com.rzn.module_main.ui.webview.WebViewActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,9 +34,9 @@ import java.util.Map;
  * 邮箱 784787081@qq.com
  */
 
-public class SearchArticleActivity extends MVPBaseActivity<SearchArticleContract.View, SearchArticlePresenter> implements SearchArticleContract.View, OnRefreshListener, OnLoadMoreListener {
+public class SearchArticleActivity extends MVPBaseActivity<SearchArticleContract.View, SearchArticlePresenter> implements SearchArticleContract.View {
 
-    SwipeToLoadLayout swipeToLoadLayout;
+//    SwipeToLoadLayout swipeToLoadLayout;
     private EditText ed_text_search;
     List<InfoBean> list = new ArrayList<>();
     private RecyclerView swipeTarget;
@@ -51,12 +55,23 @@ public class SearchArticleActivity extends MVPBaseActivity<SearchArticleContract
 
     private void initListener() {
         ed_text_search.setOnKeyListener(onKey);
+
+
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Intent intent = new Intent(SearchArticleActivity.this, WebViewActivity.class);
+                intent.putExtra("url", list.get(position).getArticleUrl());
+                intent.putExtra("title", "热门文章");
+                startActivity(intent);
+            }
+        });
     }
 
     private void initViews() {
-        swipeToLoadLayout = findViewById(R.id.swipeToLoadLayout);
-        swipeToLoadLayout.setOnLoadMoreListener(this);
-        swipeToLoadLayout.setOnRefreshListener(this);
+//        swipeToLoadLayout = findViewById(R.id.swipeToLoadLayout);
+//        swipeToLoadLayout.setOnLoadMoreListener(this);
+//        swipeToLoadLayout.setOnRefreshListener(this);
         ed_text_search = (EditText) findViewById(R.id.ed_text_search);
         setTitle("文章搜索");
         swipeTarget = (RecyclerView) findViewById(R.id.swipe_target);
@@ -68,7 +83,7 @@ public class SearchArticleActivity extends MVPBaseActivity<SearchArticleContract
     @Override
     public void complete_enter() {
 //        super.complete_enter();
-        page = 1;
+//        page = 1;
         initData(ed_text_search.getText().toString(), page + "");
     }
 
@@ -86,30 +101,30 @@ public class SearchArticleActivity extends MVPBaseActivity<SearchArticleContract
 
     }
 
-    @Override
-    public void onLoadMore() {
-
-        initData(ed_text_search.getText().toString(), 1 + "");// TODO: 2019/5/30 胡君宝说这地方没分页，接口是错的，我擦了，无语了袄 
-        Toast.makeText(this, "暂无更多数据", Toast.LENGTH_SHORT).show();
-        swipeToLoadLayout.setLoadingMore(false);
-    }
-
-    @Override
-    public void onRefresh() {
-        page = 1;
-        initData(ed_text_search.getText().toString(), page + "");
-    }
+//    @Override
+//    public void onLoadMore() {
+//
+//        initData(ed_text_search.getText().toString(), 1 + "");// TODO: 2019/5/30 胡君宝说这地方没分页，接口是错的，我擦了，无语了袄
+//        Toast.makeText(this, "暂无更多数据", Toast.LENGTH_SHORT).show();
+//        swipeToLoadLayout.setLoadingMore(false);
+//    }
+//
+//    @Override
+//    public void onRefresh() {
+//        page = 1;
+//        initData(ed_text_search.getText().toString(), page + "");
+//    }
 
     @Override
     public void getDataSuccess(List<InfoBean> lists) {
         if (list != null) {
-            if (page == 1) {
-                list.clear();
-            }
+//            if (page == 1) {
+//                list.clear();
+//            }
             list.addAll(lists);
             adapter.notifyDataSetChanged();
         }
-        LoadMoreUtils.recycleViewRestore(swipeToLoadLayout);
+//        LoadMoreUtils.recycleViewRestore(swipeToLoadLayout);
     }
 
     @Override

@@ -38,7 +38,7 @@ public class RZNApplication extends LibApplication {
     public void onCreate() {
         super.onCreate();
 
-        Constants.SERVER = "develop";//develop,QA，production,develop_yu
+        Constants.SERVER = "production";//develop,QA，production,develop_yu
         OkHttpLoader.changServer();
         initArouter();
         initJPush();
