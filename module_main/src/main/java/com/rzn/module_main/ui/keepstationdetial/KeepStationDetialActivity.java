@@ -28,6 +28,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import me.leefeng.promptlibrary.PromptButton;
+import me.leefeng.promptlibrary.PromptButtonListener;
+import me.leefeng.promptlibrary.PromptDialog;
+
 
 /**
  * MVPPlugin
@@ -87,18 +91,44 @@ public class KeepStationDetialActivity extends MVPBaseActivity<KeepStationDetial
 
     }
 
+    String callPhone;
     private void initListener() {
+
+
         tvLianxi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!TextUtils.isEmpty(phone)) {
-                    Intent intent = new Intent(Intent.ACTION_DIAL);
-                    Uri data = Uri.parse("tel:" + phone);
-                    intent.setData(data);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(KeepStationDetialActivity.this, "暂无联系电话", Toast.LENGTH_LONG).show();
+
+                if(!TextUtils.isEmpty(tvLianxiFangshi.getText().toString()) && !TextUtils.isEmpty(tvPhone.getText().toString())){
+                    PromptDialog  promptDialog = new PromptDialog(KeepStationDetialActivity.this);
+                    PromptButton cancle = new PromptButton("取消", null);
+                    cancle.setTextColor(Color.parseColor("#0076ff"));
+                    promptDialog.showAlertSheet("", true, cancle,
+                            new PromptButton(tvLianxiFangshi.getText().toString(), new PromptButtonListener() {
+                                @Override
+                                public void onClick(PromptButton promptButton) {
+                                    callPhone =tvLianxiFangshi.getText().toString();
+                                    callPhone();
+                                }
+                            }), new PromptButton(tvPhone.getText().toString(), new PromptButtonListener() {
+                                @Override
+                                public void onClick(PromptButton promptButton) {
+                                    callPhone =tvPhone.getText().toString();
+                                    callPhone();
+                                }
+                            }));
+                }else {
+                    if(!TextUtils.isEmpty(tvLianxiFangshi.getText().toString())){
+                        callPhone =tvLianxiFangshi.getText().toString();
+                        callPhone();
+                    }else{
+                        callPhone =tvPhone.getText().toString();
+                        callPhone();
+                    }
                 }
+
+
+
             }
         });
 
@@ -108,6 +138,17 @@ public class KeepStationDetialActivity extends MVPBaseActivity<KeepStationDetial
                 setUpGaodeAppByMine();
             }
         });
+    }
+
+    private void callPhone() {
+        if (!TextUtils.isEmpty(callPhone)) {
+            Intent intent = new Intent(Intent.ACTION_DIAL);
+            Uri data = Uri.parse("tel:" + callPhone);
+            intent.setData(data);
+            startActivity(intent);
+        } else {
+            Toast.makeText(KeepStationDetialActivity.this, "暂无联系电话", Toast.LENGTH_LONG).show();
+        }
     }
 
     /**

@@ -12,12 +12,6 @@ public class StationDetialBean {
     private String businessAddress;//": "安徽省淮南市田家庵区百花园路1032", //商家地址
     private String createTime;//":"2018-07-03 22:41:22", //创建时间
     private String factoryName;//":"君宝修理厂2", //维修站名称
-    //    private String factoryPic1;//":"", //维修站图片
-//    private String factoryPic2;//": "http://173rd88727.iok.la:80/farmHand/handler/downloadFile?fileName\u003drepairShopPic_1533729037639_G2M0M.png",
-//    private String factoryPic3;//": "",
-//    private String factoryPic4;//": "",
-//    private String factoryPic5;//": "",
-//    private String factoryPic6;//": "",
     private List<String> factoryPicList;
     private String homeTel;//":"", //家庭电话
     private String latitude;//":"98.32835", //维度
