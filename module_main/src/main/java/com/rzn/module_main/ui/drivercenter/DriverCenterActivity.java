@@ -18,6 +18,7 @@ import com.rzn.commonbaselib.bean.LoginResponseBean;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.commonbaselib.utils.FileSaveUtils;
 import com.rzn.module_main.R;
+import com.rzn.module_main.ui.mywallet.MyWalletActivity;
 import com.rzn.module_main.ui.setting.SettingActivity;
 import com.rzn.module_main.ui.settingmode.SettingModeActivity;
 import com.zyhealth.expertlib.utils.GlideUtils;
@@ -118,7 +119,13 @@ public class DriverCenterActivity extends MVPBaseActivity<DriverCenterContract.V
             }
         });
 
+        rlTwo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(DriverCenterActivity.this, MyWalletActivity.class));
 
+            }
+        });
 
     }
 
