@@ -13,6 +13,15 @@ public class DriverBean {
     private String name;
     private String sex;
     private String status;//状态0禁用1审核中2审核拒绝3审核通过
+    private String fundId;
+
+    public String getFundId() {
+        return fundId == null ? "" : fundId;
+    }
+
+    public void setFundId(String fundId) {
+        this.fundId = fundId;
+    }
 
     public String getAddAreas() {
         return addAreas;

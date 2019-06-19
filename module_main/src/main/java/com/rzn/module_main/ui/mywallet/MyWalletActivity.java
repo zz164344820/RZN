@@ -73,7 +73,7 @@ public class MyWalletActivity extends MVPBaseActivity<MyWalletContract.View, MyW
     }
 
     private void initData() {
-        LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+        loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
         Map<String, String> map = new HashMap<>();
         map.put("userId", loginResponseBean.getUserId());
         mPresenter.getWalletDetial(map);

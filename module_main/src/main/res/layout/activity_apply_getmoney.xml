@@ -117,7 +117,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="提交后，预计X个工作日内转账到您的银行卡"
+        android:text="提交后，预计3个工作日内转账到您的银行卡"
         android:textColor="#888888"
         android:textSize="16dp" />
 

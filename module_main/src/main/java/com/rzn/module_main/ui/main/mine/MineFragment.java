@@ -171,13 +171,6 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         super.onResume();
 //        LogUtils.d("aaaaaaaaaa","this is onResume");initData
         loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
-        if (loginResponseBean!=null){
-            if (TextUtils.isEmpty(loginResponseBean.getFundId())) {
-                ll_my_wallet.setVisibility(View.GONE);
-            }else {
-                ll_my_wallet.setVisibility(View.VISIBLE);
-            }
-        }
         initData();
 
     }
@@ -196,6 +189,12 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
 
     @Override
     public void getDataSuccess(DriverBean driverBean) {
+        if(loginResponseBean==null){
+            loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+        }
+        loginResponseBean.setFundId(driverBean.getFundId());
+        FileSaveUtils.fileSaveObject(loginResponseBean,"loginBean");
+
         if ("0".equals(driverBean.getStatus())) {
             tv_Status.setText("已禁用");
         } else if ("1".equals(driverBean.getStatus())) {
@@ -205,6 +204,11 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         } else if ("3".equals(driverBean.getStatus())) {
             tv_Status.setText("已认证");
             tv_Status.setTextColor(getResources().getColor(R.color.main_color));
+        }
+        if (TextUtils.isEmpty(driverBean.getFundId())) {
+            ll_my_wallet.setVisibility(View.GONE);
+        }else {
+            ll_my_wallet.setVisibility(View.VISIBLE);
         }
     }
 }

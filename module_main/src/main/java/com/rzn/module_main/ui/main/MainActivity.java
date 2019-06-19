@@ -20,6 +20,7 @@ import com.rzn.module_main.R;
 import com.rzn.module_main.R2;
 import com.rzn.module_main.ui.main.farmmachinery.FarmMachineryFragment;
 import com.v5kf.client.lib.V5ClientAgent;
+import com.v5kf.client.lib.V5ClientConfig;
 import com.zyhealth.expertlib.LibApplication;
 
 import butterknife.BindView;
@@ -42,15 +43,17 @@ public class MainActivity extends MVPBaseActivity<MainContract.View, MainPresent
     @BindView(R2.id.viewpager)
     ViewPager viewpager;
     private long lastTime = 0; //记录上次点击的时间
-
+    LoginResponseBean loginResponseBean;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_act_main);
+        loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
         String value = getIntent().getStringExtra("value");
         if (!TextUtils.isEmpty(value)) {
             getJPush(value);
         }
+        setV5Info(loginResponseBean);
         ButterKnife.bind(this);
         mPresenter.onCreate();
         AddressUtils.CreateDBData(this, "address.json");
@@ -67,7 +70,7 @@ public class MainActivity extends MVPBaseActivity<MainContract.View, MainPresent
     }
 
     private void getJPush(String value) {
-        LoginResponseBean loginResponseBean = (LoginResponseBean) FileSaveUtils.readObject("loginBean");
+
         if (loginResponseBean == null || TextUtils.isEmpty(loginResponseBean.getUserId())) {
             return;
         }
@@ -135,6 +138,19 @@ public class MainActivity extends MVPBaseActivity<MainContract.View, MainPresent
 
     @OnClick(R2.id.action_button)
     public void onViewClicked() {
+
         V5ClientAgent.getInstance().startV5ChatActivity(getApplicationContext());
+    }
+
+    private void setV5Info(LoginResponseBean loginResponseBean) {
+        if(loginResponseBean==null){
+            return;
+        }
+        V5ClientConfig.getInstance(this).shouldUpdateUserInfo();
+        V5ClientConfig config = V5ClientConfig.getInstance(this);
+
+        config.setNickname(loginResponseBean.getFarmerName());
+
+        config.setAvatar(loginResponseBean.getPic());
     }
 }
