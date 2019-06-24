@@ -25,7 +25,6 @@ public class GoodsInfoActitiy extends MVPBaseActivity<GoodsInfoContract.View, Go
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_goodsinfo);
-
         mPresenter.onCreate();
     }
 

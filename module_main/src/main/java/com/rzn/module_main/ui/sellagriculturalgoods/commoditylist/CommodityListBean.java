@@ -1,5 +1,7 @@
 package com.rzn.module_main.ui.sellagriculturalgoods.commoditylist;
 
+import com.blankj.utilcode.util.EncodeUtils;
+
 import mlxy.utils.S;
 
 /**
@@ -20,7 +22,7 @@ public class CommodityListBean {
     String url;
 
     public String getUrl() {
-        return url == null ? "" : url;
+        return url == null ? "" : EncodeUtils.urlDecode(url);
     }
 
     public void setUrl(String url) {
@@ -28,7 +30,7 @@ public class CommodityListBean {
     }
 
     public String getGoodsPic1() {
-        return goodsPic1 == null ? "" : goodsPic1;
+        return goodsPic1 == null ? "" : EncodeUtils.urlDecode(goodsPic1);
     }
 
     public void setGoodsPic1(String goodsPic1) {
