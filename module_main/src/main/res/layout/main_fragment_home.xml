@@ -214,11 +214,11 @@
                     android:drawableTop="@drawable/main_weixiuzhan"
                     android:text="维修站" />
 
-                <TextView
+               <!-- <TextView
                     android:id="@+id/tv_main_wenzhuanjia"
                     style="@style/main_moduleTextStyle"
                     android:drawableTop="@drawable/main_wenzhuanjia"
-                    android:text="问专家" />
+                    android:text="问专家" />-->
 
                 <TextView
                     android:id="@+id/tv_main_mainnonghuo"

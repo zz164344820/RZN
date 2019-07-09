@@ -59,6 +59,7 @@
             android:id="@+id/rb_shop"
             style="@style/main_bottom_select"
             android:drawableTop="@drawable/select_main_bottom_shop"
+            android:visibility="gone"
             android:text="商城" />
 
         <RadioButton

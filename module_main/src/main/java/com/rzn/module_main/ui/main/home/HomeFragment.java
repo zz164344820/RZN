@@ -445,11 +445,11 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
         ((MainActivity) get_Context()).setCheckedPager(2, R.id.rb_nongjitong, 1);
     }
 
-    @OnClick(R2.id.tv_main_wenzhuanjia)
+   /* @OnClick(R2.id.tv_main_wenzhuanjia)
     public void tv_main_wenzhuanjia() {
         ToastUtils.showShortSafe("功能暂未开通,敬请期待!");
         //  ((MainActivity) get_Context()).setCheckedPager(2, R.id.rb_nongjitong,1);
-    }
+    }*/
 
 
     @OnClick(R2.id.iv_message)

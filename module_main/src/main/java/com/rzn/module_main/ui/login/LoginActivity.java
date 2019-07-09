@@ -10,13 +10,13 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.alibaba.android.arouter.utils.TextUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.rzn.commonbaselib.mvp.MVPBaseActivity;
 import com.rzn.module_main.R;
 import com.rzn.module_main.R2;
+import com.rzn.module_main.ui.agreement.AgreementActivity;
 import com.rzn.module_main.ui.main.MainActivity;
 
 import butterknife.BindView;
@@ -45,6 +45,8 @@ public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPres
     CountdownTextView tvGetAuthCode;
     @BindView(R2.id.bt_affirm)
     Button btAffirm;
+    @BindView(R2.id.tv_agreement)
+    TextView tvAgreement;
     private CheckBox cbAgree;
 
     @Override
@@ -84,6 +86,12 @@ public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPres
                         ToastUtils.showShort("请同意协议后在录");
                     }
                 }
+            }
+        });
+        tvAgreement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               startActivity(new Intent(LoginActivity.this,AgreementActivity.class));
             }
         });
 
@@ -128,4 +136,6 @@ public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPres
             }
         });
     }
+
+
 }
